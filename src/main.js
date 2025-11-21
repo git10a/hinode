@@ -53,41 +53,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Wed: 06:20 @ Imperial Palace (35.6852, 139.7528)
     // Sun: 07:30 @ Yoyogi Park (35.6717, 139.6949)
 
-    const wedRun = new Date(now);
-    wedRun.setDate(now.getDate() + ((3 - today + 7) % 7));
-    wedRun.setHours(6, 20, 0, 0);
-
-    const sunRun = new Date(now);
-    sunRun.setDate(now.getDate() + ((0 - today + 7) % 7));
-    sunRun.setHours(7, 30, 0, 0);
-
-    // If today is Wed and we passed 6:20, move Wed to next week
-    if (today === 3 && now > wedRun) {
-      wedRun.setDate(wedRun.getDate() + 7);
-    }
-    // If today is Sun and we passed 7:30, move Sun to next week
-    if (today === 0 && now > sunRun) {
-      sunRun.setDate(sunRun.getDate() + 7);
-    }
-
-    // Compare which one is closer
-    if (wedRun < sunRun) {
-      nextRun = wedRun;
-      location = '皇居';
-      lat = 35.6852;
-      lon = 139.7528;
-      timeStr = '06:20';
-      startTime = '062000';
-      endTime = '072000';
-    } else {
-      nextRun = sunRun;
-      location = '代々木公園';
-      lat = 35.6717;
-      lon = 139.6949;
-      timeStr = '07:30';
-      startTime = '073000';
-      endTime = '083000';
-    }
+    // Fixed next run date: November 23, 2025 at 07:30 at Yoyogi Park
+    nextRun = new Date('2025-11-23T07:30:00');
+    location = '代々木公園';
+    lat = 35.6717;
+    lon = 139.6949;
+    timeStr = '07:30';
+    startTime = '073000';
+    endTime = '083000';
 
     // Format Date: M月D日 (Day)
     const month = nextRun.getMonth() + 1;
