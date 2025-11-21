@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
       </span>
     ` : '';
 
-    btn.innerHTML = `次回のチームランDay 👉 ${dateString} ${timeStr} @${location} ${weatherHtml}`;
+    btn.innerHTML = `次回のチームランDayをカレンダーに登録する 👉 ${dateString} ${timeStr} @${location} ${weatherHtml}`;
 
     // Add click listener to weather link
     const weatherLink = btn.querySelector('.weather-link');
