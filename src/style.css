@@ -389,6 +389,15 @@ footer p {
   font-weight: 400;
 }
 
+.about-hero .subtitle {
+  font-family: var(--font-en);
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  color: #666;
+  margin-top: 1rem;
+  font-weight: 400;
+}
+
 .about-section {
   min-height: 80vh;
   background: var(--color-bg);
