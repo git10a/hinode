@@ -2,7 +2,7 @@ import { client } from '../../../lib/microcms';
 import styles from './post.module.css';
 import { notFound } from 'next/navigation';
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 export async function generateMetadata({ params }) {
     const post = await getBlogPost(params.slug);

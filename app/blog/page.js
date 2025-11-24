@@ -3,7 +3,7 @@ import { client } from '../../lib/microcms';
 import styles from './blog.module.css';
 
 // Revalidate every hour
-export const revalidate = 3600;
+export const revalidate = 60;
 
 export const metadata = {
     title: 'BLOG | HINODE',
