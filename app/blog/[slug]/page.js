@@ -8,12 +8,29 @@ export async function generateMetadata({ params }) {
     const post = await getBlogPost(params.slug);
     if (!post) return {};
 
+    const url = `https://hinode-run.com/blog/${params.slug}`;
+
     return {
         title: `${post.title} | HINODE BLOG`,
         description: post.description || `${post.title}の記事です。`,
         openGraph: {
             title: post.title,
-            description: post.description,
+            description: post.description || `${post.title}の記事です。`,
+            url: url,
+            siteName: 'HINODE',
+            type: 'article',
+            images: post.thumbnail ? [
+                {
+                    url: post.thumbnail.url,
+                    width: post.thumbnail.width,
+                    height: post.thumbnail.height,
+                }
+            ] : [],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: post.title,
+            description: post.description || `${post.title}の記事です。`,
             images: post.thumbnail ? [post.thumbnail.url] : [],
         },
     };

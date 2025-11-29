@@ -27,13 +27,13 @@ export const metadata = {
         siteName: 'HINODE',
         locale: 'ja_JP',
         type: 'website',
-        images: ['/assets/logo-black.png'],
+        images: ['/assets/ogp-home.png'],
     },
     twitter: {
         card: 'summary_large_image',
         title: 'HINODE | 日の出と共に走る',
         description: '日の出と共に走る、東京のランニングコミュニティ。',
-        images: ['/assets/logo-black.png'],
+        images: ['/assets/ogp-home.png'],
     },
 };
 
