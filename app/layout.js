@@ -18,11 +18,11 @@ const zenKaku = Zen_Kaku_Gothic_New({
 
 export const metadata = {
     title: 'HINODE | 日の出と共に走る',
-    description: '日の出と共に走る、東京のランニングコミュニティ。人との競争ではなく、自分との約束を守り続けるための場所。',
+    description: '日の出と共に走り出すランナーたちのコミュニティ、HINODE。東京にいなくても、ひとりでも。「日の出に走る」習慣があれば、あなたはもうメンバー。水曜・日曜は東京でオープンランも開催。人との競争ではなく、自分との約束を守り続けるためのコミュニティです。',
     metadataBase: new URL('https://hinode-run.com'),
     openGraph: {
         title: 'HINODE | 日の出と共に走る',
-        description: '日の出と共に走る、東京のランニングコミュニティ。',
+        description: '日の出と共に走り出すランナーたちのコミュニティ、HINODE。東京にいなくても、ひとりでも。「日の出に走る」習慣があれば、あなたはもうメンバー。水曜・日曜は東京でオープンランも開催。人との競争ではなく、自分との約束を守り続けるためのコミュニティです。',
         url: 'https://hinode-run.com',
         siteName: 'HINODE',
         locale: 'ja_JP',
@@ -32,7 +32,7 @@ export const metadata = {
     twitter: {
         card: 'summary_large_image',
         title: 'HINODE | 日の出と共に走る',
-        description: '日の出と共に走る、東京のランニングコミュニティ。',
+        description: '日の出と共に走り出すランナーたちのコミュニティ、HINODE。東京にいなくても、ひとりでも。「日の出に走る」習慣があれば、あなたはもうメンバー。水曜・日曜は東京でオープンランも開催。人との競争ではなく、自分との約束を守り続けるためのコミュニティです。',
         images: ['/assets/ogp-home.png'],
     },
 };
@@ -44,7 +44,7 @@ export default function RootLayout({ children }) {
         "name": "HINODE",
         "url": "https://hinode-run.com",
         "logo": "https://hinode-run.com/assets/logo-black.png",
-        "description": "日の出と共に走る、東京のランニングコミュニティ。",
+        "description": "日の出と共に走り出すランナーたちのコミュニティ、HINODE。東京にいなくても、ひとりでも。「日の出に走る」習慣があれば、あなたはもうメンバー。水曜・日曜は東京でオープンランも開催。人との競争ではなく、自分との約束を守り続けるためのコミュニティです。",
         "sameAs": [
             "https://www.instagram.com/hinode_run/",
             "https://twitter.com/hinode_run",
