@@ -1,0 +1,183 @@
+.aboutHero {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 8rem 2rem 4rem;
+    background: var(--color-bg);
+}
+
+.title {
+    font-size: 4rem;
+    letter-spacing: 0.2em;
+    font-weight: 400;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    font-family: var(--font-en);
+}
+
+.introContainer {
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    text-align: left;
+}
+
+.introTitle {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-family: var(--font-en);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+.introText {
+    margin-bottom: 1.5rem;
+    line-height: 2;
+    color: #444;
+    font-size: 1.05rem;
+}
+
+.subtitle {
+    font-family: var(--font-en);
+    font-size: 1.2rem;
+    letter-spacing: 0.15em;
+    color: #888;
+    margin-top: 2rem;
+    text-transform: uppercase;
+}
+
+.section {
+    padding: 8rem 0;
+    background: var(--color-bg);
+}
+
+.sectionAlt {
+    background: #fafafa;
+}
+
+.contentContainer {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.number {
+    font-family: var(--font-en);
+    font-size: 3rem;
+    font-weight: 700;
+    color: #e0e0e0;
+    margin-bottom: 1rem;
+    line-height: 1;
+}
+
+.sectionTitle {
+    font-family: var(--font-en);
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+    color: var(--color-text);
+}
+
+.sectionSubtitle {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 2.5rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+.text {
+    font-size: 1.05rem;
+    line-height: 2.2;
+    color: #555;
+    margin-bottom: 1.5rem;
+}
+
+.faqSection {
+    padding: 8rem 0;
+    background: #fafafa;
+}
+
+.faqItem {
+    margin-bottom: 5rem;
+}
+
+.faqItem:last-child {
+    margin-bottom: 0;
+}
+
+.faqQuestion {
+    font-family: var(--font-en);
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+}
+
+.faqQuestionJp {
+    font-size: 1.1rem;
+    color: #888;
+    margin-bottom: 2rem;
+    font-weight: 500;
+}
+
+.link {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: opacity 0.3s;
+}
+
+.link:hover {
+    opacity: 0.7;
+}
+
+.ctaSection {
+    padding: 8rem 0;
+    text-align: center;
+    background: linear-gradient(to bottom, #fafafa, #ffffff);
+}
+
+.ctaText {
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+    font-weight: 500;
+}
+
+/* Animations */
+.fadeIn {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .section {
+        padding: 5rem 0;
+    }
+
+    .number {
+        font-size: 2.5rem;
+    }
+
+    .sectionTitle {
+        font-size: 2rem;
+    }
+
+    .sectionSubtitle {
+        font-size: 1.2rem;
+    }
+}
