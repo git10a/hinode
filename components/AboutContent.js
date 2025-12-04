@@ -87,6 +87,35 @@ export default function AboutContent() {
                 </div>
             </section>
 
+            <section className="section about-section alt">
+                <div className="container">
+                    <div className="about-content fade-in">
+                        <div style={{ marginBottom: '4rem' }}>
+                            <h2>Who runs with us?</h2>
+                            <h3>誰が走っているのか</h3>
+                            <p>私たちはオープンなコミュニティです。社会人、学生、海外の方。年齢も性別も国籍も多様な方々が参加しています。必要なのは「速く走る脚」ではなく、「朝起きて走り出す意志」だけです。初心者も、熟練のランナーも、等しく歓迎します。</p>
+                        </div>
+
+                        <div style={{ marginBottom: '4rem' }}>
+                            <h2>Why Sunrise?</h2>
+                            <h3>なぜ日の出なのか</h3>
+                            <p>自分の人生を好転させるためのすべてがその時間帯にはあるからです。日の出の時刻（おおむね5時ごろ）は1日の中で最も自分でコントロールできる時間であり、そのため運動習慣を継続する上でも最適な時間帯であり、そして、やるべきことや考えるべきことに時間をかけて取り組むことができる時間帯でもあります。また、朝日を浴びながら体を動かすことで、脳にとっても最高のパフォーマンスを引き出します。</p>
+                            <p>日の出で走る詳しいメリットに関してはこちらも参照してください。<br />
+                                <a href="https://hinode-run.com/blog/1bbjcftfxf" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', color: 'inherit' }}>
+                                    https://hinode-run.com/blog/1bbjcftfxf
+                                </a>
+                            </p>
+                        </div>
+
+                        <div>
+                            <h2>How to join?</h2>
+                            <h3>参加方法</h3>
+                            <p>HINODEに面倒な入会手続きはありません。StravaやInstagramで告知される場所に、指定の時間に来るだけ。あるいは、あなたの街で日の出と共に走り出すなら、もうセッションは始まっています。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section className="section cta-section">
                 <div className="container">
                     <div className="cta-content fade-in">
