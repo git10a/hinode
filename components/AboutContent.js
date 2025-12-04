@@ -30,6 +30,18 @@ export default function AboutContent() {
             <section className="section about-hero">
                 <div className="container">
                     <h1 className="fade-in">HINODEとは</h1>
+                    <div className="fade-in" style={{ maxWidth: '800px', margin: '2rem auto 4rem', textAlign: 'left' }}>
+                        <h3 style={{ fontSize: '1.4rem', marginBottom: '1.5rem', textAlign: 'center' }}>HINODE: A Sunrise Running Club, Movement & Brand</h3>
+                        <p style={{ marginBottom: '1rem', lineHeight: '1.8' }}>
+                            HINODE（ヒノデ）は、東京を拠点に世界中へ広がる日の出で走るクラブであり、ムーブメントであり、ブランドです。
+                        </p>
+                        <p style={{ marginBottom: '1rem', lineHeight: '1.8' }}>
+                            私たちが共有するのは、肩書きや所属ではなく、「日の出と共に走りだす」というただ一つの習慣と、それを継続する「規律（Discipline）」への賞賛です。 東京での定例ランに参加する者も、遠く離れた場所で一人走る者も、同じ太陽の下で自分自身と向き合うなら、それは等しくHINODEの一員です。
+                        </p>
+                        <p style={{ lineHeight: '1.8' }}>
+                            場所や形式にとらわれず、自らの意志で日の出で一日を始めること。その「生き方」そのものを、HINODEと呼びます。
+                        </p>
+                    </div>
                     <p className="fade-in subtitle">The HINODE Code</p>
                 </div>
             </section>
