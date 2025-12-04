@@ -10,20 +10,23 @@ export default function About() {
         "@context": "https://schema.org",
         "@type": "SportsTeam",
         "name": "HINODE",
-        "description": "HINODE is a sunrise running movement & brand. We value Ritual, Bio-Hacking, and Independent & Connected.",
+        "alternateName": ["HINODE Running Club", "HINODE Tokyo"],
         "url": "https://hinode-run.com",
-        "location": {
+        "logo": "https://hinode-run.com/assets/logo-black.png",
+        "description": "HINODE is a sunrise running movement & brand based in Tokyo. We value discipline and the habit of running at sunrise. HINODEは東京を拠点に世界中へ広がるサンライズ・ランニング・ムーブメントです。",
+        "foundingLocation": {
             "@type": "Place",
-            "name": "Yoyogi Park",
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Tokyo",
-                "addressCountry": "JP"
-            }
+            "name": "Tokyo"
         },
+        "areaServed": {
+            "@type": "Place",
+            "name": ["Tokyo", "Kyoto", "Global"]
+        },
+        "keywords": "Running Club, Sunrise Run, Bio-hacking, Entrepreneur Community, Tokyo Running",
+        "knowsAbout": ["Running", "Well-being", "Discipline", "Bio-hacking"],
         "sameAs": [
             "https://www.instagram.com/hinode_run/",
-            "https://www.strava.com/clubs/hinode"
+            "https://twitter.com/hinode_run"
         ]
     };
 
