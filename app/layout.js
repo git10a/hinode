@@ -35,6 +35,10 @@ export const metadata = {
         description: '日の出と共に走り出すランナーたちのコミュニティ、HINODE。東京にいなくても、ひとりでも。「日の出に走る」習慣があれば、あなたはもうメンバー。水曜・日曜は東京でオープンランも開催。人との競争ではなく、自分との約束を守り続けるためのコミュニティです。',
         images: ['/assets/ogp-home.png'],
     },
+    icons: {
+        icon: '/favicon.png',
+        apple: '/favicon.png',
+    },
 };
 
 export default function RootLayout({ children }) {
