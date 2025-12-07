@@ -35,7 +35,6 @@ export default function HomeContent() {
                 <div className="container">
                     <h1 className="fade-in">日の出と共に<br />走り出そう</h1>
                     <p className="fade-in">人との競争ではなく、<br />自分との約束を守り続けるためのコミュニティ。</p>
-                    <Link href="/about/" className="text-link fade-in">HINODEを詳しく知る</Link>
                     <div className="fade-in">
                         <a href="https://www.strava.com/clubs/hinode" target="_blank" rel="noopener noreferrer" className="btn calendar-btn">
                             次の日の出ランをStravaでチェックする🏃‍♂️‍➡️
