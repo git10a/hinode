@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import StatsDisplay from './StatsDisplay';
 
 export default function HomeContent() {
     const observerRef = useRef(null);
@@ -37,7 +38,7 @@ export default function HomeContent() {
                         <div className="hero-left">
                             <h1 className="fade-in">日の出と<br />ともに<br />走り出そう</h1>
                             <p className="fade-in">人との競争ではなく、<br />自分との約束を守り続けるためのコミュニティ。</p>
-
+                            <StatsDisplay />
                         </div>
                         <div className="hero-right">
                             <div className="strava-widget-container">

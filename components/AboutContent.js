@@ -95,16 +95,7 @@ export default function AboutContent() {
                 </div>
             </section>
 
-            <section className={styles.section}>
-                <div className={styles.contentContainer}>
-                    <div className={styles.fadeIn}>
-                        <h2 className={styles.sectionTitle}>Participation</h2>
-                        <p className={styles.text}>入会はありません。</p>
-                        <p className={styles.text}>予約も連絡も不要です。</p>
-                        <p className={styles.text}>初参加でも特別な手続きはありません。</p>
-                    </div>
-                </div>
-            </section>
+
 
             <section className={`${styles.section} ${styles.faqSection}`}>
                 <div className={styles.contentContainer}>
@@ -113,6 +104,11 @@ export default function AboutContent() {
                         <div className={styles.faqItem}>
                             <h2 className={styles.faqQuestion}>初心者でも参加できますか？</h2>
                             <p className={styles.text}>参加できます。毎回、参加者の約3割はほぼ初めてのランニングです。気持ちよく話しながら走れる範囲で大丈夫です。</p>
+                        </div>
+
+                        <div className={styles.faqItem}>
+                            <h2 className={styles.faqQuestion}>どんな人が参加していますか？</h2>
+                            <p className={styles.text}>中学生から50代まで老若男女問わず参加していただいています。</p>
                         </div>
 
                         <div className={styles.faqItem}>
@@ -127,10 +123,7 @@ export default function AboutContent() {
                             <p className={styles.text}>途中参加も可能ですが、走っている集団に合流するのは少し難しいことがあります。できればスタートの数分前に来てもらえるとスムーズです。</p>
                         </div>
 
-                        <div className={styles.faqItem}>
-                            <h2 className={styles.faqQuestion}>時間どおりに出発しますか？</h2>
-                            <p className={styles.text}>はい。日の出で走るので、太陽は待ってくれません。時間どおりにスタートします。数分前集合でお願いします。</p>
-                        </div>
+
 
                         <div className={styles.faqItem}>
                             <h2 className={styles.faqQuestion}>雨の日はどうなりますか？</h2>

@@ -786,3 +786,57 @@ footer p {
     transform: translateY(-5px);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
 }
+
+/* Stats Display */
+.stats-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    padding: 1rem 2.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 1024px) {
+    .stats-container {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.2;
+}
+
+.stat-number {
+    font-family: var(--font-en);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #555;
+    margin-top: 0.3rem;
+    font-weight: 500;
+}
+
+.stat-divider {
+    font-size: 2rem;
+    color: #ccc;
+    font-weight: 300;
+    transform: translateY(-2px);
+}
