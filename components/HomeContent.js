@@ -85,6 +85,9 @@ export default function HomeContent() {
                                 </a>
                             </div>
                         </div>
+                        <div className="philosophy-image-container fade-in">
+                            <img src="/assets/what-we-do.png" alt="Sunrise Coffee" className="philosophy-image" />
+                        </div>
                     </div>
                 </div>
             </section>

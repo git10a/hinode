@@ -1,32 +1,32 @@
 .aboutHero {
-    min-height: 60vh;
+    min-height: 50vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 8rem 2rem 4rem;
+    padding: 10rem 2rem 3rem;
     background: var(--color-bg);
 }
 
 .title {
-    font-size: 4rem;
+    font-size: 3.5rem;
     letter-spacing: 0.2em;
     font-weight: 400;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     text-transform: uppercase;
     font-family: var(--font-en);
 }
 
 .introContainer {
     max-width: 800px;
-    margin: 0 auto 4rem;
-    text-align: left;
+    margin: 0 auto 3rem;
+    text-align: center;
 }
 
 .introTitle {
     font-size: 1.4rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     text-align: center;
     font-family: var(--font-en);
     font-weight: 500;
@@ -34,10 +34,20 @@
 }
 
 .introText {
-    margin-bottom: 1.5rem;
-    line-height: 2;
+    margin-bottom: 1rem;
+    line-height: 1.8;
     color: #444;
     font-size: 1.05rem;
+}
+
+.heroImage {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    margin: 0 auto 4rem;
+    display: block;
+    border-radius: 4px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .subtitle {
@@ -50,7 +60,7 @@
 }
 
 .section {
-    padding: 8rem 0;
+    padding: 4rem 0;
     background: var(--color-bg);
 }
 
@@ -85,25 +95,32 @@
 .sectionSubtitle {
     font-size: 1.4rem;
     font-weight: 500;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
     color: #333;
     line-height: 1.6;
 }
 
 .text {
     font-size: 1.05rem;
-    line-height: 2.2;
+    line-height: 1.8;
     color: #555;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.sectionImage {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .faqSection {
-    padding: 8rem 0;
+    padding: 4rem 0;
     background: #fafafa;
 }
 
 .faqItem {
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
 }
 
 .faqItem:last-child {
@@ -112,7 +129,7 @@
 
 .faqQuestion {
     font-family: var(--font-en);
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
     color: var(--color-text);
@@ -121,7 +138,7 @@
 .faqQuestionJp {
     font-size: 1.1rem;
     color: #888;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     font-weight: 500;
 }
 
@@ -137,14 +154,14 @@
 }
 
 .ctaSection {
-    padding: 8rem 0;
+    padding: 4rem 0;
     text-align: center;
     background: linear-gradient(to bottom, #fafafa, #ffffff);
 }
 
 .ctaText {
     font-size: 1.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     font-weight: 500;
 }
 
@@ -179,5 +196,46 @@
 
     .sectionSubtitle {
         font-size: 1.2rem;
+    }
+}
+
+.twoColumn {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    justify-content: space-between;
+}
+
+.textColumn {
+    flex: 1;
+}
+
+.imageColumn {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sideImage {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.sideImage:hover {
+    transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+    .twoColumn {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .imageColumn {
+        width: 100%;
     }
 }
