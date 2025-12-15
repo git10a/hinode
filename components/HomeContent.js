@@ -33,24 +33,25 @@ export default function HomeContent() {
             <div className="home-background"></div>
             <section id="home" className="section hero">
                 <div className="container">
-                    <h1 className="fade-in">日の出とともに<br />走り出そう</h1>
-                    <p className="fade-in">人との競争ではなく、<br />自分との約束を守り続けるためのコミュニティ。</p>
-                    <p className="widget-label fade-in">今日も誰かが、自分との約束を守っています。</p>
-                    <div className="strava-widget-container">
-                        <iframe
-                            allowTransparency="true"
-                            frameBorder="0"
-                            height="454"
-                            scrolling="no"
-                            src="https://www.strava.com/clubs/1772485/latest-rides/96cfe975d5523754834fbcb424940d8248fa0cf2?show_rides=true"
-                            width="300"
-                            style={{ border: 'none', overflow: 'hidden' }}
-                        ></iframe>
-                    </div>
-                    <div className="fade-in">
-                        <a href="https://www.strava.com/clubs/hinode" target="_blank" rel="noopener noreferrer" className="btn calendar-btn">
-                            次の日の出ランをStravaでチェックする🏃‍♂️‍➡️
-                        </a>
+                    <div className="hero-content-wrapper">
+                        <div className="hero-left">
+                            <h1 className="fade-in">日の出と<br />ともに<br />走り出そう</h1>
+                            <p className="fade-in">人との競争ではなく、<br />自分との約束を守り続けるためのコミュニティ。</p>
+
+                        </div>
+                        <div className="hero-right">
+                            <div className="strava-widget-container">
+                                <iframe
+                                    allowTransparency="true"
+                                    frameBorder="0"
+                                    height="454"
+                                    scrolling="no"
+                                    src="https://www.strava.com/clubs/1772485/latest-rides/96cfe975d5523754834fbcb424940d8248fa0cf2?show_rides=true"
+                                    width="300"
+                                    style={{ border: 'none', overflow: 'hidden' }}
+                                ></iframe>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -59,13 +60,31 @@ export default function HomeContent() {
                 <div className="container">
                     <div className="philosophy-content">
                         <div className="philosophy-text fade-in">
-                            <h2>今日を愛せれば、人生は愛せる。</h2>
-                            <p>今日という一日は、一生の縮図だ。一日は、一生の縮図だ。 だからこそ、その始まりに、私たちは「完璧な満足」を選び取る。</p>
-                            <p>眠気よりも、規律を。 妥協よりも、誇りを。</p>
-                            <p>自分との約束を守り、朝日の中を駆け抜ける時、 身体はすでに、確かな幸福感で満たされている。</p>
-                            <p>HINODE。 良い人生を待つのではなく、 毎朝、ここから自分の足で作り出す。</p>
+                            <p>日の出前に集まり、<br />日の出とともに走り、<br />走った後はコーヒーで乾杯。</p>
+                            <div className="schedule-info">
+                                <div className="schedule-item">
+                                    <p className="schedule-time">月曜 06:20｜オンライン</p>
+                                    <p className="schedule-location">各自でランニング</p>
+                                </div>
+                                <div className="schedule-item">
+                                    <p className="schedule-time">水曜 06:20｜皇居</p>
+                                    <p className="schedule-location">桔梗門派出所前</p>
+                                </div>
+                                <div className="schedule-item">
+                                    <p className="schedule-time">日曜 07:30｜代々木公園</p>
+                                    <p className="schedule-location">原宿時計塔前</p>
+                                </div>
+                            </div>
+                            <p className="social-note">詳細や変更は Instagram / Strava で公開しています。</p>
+                            <div className="social-buttons">
+                                <a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer" className="btn social-btn">
+                                    Instagram
+                                </a>
+                                <a href="https://www.strava.com/clubs/hinode" target="_blank" rel="noopener noreferrer" className="btn social-btn">
+                                    Strava
+                                </a>
+                            </div>
                         </div>
-                        <div className="philosophy-image fade-in"></div>
                     </div>
                 </div>
             </section>
