@@ -30,8 +30,8 @@ export default async function BlogPage() {
     const posts = await getBlogPosts();
 
     return (
-        <div className="container" style={{ paddingBottom: '4rem', paddingTop: '8rem' }}>
-            <h1 style={{ textAlign: 'center', marginBottom: '4rem', color: '#111' }}>BLOG</h1>
+        <div className={styles.container}>
+            <h1 className={styles.pageTitle}>BLOG</h1>
 
             {posts.length === 0 ? (
                 <p style={{ textAlign: 'center' }}>記事がまだありません。</p>

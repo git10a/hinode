@@ -58,7 +58,9 @@ export default function Header() {
                     </Link>
                     <ul className="nav-links">
                         <li><Link href="/about/">HINODEとは</Link></li>
+                        <li><Link href="/schedule/">SCHEDULE</Link></li>
                         <li><Link href="/blog/">BLOG</Link></li>
+                        <li><a href="https://hinoderun.stores.jp/" target="_blank" rel="noopener noreferrer">SHOP</a></li>
                     </ul>
 
                     <button
@@ -74,7 +76,9 @@ export default function Header() {
                     <div className={`mobile-menu ${isMenuOpen ? 'active' : ''}`}>
                         <ul className="mobile-nav-links">
                             <li><Link href="/about/" onClick={closeMenu}>HINODEとは</Link></li>
+                            <li><Link href="/schedule/" onClick={closeMenu}>SCHEDULE</Link></li>
                             <li><Link href="/blog/" onClick={closeMenu}>BLOG</Link></li>
+                            <li><a href="https://hinoderun.stores.jp/" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>SHOP</a></li>
                             <li><a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>Instagram</a></li>
                             <li><a href="https://www.strava.com/clubs/hinode" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>Strava</a></li>
                         </ul>

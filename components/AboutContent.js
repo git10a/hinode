@@ -33,7 +33,7 @@ export default function AboutContent() {
                     <h1 className={`${styles.title} ${styles.fadeIn}`}>About HINODE</h1>
 
                     <img
-                        src="/assets/about-hero.png"
+                        src="/assets/about-hero-real.png"
                         alt="Sunrise Running"
                         className={`${styles.heroImage} ${styles.fadeIn}`}
                     />

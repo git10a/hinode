@@ -1,0 +1,395 @@
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.header {
+    padding: 8rem 0 3rem;
+    text-align: center;
+}
+
+.pageTitle {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #111;
+    font-size: 2.5rem;
+    font-family: var(--font-en);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: none;
+    position: relative;
+    display: inline-block;
+}
+
+.pageTitle::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #F37E4A, #FFC436);
+    border-radius: 2px;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.subCopy {
+    font-family: var(--font-jp);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #666;
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.subCopy p {
+    margin-bottom: 0.3rem;
+    max-width: none;
+}
+
+.headerBtn {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.8rem 2rem;
+    font-size: 0.9rem;
+    font-family: var(--font-jp);
+    color: #fff;
+    background: linear-gradient(135deg, #F37E4A, #e85d2a);
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.headerBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(243, 126, 74, 0.3);
+}
+
+.scheduleSection {
+    padding: 2rem 0 4rem;
+}
+
+.scheduleGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+}
+
+.card {
+    background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+    border: 1px solid #eee;
+    border-radius: 16px;
+    padding: 1.8rem;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    text-align: left;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #F37E4A, #FFC436);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(243, 126, 74, 0.12);
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.dayLabel {
+    font-family: var(--font-jp);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+    display: inline-block;
+    text-align: left;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid #F37E4A;
+}
+
+.weeklyText {
+    font-size: 0.7rem;
+    margin-right: 0.2rem;
+    font-weight: 500;
+    color: #888;
+}
+
+.cardContent {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    flex: 1;
+}
+
+.runTitle {
+    font-family: var(--font-jp);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text);
+    letter-spacing: 0.02em;
+}
+
+.nextDate {
+    display: inline-block;
+    font-family: var(--font-jp);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #F37E4A;
+    background: transparent;
+    border: 1px solid #F37E4A;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    margin-top: 0.3rem;
+}
+
+.nextDateRest {
+    display: inline-block;
+    font-family: var(--font-jp);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #888;
+    background: #eee;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    margin-top: 0.3rem;
+}
+
+.timeLocation {
+    font-family: var(--font-jp);
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.7;
+    margin-top: 0.5rem;
+}
+
+.timeLocation p {
+    margin-bottom: 0.3rem;
+    max-width: none;
+}
+
+.mapContainer {
+    margin-top: auto;
+    width: 100%;
+    height: 180px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f0f0f0;
+    margin-top: 1rem;
+}
+
+.imageContainer {
+    margin-top: auto;
+    width: 100%;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, transparent, rgba(243, 126, 74, 0.05));
+    border-radius: 12px;
+    margin-top: 1rem;
+}
+
+.earthImage {
+    width: 100px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
+}
+
+.mapFrame {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.beginnersSection {
+    padding: 5rem 0;
+    background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
+    text-align: center;
+    margin: 0 -2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.sectionTitle {
+    font-family: var(--font-jp);
+    font-size: 1.4rem;
+    margin-bottom: 2.5rem;
+    font-weight: 500;
+    color: #333;
+    border: none;
+    padding-left: 0;
+}
+
+.beginnersList {
+    list-style: none;
+    padding: 0;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.beginnersList li {
+    font-family: var(--font-jp);
+    font-size: 1rem;
+    padding: 1rem 0 1rem 1.5rem;
+    border-bottom: 1px solid #eee;
+    color: #444;
+    position: relative;
+}
+
+.beginnersList li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #F37E4A;
+    font-weight: 600;
+}
+
+.beginnersList li:last-child {
+    border-bottom: none;
+}
+
+.noteSection {
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.noteBox {
+    background: linear-gradient(135deg, #fff9f5 0%, #ffffff 100%);
+    border: 1px solid #f0e6e0;
+    padding: 1.8rem 2rem;
+    max-width: 550px;
+    margin: 0 auto;
+    border-radius: 12px;
+}
+
+.noteText {
+    font-family: var(--font-jp);
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 0.8rem;
+    max-width: none;
+}
+
+.noteText:last-child {
+    margin-bottom: 0;
+}
+
+.linksSection {
+    padding: 3rem 0 6rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.linkBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2.5rem;
+    border: 1px solid #333;
+    border-radius: 50px;
+    background: transparent;
+    color: #333;
+    font-family: var(--font-jp);
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    min-width: 180px;
+}
+
+.linkBtn:hover {
+    background: linear-gradient(135deg, #333 0%, #111 100%);
+    border-color: transparent;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.eventItem {
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.eventItem:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.eventItem .runTitle {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.eventNote {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 0.5rem;
+    max-width: none;
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 6rem 0 2rem;
+    }
+
+    .pageTitle {
+        font-size: 2rem;
+    }
+
+    .subCopy {
+        font-size: 0.95rem;
+    }
+
+    .scheduleGrid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    .beginnersSection {
+        padding: 4rem 0;
+    }
+
+    .linksSection {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding-bottom: 4rem;
+    }
+
+    .linkBtn {
+        width: 100%;
+        max-width: 280px;
+    }
+}

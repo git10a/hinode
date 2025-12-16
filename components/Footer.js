@@ -13,6 +13,11 @@ export default function Footer() {
                             <path d="M15.387 17.944l-2.089-4.116h-3.065l5.154 10.172 5.155-10.172h-3.066l-2.089 4.116zm-4.011-8.528l-1.477 2.916h-2.171l3.648-7.209 3.648 7.209h-2.171l-1.477-2.916z" />
                         </svg>
                     </a>
+                    <a href="https://hinoderun.stores.jp/" target="_blank" rel="noopener noreferrer" aria-label="Shop">
+                        <svg className="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4H6zM3.5 6h17M16 10a4 4 0 0 1-8 0" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </a>
                 </div>
                 <p>&copy; 2025 HINODE All rights reserved.</p>
             </div>
