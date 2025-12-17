@@ -95,6 +95,17 @@
     padding: 1.5rem;
 }
 
+.content a {
+    color: #F37E4A;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s, color 0.3s;
+}
+
+.content a:hover {
+    border-color: #F37E4A;
+}
+
 @media (max-width: 768px) {
     .title {
         font-size: 1.8rem;

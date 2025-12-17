@@ -61,46 +61,20 @@ export default function AboutContent() {
                 </div>
             </section>
 
-            <section className={styles.section}>
-                <div className={styles.contentContainer}>
-                    <div className={styles.fadeIn}>
-                        <h2 className={styles.sectionTitle}>Weekly Rhythm</h2>
-                        <p className={styles.text}>基本は 月・水・日 です。</p>
-                        <ul className={styles.list}>
-                            <li>月｜オンライン</li>
-                            <li>水｜皇居（桔梗門派出所前）</li>
-                            <li>日｜代々木公園（原宿時計塔前）</li>
-                        </ul>
-                        <p className={styles.text} style={{ marginTop: '1rem', fontSize: '0.9em', opacity: 0.8 }}>※当日の詳細・変更は Instagram / Strava に出します。</p>
-                    </div>
-                </div>
-            </section>
-
-            <section className={`${styles.section} ${styles.sectionAlt}`}>
-                <div className={styles.contentContainer}>
-                    <div className={`${styles.fadeIn} ${styles.twoColumn}`}>
-                        <div className={styles.textColumn}>
-                            <h2 className={styles.sectionTitle}>Occasional Runs</h2>
-                            <p className={styles.text}>東京以外にも不定期で出張ランを行っています。</p>
-                            <p className={styles.text}>これまで 大阪 と 京都 で開催しました。開催する場合は Instagram / Strava で告知します。</p>
-                        </div>
-                        <div className={styles.imageColumn}>
-                            <img
-                                src="/images/occasional-runs.png"
-                                alt="Occasional Runs"
-                                className={styles.sideImage}
-                            />
-                        </div>
-                    </div>
-                </div>
-            </section>
 
 
 
-            <section className={`${styles.section} ${styles.faqSection}`}>
+
+
+            <section id="faq" className={`${styles.section} ${styles.faqSection}`}>
                 <div className={styles.contentContainer}>
                     <div className={styles.fadeIn}>
                         <p className={styles.subtitle}>FAQ</p>
+                        <div className={styles.faqItem}>
+                            <h2 className={styles.faqQuestion}>日の出で集合地点に向かったのに誰もいなかったら？</h2>
+                            <p className={styles.text}>不安になるお気持ちはとてもわかります。<a href="https://www.strava.com/athletes/174878383" className={styles.link} target="_blank" rel="noopener noreferrer">HINODE運営のStrava</a> をご覧いただけると、ほぼすべてのランを日の出で記録していることがわかるので、少しでも安心材料にしていただけたら幸いです。雨の日や運営がどうしてもいけない日はStravaやInstagramで前もって告知しますので、フォローしておいていただけると確認しやすいです。</p>
+                        </div>
+
                         <div className={styles.faqItem}>
                             <h2 className={styles.faqQuestion}>初心者でも参加できますか？</h2>
                             <p className={styles.text}>参加できます。毎回、参加者の約3割はほぼ初めてのランニングです。気持ちよく話しながら走れる範囲で大丈夫です。</p>

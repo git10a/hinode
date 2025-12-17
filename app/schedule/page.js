@@ -9,7 +9,7 @@ export default function EventPage() {
     return (
         <div className={styles.container}>
             <section className={styles.header}>
-                <h1 className={styles.pageTitle}>SCHEDULE of #hinode_run</h1>
+                <h1 className={styles.pageTitle}>SCHEDULE</h1>
                 <div className={styles.subCopy}>
                     <p>毎週、同じ時間・同じ場所で走る</p>
                     <p>自分との約束を守り続けるHINODEの朝ラン</p>
@@ -124,6 +124,9 @@ export default function EventPage() {
                     <li>1人参加の方が多いです。誰でも連れてきてOKです</li>
                     <li>途中参加・途中離脱も可能です</li>
                 </ul>
+                <p className={styles.faqLink}>
+                    <a href="/about#faq">よくある質問はこちら →</a>
+                </p>
             </section>
 
             <section className={styles.noteSection}>

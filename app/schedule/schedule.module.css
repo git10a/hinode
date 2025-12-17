@@ -272,6 +272,22 @@
     border-bottom: none;
 }
 
+.faqLink {
+    margin-top: 2rem;
+    font-size: 0.95rem;
+}
+
+.faqLink a {
+    color: #F37E4A;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s, color 0.3s;
+}
+
+.faqLink a:hover {
+    border-color: #F37E4A;
+}
+
 .noteSection {
     padding: 3rem 0;
     text-align: center;
