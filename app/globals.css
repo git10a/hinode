@@ -401,6 +401,25 @@ nav {
     max-width: none;
 }
 
+.schedule-detail-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.7rem 1.5rem;
+    font-size: 0.85rem;
+    color: var(--color-text);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 25px;
+    background: transparent;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.schedule-detail-btn:hover {
+    background: var(--color-text);
+    color: var(--color-bg);
+    border-color: var(--color-text);
+}
+
 .social-note {
     font-size: 1rem !important;
     color: #666 !important;

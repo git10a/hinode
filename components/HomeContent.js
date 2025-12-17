@@ -75,6 +75,9 @@ export default function HomeContent() {
                                     <p className="schedule-time">日曜 07:30｜代々木公園</p>
                                     <p className="schedule-location">原宿時計塔前</p>
                                 </div>
+                                <Link href="/schedule" className="schedule-detail-btn">
+                                    イベント詳細を見る
+                                </Link>
                             </div>
                             <p className="social-note">詳細や変更は Instagram / Strava で公開しています。</p>
                             <div className="social-buttons">
