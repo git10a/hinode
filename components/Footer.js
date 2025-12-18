@@ -1,7 +1,12 @@
+import Link from 'next/link';
+
 export default function Footer() {
     return (
         <footer>
             <div className="container">
+                <div className="footer-links">
+                    <Link href="/privacy">プライバシーポリシー</Link>
+                </div>
                 <div className="social-links">
                     <a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                         <svg className="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
