@@ -6,7 +6,27 @@ export const revalidate = 60;
 
 export async function generateMetadata({ params }) {
     const post = await getBlogPost(params.slug);
-    if (!post) return {};
+
+    // 記事が存在しない場合（下書きまたは削除済み）は noindex を返す
+    if (!post) {
+        return {
+            robots: {
+                index: false,
+                follow: false,
+            },
+        };
+    }
+
+    // publishedAt がない記事（下書き状態）も noindex
+    if (!post.publishedAt) {
+        return {
+            title: post.title,
+            robots: {
+                index: false,
+                follow: false,
+            },
+        };
+    }
 
     const url = `https://hinode-run.com/blog/${params.slug}`;
 
@@ -62,7 +82,8 @@ async function getBlogPost(id) {
 export default async function BlogPost({ params }) {
     const post = await getBlogPost(params.slug);
 
-    if (!post) {
+    // 記事が存在しない、または publishedAt がない（下書き）場合は 404
+    if (!post || !post.publishedAt) {
         notFound();
     }
 
