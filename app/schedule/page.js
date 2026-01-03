@@ -33,11 +33,11 @@ export default function EventPage() {
                             月曜日
                         </span>
                         <div className={styles.cardContent}>
-                            <h3 className={styles.runTitle}>オンラインラン</h3>
-                            <span className={styles.nextDateRest}>年始まで休み</span>
+                            <h3 className={styles.runTitle}>リモートラン</h3>
+                            <span className={styles.nextDate}>次回: 1/6（月）</span>
                             <div className={styles.timeLocation}>
                                 <p>スタート時間: 06:30</p>
-                                <p>集合場所: オンライン</p>
+                                <p>集合場所: リモート</p>
                                 <p style={{ fontSize: '0.85rem', marginTop: '0.5rem' }}>（同じ空の下、各自の場所で同時スタート）</p>
                             </div>
                             <div className={styles.imageContainer}>
@@ -54,7 +54,7 @@ export default function EventPage() {
                         </span>
                         <div className={styles.cardContent}>
                             <h3 className={styles.runTitle}>皇居ラン</h3>
-                            <span className={styles.nextDate}>次回: 12/17（今年最後）</span>
+                            <span className={styles.nextDate}>次回: 1/8（水）</span>
                             <div className={styles.timeLocation}>
                                 <p>スタート時間: 06:20</p>
                                 <p>集合場所: 皇居 桔梗門派出所集合</p>
@@ -79,7 +79,7 @@ export default function EventPage() {
                         </span>
                         <div className={styles.cardContent}>
                             <h3 className={styles.runTitle}>代々木公園ラン</h3>
-                            <span className={styles.nextDateRest}>年始まで休み</span>
+                            <span className={styles.nextDate}>次回: 1/12（日）</span>
                             <div className={styles.timeLocation}>
                                 <p>スタート時間: 07:30</p>
                                 <p>集合場所: 代々木公園 原宿門時計塔集合</p>
@@ -102,16 +102,7 @@ export default function EventPage() {
                             イベントラン
                         </span>
                         <div className={styles.cardContent}>
-                            <div className={styles.eventItem}>
-                                <h3 className={styles.runTitle}>鎌倉ラン</h3>
-                                <span className={styles.nextDate}>12/21（日）開催</span>
-                                <p className={styles.eventNote}>鎌倉の海岸線から登る日の出を見ながらラン</p>
-                            </div>
-                            <div className={styles.eventItem}>
-                                <h3 className={styles.runTitle}>🌅 初日の出ラン</h3>
-                                <span className={styles.nextDate}>1/1（水）オンライン</span>
-                                <p className={styles.eventNote}>新年は日の出とともに走り初め</p>
-                            </div>
+                            <p className={styles.eventNote}>未定</p>
                         </div>
                     </div>
                 </div>
