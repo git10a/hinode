@@ -25,85 +25,66 @@ export default function EventPage() {
             </section>
 
             <section className={styles.scheduleSection}>
-                <div className={styles.scheduleGrid}>
-                    {/* MON */}
-                    <div className={styles.card}>
-                        <span className={styles.dayLabel}>
-                            <span className={styles.weeklyText}>毎週</span>
-                            月曜日
-                        </span>
-                        <div className={styles.cardContent}>
-                            <h3 className={styles.runTitle}>リモートラン</h3>
-                            <span className={styles.nextDate}>次回: 1/6（月）</span>
-                            <div className={styles.timeLocation}>
-                                <p>スタート時間: 06:30</p>
-                                <p>集合場所: リモート</p>
-                                <p style={{ fontSize: '0.85rem', marginTop: '0.5rem' }}>（同じ空の下、各自の場所で同時スタート）</p>
-                            </div>
-                            <div className={styles.imageContainer}>
-                                <img src="/assets/earth-3d.png" alt="Online Run" className={styles.earthImage} />
-                            </div>
-                        </div>
+                {/* MON - Remote Run */}
+                <div className={styles.runRow}>
+                    <div className={styles.runNumber}>01</div>
+                    <div className={styles.runInfo}>
+                        <h3 className={styles.runName}>リモートラン</h3>
+                        <p className={styles.runMeta}>
+                            <span className={styles.dayBadge}>毎週月曜</span>
+                            <span className={styles.runDistance}>（自由）</span>
+                        </p>
                     </div>
-
-                    {/* WED */}
-                    <div className={styles.card}>
-                        <span className={styles.dayLabel}>
-                            <span className={styles.weeklyText}>毎週</span>
-                            水曜日
-                        </span>
-                        <div className={styles.cardContent}>
-                            <h3 className={styles.runTitle}>皇居ラン</h3>
-                            <span className={styles.nextDate}>次回: 1/8（水）</span>
-                            <div className={styles.timeLocation}>
-                                <p>スタート時間: 06:20</p>
-                                <p>集合場所: 皇居 桔梗門派出所集合</p>
-                            </div>
-                            <div className={styles.mapContainer}>
-                                <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d859.3563589663179!2d139.75930192448354!3d35.6833933120758!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188be14634be45%3A0x4756b6d53502e3b2!2z6K2m6KaW5bqBIOS4uOOBruWGheitpuWvn-e9siDmoJTmopfplIDorablgpnmtL7lh7rmiYA!5e0!3m2!1sja!2sus!4v1765865887232!5m2!1sja!2sus"
-                                    className={styles.mapFrame}
-                                    allowFullScreen
-                                    loading="lazy"
-                                    referrerPolicy="no-referrer-when-downgrade"
-                                ></iframe>
-                            </div>
-                        </div>
+                    <div className={styles.runMapSection}>
+                        <img src="/assets/remote-run-map.png" alt="リモートラン" className={styles.runMapImage} />
                     </div>
-
-                    {/* SUN */}
-                    <div className={styles.card}>
-                        <span className={styles.dayLabel}>
-                            <span className={styles.weeklyText}>毎週</span>
-                            日曜日
-                        </span>
-                        <div className={styles.cardContent}>
-                            <h3 className={styles.runTitle}>代々木公園ラン</h3>
-                            <span className={styles.nextDate}>次回: 1/12（日）</span>
-                            <div className={styles.timeLocation}>
-                                <p>スタート時間: 07:30</p>
-                                <p>集合場所: 代々木公園 原宿門時計塔集合</p>
-                            </div>
-                            <div className={styles.mapContainer}>
-                                <iframe
-                                    src="https://maps.google.com/maps?q=代々木公園+原宿門&t=&z=17&ie=UTF8&iwloc=&output=embed"
-                                    className={styles.mapFrame}
-                                    allowFullScreen
-                                    loading="lazy"
-                                    referrerPolicy="no-referrer-when-downgrade"
-                                ></iframe>
-                            </div>
-                        </div>
+                    <div className={styles.runDescription}>
+                        <p>同じ空の下、各自の場所で同時スタート。<br />東京にいなくても、ひとりでも。<br />1週間を自分の意思で能動的に始めましょう。</p>
+                        <p className={styles.runTime}>スタート時間: 06:30</p>
                     </div>
+                </div>
 
-                    {/* EVENT */}
-                    <div className={styles.card}>
-                        <span className={styles.dayLabel}>
-                            イベントラン
-                        </span>
-                        <div className={styles.cardContent}>
-                            <p className={styles.eventNote}>未定</p>
-                        </div>
+                {/* WED - Imperial Palace */}
+                <div className={styles.runRow}>
+                    <div className={styles.runNumber}>02</div>
+                    <div className={styles.runInfo}>
+                        <h3 className={styles.runName}>皇居ラン</h3>
+                        <p className={styles.runMeta}>
+                            <span className={styles.dayBadge}>毎週水曜</span>
+                            <span className={styles.runDistance}>（約5km）</span>
+                        </p>
+                    </div>
+                    <div className={styles.runMapSection}>
+                        <img src="/assets/kokyo-run-map.png" alt="皇居ラン" className={styles.runMapImage} />
+                        <a href="https://maps.app.goo.gl/E9HkSojyPZw6zo1b9" target="_blank" rel="noopener noreferrer" className={styles.googleMapLink}>
+                            📍 Google map
+                        </a>
+                    </div>
+                    <div className={styles.runDescription}>
+                        <p>桔梗門前派出所に集合。<br />皇居を左回りで1周。<br />和田倉噴水公園内にはSTARBUCKSも。</p>
+                        <p className={styles.runTime}>スタート時間: 06:30</p>
+                    </div>
+                </div>
+
+                {/* SUN - Yoyogi */}
+                <div className={styles.runRow}>
+                    <div className={styles.runNumber}>03</div>
+                    <div className={styles.runInfo}>
+                        <h3 className={styles.runName}>代々木公園ラン</h3>
+                        <p className={styles.runMeta}>
+                            <span className={styles.dayBadge}>毎週日曜</span>
+                            <span className={styles.runDistance}>（約3〜6km）</span>
+                        </p>
+                    </div>
+                    <div className={styles.runMapSection}>
+                        <img src="/assets/yoyogi-run-map.png" alt="代々木公園ラン" className={styles.runMapImage} />
+                        <a href="https://maps.app.goo.gl/dB3L15dHByAoC4jw9" target="_blank" rel="noopener noreferrer" className={styles.googleMapLink}>
+                            📍 Google map
+                        </a>
+                    </div>
+                    <div className={styles.runDescription}>
+                        <p>原宿時計塔に集合。<br />代々木公園を左回りで1〜2周。<br />公園を降りて少し歩いたところにはVERVE COFFEEなど、カフェスポットあり。</p>
+                        <p className={styles.runTime}>スタート時間: 07:30</p>
                     </div>
                 </div>
             </section>

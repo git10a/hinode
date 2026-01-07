@@ -1,0 +1,324 @@
+.courseHero {
+    min-height: 45vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 8rem 2rem 2rem;
+    background: var(--color-bg);
+}
+
+.title {
+    font-size: 2.5rem;
+    letter-spacing: 0.12em;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    font-family: var(--font-en);
+    position: relative;
+    display: inline-block;
+}
+
+.title::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #F37E4A, #FFC436);
+    border-radius: 2px;
+}
+
+.subtitle {
+    font-family: var(--font-en);
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    color: #999;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.section {
+    padding: 4rem 0;
+    background: var(--color-bg);
+}
+
+.sectionAlt {
+    background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
+}
+
+.contentContainer {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.sectionTitle {
+    font-family: var(--font-en);
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+    color: var(--color-text);
+    position: relative;
+    display: inline-block;
+    border: none;
+    padding-left: 0;
+}
+
+.sectionTitle::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, #F37E4A, #FFC436);
+    border-radius: 2px;
+}
+
+.text {
+    font-size: 1.05rem;
+    line-height: 2;
+    color: #555;
+    margin-bottom: 1rem;
+    max-width: none;
+}
+
+.introText {
+    font-size: 1.15rem;
+    line-height: 2;
+    color: #444;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+}
+
+/* Course Cards */
+.courseGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.courseCard {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    border: 1px solid #f0f0f0;
+}
+
+.courseImageWrapper {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.courseImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.courseBadge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: linear-gradient(135deg, #F37E4A, #FFC436);
+    color: #fff;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.courseContent {
+    padding: 1.5rem;
+}
+
+.courseTitle {
+    font-family: var(--font-jp);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+    border: none;
+    padding: 0;
+}
+
+.courseDistance {
+    font-family: var(--font-en);
+    font-size: 0.9rem;
+    color: #F37E4A;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.courseDescription {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.courseLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #F37E4A;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: gap 0.3s ease;
+}
+
+.courseLink:hover {
+    gap: 0.8rem;
+}
+
+.courseLink svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Highlight Section */
+.highlightSection {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, rgba(243, 126, 74, 0.05), rgba(255, 196, 54, 0.05));
+}
+
+.highlightCard {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    background: #fff;
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+}
+
+.highlightIcon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #F37E4A, #FFC436);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.highlightIcon svg {
+    width: 40px;
+    height: 40px;
+    fill: #fff;
+}
+
+.highlightContent h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+}
+
+.highlightContent p {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: #555;
+    margin-bottom: 0;
+    max-width: none;
+}
+
+/* CTA Section */
+.ctaSection {
+    padding: 4rem 0;
+    text-align: center;
+    background: linear-gradient(to bottom, #fafafa, #ffffff);
+}
+
+.ctaText {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+}
+
+.link {
+    color: #F37E4A;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s, color 0.3s;
+}
+
+.link:hover {
+    border-color: #F37E4A;
+}
+
+/* Animations */
+.fadeIn {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .courseHero {
+        padding: 6rem 1.5rem 1.5rem;
+    }
+
+    .title {
+        font-size: 2rem;
+        letter-spacing: 0.1em;
+    }
+
+    .section {
+        padding: 3rem 0;
+    }
+
+    .contentContainer {
+        padding: 0 1.5rem;
+    }
+
+    .sectionTitle {
+        font-size: 1.8rem;
+    }
+
+    .courseGrid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .highlightCard {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+        gap: 1.5rem;
+    }
+
+    .highlightIcon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .highlightIcon svg {
+        width: 30px;
+        height: 30px;
+    }
+
+    .introText {
+        font-size: 1rem;
+    }
+}

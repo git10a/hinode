@@ -76,10 +76,105 @@
     padding: 2rem 0 4rem;
 }
 
-.scheduleGrid {
+/* Horizontal Run Row Layout */
+.runRow {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.2rem;
+    grid-template-columns: 60px 200px 220px 1fr;
+    gap: 2rem;
+    align-items: start;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.runRow:last-child {
+    border-bottom: none;
+}
+
+.runNumber {
+    font-family: var(--font-en);
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #F37E4A;
+    text-align: center;
+    padding-top: 0.2rem;
+}
+
+.runInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.runName {
+    font-family: var(--font-jp);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.runMeta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin: 0;
+    max-width: none;
+}
+
+.dayBadge {
+    font-size: 0.85rem;
+    color: #F37E4A;
+    font-weight: 500;
+}
+
+.runDistance {
+    font-family: var(--font-en);
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.runMapSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.runMapImage {
+    width: 200px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.googleMapLink {
+    font-size: 0.85rem;
+    color: #0066CC;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.googleMapLink:hover {
+    opacity: 0.7;
+    text-decoration: underline;
+}
+
+.runDescription {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+.runDescription p {
+    margin: 0 0 0.5rem;
+    max-width: none;
+}
+
+.runTime {
+    font-size: 0.9rem;
+    color: #F37E4A;
+    font-weight: 500;
+    margin-top: 0.8rem !important;
 }
 
 .card {
@@ -222,6 +317,13 @@
     width: 100%;
     height: 100%;
     border: 0;
+}
+
+.courseMapImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
 }
 
 .beginnersSection {
@@ -384,13 +486,24 @@
         font-size: 0.95rem;
     }
 
-    .scheduleGrid {
+    .runRow {
         grid-template-columns: 1fr;
-        gap: 1.2rem;
+        gap: 1rem;
+        text-align: center;
     }
 
-    .card {
-        padding: 1.5rem;
+    .runNumber {
+        font-size: 1rem;
+    }
+
+    .runInfo {
+        align-items: center;
+    }
+
+    .runMapImage {
+        width: 100%;
+        max-width: 280px;
+        height: auto;
     }
 
     .beginnersSection {
