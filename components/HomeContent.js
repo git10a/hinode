@@ -40,19 +40,6 @@ export default function HomeContent() {
                             <p className="fade-in">人との競争ではなく、<br />自分との約束を守り続けるためのコミュニティ。</p>
                             <StatsDisplay />
                         </div>
-                        <div className="hero-right">
-                            <div className="strava-widget-container">
-                                <iframe
-                                    allowTransparency="true"
-                                    frameBorder="0"
-                                    height="454"
-                                    scrolling="no"
-                                    src="https://www.strava.com/clubs/1772485/latest-rides/96cfe975d5523754834fbcb424940d8248fa0cf2?show_rides=true"
-                                    width="300"
-                                    style={{ border: 'none', overflow: 'hidden' }}
-                                ></iframe>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </section>
