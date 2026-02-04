@@ -1,57 +1,14 @@
 'use client';
 
-import { useEffect } from 'react';
+import useFadeInOnScroll from '../lib/useFadeInOnScroll';
 import styles from '../app/hinode-spot/hinode-spot.module.css';
+import RUNNING_COURSES from '../lib/runningCourses';
 
 export default function RunningCourseContent() {
-    useEffect(() => {
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add(styles.visible);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        const fadeElements = document.querySelectorAll(`.${styles.fadeIn}`);
-        fadeElements.forEach(el => observer.observe(el));
-
-        return () => observer.disconnect();
-    }, []);
-
-    const courses = [
-        {
-            title: '皇居ラン',
-            distance: '約5km（1周）',
-            badge: '水曜',
-            description: '桔梗門前派出所に集合し、皇居を左回りで1周するコース。終わったあとは和田倉噴水公園のスタバに寄りがち。',
-            mapUrl: 'https://maps.app.goo.gl/QvKZ8Z9Z9Z9Z9Z9Z9',
-            image: '/assets/kokyo-run-map.png',
-        },
-        {
-            title: '代々木公園ラン',
-            distance: '約3〜6km（1〜2周）',
-            badge: '日曜',
-            description: '原宿時計塔に集合し、代々木公園を左回りで1〜2周するコース。終わったあとはVERVE COFFEEに寄りがち。',
-            mapUrl: 'https://maps.app.goo.gl/QvKZ8Z9Z9Z9Z9Z9Z9',
-            image: '/assets/yoyogi-run-map.png',
-        },
-        {
-            title: 'リモートラン',
-            distance: '自由',
-            badge: '月曜ほか',
-            description: '東京にいなくても、ひとりでも。日の出に走れば、どこにいてもHINODEメンバー。',
-            mapUrl: null,
-            image: '/assets/remote-run-map.png',
-        },
-    ];
+    useFadeInOnScroll({
+        selector: `.${styles.fadeIn}`,
+        visibleClass: styles.visible
+    });
 
     return (
         <>
@@ -75,8 +32,8 @@ export default function RunningCourseContent() {
                     </div>
 
                     <div className={`${styles.courseGrid} ${styles.fadeIn}`}>
-                        {courses.map((course, index) => (
-                            <div key={index} className={styles.courseCard}>
+                        {RUNNING_COURSES.map(course => (
+                            <div key={course.title} className={styles.courseCard}>
                                 <div className={styles.courseImageWrapper}>
                                     <img
                                         src={course.image}

@@ -1,33 +1,15 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import useFadeInOnScroll from '../lib/useFadeInOnScroll';
 import Link from 'next/link';
 import StatsDisplay from './StatsDisplay';
+import SCHEDULE_ITEMS from '../lib/scheduleItems';
 
 export default function HomeContent() {
-    const observerRef = useRef(null);
-
-    useEffect(() => {
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        const fadeElements = document.querySelectorAll('.fade-in');
-        fadeElements.forEach(el => observer.observe(el));
-
-        return () => observer.disconnect();
-    }, []);
+    useFadeInOnScroll({
+        selector: '.fade-in',
+        visibleClass: 'visible'
+    });
 
     return (
         <>
@@ -50,18 +32,12 @@ export default function HomeContent() {
                         <div className="philosophy-text fade-in">
                             <p>日の出前に集まり、<br />日の出とともに走り、<br />走った後はコーヒーで乾杯。</p>
                             <div className="schedule-info">
-                                <div className="schedule-item">
-                                    <p className="schedule-time">月曜 06:20｜オンライン</p>
-                                    <p className="schedule-location">各自でランニング</p>
-                                </div>
-                                <div className="schedule-item">
-                                    <p className="schedule-time">水曜 06:20｜皇居</p>
-                                    <p className="schedule-location">桔梗門派出所前</p>
-                                </div>
-                                <div className="schedule-item">
-                                    <p className="schedule-time">日曜 07:30｜代々木公園</p>
-                                    <p className="schedule-location">原宿時計塔前</p>
-                                </div>
+                                {SCHEDULE_ITEMS.map(item => (
+                                    <div key={item.time} className="schedule-item">
+                                        <p className="schedule-time">{item.time}</p>
+                                        <p className="schedule-location">{item.location}</p>
+                                    </div>
+                                ))}
                                 <Link href="/schedule" className="schedule-detail-btn">
                                     イベント詳細を見る
                                 </Link>

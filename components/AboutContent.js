@@ -1,30 +1,13 @@
 'use client';
 
-import { useEffect } from 'react';
+import useFadeInOnScroll from '../lib/useFadeInOnScroll';
 import styles from '../app/about/about.module.css';
 
 export default function AboutContent() {
-    useEffect(() => {
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add(styles.visible);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        const fadeElements = document.querySelectorAll(`.${styles.fadeIn}`);
-        fadeElements.forEach(el => observer.observe(el));
-
-        return () => observer.disconnect();
-    }, []);
+    useFadeInOnScroll({
+        selector: `.${styles.fadeIn}`,
+        visibleClass: styles.visible
+    });
 
     return (
         <>
@@ -131,4 +114,3 @@ export default function AboutContent() {
         </>
     );
 }
-
