@@ -18,7 +18,7 @@ export default function HomeContent() {
                 <div className="container">
                     <div className="hero-content-wrapper">
                         <div className="hero-left">
-                            <h1 className="fade-in">日の出と<br />ともに<br />走り出そう</h1>
+                            <h1 className="fade-in"><span className="handwritten-underline">日の出と</span><br /><span className="handwritten-underline underline-2">ともに</span><br /><span className="handwritten-underline underline-3">走り出そう</span></h1>
                             <p className="fade-in">人との競争ではなく、<br />自分との約束を守り続けるためのコミュニティ。</p>
                             <StatsDisplay />
                         </div>
