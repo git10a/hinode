@@ -2,7 +2,7 @@ import styles from './schedule.module.css';
 
 export const metadata = {
     title: 'SCHEDULE | HINODE',
-    description: 'HINODEのランニングスケジュール。毎週月・水・日に開催。誰でも参加できる朝のランニングコミュニティです。',
+    description: 'HINODEのランニングスケジュール。毎週水・日に開催。誰でも参加できる朝のランニングコミュニティです。',
 };
 
 export default function EventPage() {
@@ -25,28 +25,9 @@ export default function EventPage() {
             </section>
 
             <section className={styles.scheduleSection}>
-                {/* MON - Remote Run */}
-                <div className={styles.runRow}>
-                    <div className={styles.runNumber}>01</div>
-                    <div className={styles.runInfo}>
-                        <h3 className={styles.runName}>リモートラン</h3>
-                        <p className={styles.runMeta}>
-                            <span className={styles.dayBadge}>毎週月曜</span>
-                            <span className={styles.runDistance}>（自由）</span>
-                        </p>
-                    </div>
-                    <div className={styles.runMapSection}>
-                        <img src="/assets/remote-run-map.png" alt="リモートラン" className={styles.runMapImage} />
-                    </div>
-                    <div className={styles.runDescription}>
-                        <p>同じ空の下、各自の場所で同時スタート。<br />東京にいなくても、ひとりでも。<br />1週間を自分の意思で能動的に始めましょう。</p>
-                        <p className={styles.runTime}>スタート時間: 06:30</p>
-                    </div>
-                </div>
-
                 {/* WED - Imperial Palace */}
                 <div className={styles.runRow}>
-                    <div className={styles.runNumber}>02</div>
+                    <div className={styles.runNumber}>01</div>
                     <div className={styles.runInfo}>
                         <h3 className={styles.runName}>皇居ラン</h3>
                         <p className={styles.runMeta}>
@@ -68,7 +49,7 @@ export default function EventPage() {
 
                 {/* SUN - Yoyogi */}
                 <div className={styles.runRow}>
-                    <div className={styles.runNumber}>03</div>
+                    <div className={styles.runNumber}>02</div>
                     <div className={styles.runInfo}>
                         <h3 className={styles.runName}>代々木公園ラン</h3>
                         <p className={styles.runMeta}>

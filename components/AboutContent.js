@@ -28,7 +28,7 @@ export default function AboutContent() {
                     <div className={styles.fadeIn}>
                         <h2 className={styles.sectionTitle}>HINODEとは？</h2>
                         <p className={styles.text}>HINODEとは、日の出前に集まり、日の出とともに走る人のコミュニティで、2025年11月に設立されました。</p>
-                        <p className={styles.text}>週3回のグループランを基本に、不定期のイベントも開催しています。<a href="/schedule" className={styles.smallLink}>日程をチェック →</a></p>
+                        <p className={styles.text}>週2回のグループランを基本に、不定期のイベントも開催しています。<a href="/schedule" className={styles.smallLink}>日程をチェック →</a></p>
                         <p className={styles.text}>HINODEのグループランでは、ペースも距離も自由です。もし苦しくなったら歩いても全く問題ありません！速さではなく、走り続ける日々を積み重ねていく規律こそが大事だと考えています。</p>
                         <p className={styles.text}>走ったあとはコーヒーを飲んだり、そのまま出勤したり、帰ったり。参加者それぞれ自由に過ごしています。</p>
                     </div>
