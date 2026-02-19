@@ -22,6 +22,28 @@ export default function HomeContent() {
                             <p className="fade-in">人との競争ではなく、<br />自分との約束を守り続けるためのコミュニティ。</p>
                             <StatsDisplay />
                         </div>
+                        <div className="hero-right fade-in">
+                            <div className="hero-cards">
+                                <a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer" className="hero-card">
+                                    <img src="/assets/Yokohama.jpg" alt="Yokohama sunrise" />
+                                </a>
+                                <a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer" className="hero-card">
+                                    <img src="/assets/Ochanomizu.jpg" alt="Ochanomizu sunrise" />
+                                </a>
+                                <a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer" className="hero-card">
+                                    <img src="/assets/himeji.jpg" alt="Himeji sunrise" />
+                                </a>
+                                <a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer" className="hero-card">
+                                    <img src="/assets/Kokyo.jpg" alt="Kokyo sunrise" />
+                                </a>
+                                <a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer" className="hero-card">
+                                    <img src="/assets/Takeshiba.jpg" alt="Takeshiba sunrise" />
+                                </a>
+                                <a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer" className="hero-card">
+                                    <img src="/assets/Toyosu.jpg" alt="Toyosu sunrise" />
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -51,9 +73,6 @@ export default function HomeContent() {
                                     Strava
                                 </a>
                             </div>
-                        </div>
-                        <div className="philosophy-image-container fade-in">
-                            <img src="/assets/what-we-do.png" alt="Sunrise Coffee" className="philosophy-image" />
                         </div>
                     </div>
                 </div>
