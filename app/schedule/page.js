@@ -1,5 +1,5 @@
 import styles from './schedule.module.css';
-import NextRunDate from '@/components/NextRunDate';
+import NextRunDate from '../../components/NextRunDate';
 
 export const metadata = {
     title: 'SCHEDULE | HINODE',
