@@ -1,25 +1,19 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getRunCount, getStravaMemberCount } from '../lib/stats';
+import { getRunCount, MEMBER_COUNT } from '../lib/stats';
 
 export default function StatsDisplay() {
-    const [memberCount, setMemberCount] = useState(null);
     const [runCount, setRunCount] = useState(null);
 
     useEffect(() => {
         setRunCount(getRunCount());
-        getStravaMemberCount()
-            .then(count => setMemberCount(count))
-            .catch(err => console.error('Failed to fetch:', err));
     }, []);
 
     return (
         <div className="stats-container fade-in">
             <div className="stat-item">
-                <span className="stat-number">
-                    {memberCount !== null && memberCount > 0 ? memberCount : '---'}
-                </span>
+                <span className="stat-number">{MEMBER_COUNT}</span>
                 <span className="stat-label">Club Members</span>
             </div>
             <div className="stat-divider">/</div>
