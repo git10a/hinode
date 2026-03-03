@@ -1,17 +1,15 @@
 import { NextResponse } from 'next/server';
-
-export const revalidate = 3600; // Revalidate every hour
+import { getRefreshToken, saveRefreshToken } from '../../../lib/tokenStore';
 
 const CLUB_ID = '1772485'; // HINODE Club ID
 
 export async function GET() {
     const clientId = process.env.STRAVA_CLIENT_ID;
     const clientSecret = process.env.STRAVA_CLIENT_SECRET;
-    const refreshToken = process.env.STRAVA_REFRESH_TOKEN;
+    const refreshToken = await getRefreshToken();
 
-    // Check for required environment variables
     if (!clientId || !clientSecret || !refreshToken) {
-        console.error('Missing Strava credentials in environment variables');
+        console.error('Missing Strava credentials');
         return NextResponse.json(
             { memberCount: 0, error: 'Missing Strava credentials' },
             { status: 500 }
@@ -22,9 +20,7 @@ export async function GET() {
         // Step 1: Get fresh access token using refresh token
         const tokenResponse = await fetch('https://www.strava.com/oauth/token', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 client_id: clientId,
                 client_secret: clientSecret,
@@ -42,11 +38,14 @@ export async function GET() {
         const tokenData = await tokenResponse.json();
         const accessToken = tokenData.access_token;
 
-        // Step 2: Fetch club details with fresh access token
+        // Save new refresh token if Strava rotated it
+        if (tokenData.refresh_token && tokenData.refresh_token !== refreshToken) {
+            await saveRefreshToken(tokenData.refresh_token);
+        }
+
+        // Step 2: Fetch club details
         const clubResponse = await fetch(`https://www.strava.com/api/v3/clubs/${CLUB_ID}`, {
-            headers: {
-                'Authorization': `Bearer ${accessToken}`,
-            },
+            headers: { 'Authorization': `Bearer ${accessToken}` },
             cache: 'no-store',
         });
 
