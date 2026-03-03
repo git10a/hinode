@@ -72,6 +72,14 @@
     box-shadow: 0 8px 20px rgba(243, 126, 74, 0.3);
 }
 
+.stravaHint {
+    margin-top: 1rem;
+    font-family: var(--font-jp);
+    font-size: 0.8rem;
+    color: #888;
+    max-width: none;
+}
+
 .scheduleSection {
     padding: 2rem 0 4rem;
 }
