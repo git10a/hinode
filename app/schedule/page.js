@@ -1,4 +1,5 @@
 import styles from './schedule.module.css';
+import NextRunDate from '@/components/NextRunDate';
 
 export const metadata = {
     title: 'SCHEDULE | HINODE',
@@ -22,6 +23,9 @@ export default function EventPage() {
                 >
                     詳細はStravaでチェック
                 </a>
+                <p className={styles.stravaHint}>
+                    ソロ参加する方も多いです。ぜひお気軽に、Stravaで参加登録してください🏃‍♂️
+                </p>
             </section>
 
             <section className={styles.scheduleSection}>
@@ -34,6 +38,7 @@ export default function EventPage() {
                             <span className={styles.dayBadge}>毎週水曜</span>
                             <span className={styles.runDistance}>（約5km）</span>
                         </p>
+                        <NextRunDate dayOfWeek={3} time="06:30" className={styles.nextDate} />
                     </div>
                     <div className={styles.runMapSection}>
                         <img src="/assets/kokyo-run-map.png" alt="皇居ラン" className={styles.runMapImage} />
@@ -56,6 +61,7 @@ export default function EventPage() {
                             <span className={styles.dayBadge}>毎週日曜</span>
                             <span className={styles.runDistance}>（約3〜6km）</span>
                         </p>
+                        <NextRunDate dayOfWeek={0} time="07:30" className={styles.nextDate} />
                     </div>
                     <div className={styles.runMapSection}>
                         <img src="/assets/yoyogi-run-map.png" alt="代々木公園ラン" className={styles.runMapImage} />
