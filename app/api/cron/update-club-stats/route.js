@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request) {
     // Vercel Cron sends this header automatically in production
     if (

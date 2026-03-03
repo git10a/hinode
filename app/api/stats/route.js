@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getRefreshToken, saveRefreshToken } from '../../../lib/tokenStore';
 
+export const dynamic = 'force-dynamic';
+
 const CLUB_ID = '1772485'; // HINODE Club ID
 
 export async function GET() {
