@@ -48,7 +48,6 @@ export default function EventPage() {
                     </div>
                     <div className={styles.runDescription}>
                         <p>桔梗門前派出所に集合。<br />皇居を左回りで1周。<br />和田倉噴水公園内にはSTARBUCKSも。</p>
-                        <p className={styles.runTime}>スタート時間: 06:30</p>
                     </div>
                 </div>
 
@@ -71,7 +70,6 @@ export default function EventPage() {
                     </div>
                     <div className={styles.runDescription}>
                         <p>原宿時計塔に集合。<br />代々木公園を左回りで1〜2周。<br />公園を降りて少し歩いたところにはVERVE COFFEEなど、カフェスポットあり。</p>
-                        <p className={styles.runTime}>スタート時間: 07:30</p>
                     </div>
                 </div>
             </section>
