@@ -63,7 +63,7 @@ export default function EventPage() {
                     </div>
                     <div className={styles.runMapSection}>
                         <img src="/assets/meguro-run-map.png" alt="目黒川ラン" className={styles.runMapImage} />
-                        <a href="https://maps.app.goo.gl/3Q8Y7NnbE1R8E5p7A" target="_blank" rel="noopener noreferrer" className={styles.googleMapLink}>
+                        <a href="https://maps.app.goo.gl/SKixyw53vfJnp1p36" target="_blank" rel="noopener noreferrer" className={styles.googleMapLink}>
                             📍 Google map
                         </a>
                     </div>
