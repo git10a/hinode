@@ -60,6 +60,7 @@ export default function EventPage() {
                             <span className={styles.dayBadge}>毎週木曜</span>
                             <span className={styles.runDistance}>（約4km）</span>
                         </p>
+                        <NextRunDate dayOfWeek={4} time="06:30" className={styles.nextDate} />
                     </div>
                     <div className={styles.runMapSection}>
                         <img src="/assets/meguro-run-map.png" alt="目黒川ラン" className={styles.runMapImage} />
@@ -69,7 +70,6 @@ export default function EventPage() {
                     </div>
                     <div className={styles.runDescription}>
                         <p>中目黒駅のスターバックス蔦屋書店前に集合。<br />目黒川をぐるっと回るコース。<br />走り終わったらスタバでコーヒーを。8時開店の「I&apos;m donut ?」にも並ばずに行けます。</p>
-                        <p className={styles.runTime}>スタート時間: 06:30</p>
                     </div>
                 </div>
 
