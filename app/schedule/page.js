@@ -3,7 +3,7 @@ import NextRunDate from '../../components/NextRunDate';
 
 export const metadata = {
     title: 'SCHEDULE | HINODE',
-    description: 'HINODEのランニングスケジュール。毎週水・日に開催。誰でも参加できる朝のランニングコミュニティです。',
+    description: 'HINODEのランニングスケジュール。毎週水・木・日に開催。誰でも参加できる朝のランニングコミュニティです。',
 };
 
 export default function EventPage() {
@@ -51,9 +51,31 @@ export default function EventPage() {
                     </div>
                 </div>
 
-                {/* SUN - Yoyogi */}
+                {/* THU - Meguro River */}
                 <div className={styles.runRow}>
                     <div className={styles.runNumber}>02</div>
+                    <div className={styles.runInfo}>
+                        <h3 className={styles.runName}>目黒川ラン</h3>
+                        <p className={styles.runMeta}>
+                            <span className={styles.dayBadge}>毎週木曜</span>
+                            <span className={styles.runDistance}>（約4km）</span>
+                        </p>
+                    </div>
+                    <div className={styles.runMapSection}>
+                        <img src="/assets/meguro-run-map.png" alt="目黒川ラン" className={styles.runMapImage} />
+                        <a href="https://maps.app.goo.gl/3Q8Y7NnbE1R8E5p7A" target="_blank" rel="noopener noreferrer" className={styles.googleMapLink}>
+                            📍 Google map
+                        </a>
+                    </div>
+                    <div className={styles.runDescription}>
+                        <p>中目黒駅のスターバックス蔦屋書店前に集合。<br />目黒川をぐるっと回るコース。<br />走り終わったらスタバでコーヒーを。8時開店の「I&apos;m donut ?」にも並ばずに行けます。</p>
+                        <p className={styles.runTime}>スタート時間: 06:30</p>
+                    </div>
+                </div>
+
+                {/* SUN - Yoyogi */}
+                <div className={styles.runRow}>
+                    <div className={styles.runNumber}>03</div>
                     <div className={styles.runInfo}>
                         <h3 className={styles.runName}>代々木公園ラン</h3>
                         <p className={styles.runMeta}>
