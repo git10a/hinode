@@ -11,7 +11,7 @@ const NAV_LINKS = [
     { href: '/about/', label: 'HINODEとは' },
     { href: '/schedule/', label: 'SCHEDULE' },
     { href: '/blog/', label: 'BLOG' },
-    { href: 'https://hinoderun.stores.jp/', label: 'SHOP', external: true }
+    { href: '/tools/', label: 'TOOLS' }
 ];
 
 export default function Header() {
