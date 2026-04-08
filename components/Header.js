@@ -10,8 +10,7 @@ import SOCIAL_LINKS from '../lib/socialLinks';
 const NAV_LINKS = [
     { href: '/about/', label: 'HINODEとは' },
     { href: '/schedule/', label: 'SCHEDULE' },
-    { href: '/blog/', label: 'BLOG' },
-    { href: '/tools/', label: 'TOOLS' }
+    { href: '/blog/', label: 'BLOG' }
 ];
 
 export default function Header() {
