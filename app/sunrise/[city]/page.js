@@ -48,7 +48,7 @@ function getNearbyCity(currentCity, count = 8) {
 export async function generateMetadata({ params }) {
   const city = getCityBySlug(params.city);
   if (!city) return {};
-  const title = `${city.prefecture}${city.name}の日の出時刻 | HINODE`;
+  const title = `${city.name}の今日の日の出時刻 | HINODE`;
   const description = `${city.prefecture}${city.name}の今日の日の出・日の入り時刻、週間・月別データ。早朝ランニングの計画に。HINODEはサンライズランニングのコミュニティです。`;
   return {
     title,
@@ -112,15 +112,6 @@ export default function CityPage({ params }) {
     ]
   };
 
-  const WEEKDAYS = ['日', '月', '火', '水', '木', '金', '土'];
-
-  function getWeekday(dateStr) {
-    // dateStr = "YYYY/MM/DD" (ja-JP format)
-    const [y, m, d] = dateStr.split('/').map(Number);
-    const date = new Date(y, m - 1, d);
-    return WEEKDAYS[date.getDay()];
-  }
-
   return (
     <div className="sunrise-city-page">
       <script
@@ -140,7 +131,7 @@ export default function CityPage({ params }) {
           </nav>
           <p className="sc-eyebrow">SUNRISE TIME</p>
           <h1 className="sc-h1">{city.prefecture}{city.name}の日の出時刻</h1>
-          <p className="sc-date">{today.date} 更新</p>
+          <p className="sc-today-date">{today.date}</p>
         </div>
       </div>
 
@@ -148,7 +139,7 @@ export default function CityPage({ params }) {
 
         {/* 今日のカード */}
         <section className="sc-section">
-          <h2 className="sc-section-title">今日の日の出・日の入り</h2>
+          <h2 className="sc-section-title">{today.date} の日の出・日の入り</h2>
           <div className="sc-today-cards">
             <div className="sc-time-card sc-sunrise-card">
               <p className="sc-card-label">日の出</p>
@@ -189,7 +180,6 @@ export default function CityPage({ params }) {
               <thead>
                 <tr>
                   <th>日付</th>
-                  <th>曜日</th>
                   <th>日の出</th>
                   <th>日の入り</th>
                   <th>昼間の長さ</th>
@@ -199,7 +189,6 @@ export default function CityPage({ params }) {
                 {weekly.map((row, i) => (
                   <tr key={i} className={i === 0 ? 'sc-today-row' : ''}>
                     <td>{row.date}</td>
-                    <td>{getWeekday(row.date)}</td>
                     <td className="sc-sunrise-cell">{row.sunrise}</td>
                     <td>{row.sunset}</td>
                     <td>{row.dayLength}</td>
@@ -284,9 +273,17 @@ export default function CityPage({ params }) {
           margin-bottom: 0.8rem;
           line-height: 1.4;
         }
-        .sc-date {
-          font-size: 0.85rem;
-          color: #999;
+        .sc-today-date {
+          display: inline-block;
+          margin-top: 1rem;
+          font-size: 1.1rem;
+          font-weight: 500;
+          color: var(--color-text);
+          background: #fff3ed;
+          border: 1px solid #F37E4A;
+          border-radius: 6px;
+          padding: 0.4rem 1.2rem;
+          letter-spacing: 0.05em;
         }
         .sc-body {
           padding-top: 3rem;
