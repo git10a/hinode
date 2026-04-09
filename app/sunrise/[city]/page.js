@@ -229,6 +229,23 @@ export default function CityPage({ params }) {
           </ul>
         </section>
 
+        {/* フィードバック */}
+        <section className="sc-feedback">
+          <p className="sc-feedback-label">COMMUNITY</p>
+          <h2 className="sc-feedback-title">情報の訂正・おすすめコースを教えてください</h2>
+          <p className="sc-feedback-body">
+            HINODEの運営がまだ走れていないエリアについては、情報が不正確な場合があります。
+            「ここは違う」「このスポットのほうがいい」「このコースがおすすめ」など、
+            地元ランナーの声をぜひ教えてください。
+          </p>
+          <a
+            href={`mailto:hinode.infomation@gmail.com?subject=${encodeURIComponent(`[日の出スポット] ${city.prefecture}${city.name}について`)}`}
+            className="sc-feedback-btn"
+          >
+            メールで教える →
+          </a>
+        </section>
+
         {/* 一覧へ戻る */}
         <div className="sc-back">
           <Link href="/sunrise" className="sc-back-link">← 全国一覧に戻る</Link>
@@ -471,6 +488,50 @@ export default function CityPage({ params }) {
         }
         .sc-nearby-card:hover .sc-nearby-name {
           color: #F37E4A;
+        }
+        /* フィードバック */
+        .sc-feedback {
+          border: 1px solid var(--color-border);
+          border-radius: 12px;
+          padding: 2.5rem;
+          margin-bottom: 3rem;
+          background: #fafafa;
+        }
+        .sc-feedback-label {
+          font-family: var(--font-en);
+          font-size: 0.75rem;
+          letter-spacing: 0.25em;
+          color: #F37E4A;
+          text-transform: uppercase;
+          margin-bottom: 0.8rem;
+        }
+        .sc-feedback-title {
+          font-size: 1.1rem;
+          font-weight: 500;
+          margin-bottom: 1rem;
+          border: none;
+          padding: 0;
+          letter-spacing: 0.03em;
+        }
+        .sc-feedback-body {
+          font-size: 0.95rem;
+          line-height: 2;
+          color: #666;
+          margin-bottom: 1.5rem;
+          max-width: 100%;
+        }
+        .sc-feedback-btn {
+          display: inline-block;
+          padding: 0.7rem 1.8rem;
+          border: 1px solid var(--color-text);
+          border-radius: 4px;
+          font-size: 0.9rem;
+          color: var(--color-text);
+          transition: all 0.2s;
+        }
+        .sc-feedback-btn:hover {
+          background: var(--color-text);
+          color: #fff;
         }
         /* 戻る */
         .sc-back {
