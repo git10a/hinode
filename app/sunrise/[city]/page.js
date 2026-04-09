@@ -159,6 +159,21 @@ export default function CityPage({ params }) {
           </div>
         </section>
 
+        {/* おすすめ日の出スポット */}
+        {city.spots && city.spots.length > 0 && (
+          <section className="sc-section">
+            <h2 className="sc-section-title">おすすめの日の出スポット</h2>
+            <ul className="sc-spots-list">
+              {city.spots.map((spot, i) => (
+                <li key={i} className="sc-spot-item">
+                  <p className="sc-spot-name">{spot.name}</p>
+                  <p className="sc-spot-desc">{spot.desc}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
         {/* HINODE コンテキスト */}
         <section className="sc-hinode-context">
           <p>
@@ -356,6 +371,33 @@ export default function CityPage({ params }) {
           font-size: 0.8rem;
           color: #aaa;
           margin-bottom: 0;
+        }
+        /* スポット */
+        .sc-spots-list {
+          list-style: none;
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+        .sc-spot-item {
+          padding: 1.4rem 1.6rem;
+          border: 1px solid var(--color-border);
+          border-left: 3px solid #F37E4A;
+          border-radius: 0 8px 8px 0;
+          background: #fff;
+        }
+        .sc-spot-name {
+          font-size: 1rem;
+          font-weight: 600;
+          color: var(--color-text);
+          margin-bottom: 0.4rem;
+        }
+        .sc-spot-desc {
+          font-size: 0.9rem;
+          color: #666;
+          line-height: 1.8;
+          margin-bottom: 0;
+          max-width: 100%;
         }
         /* HINODE context */
         .sc-hinode-context {
