@@ -318,6 +318,28 @@ nav {
     text-align: center;
 }
 
+.hero-tags {
+    font-size: 0.8rem !important;
+    color: #999 !important;
+    letter-spacing: 0.08em;
+    margin-top: 0.8rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.strava-club-link {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: #FC4C02;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: opacity 0.2s;
+    margin-bottom: 0.5rem;
+}
+
+.strava-club-link:hover {
+    opacity: 0.7;
+}
+
 @media (min-width: 1024px) {
     .hero-content-wrapper {
         flex-direction: row;

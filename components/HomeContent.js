@@ -21,6 +21,10 @@ export default function HomeContent() {
                             <h1 className="fade-in"><span className="handwritten-underline">日の出と</span><br /><span className="handwritten-underline underline-2">ともに</span><br /><span className="handwritten-underline underline-3">走り出そう</span></h1>
                             <p className="fade-in">人との競争ではなく、<br />自分との約束を守り続けるためのコミュニティ。</p>
                             <StatsDisplay />
+                            <p className="hero-tags fade-in">参加無料｜1人参加多め｜4km前後ゆっくり</p>
+                            <a href="https://www.strava.com/clubs/hinode" target="_blank" rel="noopener noreferrer" className="strava-club-link fade-in">
+                                Stravaクラブで活動を見る →
+                            </a>
                         </div>
                         <div className="hero-right fade-in">
                             <div className="hero-cards">
