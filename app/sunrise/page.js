@@ -2,12 +2,12 @@ import Link from 'next/link';
 import { cities } from '../../data/cities';
 
 export const metadata = {
-  title: '全国の日の出時刻一覧 | HINODE',
-  description: '全国主要都市の今日の日の出・日の入り時刻。北海道から沖縄まで、都道府県別に確認できます。HINODEはサンライズランニングのコミュニティです。',
+  title: '全国の日の出時刻 | 朝ランの参考に | HINODE',
+  description: '全国主要都市の今日の日の出・日の入り時刻。早朝ランニングの時間の目安として。HINODEは東京で日の出とともに走る朝ランコミュニティです。',
   alternates: { canonical: 'https://hinode-run.com/sunrise' },
   openGraph: {
-    title: '全国の日の出時刻一覧 | HINODE',
-    description: '全国主要都市の今日の日の出・日の入り時刻。北海道から沖縄まで、都道府県別に確認できます。',
+    title: '全国の日の出時刻 | 朝ランの参考に | HINODE',
+    description: '全国主要都市の今日の日の出・日の入り時刻。早朝ランニングの時間の目安として。',
     url: 'https://hinode-run.com/sunrise',
     siteName: 'HINODE',
     locale: 'ja_JP',
@@ -65,7 +65,7 @@ export default function SunrisePage() {
           <h1 className="sunrise-list-h1">全国の日の出時刻</h1>
           <p className="sunrise-list-sub">
             全国{cities.length}都市の日の出・日の入り時刻を確認できます。<br />
-            HINODEは日の出と共に走るランニングコミュニティです。
+            HINODEは東京で日の出とともに走る朝ランコミュニティです。
           </p>
         </div>
       </div>
@@ -74,7 +74,7 @@ export default function SunrisePage() {
         <div className="sunrise-list-cta-bar">
           <span>日の出に走るコミュニティ →</span>
           <Link href="/about" className="sunrise-list-cta-link">HINODEとは</Link>
-          <Link href="/schedule" className="sunrise-list-cta-link">ランのスケジュール</Link>
+          <Link href="/schedule" className="sunrise-list-cta-link">開催日程と参加方法を見る</Link>
         </div>
 
         {orderedPrefs.map(pref => (

@@ -5,6 +5,36 @@ import { getSunTimes, getSunTimesRange, getMonthlySunrise } from '../../../lib/s
 
 export const revalidate = 43200; // 12時間ISR
 
+// index対象の都市スラッグ（ホワイトリスト）
+const INDEX_CITIES = new Set([
+  'tokyo-chiyoda', // 千代田区（皇居 = HINODE水曜コース）
+  'tokyo-meguro',  // 目黒区（目黒川 = HINODE木曜コース）
+  'tokyo-shibuya', // 渋谷区（代々木公園 = HINODE日曜コース）
+  'osaka', 'kyoto', 'sapporo', 'fukuoka', 'nagoya', 'yokohama', 'sendai',
+]);
+
+// HINODEが実際に走るコースの情報（3コアページ専用）
+const HINODE_RUN_INFO = {
+  'tokyo-chiyoda': {
+    title: '千代田区（皇居）の日の出時刻と朝ラン情報 | HINODE',
+    description: '千代田区・皇居周辺の今日の日の出時刻。HINODEは毎週水曜6:30に皇居ランを開催しています。初心者歓迎、参加費無料。',
+    desc: '皇居ランはHINODEの定番コースです。桔梗門前派出所に集合し、皇居を左回りに1周（約5km）。走った後は和田倉噴水公園のスタバでコーヒーを。初参加でも合流しやすいコースです。',
+    schedule: '毎週水曜 06:30〜 ／ 桔梗門前派出所集合',
+  },
+  'tokyo-meguro': {
+    title: '目黒区（目黒川）の日の出時刻と朝ラン情報 | HINODE',
+    description: '目黒区・目黒川の今日の日の出時刻。HINODEは毎週木曜6:30に目黒川ランを開催しています。初心者歓迎、参加費無料。',
+    desc: '目黒川沿いはHINODEの木曜ランのコースです。中目黒駅スターバックス蔦屋書店前に集合し、目黒川をぐるっと回る約4km。走り終わりにスタバでコーヒーも楽しめます。',
+    schedule: '毎週木曜 06:30〜 ／ 中目黒スタバ蔦屋書店前集合',
+  },
+  'tokyo-shibuya': {
+    title: '渋谷区（代々木公園）の日の出時刻と朝ラン情報 | HINODE',
+    description: '渋谷区・代々木公園の今日の日の出時刻。HINODEは毎週日曜7:30に代々木公園ランを開催しています。初心者歓迎、参加費無料。',
+    desc: '代々木公園はHINODEの日曜ランの場所です。原宿時計塔（代々木公園駅口）に集合し、公園を左回りに1〜2周（約3〜6km）。休日の朝にゆっくり走りたい方にも向いています。',
+    schedule: '毎週日曜 07:30〜 ／ 原宿時計塔集合',
+  },
+};
+
 export function generateStaticParams() {
   return cities.map((city) => ({ city: city.slug }));
 }
@@ -48,12 +78,14 @@ function getNearbyCity(currentCity, count = 8) {
 export async function generateMetadata({ params }) {
   const city = getCityBySlug(params.city);
   if (!city) return {};
-  const title = `${city.name}の今日の日の出時刻 | HINODE`;
-  const description = `${city.prefecture}${city.name}の今日の日の出・日の入り時刻、週間・月別データ。早朝ランニングの計画に。HINODEはサンライズランニングのコミュニティです。`;
+  const runInfo = HINODE_RUN_INFO[params.city];
+  const title = runInfo?.title ?? `${city.name}の今日の日の出時刻 | HINODE`;
+  const description = runInfo?.description ?? `${city.prefecture}${city.name}の今日の日の出・日の入り時刻、週間・月別データ。早朝ランニングの計画に。HINODEは東京で日の出とともに走る朝ランコミュニティです。`;
   return {
     title,
     description,
     alternates: { canonical: `https://hinode-run.com/sunrise/${city.slug}` },
+    robots: INDEX_CITIES.has(params.city) ? undefined : { index: false, follow: true },
     openGraph: {
       title,
       description,
@@ -176,14 +208,21 @@ export default function CityPage({ params }) {
 
         {/* HINODE コンテキスト */}
         <section className="sc-hinode-context">
-          <p>
-            HINODEは<strong>日の出の時間に合わせて走る</strong>ランニングコミュニティです。
-            {city.prefecture}{city.name}で日の出ランをするなら、今日は <strong>{today.sunrise}</strong> スタートが目安。
-            早起きして走り出す習慣が、あなたの一日を変えます。
-          </p>
+          {HINODE_RUN_INFO[city.slug] ? (
+            <>
+              <p>{HINODE_RUN_INFO[city.slug].desc}今日の日の出は <strong>{today.sunrise}</strong> です。</p>
+              <p className="sc-hinode-schedule">{HINODE_RUN_INFO[city.slug].schedule}</p>
+            </>
+          ) : (
+            <p>
+              HINODEは<strong>日の出の時間に合わせて走る</strong>ランニングコミュニティです。
+              {city.prefecture}{city.name}で日の出ランをするなら、今日は <strong>{today.sunrise}</strong> スタートが目安。
+              早起きして走り出す習慣が、あなたの一日を変えます。
+            </p>
+          )}
           <div className="sc-hinode-links">
-            <Link href="/about" className="sc-link-btn">HINODEとは →</Link>
-            <Link href="/schedule" className="sc-link-btn">ランのスケジュール →</Link>
+            <Link href="/about" className="sc-link-btn">東京の朝ランコミュニティ HINODEを見る →</Link>
+            <Link href="/schedule" className="sc-link-btn">開催日程と参加方法を見る →</Link>
           </div>
         </section>
 
@@ -416,6 +455,13 @@ export default function CityPage({ params }) {
         }
         .sc-hinode-context strong {
           color: var(--color-text);
+        }
+        .sc-hinode-schedule {
+          font-size: 0.9rem;
+          font-weight: 500;
+          color: #F37E4A;
+          margin-bottom: 1.5rem !important;
+          letter-spacing: 0.03em;
         }
         .sc-hinode-links {
           display: flex;
