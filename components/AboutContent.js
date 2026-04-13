@@ -35,7 +35,7 @@ export default function AboutContent() {
                 <div className={styles.contentContainer}>
                     <div className={styles.fadeIn}>
                         <h2 className={styles.sectionTitle}>HINODEはどんなコミュニティか</h2>
-                        <p className={styles.text}>週2回のグループランを基本に、不定期のイベントも開催しています。ペースも距離も自由で、もし苦しくなったら歩いても全く問題ありません。速さではなく、走り続ける日々を積み重ねていく規律こそが大事だと考えています。</p>
+                        <p className={styles.text}>週3回（水・木・日曜）のグループランを基本に、不定期のイベントも開催しています。ペースも距離も自由で、もし苦しくなったら歩いても全く問題ありません。速さではなく、走り続ける日々を積み重ねていく規律こそが大事だと考えています。</p>
                         <p className={styles.text}>競技志向のクラブではありません。ランキングやコーチング、練習メニューはなく、継続したい人のためのコミュニティです。中学生から50代まで、老若男女が参加しています。</p>
                         <p className={styles.text}>走ったあとはコーヒーを飲んだり、そのまま出勤したり、帰ったり。参加者それぞれ自由に過ごしています。</p>
                     </div>
@@ -93,8 +93,9 @@ export default function AboutContent() {
                         </div>
 
                         <div className={styles.faqItem}>
-                            <h3 className={styles.faqQuestion}>開始時間はどうやって確認しますか？</h3>
-                            <p className={styles.text}>HINODEは日の出で走ります。日の出の時間は1年の間に最大2時間ほど変わるため、半年に1回、開始時間の変更があります。変更は <a href="https://www.strava.com/clubs/hinode_run" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a>/<a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a> で告知しますのでご確認ください。時間どおりにスタートするため、数分前には集合しておいてください。</p>
+                            <h3 className={styles.faqQuestion}>開始時間はいつですか？</h3>
+                            <p className={styles.text}>通常は6:30スタートです。太陽は待ってくれないので、時間どおりにスタートします。数分前には集合しておいてください。</p>
+                            <p className={styles.text}>夏場は日の出が早いため6:30だと少し日の出をすぎますが、電車で来る方も参加しやすいよう通年6:30に固定しています。夏の本当の日の出に合わせた特別ランは不定期で企画することがあります。</p>
                         </div>
 
                         <div className={styles.faqItem}>
@@ -115,7 +116,7 @@ export default function AboutContent() {
                 <div className={styles.contentContainer}>
                     <div className={styles.fadeIn}>
                         <h2 className={styles.sectionTitle}>開催場所と日程</h2>
-                        <p className={styles.text}>皇居・目黒川・代々木公園を中心に、週2回開催しています。</p>
+                        <p className={styles.text}>皇居・目黒川・代々木公園を中心に、週3回（水・木・日曜）開催しています。</p></p>
                         <p className={styles.text}>
                             <a href="/schedule" className={styles.link}>開催日程と参加方法を見る →</a>
                         </p>
@@ -128,7 +129,7 @@ export default function AboutContent() {
                 <div className={styles.contentContainer}>
                     <div className={styles.fadeIn}>
                         <h2 className={styles.sectionTitle}>最新情報の確認方法</h2>
-                        <p className={styles.text}>開催可否や開始時間の変更は <a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a> と <a href="https://www.strava.com/clubs/hinode_run" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a> でお知らせしています。フォローしておくと確認しやすいです。</p>
+                        <p className={styles.text}>開催可否は当日の <a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a> と <a href="https://www.strava.com/clubs/hinode_run" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a> でお知らせしています。フォローしておくと確認しやすいです。</p>
                         <p className={styles.contactText}>その他、わからないことがあれば <a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">HINODEのInstagram</a> にDMください。</p>
                     </div>
                 </div>
