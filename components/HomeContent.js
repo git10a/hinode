@@ -20,6 +20,7 @@ export default function HomeContent() {
                         <div className="hero-left">
                             <h1 className="fade-in"><span className="handwritten-underline">日の出と</span><br /><span className="handwritten-underline underline-2">ともに</span><br /><span className="handwritten-underline underline-3">走り出そう</span></h1>
                             <p className="fade-in">人との競争ではなく、<br />自分との約束を守り続けるためのコミュニティ。</p>
+                            <p className="hero-for fade-in">東京で朝ランを始めたい方、1人では続かない方、初心者でも参加しやすい場を探している方へ。</p>
                             <StatsDisplay />
                             <p className="hero-tags fade-in">参加無料｜1人参加多め｜4km前後ゆっくり</p>
                             <a href="https://www.strava.com/clubs/hinode" target="_blank" rel="noopener noreferrer" className="strava-club-link fade-in">
@@ -65,7 +66,7 @@ export default function HomeContent() {
                                     </div>
                                 ))}
                                 <Link href="/schedule" className="schedule-detail-btn">
-                                    イベント詳細を見る
+                                    開催日程と参加方法を見る
                                 </Link>
                             </div>
                             <p className="social-note">詳細や変更は Instagram / Strava で公開しています。</p>

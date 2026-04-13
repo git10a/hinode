@@ -9,7 +9,7 @@ import SOCIAL_LINKS from '../lib/socialLinks';
 
 const NAV_LINKS = [
     { href: '/about/', label: 'HINODEとは' },
-    { href: '/schedule/', label: 'SCHEDULE' },
+    { href: '/schedule/', label: '開催日程・参加方法' },
     { href: '/blog/', label: 'BLOG' },
     { href: '/sunrise/', label: '日の出時刻' },
 ];

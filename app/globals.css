@@ -318,6 +318,13 @@ nav {
     text-align: center;
 }
 
+.hero-for {
+    font-size: 0.9rem !important;
+    color: #999 !important;
+    margin-top: -0.5rem !important;
+    margin-bottom: 1rem !important;
+}
+
 .hero-tags {
     font-size: 0.8rem !important;
     color: #999 !important;
