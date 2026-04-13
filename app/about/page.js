@@ -1,8 +1,8 @@
 import AboutContent from '../../components/AboutContent';
 
 export const metadata = {
-    title: 'HINODEとは | HINODE',
-    description: 'HINODEが大切にしている3つの哲学。Ritual（儀式）、Bio-Hacking（身体の変化）、Independent & Connected（繋がり）。',
+    title: '東京の朝ランコミュニティ HINODEとは｜初心者歓迎・予約不要',
+    description: 'HINODEは、日の出とともに走る東京の朝ランコミュニティです。初心者歓迎、参加費無料、予約不要。皇居・目黒川・代々木公園で開催し、初参加でも1人で参加しやすい雰囲気です。',
 };
 
 export default function About() {

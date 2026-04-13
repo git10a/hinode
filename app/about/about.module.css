@@ -71,6 +71,14 @@
     box-shadow: 0 12px 50px rgba(0, 0, 0, 0.12);
 }
 
+.titleJp {
+    font-family: var(--font-jp);
+    text-transform: none;
+    font-size: 1.75rem;
+    letter-spacing: 0.04em;
+    font-weight: 600;
+}
+
 .subtitle {
     font-family: var(--font-en);
     font-size: 1.1rem;
@@ -325,6 +333,11 @@
     .title {
         font-size: 2.2rem;
         letter-spacing: 0.1em;
+    }
+
+    .titleJp {
+        font-size: 1.35rem;
+        letter-spacing: 0.03em;
     }
 
     .heroImage {

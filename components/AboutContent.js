@@ -11,106 +11,128 @@ export default function AboutContent() {
 
     return (
         <>
+            {/* ヒーローセクション */}
             <section className={styles.aboutHero}>
                 <div className="container">
-                    <h1 className={`${styles.title} ${styles.fadeIn}`}>About HINODE</h1>
-
+                    <h1 className={`${styles.title} ${styles.titleJp} ${styles.fadeIn}`}>
+                        HINODEとは｜東京で日の出とともに走る朝ランコミュニティ
+                    </h1>
+                    <div className={`${styles.introContainer} ${styles.fadeIn}`}>
+                        <p className={styles.introText}>
+                            HINODEは、日の出前に集まり、日の出とともに走る東京の朝ランコミュニティです。初心者でも参加でき、参加費は無料、予約も不要です。皇居・目黒川・代々木公園を中心に、1人参加でも来やすい場を目指しています。
+                        </p>
+                    </div>
                     <img
                         src="/assets/about-hero-real.png"
-                        alt="Sunrise Running"
+                        alt="HINODEの朝ラン - 日の出とともに走る東京のランニングコミュニティ"
                         className={`${styles.heroImage} ${styles.fadeIn}`}
                     />
                 </div>
             </section>
 
+            {/* HINODEはどんなコミュニティか */}
             <section className={styles.section}>
                 <div className={styles.contentContainer}>
                     <div className={styles.fadeIn}>
-                        <h2 className={styles.sectionTitle}>HINODEとは？</h2>
-                        <p className={styles.text}>HINODEとは、日の出前に集まり、日の出とともに走る人のコミュニティで、2025年11月に設立されました。</p>
-                        <p className={styles.text}>週2回のグループランを基本に、不定期のイベントも開催しています。<a href="/schedule" className={styles.smallLink}>日程をチェック →</a></p>
-                        <p className={styles.text}>HINODEのグループランでは、ペースも距離も自由です。もし苦しくなったら歩いても全く問題ありません！速さではなく、走り続ける日々を積み重ねていく規律こそが大事だと考えています。</p>
+                        <h2 className={styles.sectionTitle}>HINODEはどんなコミュニティか</h2>
+                        <p className={styles.text}>週2回のグループランを基本に、不定期のイベントも開催しています。ペースも距離も自由で、もし苦しくなったら歩いても全く問題ありません。速さではなく、走り続ける日々を積み重ねていく規律こそが大事だと考えています。</p>
+                        <p className={styles.text}>競技志向のクラブではありません。ランキングやコーチング、練習メニューはなく、継続したい人のためのコミュニティです。中学生から50代まで、老若男女が参加しています。</p>
                         <p className={styles.text}>走ったあとはコーヒーを飲んだり、そのまま出勤したり、帰ったり。参加者それぞれ自由に過ごしています。</p>
                     </div>
                 </div>
             </section>
 
-            <section className={styles.section}>
+            {/* こんな人に向いています */}
+            <section className={`${styles.section} ${styles.sectionAlt}`}>
                 <div className={styles.contentContainer}>
                     <div className={styles.fadeIn}>
-                        <h2 className={styles.sectionTitle}>開始時間について</h2>
-                        <p className={styles.text}>HINODEは日の出で走ります。太陽は待ってくれないので、時間どおりにスタートします。数分前には集合しておいてください！</p>
-                        <p className={styles.text}>日の出の時間は1年の間に最大2時間ほど変わります。そのため半年に1回、開始時間の変更がありますが、<a href="https://www.strava.com/clubs/hinode_run" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a>/<a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a> で告知しますのでご確認ください。</p>
+                        <h2 className={styles.sectionTitle}>こんな人に向いています</h2>
+                        <ul className={styles.list}>
+                            <li>朝に走る習慣をつけたい人</li>
+                            <li>競争より継続を大事にしたい人</li>
+                            <li>1人だと続かない人</li>
+                            <li>速くなくても参加しやすい場を探している人</li>
+                            <li>東京で朝ランコミュニティを探している人</li>
+                        </ul>
                     </div>
                 </div>
             </section>
 
+            {/* 初めてでも参加できる理由 */}
             <section className={styles.section}>
                 <div className={styles.contentContainer}>
                     <div className={styles.fadeIn}>
-                        <h2 className={styles.sectionTitle}>競技志向のクラブではありません</h2>
-                        <p className={styles.text}>HINODEは競技志向のランニングクラブではありません。速さや記録を競う場ではなく、規律を大切にし、継続したい人のためのコミュニティです。</p>
-                        <p className={styles.text}>ランキングやコーチング、練習メニューはありません。</p>
+                        <h2 className={styles.sectionTitle}>初めてでも参加できる理由</h2>
+                        <ul className={styles.list}>
+                            <li><strong>初心者歓迎</strong> — 毎回、参加者の約3割はほぼ初めてのランニングです</li>
+                            <li><strong>参加費無料</strong> — 費用は一切かかりません</li>
+                            <li><strong>予約不要</strong> — 当日、集合場所へ来るだけです</li>
+                            <li><strong>1人参加しやすい</strong> — 初参加でも気軽に来られる雰囲気です</li>
+                            <li><strong>ペース・距離は自由</strong> — 速さや距離を競いません。歩いても問題なし</li>
+                            <li><strong>途中離脱OK</strong> — 都合に合わせていつでも離脱できます。途中参加も可能です</li>
+                            <li><strong>雨天は基本中止</strong> — 開催可否は当日の <a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a> / <a href="https://www.strava.com/clubs/hinode_run" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a> で確認できます</li>
+                        </ul>
                     </div>
                 </div>
             </section>
 
-
+            {/* よくある質問 */}
             <section id="faq" className={`${styles.section} ${styles.faqSection}`}>
                 <div className={styles.contentContainer}>
                     <div className={styles.fadeIn}>
-                        <p className={styles.subtitle}>FAQ</p>
+                        <h2 className={styles.sectionTitle}>よくある質問</h2>
+
                         <div className={styles.faqItem}>
-                            <h2 className={styles.faqQuestion}>日の出で集合地点に向かったのに誰もいなかったら？</h2>
-                            <p className={styles.text}>不安になるお気持ちはとてもわかります。<a href="https://www.strava.com/athletes/174878383" className={styles.link} target="_blank" rel="noopener noreferrer">HINODE運営のStrava</a> をご覧いただけると、ほぼすべてのランを日の出で記録していることがわかるので、少しでも安心材料にしていただけたら幸いです。雨の日や運営がどうしてもいけない日は<a href="https://www.strava.com/clubs/hinode_run" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a>や<a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a>で前もって告知しますので、フォローしておいていただけると確認しやすいです。</p>
+                            <h3 className={styles.faqQuestion}>日の出で集合地点に向かったのに誰もいなかったら？</h3>
+                            <p className={styles.text}>不安になるお気持ちはとてもわかります。<a href="https://www.strava.com/athletes/174878383" className={styles.link} target="_blank" rel="noopener noreferrer">HINODE運営のStrava</a> をご覧いただけると、ほぼすべてのランを日の出で記録していることがわかるので、少しでも安心材料にしていただけたら幸いです。雨の日や運営がどうしてもいけない日は <a href="https://www.strava.com/clubs/hinode_run" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a>/<a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a> で前もって告知しますので、フォローしておいていただけると確認しやすいです。</p>
                         </div>
 
                         <div className={styles.faqItem}>
-                            <h2 className={styles.faqQuestion}>初心者でも参加できますか？</h2>
-                            <p className={styles.text}>参加できます。毎回、参加者の約3割はほぼ初めてのランニングです。気持ちよく話しながら走れる範囲で大丈夫です。</p>
-                        </div>
-
-                        <div className={styles.faqItem}>
-                            <h2 className={styles.faqQuestion}>どんな人が参加していますか？</h2>
+                            <h3 className={styles.faqQuestion}>どんな人が参加していますか？</h3>
                             <p className={styles.text}>中学生から50代まで老若男女問わず参加していただいています。</p>
                         </div>
 
                         <div className={styles.faqItem}>
-                            <h2 className={styles.faqQuestion}>参加費はかかりますか？予約は必要ですか？</h2>
-                            <p className={styles.text}>参加費はありません。予約も不要です。</p>
-                            <p className={styles.text}>必須ではありませんが、<a href="https://www.strava.com/clubs/hinode_run" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a>で「参加」を押してもらえると他の人もより参加しやすくなるので、ぜひ気軽にボタンを押してください！<a href="https://www.strava.com/clubs/hinode_run" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a>に登録すると、一緒に走った方々とそのまま繋がることができ、ランニング記録を見せあうことがモチベーションになるのでおすすめです。</p>
+                            <h3 className={styles.faqQuestion}>開始時間はどうやって確認しますか？</h3>
+                            <p className={styles.text}>HINODEは日の出で走ります。日の出の時間は1年の間に最大2時間ほど変わるため、半年に1回、開始時間の変更があります。変更は <a href="https://www.strava.com/clubs/hinode_run" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a>/<a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a> で告知しますのでご確認ください。時間どおりにスタートするため、数分前には集合しておいてください。</p>
                         </div>
 
                         <div className={styles.faqItem}>
-                            <h2 className={styles.faqQuestion}>途中参加・途中離脱はできますか？</h2>
-                            <p className={styles.text}>離脱はいつでも大丈夫です。</p>
-                            <p className={styles.text}>途中参加も可能ですが、走っている集団に合流するのは少し難しいかもしれません。できればスタートの数分前に来てもらえるとスムーズです。</p>
-                        </div>
-
-
-
-                        <div className={styles.faqItem}>
-                            <h2 className={styles.faqQuestion}>雨の日はどうなりますか？</h2>
-                            <p className={styles.text}>基本中止です。開催可否は当日の<a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a>/<a href="https://www.strava.com/clubs/hinode_run" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a> で案内するので、そちらを確認してください。</p>
-                        </div>
-
-                        <div className={styles.faqItem}>
-                            <h2 className={styles.faqQuestion}>何を持っていけばいいですか？</h2>
+                            <h3 className={styles.faqQuestion}>何を持っていけばいいですか？</h3>
                             <p className={styles.text}>走れる服装とシューズだけで大丈夫です。必要なら飲み物や着替えがあると便利かもしれません。荷物がある場合は、駅などのロッカーに預けてから来る方もいます。</p>
+                        </div>
+
+                        <div className={styles.faqItem}>
+                            <h3 className={styles.faqQuestion}>Stravaへの参加表明は必要ですか？</h3>
+                            <p className={styles.text}>必須ではありませんが、<a href="https://www.strava.com/clubs/hinode_run" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a> で「参加」を押してもらえると他の人も参加しやすくなるので、ぜひ気軽にボタンを押してください。Stravaに登録すると一緒に走った方々とそのまま繋がることができ、モチベーションにもなるのでおすすめです。</p>
                         </div>
                     </div>
                 </div>
             </section>
 
+            {/* 開催場所と日程 */}
             <section className={styles.section}>
                 <div className={styles.contentContainer}>
                     <div className={styles.fadeIn}>
-                        <p className={styles.contactText}>その他なんでも、わからないことがあれば<a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">HINODEのInstagram</a>にDMお願いします！</p>
+                        <h2 className={styles.sectionTitle}>開催場所と日程</h2>
+                        <p className={styles.text}>皇居・目黒川・代々木公園を中心に、週2回開催しています。</p>
+                        <p className={styles.text}>
+                            <a href="/schedule" className={styles.link}>開催日程と参加方法を見る →</a>
+                        </p>
                     </div>
                 </div>
             </section>
 
-
+            {/* 最新情報の確認方法 */}
+            <section className={styles.section}>
+                <div className={styles.contentContainer}>
+                    <div className={styles.fadeIn}>
+                        <h2 className={styles.sectionTitle}>最新情報の確認方法</h2>
+                        <p className={styles.text}>開催可否や開始時間の変更は <a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a> と <a href="https://www.strava.com/clubs/hinode_run" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a> でお知らせしています。フォローしておくと確認しやすいです。</p>
+                        <p className={styles.contactText}>その他、わからないことがあれば <a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">HINODEのInstagram</a> にDMください。</p>
+                    </div>
+                </div>
+            </section>
         </>
     );
 }
