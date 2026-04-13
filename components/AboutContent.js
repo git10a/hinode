@@ -116,7 +116,7 @@ export default function AboutContent() {
                 <div className={styles.contentContainer}>
                     <div className={styles.fadeIn}>
                         <h2 className={styles.sectionTitle}>開催場所と日程</h2>
-                        <p className={styles.text}>皇居・目黒川・代々木公園を中心に、週3回（水・木・日曜）開催しています。</p></p>
+                        <p className={styles.text}>皇居・目黒川・代々木公園を中心に、週3回（水・木・日曜）開催しています。</p>
                         <p className={styles.text}>
                             <a href="/schedule" className={styles.link}>開催日程と参加方法を見る →</a>
                         </p>
