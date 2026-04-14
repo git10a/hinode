@@ -102,9 +102,12 @@ export default function CityPage({ params }) {
   if (!city) notFound();
 
   const now = new Date();
-  const year = now.getFullYear();
+  // JST日付基準でnowを再作成（UTC日付ではなくJST日付でSunCalcに渡す）
+  const jstDateStr = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Tokyo' }).format(now);
+  const todayJST = new Date(jstDateStr);
+  const year = todayJST.getFullYear();
 
-  const today = getSunTimes(now, city.lat, city.lng);
+  const today = getSunTimes(todayJST, city.lat, city.lng);
   const weekly = getSunTimesRange(city.lat, city.lng, 7);
   const monthly = getMonthlySunrise(city.lat, city.lng, year);
   const nearby = getNearbyCity(city, 8);
