@@ -80,7 +80,7 @@ export default function RunningCourseContent() {
                         <p className={styles.ctaText}>
                             一緒に日の出で走りませんか？<br />
                             スケジュールは<a href="/schedule" className={styles.link}>こちら</a>、
-                            詳しい情報は<a href="https://www.strava.com/clubs/hinode_run" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a>や
+                            詳しい情報は<a href="https://strava.app.link/pQ0uMuWWj2b" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a>や
                             <a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a>をご覧ください。
                         </p>
                     </div>

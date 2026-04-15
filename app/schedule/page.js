@@ -108,7 +108,7 @@ export default function EventPage() {
                     <li>速さや経験は問いません — ペース・距離は自由、歩いても問題なし</li>
                     <li>持ち物は走れる服装とシューズだけ。荷物は近くの駅ロッカーに預ける方も多いです</li>
                     <li>途中参加・途中離脱も可能です</li>
-                    <li>雨天は基本中止 — 開催可否は当日の <a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer">Instagram</a> / <a href="https://www.strava.com/clubs/hinode_run" target="_blank" rel="noopener noreferrer">Strava</a> で確認してください</li>
+                    <li>雨天は基本中止 — 開催可否は当日の <a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer">Instagram</a> / <a href="https://strava.app.link/pQ0uMuWWj2b" target="_blank" rel="noopener noreferrer">Strava</a> で確認してください</li>
                 </ul>
                 <p className={styles.faqLink}>
                     <a href="/about#faq">よくある質問はこちら →</a>
