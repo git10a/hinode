@@ -1,0 +1,180 @@
+.manifestoPage {
+    background: var(--color-bg);
+    color: var(--color-text);
+    padding: 8rem 0 6rem;
+}
+
+.container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.kicker {
+    font-family: var(--font-en);
+    font-size: 0.85rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 1.2rem;
+    text-align: center;
+}
+
+.title {
+    font-family: var(--font-en);
+    font-size: 3.2rem;
+    font-weight: 300;
+    letter-spacing: 0.16em;
+    text-align: center;
+    margin-bottom: 0.8rem;
+}
+
+.subtitle {
+    font-family: var(--font-jp);
+    font-size: 0.95rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-align: center;
+    color: #666;
+    margin-bottom: 4rem;
+}
+
+.opening {
+    text-align: center;
+    font-size: 1.15rem;
+    line-height: 2.2;
+    letter-spacing: 0.04em;
+    margin-bottom: 4rem;
+    color: #222;
+}
+
+.divider {
+    width: 40px;
+    height: 1px;
+    background: #ccc;
+    margin: 4rem auto;
+    border: 0;
+}
+
+.section {
+    margin-bottom: 3.5rem;
+}
+
+.sectionTitle {
+    font-family: var(--font-jp);
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.6rem;
+    text-align: center;
+    color: #111;
+}
+
+.body {
+    font-size: 1rem;
+    line-height: 2.2;
+    letter-spacing: 0.04em;
+    color: #333;
+    margin-bottom: 1.2rem;
+}
+
+.emphasis {
+    font-size: 1.1rem;
+    line-height: 2.1;
+    letter-spacing: 0.06em;
+    color: #111;
+    font-weight: 500;
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.4rem 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.closing {
+    text-align: center;
+    font-size: 1.18rem;
+    line-height: 2.1;
+    letter-spacing: 0.06em;
+    color: #111;
+    font-weight: 500;
+    margin-top: 5rem;
+    padding-top: 4rem;
+    border-top: 1px solid #eee;
+}
+
+.meta {
+    margin-top: 5rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #888;
+    letter-spacing: 0.08em;
+    line-height: 1.9;
+}
+
+.meta a {
+    color: #555;
+    text-decoration: underline;
+    text-decoration-color: rgba(0, 0, 0, 0.2);
+    text-underline-offset: 3px;
+}
+
+.meta a:hover {
+    color: #111;
+}
+
+.fadeIn {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .manifestoPage {
+        padding: 6rem 0 4rem;
+    }
+
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .title {
+        font-size: 2.4rem;
+        letter-spacing: 0.12em;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 3rem;
+    }
+
+    .opening {
+        font-size: 1.05rem;
+        margin-bottom: 3rem;
+    }
+
+    .sectionTitle {
+        font-size: 1rem;
+    }
+
+    .body {
+        font-size: 0.96rem;
+    }
+
+    .emphasis {
+        font-size: 1.02rem;
+    }
+
+    .closing {
+        font-size: 1.08rem;
+        margin-top: 3.5rem;
+        padding-top: 3rem;
+    }
+}

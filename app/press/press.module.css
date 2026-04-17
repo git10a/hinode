@@ -1,0 +1,278 @@
+.pressPage {
+    background: var(--color-bg);
+    color: var(--color-text);
+    padding: 8rem 0 5rem;
+}
+
+.container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.kicker {
+    font-family: var(--font-en);
+    font-size: 0.85rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 0.8rem;
+}
+
+.title {
+    font-family: var(--font-jp);
+    font-size: 1.9rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.6rem;
+    line-height: 1.5;
+}
+
+.meta {
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 3rem;
+    letter-spacing: 0.08em;
+}
+
+.lead {
+    font-size: 1rem;
+    line-height: 2;
+    color: #333;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #fafafa;
+    border-left: 3px solid #111;
+}
+
+.sectionNum {
+    font-family: var(--font-en);
+    font-size: 0.8rem;
+    letter-spacing: 0.24em;
+    color: #999;
+    margin-top: 3.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.sectionTitle {
+    font-family: var(--font-jp);
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.subTitle {
+    font-family: var(--font-jp);
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    margin-top: 2rem;
+    margin-bottom: 0.8rem;
+    color: #111;
+}
+
+.body {
+    font-size: 0.97rem;
+    line-height: 1.95;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.list li {
+    font-size: 0.96rem;
+    line-height: 1.85;
+    color: #333;
+    padding: 0.35rem 0 0.35rem 1.2rem;
+    position: relative;
+}
+
+.list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.95rem;
+    width: 5px;
+    height: 5px;
+    background: #333;
+    border-radius: 50%;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 2rem;
+    font-size: 0.94rem;
+}
+
+.table th,
+.table td {
+    padding: 0.8rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    line-height: 1.7;
+    vertical-align: top;
+}
+
+.table th {
+    background: #fafafa;
+    font-weight: 600;
+    white-space: nowrap;
+    color: #111;
+    letter-spacing: 0.04em;
+}
+
+.hook {
+    padding: 1.2rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.hook:last-child {
+    border-bottom: 0;
+}
+
+.hookTitle {
+    font-family: var(--font-jp);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: #111;
+}
+
+.hookBody {
+    font-size: 0.94rem;
+    line-height: 1.85;
+    color: #444;
+}
+
+.quote {
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: #fafafa;
+    border-left: 3px solid #111;
+    font-size: 0.98rem;
+    line-height: 1.9;
+    color: #222;
+}
+
+.faqItem {
+    margin-bottom: 1.8rem;
+}
+
+.faqQ {
+    font-family: var(--font-jp);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: #111;
+}
+
+.faqA {
+    font-size: 0.94rem;
+    line-height: 1.9;
+    color: #444;
+}
+
+.contactBlock {
+    margin-top: 4rem;
+    padding: 2rem;
+    background: #111;
+    color: #fff;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.contactBlock h3 {
+    font-family: var(--font-jp);
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    letter-spacing: 0.04em;
+}
+
+.contactBlock p {
+    font-size: 0.94rem;
+    line-height: 2;
+    color: #ddd;
+    margin-bottom: 0.4rem;
+}
+
+.contactBlock a {
+    color: #fff;
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 255, 255, 0.4);
+    text-underline-offset: 3px;
+}
+
+.contactBlock a:hover {
+    text-decoration-color: #fff;
+}
+
+.link {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-decoration-color: rgba(0, 0, 0, 0.25);
+    text-underline-offset: 3px;
+}
+
+.link:hover {
+    text-decoration-color: var(--color-text);
+}
+
+.fadeIn {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .pressPage {
+        padding: 6rem 0 3rem;
+    }
+
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .sectionTitle {
+        font-size: 1.15rem;
+    }
+
+    .subTitle {
+        font-size: 1rem;
+    }
+
+    .table {
+        font-size: 0.88rem;
+    }
+
+    .table th,
+    .table td {
+        padding: 0.6rem 0.7rem;
+    }
+
+    .table th {
+        white-space: normal;
+    }
+
+    .contactBlock {
+        padding: 1.5rem;
+    }
+}

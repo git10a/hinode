@@ -39,6 +39,8 @@ export default function Footer() {
                     )}
                 </p>
                 <div className="footer-links">
+                    <Link href="/manifesto">マニフェスト</Link>
+                    <Link href="/press">プレスキット</Link>
                     <Link href="/privacy">プライバシーポリシー</Link>
                 </div>
                 <div className="social-links">

@@ -1183,6 +1183,10 @@ footer p {
 /* Footer Links */
 .footer-links {
     margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
 }
 
 .footer-links a {
@@ -1191,6 +1195,18 @@ footer p {
     text-transform: none;
     letter-spacing: 0.05em;
     transition: color 0.3s;
+    position: relative;
+}
+
+.footer-links a:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -0.6rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 0.75rem;
+    background: #ccc;
 }
 
 .footer-links a:hover {
