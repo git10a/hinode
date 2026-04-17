@@ -2,9 +2,19 @@
 
 import useFadeInOnScroll from '../lib/useFadeInOnScroll';
 import Link from 'next/link';
+import Image from 'next/image';
 import StatsDisplay from './StatsDisplay';
 import NextRunHighlight from './NextRunHighlight';
 import SCHEDULE_ITEMS from '../lib/scheduleItems';
+
+const HERO_CARDS = [
+    { src: '/assets/Yokohama.jpg', alt: 'Yokohama sunrise' },
+    { src: '/assets/Ochanomizu.jpg', alt: 'Ochanomizu sunrise' },
+    { src: '/assets/himeji.jpg', alt: 'Himeji sunrise' },
+    { src: '/assets/Kokyo.jpg', alt: 'Kokyo sunrise' },
+    { src: '/assets/Takeshiba.jpg', alt: 'Takeshiba sunrise' },
+    { src: '/assets/Toyosu.jpg', alt: 'Toyosu sunrise' },
+];
 
 export default function HomeContent() {
     useFadeInOnScroll({
@@ -36,24 +46,23 @@ export default function HomeContent() {
                         </div>
                         <div className="hero-right fade-in">
                             <div className="hero-cards">
-                                <a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer" className="hero-card">
-                                    <img src="/assets/Yokohama.jpg" alt="Yokohama sunrise" />
-                                </a>
-                                <a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer" className="hero-card">
-                                    <img src="/assets/Ochanomizu.jpg" alt="Ochanomizu sunrise" />
-                                </a>
-                                <a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer" className="hero-card">
-                                    <img src="/assets/himeji.jpg" alt="Himeji sunrise" />
-                                </a>
-                                <a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer" className="hero-card">
-                                    <img src="/assets/Kokyo.jpg" alt="Kokyo sunrise" />
-                                </a>
-                                <a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer" className="hero-card">
-                                    <img src="/assets/Takeshiba.jpg" alt="Takeshiba sunrise" />
-                                </a>
-                                <a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer" className="hero-card">
-                                    <img src="/assets/Toyosu.jpg" alt="Toyosu sunrise" />
-                                </a>
+                                {HERO_CARDS.map((card, i) => (
+                                    <a
+                                        key={card.src}
+                                        href="https://www.instagram.com/hinode_run/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="hero-card"
+                                    >
+                                        <Image
+                                            src={card.src}
+                                            alt={card.alt}
+                                            fill
+                                            sizes="(min-width: 1024px) 160px, (min-width: 768px) 140px, 100px"
+                                            priority={i < 2}
+                                        />
+                                    </a>
+                                ))}
                             </div>
                         </div>
                     </div>

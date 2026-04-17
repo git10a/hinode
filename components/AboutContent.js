@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import useFadeInOnScroll from '../lib/useFadeInOnScroll';
 import styles from '../app/about/about.module.css';
 
@@ -21,9 +22,13 @@ export default function AboutContent() {
                             HINODEは、日の出前に集まり、日の出とともに走る東京の朝ランコミュニティです。初心者でも参加でき、参加費無料、予約不要。皇居・目黒川・代々木公園を中心に、1人参加でも来やすい場を目指しています。
                         </p>
                     </div>
-                    <img
+                    <Image
                         src="/assets/about-hero-real.png"
                         alt="HINODEの朝ラン - 日の出とともに走る東京のランニングコミュニティ"
+                        width={1024}
+                        height={451}
+                        sizes="(max-width: 900px) 100vw, 860px"
+                        priority
                         className={`${styles.heroImage} ${styles.fadeIn}`}
                     />
                 </div>

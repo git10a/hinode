@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { client } from '../../../lib/microcms';
 import styles from './post.module.css';
 import { notFound } from 'next/navigation';
@@ -115,7 +116,15 @@ export default async function BlogPost({ params }) {
 
             {post.thumbnail && (
                 <div className={styles.thumbnailWrapper}>
-                    <img src={post.thumbnail.url} alt={post.title} className={styles.thumbnail} />
+                    <Image
+                        src={post.thumbnail.url}
+                        alt={post.title}
+                        width={post.thumbnail.width}
+                        height={post.thumbnail.height}
+                        sizes="(max-width: 840px) 100vw, 840px"
+                        priority
+                        className={styles.thumbnail}
+                    />
                 </div>
             )}
 

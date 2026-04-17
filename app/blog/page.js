@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { client } from '../../lib/microcms';
 import styles from './blog.module.css';
 
@@ -41,7 +42,13 @@ export default async function BlogPage() {
                         <Link href={`/blog/${post.id}`} key={post.id} className={styles.card}>
                             {post.thumbnail && (
                                 <div className={styles.thumbnailWrapper}>
-                                    <img src={post.thumbnail.url} alt={post.title} className={styles.thumbnail} />
+                                    <Image
+                                        src={post.thumbnail.url}
+                                        alt={post.title}
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 340px"
+                                        className={styles.thumbnail}
+                                    />
                                 </div>
                             )}
                             <div className={styles.content}>

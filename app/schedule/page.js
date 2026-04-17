@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styles from './schedule.module.css';
 import NextRunDate from '../../components/NextRunDate';
 
@@ -155,7 +156,7 @@ export default function EventPage() {
                         <NextRunDate dayOfWeek={3} time="06:30" className={styles.nextDate} />
                     </div>
                     <div className={styles.runMapSection}>
-                        <img src="/assets/kokyo-run-map.png" alt="皇居ラン" className={styles.runMapImage} />
+                        <Image src="/assets/kokyo-run-map.png" alt="皇居ラン" width={200} height={140} sizes="(max-width: 768px) 280px, 200px" className={styles.runMapImage} />
                         <a href="https://maps.app.goo.gl/E9HkSojyPZw6zo1b9" target="_blank" rel="noopener noreferrer" className={styles.googleMapLink}>
                             📍 Google map
                         </a>
@@ -178,7 +179,7 @@ export default function EventPage() {
                         <NextRunDate dayOfWeek={4} time="06:30" className={styles.nextDate} />
                     </div>
                     <div className={styles.runMapSection}>
-                        <img src="/assets/meguro-run-map.png" alt="目黒川ラン" className={styles.runMapImage} />
+                        <Image src="/assets/meguro-run-map.png" alt="目黒川ラン" width={200} height={140} sizes="(max-width: 768px) 280px, 200px" className={styles.runMapImage} />
                         <a href="https://maps.app.goo.gl/SKixyw53vfJnp1p36" target="_blank" rel="noopener noreferrer" className={styles.googleMapLink}>
                             📍 Google map
                         </a>
@@ -201,7 +202,7 @@ export default function EventPage() {
                         <NextRunDate dayOfWeek={0} time="07:30" className={styles.nextDate} />
                     </div>
                     <div className={styles.runMapSection}>
-                        <img src="/assets/yoyogi-run-map.png" alt="代々木公園ラン" className={styles.runMapImage} />
+                        <Image src="/assets/yoyogi-run-map.png" alt="代々木公園ラン" width={200} height={140} sizes="(max-width: 768px) 280px, 200px" className={styles.runMapImage} />
                         <a href="https://maps.app.goo.gl/dB3L15dHByAoC4jw9" target="_blank" rel="noopener noreferrer" className={styles.googleMapLink}>
                             📍 Google map
                         </a>
