@@ -1,23 +1,9 @@
-import Link from 'next/link';
 import { client } from '../../../lib/microcms';
 import styles from './post.module.css';
 import { notFound } from 'next/navigation';
+import BlogEndCta from '../../../components/BlogEndCta';
 
 export const revalidate = 60;
-
-function getBlogCtaClosing(post) {
-    const haystack = `${post.title || ''} ${post.description || ''}`.toLowerCase();
-    if (haystack.includes('皇居') || haystack.includes('kokyo')) {
-        return '次の水曜6:30、桔梗門前で会いましょう。';
-    }
-    if (haystack.includes('目黒') || haystack.includes('meguro')) {
-        return '次の木曜6:30、中目黒スタバ蔦屋書店前で会いましょう。';
-    }
-    if (haystack.includes('代々木') || haystack.includes('yoyogi')) {
-        return '次の日曜7:30、原宿時計塔で会いましょう。';
-    }
-    return null;
-}
 
 export async function generateMetadata({ params }) {
     const post = await getBlogPost(params.slug);
@@ -144,18 +130,7 @@ export default async function BlogPost({ params }) {
                 </div>
             )}
 
-            <aside className={styles.endCta}>
-                <h2 className={styles.endCtaTitle}>次の開催は、今週です。</h2>
-                <p className={styles.endCtaText}>
-                    HINODEは毎週決まった曜日・時間に、皇居・目黒川・代々木公園で開催しています。予約不要・参加費無料。
-                </p>
-                {getBlogCtaClosing(post) && (
-                    <p className={styles.endCtaText}>{getBlogCtaClosing(post)}</p>
-                )}
-                <Link href="/schedule" className={styles.endCtaBtn}>
-                    開催日程を見る →
-                </Link>
-            </aside>
+            <BlogEndCta post={post} />
         </article>
     );
 }

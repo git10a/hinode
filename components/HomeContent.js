@@ -87,8 +87,8 @@ export default function HomeContent() {
                                     <li>
                                         <span className="step-num">2</span>
                                         <div className="step-body">
-                                            <p className="step-head">声をかけなくても大丈夫</p>
-                                            <p className="step-desc">「初めてです」と一声かけてもらえるとスムーズですが、無言で合流する方も多いです。</p>
+                                            <p className="step-head">黄色いゴムバンドが目印</p>
+                                            <p className="step-desc">手首に黄色いゴムバンドをつけている人がいたらHINODEです。「初めてです」と一声でも、無言で合流でもどちらでも大丈夫です。</p>
                                         </div>
                                     </li>
                                     <li>

@@ -108,46 +108,68 @@
 
 .endCta {
     margin-top: 3rem;
-    padding: 2.8rem 2.5rem;
-    background: linear-gradient(135deg, #fff7f0 0%, #fef0e4 100%);
-    border-radius: 12px;
-    border: 1px solid rgba(243, 126, 74, 0.18);
+    padding: 2.2rem 0 0;
+    border-top: 1px solid #eee;
     text-align: center;
 }
 
-.endCtaTitle {
-    font-size: 1.35rem;
-    font-weight: 600;
+.endCtaLead {
+    font-size: 1.02rem;
+    color: #222;
+    line-height: 1.8;
+    margin: 0 0 0.4rem;
+}
+
+.endCtaDate {
+    font-family: var(--font-en);
+    font-weight: 700;
     color: #111;
-    margin: 0 0 1rem;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
 }
 
-.endCtaText {
-    font-size: 0.98rem;
-    color: #444;
-    line-height: 1.85;
-    margin: 0 0 0.8rem;
+.endCtaSub {
+    font-size: 0.9rem;
+    color: #777;
+    margin: 0 0 1.5rem;
 }
 
-.endCtaBtn {
+.endCtaActions {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.endCtaBtnPrimary {
     display: inline-block;
-    margin-top: 1.2rem;
-    padding: 0.9rem 2rem;
-    font-size: 0.92rem;
+    padding: 0.85rem 1.8rem;
+    font-size: 0.9rem;
     font-weight: 500;
     color: #fff;
-    background: #111;
-    border: 1px solid #111;
+    background: #FC4C02;
     border-radius: 50px;
     text-decoration: none;
-    letter-spacing: 0.05em;
-    transition: all 0.3s ease;
+    letter-spacing: 0.03em;
+    transition: opacity 0.2s;
 }
 
-.endCtaBtn:hover {
-    background: transparent;
-    color: #111;
+.endCtaBtnPrimary:hover {
+    opacity: 0.85;
+}
+
+.endCtaBtnSecondary {
+    display: inline-block;
+    padding: 0.85rem 1.5rem;
+    font-size: 0.9rem;
+    color: #333;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+}
+
+.endCtaBtnSecondary:hover {
+    color: #000;
 }
 
 @media (max-width: 768px) {
@@ -157,9 +179,5 @@
 
     .content {
         padding: 2rem;
-    }
-
-    .endCta {
-        padding: 2rem 1.5rem;
     }
 }

@@ -130,7 +130,7 @@ export default function EventPage() {
             <section className={styles.header}>
                 <h1 className={`${styles.pageTitle} ${styles.pageTitleJp}`}>東京の朝ラン開催日程｜皇居・目黒川・代々木公園</h1>
                 <div className={styles.subCopy}>
-                    <p>HINODEは、東京で毎週同じ時間・同じ場所に集まって走る朝ランコミュニティです。皇居、目黒川、代々木公園で開催しており、初心者や1人参加の方も多く参加しています。以下から、曜日・集合場所・距離を確認して参加してください。</p>
+                    <p>皇居・目黒川・代々木公園で毎週開催。予約不要・参加費無料・1人参加OK。</p>
                 </div>
                 <a
                     href="https://www.strava.com/clubs/hinode"
@@ -138,11 +138,8 @@ export default function EventPage() {
                     rel="noopener noreferrer"
                     className={styles.headerBtn}
                 >
-                    詳細はStravaでチェック
+                    Stravaクラブで参加表明
                 </a>
-                <p className={styles.stravaHint}>
-                    ソロ参加する方も多いです。ぜひお気軽に、Stravaで参加登録してください🏃‍♂️
-                </p>
             </section>
 
             <section className={styles.scheduleSection}>
@@ -220,30 +217,17 @@ export default function EventPage() {
             </section>
 
             <section className={styles.beginnersSection}>
-                <h2 className={styles.sectionTitle}>初参加の方へ｜予約・参加費・持ち物</h2>
+                <h2 className={styles.sectionTitle}>初参加の方へ</h2>
                 <ul className={styles.beginnersList}>
-                    <li>初心者歓迎 — 毎回、参加者の約3割はほぼ初めてのランニングです</li>
-                    <li>参加費無料 — 費用は一切かかりません</li>
-                    <li>予約不要 — 当日、集合場所へ来るだけです</li>
-                    <li>1人参加しやすい — 初参加でも気軽に来られる雰囲気です</li>
-                    <li>速さや経験は問いません — ペース・距離は自由、歩いても問題なし</li>
-                    <li>持ち物は走れる服装とシューズだけ。荷物は近くの駅ロッカーに預ける方も多いです</li>
-                    <li>途中参加・途中離脱も可能です</li>
-                    <li>雨天は基本中止 — 開催可否は当日の <a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer">Instagram</a> / <a href="https://strava.app.link/pQ0uMuWWj2b" target="_blank" rel="noopener noreferrer">Strava</a> で確認してください</li>
+                    <li>手首に<strong>黄色いゴムバンド</strong>をつけている人がHINODEです。それを目印に合流してください</li>
+                    <li>予約不要・参加費無料。走れる服装とシューズだけで大丈夫です</li>
+                    <li>ペース・距離は自由、歩いても途中参加・途中離脱も問題なし</li>
+                    <li>参加者の約3割はほぼ初めてのランニング。1人参加も多いです</li>
+                    <li>雨天は基本中止。開催可否は当日の <a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer">Instagram</a> / <a href="https://strava.app.link/pQ0uMuWWj2b" target="_blank" rel="noopener noreferrer">Strava</a> で確認してください</li>
                 </ul>
                 <p className={styles.faqLink}>
                     <a href="/about#faq">よくある質問はこちら →</a>
                 </p>
-                <p className={styles.faqLink}>
-                    <a href="/about">HINODEとは何かを見る →</a>
-                </p>
-            </section>
-
-            <section className={styles.noteSection}>
-                <div className={styles.noteBox}>
-                    <p className={styles.noteText}>雨天や状況により中止・変更する場合があります。</p>
-                    <p className={styles.noteText}>最新情報は Strava / Instagram にて告知します。</p>
-                </div>
             </section>
 
             <section className={styles.linksSection}>

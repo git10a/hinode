@@ -1,5 +1,5 @@
 .aboutHero {
-    min-height: 45vh;
+    min-height: 40vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -10,319 +10,147 @@
 }
 
 .title {
-    font-size: 2.5rem;
-    letter-spacing: 0.12em;
+    font-size: 2.2rem;
+    letter-spacing: 0.1em;
     font-weight: 400;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     text-transform: uppercase;
     font-family: var(--font-en);
-    position: relative;
-    display: inline-block;
-}
-
-.title::after {
-    content: '';
-    position: absolute;
-    bottom: -0.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, #F37E4A, #FFC436);
-    border-radius: 2px;
 }
 
 .introContainer {
-    max-width: 800px;
-    margin: 0 auto 3rem;
+    max-width: 760px;
+    margin: 0 auto 2.5rem;
     text-align: center;
-}
-
-.introTitle {
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-    text-align: center;
-    font-family: var(--font-en);
-    font-weight: 500;
-    letter-spacing: 0.05em;
 }
 
 .introText {
     margin-bottom: 1rem;
-    line-height: 1.8;
+    line-height: 1.85;
     color: #444;
-    font-size: 1.05rem;
+    font-size: 1.02rem;
     max-width: none;
 }
 
 .heroImage {
     width: 100%;
-    max-width: 900px;
+    max-width: 860px;
     height: auto;
-    margin: 0 auto 3rem;
+    margin: 0 auto 2rem;
     display: block;
-    border-radius: 16px;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.heroImage:hover {
-    transform: scale(1.01);
-    box-shadow: 0 12px 50px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
 }
 
 .titleJp {
     font-family: var(--font-jp);
     text-transform: none;
-    font-size: 1.75rem;
-    letter-spacing: 0.04em;
+    font-size: 1.65rem;
+    letter-spacing: 0.03em;
     font-weight: 600;
 }
 
-.subtitle {
-    font-family: var(--font-en);
-    font-size: 1.1rem;
-    letter-spacing: 0.15em;
-    color: #999;
-    margin-bottom: 2rem;
-    text-transform: uppercase;
-}
-
 .section {
-    padding: 4rem 0;
+    padding: 3rem 0;
     background: var(--color-bg);
 }
 
-.sectionAlt {
-    background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
-}
-
 .contentContainer {
-    max-width: 850px;
+    max-width: 760px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
-.number {
-    font-family: var(--font-en);
-    font-size: 3rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, #F37E4A, #FFC436);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 1rem;
-    line-height: 1;
-}
-
 .sectionTitle {
-    font-family: var(--font-en);
-    font-size: 2.2rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.05em;
-    color: var(--color-text);
-    position: relative;
-    display: inline-block;
-    border: none;
-    padding-left: 0;
-}
-
-.sectionTitle::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 40px;
-    height: 3px;
-    background: linear-gradient(90deg, #F37E4A, #FFC436);
-    border-radius: 2px;
-}
-
-.sectionSubtitle {
+    font-family: var(--font-jp);
     font-size: 1.3rem;
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-    color: #333;
-    line-height: 1.6;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.02em;
+    color: var(--color-text);
 }
 
 .text {
-    font-size: 1.02rem;
-    line-height: 1.9;
-    color: #555;
-    margin-bottom: 0.8rem;
+    font-size: 1rem;
+    line-height: 1.95;
+    color: #444;
+    margin-bottom: 1rem;
     max-width: none;
 }
 
 .list {
     list-style: none;
     padding: 0;
-    margin: 1.5rem 0;
+    margin: 1rem 0;
 }
 
 .list li {
-    font-size: 1rem;
-    line-height: 1.8;
+    font-size: 0.98rem;
+    line-height: 1.85;
     color: #444;
-    padding: 0.6rem 0 0.6rem 1.5rem;
+    padding: 0.45rem 0 0.45rem 1.2rem;
     position: relative;
-    border-bottom: 1px solid #eee;
 }
 
 .list li::before {
     content: '';
     position: absolute;
     left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 8px;
-    height: 8px;
-    background: linear-gradient(135deg, #F37E4A, #FFC436);
+    top: 1.1rem;
+    width: 5px;
+    height: 5px;
+    background: #333;
     border-radius: 50%;
 }
 
-.list li:last-child {
-    border-bottom: none;
-}
-
-.sectionImage {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-}
-
 .faqSection {
-    padding: 4rem 0;
-    background: linear-gradient(180deg, #f8f8f8 0%, #ffffff 100%);
+    padding: 3rem 0;
+    background: var(--color-bg);
 }
 
 .faqItem {
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid #eee;
+    margin-bottom: 2rem;
 }
 
 .faqItem:last-child {
     margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
 }
 
 .faqQuestion {
     font-family: var(--font-jp);
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: 0.6rem;
     color: var(--color-text);
-    padding-left: 1.5rem;
-    position: relative;
-    border: none;
-}
-
-.faqQuestion::before {
-    content: 'Q';
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-family: var(--font-en);
-    font-size: 1rem;
-    font-weight: 700;
-    color: #F37E4A;
-}
-
-.faqQuestionJp {
-    font-size: 1.1rem;
-    color: #888;
-    margin-bottom: 1rem;
-    font-weight: 500;
 }
 
 .link {
-    color: #F37E4A;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.3s, color 0.3s;
+    color: var(--color-text);
+    text-decoration: underline;
+    text-decoration-color: rgba(0, 0, 0, 0.25);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.2s;
 }
 
 .link:hover {
-    border-color: #F37E4A;
-}
-
-.smallLink {
-    font-size: 0.9rem;
-    color: #F37E4A;
-    text-decoration: none;
-    margin-left: 0.5rem;
-    transition: opacity 0.3s;
-}
-
-.smallLink:hover {
-    opacity: 0.7;
-}
-
-.ctaSection {
-    padding: 4rem 0;
-    text-align: center;
-    background: linear-gradient(to bottom, #fafafa, #ffffff);
-}
-
-.ctaText {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    font-weight: 500;
-    max-width: none;
+    text-decoration-color: var(--color-text);
 }
 
 .contactText {
-    font-size: 1.25rem;
+    font-size: 1rem;
     line-height: 1.8;
     color: #555;
-    text-align: center;
+    margin-top: 0.5rem;
 }
 
-/* Animations */
 .fadeIn {
     opacity: 0;
-    transform: translateY(25px);
-    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .visible {
     opacity: 1;
     transform: translateY(0);
-}
-
-.twoColumn {
-    display: flex;
-    align-items: center;
-    gap: 3rem;
-    justify-content: space-between;
-}
-
-.textColumn {
-    flex: 1;
-}
-
-.imageColumn {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.sideImage {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.sideImage:hover {
-    transform: scale(1.02) translateY(-4px);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
 }
 
 @media (max-width: 768px) {
@@ -331,54 +159,35 @@
     }
 
     .title {
-        font-size: 2.2rem;
-        letter-spacing: 0.1em;
+        font-size: 1.9rem;
+        letter-spacing: 0.08em;
     }
 
     .titleJp {
-        font-size: 1.35rem;
-        letter-spacing: 0.03em;
+        font-size: 1.3rem;
     }
 
     .heroImage {
-        border-radius: 12px;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
     }
 
     .section {
-        padding: 3rem 0;
+        padding: 2.5rem 0;
     }
 
     .contentContainer {
         padding: 0 1.5rem;
     }
 
-    .number {
-        font-size: 2.5rem;
-    }
-
     .sectionTitle {
-        font-size: 1.8rem;
-    }
-
-    .sectionSubtitle {
-        font-size: 1.15rem;
+        font-size: 1.2rem;
     }
 
     .text {
-        font-size: 0.98rem;
-    }
-
-    .twoColumn {
-        flex-direction: column;
-        gap: 2rem;
-    }
-
-    .imageColumn {
-        width: 100%;
+        font-size: 0.96rem;
     }
 
     .faqQuestion {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 }
