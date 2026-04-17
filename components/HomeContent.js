@@ -72,8 +72,35 @@ export default function HomeContent() {
                                         <p className="schedule-location">{item.location}</p>
                                     </div>
                                 ))}
+                            </div>
+
+                            <div className="first-timer-steps">
+                                <h3 className="first-timer-title">初めて参加する方へ</h3>
+                                <ol className="first-timer-list">
+                                    <li>
+                                        <span className="step-num">1</span>
+                                        <div className="step-body">
+                                            <p className="step-head">開催日の5分前に集合場所へ</p>
+                                            <p className="step-desc">当日予約不要・参加費無料。地図は開催日程ページから。</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span className="step-num">2</span>
+                                        <div className="step-body">
+                                            <p className="step-head">声をかけなくても大丈夫</p>
+                                            <p className="step-desc">「初めてです」と一声かけてもらえるとスムーズですが、無言で合流する方も多いです。</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span className="step-num">3</span>
+                                        <div className="step-body">
+                                            <p className="step-head">走った後は自由解散</p>
+                                            <p className="step-desc">そのまま出勤する方、コーヒーを飲んで帰る方、それぞれです。</p>
+                                        </div>
+                                    </li>
+                                </ol>
                                 <Link href="/schedule" className="schedule-detail-btn">
-                                    開催日程と参加方法を見る
+                                    開催日程を見る →
                                 </Link>
                             </div>
                             <p className="social-note">詳細や変更は Instagram / Strava で公開しています。</p>

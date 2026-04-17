@@ -1,8 +1,18 @@
+'use client';
+
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import SOCIAL_LINKS from '../lib/socialLinks';
+import { getRunCount } from '../lib/stats';
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
+    const [runCount, setRunCount] = useState(null);
+
+    useEffect(() => {
+        setRunCount(getRunCount());
+    }, []);
+
     const socialIconByKey = {
         instagram: (
             <svg className="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -19,6 +29,15 @@ export default function Footer() {
     return (
         <footer>
             <div className="container">
+                <p className="footer-streak">
+                    HINODEは2025年11月から、雨天を除き毎週開催しています。
+                    {runCount !== null && (
+                        <>
+                            {' '}
+                            <span className="footer-streak-count">連続開催：{runCount}回</span>
+                        </>
+                    )}
+                </p>
                 <div className="footer-links">
                     <Link href="/privacy">プライバシーポリシー</Link>
                 </div>

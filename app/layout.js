@@ -17,12 +17,12 @@ const zenKaku = Zen_Kaku_Gothic_New({
 });
 
 export const metadata = {
-    title: 'HINODE | 日の出と共に走る',
-    description: '日の出と共に走り出すランナーたちのコミュニティ、HINODE。東京にいなくても、ひとりでも。「日の出に走る」習慣があれば、あなたはもうメンバー。水曜・日曜は東京でオープンランも開催。人との競争ではなく、自分との約束を守り続けるためのコミュニティです。',
+    title: 'HINODE｜東京の朝ランコミュニティ｜皇居・目黒川・代々木公園',
+    description: 'HINODEは、東京で日の出とともに走る朝ランコミュニティ。皇居（水曜）・目黒川（木曜）・代々木公園（日曜）で週3回開催。参加無料・予約不要・1人参加OK。',
     metadataBase: new URL('https://hinode-run.com'),
     openGraph: {
-        title: 'HINODE | 日の出と共に走る',
-        description: '日の出と共に走り出すランナーたちのコミュニティ、HINODE。東京にいなくても、ひとりでも。「日の出に走る」習慣があれば、あなたはもうメンバー。水曜・日曜は東京でオープンランも開催。人との競争ではなく、自分との約束を守り続けるためのコミュニティです。',
+        title: 'HINODE｜東京の朝ランコミュニティ｜皇居・目黒川・代々木公園',
+        description: 'HINODEは、東京で日の出とともに走る朝ランコミュニティ。皇居（水曜）・目黒川（木曜）・代々木公園（日曜）で週3回開催。参加無料・予約不要・1人参加OK。',
         url: 'https://hinode-run.com',
         siteName: 'HINODE',
         locale: 'ja_JP',
@@ -31,8 +31,8 @@ export const metadata = {
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'HINODE | 日の出と共に走る',
-        description: '日の出と共に走り出すランナーたちのコミュニティ、HINODE。東京にいなくても、ひとりでも。「日の出に走る」習慣があれば、あなたはもうメンバー。水曜・日曜は東京でオープンランも開催。人との競争ではなく、自分との約束を守り続けるためのコミュニティです。',
+        title: 'HINODE｜東京の朝ランコミュニティ｜皇居・目黒川・代々木公園',
+        description: 'HINODEは、東京で日の出とともに走る朝ランコミュニティ。皇居（水曜）・目黒川（木曜）・代々木公園（日曜）で週3回開催。参加無料・予約不要・1人参加OK。',
         images: ['/assets/ogp-home.png'],
     },
     icons: {
@@ -44,25 +44,21 @@ export const metadata = {
 export default function RootLayout({ children }) {
     const jsonLd = {
         "@context": "https://schema.org",
-        "@type": "SportsTeam",
+        "@type": "SportsClub",
         "name": "HINODE",
-        "alternateName": ["HINODE Running Club", "HINODE Tokyo"],
-        "url": "https://hinode-run.com",
+        "alternateName": ["日の出ラン", "HINODE Running Club", "HINODE Tokyo"],
+        "description": "東京で日の出とともに走る朝ランコミュニティ。皇居・目黒川・代々木公園で週3回開催。参加無料・予約不要。",
+        "url": "https://hinode-run.com/",
         "logo": "https://hinode-run.com/assets/logo-black.png",
-        "description": "HINODE is a sunrise running movement & brand based in Tokyo. We value discipline and the habit of running at sunrise. HINODEは東京を拠点に世界中へ広がるサンライズ・ランニング・ムーブメントです。",
-        "foundingLocation": {
-            "@type": "Place",
+        "foundingDate": "2025-11",
+        "areaServed": {
+            "@type": "City",
             "name": "Tokyo"
         },
-        "areaServed": {
-            "@type": "Place",
-            "name": ["Tokyo", "Kyoto", "Global"]
-        },
-        "keywords": "Running Club, Sunrise Run, Bio-hacking, Entrepreneur Community, Tokyo Running",
-        "knowsAbout": ["Running", "Well-being", "Discipline", "Bio-hacking"],
+        "sport": "Running",
         "sameAs": [
             "https://www.instagram.com/hinode_run/",
-            "https://twitter.com/hinode_run"
+            "https://www.strava.com/clubs/hinode"
         ]
     };
 

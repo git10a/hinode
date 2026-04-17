@@ -56,6 +56,28 @@
     padding-left: 0.8rem;
 }
 
+.openCampus {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.85;
+    margin-top: 1rem !important;
+    padding: 1rem 1.1rem;
+    background: rgba(243, 196, 164, 0.14);
+    border-radius: 10px;
+    border-left: 3px solid #F3C4A4;
+}
+
+.openCampus a {
+    color: #c05a16;
+    text-decoration: underline;
+    text-decoration-color: rgba(192, 90, 22, 0.35);
+    text-underline-offset: 3px;
+}
+
+.openCampus a:hover {
+    color: #8f3f0a;
+}
+
 .subCopy {
     font-family: var(--font-jp);
     font-size: 1.05rem;

@@ -584,6 +584,86 @@ nav {
     text-align: center;
 }
 
+/* First-timer 3 steps */
+.first-timer-steps {
+    margin: 2rem 0 1rem;
+    padding: 2rem 1.8rem;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    text-align: left;
+}
+
+.first-timer-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    letter-spacing: 0.04em;
+    text-align: center;
+}
+
+.first-timer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.first-timer-list li {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.step-num {
+    flex-shrink: 0;
+    width: 1.9rem;
+    height: 1.9rem;
+    border-radius: 50%;
+    background: var(--color-text);
+    color: var(--color-bg);
+    font-family: var(--font-en);
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    margin-top: 0.1rem;
+}
+
+.step-body {
+    flex: 1;
+}
+
+.step-head {
+    font-size: 1rem !important;
+    font-weight: 500;
+    color: var(--color-text);
+    margin: 0 0 0.25rem !important;
+    line-height: 1.5 !important;
+}
+
+.step-desc {
+    font-size: 0.85rem !important;
+    color: #666 !important;
+    margin: 0 !important;
+    line-height: 1.65 !important;
+}
+
+.first-timer-steps .schedule-detail-btn {
+    display: block;
+    width: fit-content;
+    margin: 0.5rem auto 0;
+}
+
 .schedule-detail-btn:hover {
     background: var(--color-text);
     color: var(--color-bg);
@@ -682,6 +762,30 @@ footer .container {
 
 footer p {
     margin-top: 3rem;
+}
+
+.footer-streak {
+    margin-top: 0 !important;
+    margin-bottom: 1.8rem;
+    font-size: 0.72rem;
+    text-transform: none;
+    letter-spacing: 0.04em;
+    color: #777;
+    text-align: center;
+    line-height: 1.8;
+    max-width: 640px;
+}
+
+.footer-streak-count {
+    display: inline-block;
+    margin-left: 0.4rem;
+    padding: 0.15rem 0.7rem;
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: 999px;
+    font-family: var(--font-en);
+    font-weight: 600;
+    color: #333;
+    letter-spacing: 0.05em;
 }
 
 .text-link {
