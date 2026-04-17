@@ -340,11 +340,105 @@ nav {
     text-decoration: none;
     letter-spacing: 0.05em;
     transition: opacity 0.2s;
-    margin-bottom: 0.5rem;
 }
 
 .strava-club-link:hover {
     opacity: 0.7;
+}
+
+/* Hero: Next run highlight */
+.hero-next-run {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin: 1.2rem auto 1.2rem;
+    padding: 0.7rem 1.1rem;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 12px;
+    width: fit-content;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    justify-content: center;
+}
+
+@media (min-width: 1024px) {
+    .hero-next-run {
+        margin-left: 0;
+        margin-right: 0;
+        justify-content: flex-start;
+    }
+}
+
+.next-run-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: #888;
+    font-weight: 500;
+    padding-right: 0.55rem;
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.next-run-date {
+    font-family: var(--font-en);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: 0.02em;
+}
+
+.next-run-badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #fff;
+    background: #FC4C02;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    letter-spacing: 0.05em;
+}
+
+.next-run-detail {
+    font-size: 0.8rem;
+    color: #666;
+    font-weight: 400;
+}
+
+/* Hero CTA group */
+.hero-cta-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+    margin-top: 0.8rem;
+}
+
+@media (min-width: 1024px) {
+    .hero-cta-group {
+        flex-direction: row;
+        align-items: center;
+        gap: 1.5rem;
+    }
+}
+
+.hero-cta-primary {
+    display: inline-block;
+    padding: 0.95rem 2rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--color-bg);
+    background: var(--color-text);
+    border: 1px solid var(--color-text);
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.hero-cta-primary:hover {
+    background: transparent;
+    color: var(--color-text);
 }
 
 @media (min-width: 1024px) {

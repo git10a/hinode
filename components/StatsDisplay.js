@@ -14,12 +14,12 @@ export default function StatsDisplay() {
         <div className="stats-container fade-in">
             <div className="stat-item">
                 <span className="stat-number">{MEMBER_COUNT}</span>
-                <span className="stat-label">Club Members</span>
+                <span className="stat-label">クラブメンバー</span>
             </div>
             <div className="stat-divider">/</div>
             <div className="stat-item">
                 <span className="stat-number">{runCount !== null ? runCount : '---'}</span>
-                <span className="stat-label">Counts of #hinode_run</span>
+                <span className="stat-label">グループラン実施回数</span>
             </div>
         </div>
     );

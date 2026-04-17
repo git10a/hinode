@@ -3,6 +3,7 @@
 import useFadeInOnScroll from '../lib/useFadeInOnScroll';
 import Link from 'next/link';
 import StatsDisplay from './StatsDisplay';
+import NextRunHighlight from './NextRunHighlight';
 import SCHEDULE_ITEMS from '../lib/scheduleItems';
 
 export default function HomeContent() {
@@ -22,10 +23,16 @@ export default function HomeContent() {
                             <p className="fade-in">人との競争ではなく、<br />自分との約束を守り続けるためのコミュニティ。</p>
                             <p className="hero-for fade-in">東京で朝ランを始めたい方、1人では続かない方、初心者でも参加しやすい場を探している方へ。</p>
                             <StatsDisplay />
-                            <p className="hero-tags fade-in">参加無料｜1人参加多め｜4km前後ゆっくり</p>
-                            <a href="https://www.strava.com/clubs/hinode" target="_blank" rel="noopener noreferrer" className="strava-club-link fade-in">
-                                Stravaクラブで活動を見る →
-                            </a>
+                            <p className="hero-tags fade-in">参加無料｜予約不要｜1人参加多め｜4km前後ゆっくり</p>
+                            <NextRunHighlight items={SCHEDULE_ITEMS} className="hero-next-run fade-in" />
+                            <div className="hero-cta-group fade-in">
+                                <Link href="/schedule" className="hero-cta-primary">
+                                    開催日程・参加方法を見る
+                                </Link>
+                                <a href="https://www.strava.com/clubs/hinode" target="_blank" rel="noopener noreferrer" className="strava-club-link">
+                                    Stravaクラブで活動を見る →
+                                </a>
+                            </div>
                         </div>
                         <div className="hero-right fade-in">
                             <div className="hero-cards">
@@ -60,8 +67,8 @@ export default function HomeContent() {
                             <p>日の出前に集まり、<br />日の出とともに走り、<br />走った後はコーヒーで乾杯。</p>
                             <div className="schedule-info">
                                 {SCHEDULE_ITEMS.map(item => (
-                                    <div key={item.time} className="schedule-item">
-                                        <p className="schedule-time">{item.time}</p>
+                                    <div key={item.label} className="schedule-item">
+                                        <p className="schedule-time">{item.label}</p>
                                         <p className="schedule-location">{item.location}</p>
                                     </div>
                                 ))}
