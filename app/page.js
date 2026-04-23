@@ -1,6 +1,6 @@
 import HomeContent from '../components/HomeContent';
 import { client } from '../lib/microcms';
-import { getUpcomingGroupEvents } from '../lib/strava';
+import { getUpcomingGroupEvents, getClubMemberCount } from '../lib/strava';
 
 export const revalidate = 60;
 
@@ -21,9 +21,16 @@ async function getLatestPosts() {
 }
 
 export default async function Home() {
-    const [latestPosts, upcomingEvents] = await Promise.all([
+    const [latestPosts, upcomingEvents, memberCount] = await Promise.all([
         getLatestPosts(),
         getUpcomingGroupEvents(),
+        getClubMemberCount(),
     ]);
-    return <HomeContent latestPosts={latestPosts} upcomingEvents={upcomingEvents} />;
+    return (
+        <HomeContent
+            latestPosts={latestPosts}
+            upcomingEvents={upcomingEvents}
+            memberCount={memberCount}
+        />
+    );
 }

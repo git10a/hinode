@@ -5,6 +5,8 @@ import styles from './HomeContent.module.css';
 
 const CHIPS = ['参加無料', '予約不要', '1人参加多め', '4km前後ゆっくり'];
 
+const STRAVA_CLUB_ID = '1772485';
+
 const WEEKLY_ITEMS = [
     {
         day: '水曜',
@@ -12,7 +14,6 @@ const WEEKLY_ITEMS = [
         time: '06:30',
         place: '皇居',
         location: '桔梗門派出所前',
-        tag: 'ゆっくり',
         image: '/assets/Kokyo.jpg',
         anchor: '/schedule#kokyo',
     },
@@ -22,7 +23,6 @@ const WEEKLY_ITEMS = [
         time: '06:30',
         place: '目黒川',
         location: 'スタバ蔦屋書店前（中目黒）',
-        tag: '初参加歓迎',
         image: '/assets/Ochanomizu.jpg',
         anchor: '/schedule#meguro',
     },
@@ -32,7 +32,6 @@ const WEEKLY_ITEMS = [
         time: '07:30',
         place: '代々木公園',
         location: '原宿時計塔前',
-        tag: '会話しやすい',
         image: '/assets/Takeshiba.jpg',
         anchor: '/schedule#yoyogi',
     },
@@ -51,7 +50,7 @@ function formatEventDate(iso) {
 }
 
 function stravaEventUrl(eventId) {
-    return `https://www.strava.com/clubs/hinode/group_events/${eventId}`;
+    return `https://www.strava.com/clubs/${STRAVA_CLUB_ID}/group_events/${eventId}`;
 }
 
 const VALUES = [
@@ -120,7 +119,8 @@ function formatDate(iso) {
     return `${y}.${m}.${day}`;
 }
 
-export default function HomeContent({ latestPosts = [], upcomingEvents = [] }) {
+export default function HomeContent({ latestPosts = [], upcomingEvents = [], memberCount = null }) {
+    const displayedMemberCount = memberCount ?? MEMBER_COUNT;
     const regularDays = new Set(WEEKLY_ITEMS.map((i) => i.dayIndex));
     const regularCards = WEEKLY_ITEMS.map((item) => {
         const next = upcomingEvents.find((e) => e.dayOfWeek === item.dayIndex);
@@ -192,7 +192,7 @@ export default function HomeContent({ latestPosts = [], upcomingEvents = [] }) {
                                 <path d="M3 19c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5" />
                                 <path d="M13 19c0-2.8 2.2-4.5 5-4.5s3.5 1.7 3.5 4.5" />
                             </svg>
-                            <span>{MEMBER_COUNT} クラブメンバー</span>
+                            <span>{displayedMemberCount} クラブメンバー</span>
                         </div>
                     </div>
                 </div>
@@ -238,7 +238,6 @@ export default function HomeContent({ latestPosts = [], upcomingEvents = [] }) {
                                         </svg>
                                         {item.location}
                                     </p>
-                                    <span className={styles.weeklyTag}>{item.tag}</span>
                                 </div>
                             </Tag>
                         );
