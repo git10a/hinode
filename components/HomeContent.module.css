@@ -79,7 +79,7 @@
 
 .heroImage {
     object-fit: cover;
-    object-position: center 55%;
+    object-position: center bottom;
 }
 
 .heroOverlay {

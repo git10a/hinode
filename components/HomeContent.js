@@ -141,7 +141,7 @@ export default function HomeContent({ latestPosts = [], upcomingEvents = [], mem
             <section className={styles.hero}>
                 <div className={styles.heroImageWrapper}>
                     <Image
-                        src="/assets/Takeshiba.jpg"
+                        src="/assets/komazawa.jpg"
                         alt=""
                         fill
                         priority
@@ -155,7 +155,7 @@ export default function HomeContent({ latestPosts = [], upcomingEvents = [], mem
                     <div className={styles.heroCopy}>
                         <p className={styles.heroBrand}>HINODE</p>
                         <h1 className={styles.heroHeadline}>
-                            東京の朝を、<br />ひとりで終わらせない。
+                            自分との約束を、続けられる場所。<br />日の出とともに、走りだそう。
                         </h1>
                         <p className={styles.heroSub}>
                             人との競争ではなく、自分との約束を守り続けるためのコミュニティ。
