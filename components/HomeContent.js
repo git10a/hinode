@@ -155,7 +155,7 @@ export default function HomeContent({ latestPosts = [], upcomingEvents = [], mem
                     <div className={styles.heroCopy}>
                         <p className={styles.heroBrand}>HINODE</p>
                         <h1 className={styles.heroHeadline}>
-                            自分との約束を、続けられる場所。<br />日の出とともに、走りだそう。
+                            日の出とともに、<br />走りだそう。
                         </h1>
                         <p className={styles.heroSub}>
                             人との競争ではなく、自分との約束を守り続けるためのコミュニティ。
