@@ -80,7 +80,7 @@ export default function AboutContent() {
 
                         <div className={styles.faqItem}>
                             <h3 className={styles.faqQuestion}>集合場所で誰もいなかったら？</h3>
-                            <p className={styles.text}>手首に黄色いゴムバンドをつけている人がいないか探してみてください。<a href="https://www.strava.com/athletes/174878383" className={styles.link} target="_blank" rel="noopener noreferrer">運営のStrava</a> でほぼすべてのランを日の出で記録しています。雨の日など開催できない場合は <a href="https://strava.app.link/pQ0uMuWWj2b" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a> / <a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a> で前もって告知します。</p>
+                            <p className={styles.text}>手首に黄色いゴムバンドをつけている人がいないか探してみてください。雨の日など開催できない場合は <a href="https://strava.app.link/pQ0uMuWWj2b" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a> / <a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a> で前もって告知します。</p>
                         </div>
 
                         <div className={styles.faqItem}>

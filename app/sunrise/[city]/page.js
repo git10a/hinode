@@ -77,18 +77,29 @@ function getNearbyCity(currentCity, count = 8) {
 
 export async function generateMetadata({ params }) {
   const city = getCityBySlug(params.city);
-  if (!city) return {};
-  const runInfo = HINODE_RUN_INFO[params.city];
-  const title = runInfo?.title ?? `${city.name}の今日の日の出時刻 | HINODE`;
-  const description = runInfo?.description ?? `${city.prefecture}${city.name}の今日の日の出・日の入り時刻、週間・月別データ。早朝ランニングの計画に。HINODEは東京で日の出とともに走る朝ランコミュニティです。`;
+  if (!city) {
+    return { title: '日の出時刻｜朝ランを始めるなら｜HINODE' };
+  }
+
+  // ページ本文と同じJST日付ロジックで今日の日の出時刻を取得
+  const now = new Date();
+  const jstDateStr = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Tokyo' }).format(now);
+  const todayJST = new Date(jstDateStr);
+  const sunData = getSunTimes(todayJST, city.lat, city.lng);
+  // "05:14" → "5:14"（ゼロ埋めなし）
+  const formattedTime = sunData.sunrise.replace(/^0/, '');
+
+  const title = `${city.name}の日の出は今日${formattedTime}｜朝ランを始めるなら｜HINODE`;
+  const description = `${city.name}の今日の日の出時刻は${formattedTime}。日の出と共に走るための時刻表と、朝ラン・散歩の計画に役立つ薄明時間も掲載。HINODEは早朝のランニングコミュニティです。`;
+
   return {
     title,
     description,
     alternates: { canonical: `https://hinode-run.com/sunrise/${city.slug}` },
     robots: INDEX_CITIES.has(params.city) ? undefined : { index: false, follow: true },
     openGraph: {
-      title,
-      description,
+      title: `${city.name}の日の出は今日${formattedTime}｜HINODE`,
+      description: `${city.name}の今日の日の出時刻は${formattedTime}。日の出と共に走るための時刻表を掲載。`,
       url: `https://hinode-run.com/sunrise/${city.slug}`,
       siteName: 'HINODE',
       locale: 'ja_JP',

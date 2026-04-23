@@ -98,7 +98,6 @@ export default function PressContent() {
                     <table className={styles.table}>
                         <tbody>
                             <tr><th>設立</th><td>2025年11月</td></tr>
-                            <tr><th>運営体制</th><td>個人運営(主宰: HINODE主宰)</td></tr>
                             <tr><th>参加費</th><td>無料</td></tr>
                             <tr><th>参加方法</th><td>予約不要。集合時間の5分前に集合場所へ来るだけ</td></tr>
                             <tr><th>目印</th><td>手首の黄色いゴムバンド</td></tr>
@@ -168,21 +167,10 @@ export default function PressContent() {
                     <p className={styles.sectionNum}>04</p>
                     <h2 className={styles.sectionTitle}>代表者プロフィール</h2>
 
-                    <h3 className={styles.subTitle}>HINODE 主宰</h3>
-                    <ul className={styles.list}>
-                        <li>20代、東京都在住、IT関連勤務</li>
-                        <li>X(旧Twitter): <a className={styles.link} href="https://x.com/t_10_a" target="_blank" rel="noopener noreferrer">@t_10_a</a></li>
-                    </ul>
-
                     <h3 className={styles.subTitle}>運動開始までの経緯</h3>
                     <p className={styles.body}>
-                        HINODE発足前、私は運動歴ゼロ。デスクワークと会議と夜の飲み会が中心の生活を送っていた。直接のきっかけは会社の健康診断で有酸素運動不足によるC判定が出たこと。加えて、以下の複合的な動機があった。
+                        HINODE発足前は運動歴ゼロ。健康診断で運動不足の判定が出たことをきっかけに走り始めた。「仕事でパソコンに向かうより先に、まず体として動きたい」「自分の意志で1日を始めたい」という感覚と、AIが仕事を代替していく時代に身体を動かすことの手応えを持ちたいという気持ちが重なって、朝ランにたどり着いた。
                     </p>
-                    <ul className={styles.list}>
-                        <li><strong>動物性の回復</strong>:「パソコン作業者である前に『動物』であり、原始的行為である運動によって動物性を取り戻したい」</li>
-                        <li><strong>AGI時代のヘッジ</strong>: ホワイトカラー労働がロボットに代替されるまでの基礎体力づくり</li>
-                        <li><strong>1日の能動的開始</strong>: 自分の意志で1日を始めることによる自己肯定感の確保</li>
-                    </ul>
 
                     <h3 className={styles.subTitle}>タイムライン</h3>
                     <table className={styles.table}>
@@ -203,19 +191,10 @@ export default function PressContent() {
                         <li>人が少なく、マイペースで走れる</li>
                     </ul>
 
-                    <h3 className={styles.subTitle}>HINODE発足の動機(本人発言)</h3>
+                    <h3 className={styles.subTitle}>HINODEを始めた理由</h3>
                     <blockquote className={styles.quote}>
                         この素晴らしさを知ってほしい、という思いのみでHINODEというランニングクラブも作りました。
                     </blockquote>
-                    <p className={styles.body}>
-                        主宰でありながら「目立ちたい気持ちはゼロ」と公言しており、個人ブランディングではなく「日の出ランという習慣そのもの」の普及が一貫した動機。このスタンスが、顔出しをしない運用方針にも反映されている。
-                    </p>
-                    <p className={styles.body}>
-                        原体験の全文: <a className={styles.link} href="https://x.com/t_10_a/status/1992564539448238478" target="_blank" rel="noopener noreferrer">https://x.com/t_10_a/status/1992564539448238478</a>
-                    </p>
-                    <p className={styles.body}>
-                        取材時は顔出しNG、後ろ姿・シルエット・匿名表記・音声のみ出演いずれも相談可。
-                    </p>
                 </div>
 
                 {/* 5. 取材対応 */}
