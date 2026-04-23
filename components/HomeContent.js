@@ -57,7 +57,7 @@ const VALUES = [
     {
         title: '競争しない',
         desc: '速さではなく、朝の習慣を続けることを大切に。自分のペースでゆっくり走ります。',
-        image: '/assets/hinodekyoto2.jpg',
+        image: '/assets/hinodekyoto1.jpg',
         alt: '京都での朝ラン',
     },
     {
