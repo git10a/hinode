@@ -77,9 +77,19 @@
     z-index: 0;
 }
 
+.heroSlideshow {
+    position: absolute;
+    inset: 0;
+}
+
+.heroSlide {
+    position: absolute;
+    inset: 0;
+    will-change: opacity;
+}
+
 .heroImage {
     object-fit: cover;
-    object-position: center 70%;
 }
 
 .heroOverlay {

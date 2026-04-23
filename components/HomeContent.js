@@ -1,7 +1,14 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { MEMBER_COUNT } from '../lib/stats';
+import HeroSlideshow from './HeroSlideshow';
 import styles from './HomeContent.module.css';
+
+const HERO_SLIDES = [
+    { src: '/assets/hinodeyoyogi.jpg', alt: '代々木公園で走るHINODEメンバー', position: 'center 50%' },
+    { src: '/assets/hinodekyoto2.jpg', alt: '京都での朝ラン', position: 'center 50%' },
+    { src: '/assets/hinodecoffee.jpg', alt: '走った後のコーヒー', position: 'center 50%' },
+];
 
 const CHIPS = ['参加無料', '予約不要', '1人参加多め', '4km前後ゆっくり'];
 
@@ -140,13 +147,13 @@ export default function HomeContent({ latestPosts = [], upcomingEvents = [], mem
             {/* Hero */}
             <section className={styles.hero}>
                 <div className={styles.heroImageWrapper}>
-                    <Image
-                        src="/assets/komazawa.jpg"
-                        alt=""
-                        fill
-                        priority
-                        sizes="100vw"
-                        className={styles.heroImage}
+                    <HeroSlideshow
+                        slides={HERO_SLIDES}
+                        intervalMs={7000}
+                        fadeMs={2500}
+                        className={styles.heroSlideshow}
+                        slideClassName={styles.heroSlide}
+                        imageClassName={styles.heroImage}
                     />
                     <div className={styles.heroOverlay} aria-hidden="true" />
                 </div>
