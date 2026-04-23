@@ -1,0 +1,856 @@
+/* =========================
+   Page
+========================= */
+.page {
+    background: #ffffff;
+    color: #111;
+}
+
+.page p {
+    max-width: none;
+    margin: 0;
+    font-size: inherit;
+    color: inherit;
+}
+
+.page h1,
+.page h2,
+.page h3 {
+    font-weight: inherit;
+    line-height: inherit;
+    border: none;
+    padding: 0;
+    margin: 0;
+    text-transform: none;
+    letter-spacing: inherit;
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 2.75rem;
+}
+
+.sectionTitle {
+    font-size: 1.6rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    margin: 0;
+    color: #111;
+    border: none;
+    padding: 0;
+    text-transform: none;
+}
+
+.sectionMore {
+    font-family: var(--font-en);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    color: #888;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+
+.sectionMore:hover {
+    color: #F37E4A;
+}
+
+/* =========================
+   Hero
+========================= */
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    padding: 0 2rem 4rem;
+}
+
+.heroImageWrapper {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.heroImage {
+    object-fit: cover;
+    object-position: center 55%;
+}
+
+.heroOverlay {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.7) 0%,
+            rgba(255, 255, 255, 0.15) 10%,
+            rgba(0, 0, 0, 0) 40%,
+            rgba(0, 0, 0, 0.55) 100%);
+}
+
+.heroInner {
+    position: relative;
+    z-index: 1;
+    max-width: 1180px;
+    margin: 0 auto;
+    width: 100%;
+    padding-top: 10rem;
+}
+
+.heroCopy {
+    color: #fff;
+    max-width: 640px;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.3);
+}
+
+.heroBrand {
+    font-family: var(--font-en);
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    color: #fff;
+    line-height: 1;
+    margin: 0 0 1.75rem;
+    text-transform: uppercase;
+}
+
+.heroHeadline {
+    font-size: clamp(1.9rem, 4.4vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.55;
+    letter-spacing: 0.08em;
+    margin: 0 0 1.5rem;
+    color: #fff;
+    text-transform: none;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+
+.heroSub {
+    font-size: 1rem;
+    line-height: 2;
+    letter-spacing: 0.06em;
+    margin: 0 0 2.25rem;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 400;
+    max-width: none;
+}
+
+.heroChips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 0.7rem;
+    margin-bottom: 2.5rem;
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.5rem 0.95rem;
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    color: #fff;
+    line-height: 1;
+}
+
+.chipDot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #FFC436;
+}
+
+.heroCta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.25rem;
+    align-items: center;
+    margin-bottom: 1.75rem;
+}
+
+.ctaPrimary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.75rem;
+    background: #C5A14C;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.ctaPrimary:hover {
+    background: #B58E3C;
+    transform: translateY(-2px);
+}
+
+.ctaArrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.ctaPrimary:hover .ctaArrow {
+    transform: translateX(4px);
+}
+
+.ctaSecondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.6rem;
+    background: rgba(255, 255, 255, 0.92);
+    color: #111;
+    border-radius: 2px;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.ctaSecondary:hover {
+    background: #fff;
+    transform: translateY(-2px);
+}
+
+.heroMeta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: #fff;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    opacity: 0.95;
+}
+
+.heroMetaIcon {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.5;
+}
+
+/* =========================
+   Weekly schedule
+========================= */
+.weekly {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 6.5rem 2rem 2rem;
+}
+
+.weeklyGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.weeklyCard {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.weeklyCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+.weeklyThumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #f2f2f2;
+}
+
+.weeklyThumb img {
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.weeklyCard:hover .weeklyThumb img {
+    transform: scale(1.04);
+}
+
+.weeklyBody {
+    padding: 1.5rem 1.5rem 1.75rem;
+}
+
+.weeklyDay {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.55rem 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+.weeklyDate {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    font-family: var(--font-en);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: #fff;
+    background: #C5A14C;
+    border-radius: 4px;
+    line-height: 1.3;
+}
+
+.weeklyDayName {
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: #111;
+}
+
+.weeklyDivider {
+    color: #ccc;
+}
+
+.weeklyPlace {
+    font-size: 1.05rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: #111;
+}
+
+.weeklyLocation {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.82rem;
+    color: #777;
+    margin-bottom: 1rem;
+}
+
+.weeklyLocationIcon {
+    width: 13px;
+    height: 13px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.6;
+    flex-shrink: 0;
+}
+
+.weeklyTag {
+    display: inline-block;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: #A37F2D;
+    background: #FDF6E7;
+    border-radius: 999px;
+}
+
+.adhocBlock {
+    margin-top: 2.25rem;
+    padding-top: 1.75rem;
+    border-top: 1px dashed #e5e0d4;
+}
+
+.adhocLabel {
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    color: #999;
+    margin: 0 0 0.85rem;
+    text-transform: uppercase;
+}
+
+.adhocList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.adhocItem {
+    margin: 0;
+}
+
+.adhocLink {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    padding: 0.85rem 1.1rem;
+    border: 1px solid #ece6d6;
+    border-radius: 8px;
+    background: #fff;
+    text-decoration: none;
+    color: #222;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.adhocLink:hover {
+    background: #FDF8EC;
+    border-color: #d8c994;
+}
+
+.adhocDate {
+    font-family: var(--font-en);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #C5A14C;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+}
+
+.adhocTitle {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #222;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.adhocAddress {
+    font-size: 0.78rem;
+    color: #888;
+    flex-basis: 100%;
+    margin-left: 0;
+}
+
+.adhocArrow {
+    color: #aaa;
+    font-size: 1rem;
+    margin-left: auto;
+}
+
+/* =========================
+   Values (HINODEとは)
+========================= */
+.values {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 6.5rem 2rem 2rem;
+}
+
+.valuesGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-top: 0.5rem;
+}
+
+.valueItem {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.valueIconWrap {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #FDF6E7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #C5A14C;
+}
+
+.valueIcon {
+    width: 26px;
+    height: 26px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.valueTitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: #111;
+    margin: 0;
+}
+
+.valueDesc {
+    font-size: 0.9rem;
+    line-height: 1.95;
+    color: #555;
+    margin: 0;
+    letter-spacing: 0.04em;
+}
+
+/* =========================
+   First-timer steps
+========================= */
+.firstTime {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 6.5rem 2rem 2rem;
+}
+
+.stepsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 0.5rem;
+    position: relative;
+}
+
+.stepCard {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 1.75rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    position: relative;
+}
+
+.stepNum {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #C5A14C;
+    color: #fff;
+    font-family: var(--font-en);
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0;
+}
+
+.stepHead {
+    font-size: 1.02rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #111;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.stepDesc {
+    font-size: 0.85rem;
+    line-height: 1.9;
+    color: #555;
+    margin: 0;
+    letter-spacing: 0.03em;
+}
+
+.stepChevron {
+    position: absolute;
+    top: 50%;
+    right: -1.35rem;
+    transform: translateY(-50%);
+    color: #ddd;
+    pointer-events: none;
+}
+
+/* =========================
+   Latest posts
+========================= */
+.posts {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 6.5rem 2rem 2rem;
+}
+
+.postsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+}
+
+.postCard {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.postCard:hover {
+    transform: translateY(-4px);
+}
+
+.postThumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #f2f2f2;
+    margin-bottom: 1.25rem;
+}
+
+.postThumb img {
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.postCard:hover .postThumb img {
+    transform: scale(1.04);
+}
+
+.postDate {
+    font-family: var(--font-en);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    color: #999;
+    margin-bottom: 0.5rem;
+}
+
+.postTitle {
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.65;
+    color: #111;
+    letter-spacing: 0.04em;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.3s ease;
+}
+
+.postCard:hover .postTitle {
+    color: #F37E4A;
+}
+
+/* =========================
+   Closing CTA
+========================= */
+.closing {
+    margin: 7rem auto 0;
+    max-width: 1180px;
+    padding: 0 2rem 6rem;
+}
+
+.closingInner {
+    position: relative;
+    overflow: hidden;
+    border-radius: 14px;
+    padding: 4.5rem 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    background: linear-gradient(120deg, #F9EBC7 0%, #F5D38E 45%, #EFB568 100%);
+}
+
+.closingText {
+    max-width: 40em;
+}
+
+.closingHeadline {
+    font-size: clamp(1.3rem, 2vw, 1.65rem);
+    font-weight: 500;
+    line-height: 1.85;
+    letter-spacing: 0.08em;
+    color: #3a2a10;
+    margin: 0 0 0.5rem;
+}
+
+.closingSub {
+    font-size: 0.9rem;
+    color: #5a451e;
+    letter-spacing: 0.05em;
+    line-height: 1.85;
+    margin: 0;
+}
+
+.closingCta {
+    display: flex;
+    gap: 1rem;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+}
+
+.closingBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.95rem 1.6rem;
+    border-radius: 2px;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.closingBtnPrimary {
+    background: #111;
+    color: #fff;
+}
+
+.closingBtnPrimary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+}
+
+.closingBtnSecondary {
+    background: rgba(255, 255, 255, 0.85);
+    color: #111;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.closingBtnSecondary:hover {
+    background: #fff;
+    transform: translateY(-2px);
+}
+
+/* =========================
+   Tablet
+========================= */
+@media (max-width: 960px) {
+    .weeklyGrid,
+    .valuesGrid,
+    .stepsGrid,
+    .postsGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    .stepChevron {
+        display: none;
+    }
+
+    .closingInner {
+        padding: 3.5rem 2.5rem;
+    }
+}
+
+/* =========================
+   Mobile
+========================= */
+@media (max-width: 640px) {
+    .hero {
+        min-height: 88vh;
+        padding: 0 1.25rem 3rem;
+    }
+
+    .heroInner {
+        padding-top: 7.5rem;
+    }
+
+    .heroHeadline {
+        font-size: clamp(1.45rem, 6.6vw, 2.2rem);
+        line-height: 1.6;
+        letter-spacing: 0.05em;
+    }
+
+    .heroSub {
+        font-size: 0.92rem;
+        line-height: 1.95;
+    }
+
+    .heroChips {
+        gap: 0.5rem 0.55rem;
+        margin-bottom: 2rem;
+    }
+
+    .chip {
+        padding: 0.45rem 0.8rem;
+        font-size: 0.72rem;
+    }
+
+    .heroCta {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+    }
+
+    .ctaPrimary,
+    .ctaSecondary {
+        justify-content: center;
+        padding: 1rem 1.5rem;
+    }
+
+    .sectionHeader {
+        margin-bottom: 2rem;
+    }
+
+    .sectionTitle {
+        font-size: 1.35rem;
+    }
+
+    .weekly,
+    .values,
+    .firstTime,
+    .posts {
+        padding: 4.5rem 1.25rem 0.5rem;
+    }
+
+    .weeklyGrid,
+    .valuesGrid,
+    .stepsGrid,
+    .postsGrid {
+        grid-template-columns: 1fr;
+        gap: 1.75rem;
+    }
+
+    .weeklyBody {
+        padding: 1.25rem 1.25rem 1.5rem;
+    }
+
+    .valuesGrid {
+        gap: 2.5rem;
+    }
+
+    .stepCard {
+        padding: 1.5rem 1.25rem 1.25rem;
+    }
+
+    .closing {
+        margin-top: 5rem;
+        padding: 0 1.25rem 4rem;
+    }
+
+    .closingInner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 3rem 2rem;
+        border-radius: 10px;
+    }
+
+    .closingHeadline {
+        font-size: 1.2rem;
+        line-height: 1.75;
+    }
+
+    .closingCta {
+        width: 100%;
+    }
+
+    .closingBtn {
+        flex: 1;
+        justify-content: center;
+    }
+}
