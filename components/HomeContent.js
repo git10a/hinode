@@ -23,7 +23,7 @@ const WEEKLY_ITEMS = [
         time: '06:30',
         place: '目黒川',
         location: 'スタバ蔦屋書店前（中目黒）',
-        image: '/assets/Ochanomizu.jpg',
+        image: '/assets/Meguro.png',
         anchor: '/schedule#meguro',
     },
     {
@@ -32,7 +32,7 @@ const WEEKLY_ITEMS = [
         time: '07:30',
         place: '代々木公園',
         location: '原宿時計塔前',
-        image: '/assets/Takeshiba.jpg',
+        image: '/assets/Yoyogi.png',
         anchor: '/schedule#yoyogi',
     },
 ];
@@ -69,7 +69,7 @@ const VALUES = [
     },
     {
         title: '1人でも来やすい',
-        desc: '初参加やおひとり参加が多く、自然に混ざれる空気があります。黄色いゴムバンドが目印。',
+        desc: '初参加やソロ参加の方も毎回いらっしゃいますので、お気軽にお越しください。',
         icon: (
             <svg viewBox="0 0 24 24" className={styles.valueIcon}>
                 <circle cx="8.5" cy="8.5" r="2.3" />
