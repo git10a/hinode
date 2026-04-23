@@ -1,349 +1,532 @@
-.container {
+.page {
     max-width: 960px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 7rem 1.5rem 4rem;
+    color: #222;
 }
 
-.header {
-    padding: 8rem 0 2.5rem;
+.page h1,
+.page h2,
+.page h3 {
+    border: none;
+    padding: 0;
+}
+
+/* ---------- breadcrumb ---------- */
+.breadcrumb {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    text-align: center;
-}
-
-.pageTitle {
-    text-align: center;
-    margin-bottom: 1.2rem;
-    color: #111;
-    font-size: 2.2rem;
-    font-weight: 400;
+    justify-content: flex-start;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    color: #888;
     letter-spacing: 0.05em;
+    margin-bottom: 2.5rem;
+    padding: 0;
+    background: none;
+    position: static;
+    box-shadow: none;
 }
 
-.pageTitleJp {
-    font-family: var(--font-jp);
-    font-size: 1.6rem;
-    letter-spacing: 0.02em;
-    font-weight: 600;
-}
-
-.subCopy {
-    font-family: var(--font-jp);
-    font-size: 1rem;
-    line-height: 1.8;
-    color: #555;
-    margin-top: 1rem;
-    text-align: center;
-    max-width: 640px;
-}
-
-.subCopy p {
-    margin-bottom: 0.3rem;
-    max-width: none;
-}
-
-.headerBtn {
-    display: inline-block;
-    margin-top: 1.5rem;
-    padding: 0.85rem 1.8rem;
-    font-size: 0.9rem;
-    font-family: var(--font-jp);
-    color: #fff;
-    background: #111;
-    border-radius: 50px;
+.breadcrumbLink {
+    color: #888;
     text-decoration: none;
-    transition: opacity 0.2s;
+    transition: color 0.2s;
 }
 
-.headerBtn:hover {
-    opacity: 0.85;
+.breadcrumbLink:hover {
+    color: #333;
 }
 
-.scheduleSection {
-    padding: 1.5rem 0 3rem;
+.breadcrumbSep {
+    color: #ccc;
+    font-size: 0.85rem;
 }
 
-.runRow {
-    display: grid;
-    grid-template-columns: 40px 200px 220px 1fr;
-    gap: 2rem;
-    align-items: start;
-    padding: 2.5rem 0;
-    border-bottom: 1px solid #eee;
+.breadcrumbCurrent {
+    color: #444;
 }
 
-.runRow:last-child {
-    border-bottom: none;
+/* ---------- hero ---------- */
+.hero {
+    margin-bottom: 4rem;
+    text-align: left;
 }
 
-.runNumber {
+.eyebrow {
     font-family: var(--font-en);
-    font-size: 1rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    color: #F37E4A;
+    margin: 0 0 1.2rem;
+    text-transform: uppercase;
     font-weight: 500;
-    color: #999;
-    text-align: center;
-    padding-top: 0.2rem;
 }
 
-.runInfo {
+.title {
+    font-family: var(--font-jp);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.55;
+    color: #111;
+    letter-spacing: 0.03em;
+    margin: 0 0 1.4rem;
+    text-transform: none;
+}
+
+.titleSub {
+    display: inline-block;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #777;
+    letter-spacing: 0.04em;
+    margin-top: 0.4rem;
+}
+
+.lead {
+    font-size: 1rem;
+    line-height: 2;
+    color: #555;
+    margin: 0;
+    max-width: 720px;
+}
+
+/* ---------- runs ---------- */
+.runs {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 2rem;
+    margin-bottom: 4.5rem;
+}
+
+.runCard {
+    background: #fff;
+    border: 1px solid #ececec;
+    border-radius: 6px;
+    padding: 2rem 2rem 2.2rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.runCard:hover {
+    border-color: #d8d8d8;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+}
+
+.runHead {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding-bottom: 1.2rem;
+    margin-bottom: 1.6rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.runNum {
+    font-family: var(--font-en);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #F37E4A;
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+}
+
+.runHeadText {
+    flex: 1;
+    min-width: 0;
 }
 
 .runName {
     font-family: var(--font-jp);
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--color-text);
-    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #111;
+    letter-spacing: 0.03em;
+    margin: 0 0 0.4rem;
     line-height: 1.5;
 }
 
 .runMeta {
     display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
     margin: 0;
-    max-width: none;
+    font-size: 0.85rem;
+    color: #777;
 }
 
-.dayBadge {
-    font-size: 0.85rem;
-    color: #555;
+.runDay {
     font-weight: 500;
+    color: #333;
+}
+
+.runDot {
+    color: #ccc;
+}
+
+.runTime {
+    font-family: var(--font-en);
+    color: #555;
+    letter-spacing: 0.04em;
 }
 
 .runDistance {
-    font-family: var(--font-en);
-    font-size: 0.85rem;
-    color: #999;
+    color: #888;
 }
 
-.runMapSection {
+.runBody {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.runMapCol {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 0.6rem;
+    gap: 0.7rem;
+}
+
+.runMapWrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 10 / 7;
+    background: #f3f3f3;
+    border-radius: 4px;
+    overflow: hidden;
 }
 
 .runMapImage {
-    width: 200px;
-    height: 140px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    border-radius: 8px;
+    display: block;
 }
 
 .googleMapLink {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     color: #555;
     text-decoration: none;
-    transition: color 0.2s;
+    letter-spacing: 0.02em;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    align-self: flex-start;
 }
 
 .googleMapLink:hover {
-    color: #111;
-    text-decoration: underline;
+    color: #c2532a;
+    border-bottom-color: #c2532a;
 }
 
-.runDescription {
-    font-size: 0.95rem;
-    line-height: 1.85;
-    color: #555;
-}
-
-.runDescription p {
-    margin: 0 0 0.6rem;
-    max-width: none;
-}
-
-.runForWhom {
-    font-size: 0.88rem;
-    color: #888;
-    line-height: 1.75;
-    margin-top: 0.8rem !important;
-}
-
-.openCampus {
-    font-size: 0.94rem;
-    color: #333;
-    line-height: 1.85;
-    margin-top: 0.6rem !important;
-}
-
-.openCampus a {
-    color: #111;
-    text-decoration: underline;
-    text-decoration-color: rgba(0, 0, 0, 0.25);
-    text-underline-offset: 3px;
-}
-
-.openCampus a:hover {
-    text-decoration-color: #111;
+.runDescCol {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 0;
 }
 
 .nextDate {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
     font-family: var(--font-jp);
     font-size: 0.82rem;
-    font-weight: 500;
-    color: #333;
-    background: rgba(0, 0, 0, 0.04);
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    margin-top: 0.3rem;
+    font-weight: 600;
+    color: #c2532a;
+    background: #fbf7f3;
+    padding: 0.4rem 0.85rem;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
 }
 
-.beginnersSection {
-    padding: 3.5rem 0;
+.runDescription {
+    font-size: 0.96rem;
+    line-height: 1.9;
+    color: #333;
+    margin: 0;
+}
+
+.runNote {
+    font-size: 0.9rem;
+    line-height: 1.85;
+    color: #555;
+    background: #fafafa;
+    padding: 1rem 1.1rem;
+    border-radius: 4px;
+    margin: 0;
+    border-left: 2px solid #F37E4A;
+}
+
+.noteLink {
+    color: #c2532a;
+    text-decoration: none;
+    border-bottom: 1px solid #ead8cd;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.noteLink:hover {
+    color: #a23f1c;
+    border-bottom-color: #c2532a;
+}
+
+.runForWhom {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    padding-top: 1rem;
+    border-top: 1px solid #f0f0f0;
+    font-size: 0.88rem;
+    line-height: 1.8;
+}
+
+.runForWhomLabel {
+    flex-shrink: 0;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #F37E4A;
+    letter-spacing: 0.1em;
+    padding: 0.15rem 0.5rem;
+    border: 1px solid #f0d8c8;
+    border-radius: 3px;
+    background: #fbf7f3;
+}
+
+.runForWhomText {
+    color: #666;
+    flex: 1;
+}
+
+/* ---------- beginners section ---------- */
+.beginners {
+    margin-bottom: 4rem;
+}
+
+.sectionHead {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.4rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid #ececec;
+}
+
+.sectionNum {
+    font-family: var(--font-en);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #F37E4A;
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
 }
 
 .sectionTitle {
     font-family: var(--font-jp);
-    font-size: 1.3rem;
-    margin-bottom: 1.5rem;
-    font-weight: 600;
+    font-size: 1.25rem;
+    font-weight: 700;
     color: #111;
-    text-align: center;
+    letter-spacing: 0.03em;
+    margin: 0;
+    line-height: 1.5;
 }
 
-.beginnersList {
+.callout {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    background: #fbf7f3;
+    border-radius: 6px;
+    padding: 1.4rem 1.5rem;
+    margin-bottom: 1.6rem;
+}
+
+.calloutIcon {
+    font-size: 1.3rem;
+    color: #F37E4A;
+    line-height: 1.6;
+    flex-shrink: 0;
+}
+
+.calloutBody {
+    flex: 1;
+    min-width: 0;
+}
+
+.calloutTitle {
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: #222;
+    margin: 0 0 0.3rem;
+    line-height: 1.6;
+}
+
+.calloutTitle strong {
+    color: #c2532a;
+    font-weight: 700;
+}
+
+.calloutSub {
+    font-size: 0.86rem;
+    color: #777;
+    margin: 0;
+    line-height: 1.7;
+}
+
+.list {
     list-style: none;
     padding: 0;
-    max-width: 560px;
-    margin: 0 auto;
-    text-align: left;
+    margin: 0 0 1.5rem;
 }
 
-.beginnersList li {
-    font-family: var(--font-jp);
+.list li {
     font-size: 0.98rem;
-    line-height: 1.8;
-    padding: 0.55rem 0 0.55rem 1.2rem;
-    color: #444;
+    line-height: 1.85;
+    color: #333;
+    padding: 0.55rem 0 0.55rem 1.4rem;
     position: relative;
+    border-bottom: 1px solid #f3f3f3;
 }
 
-.beginnersList li::before {
+.list li:last-child {
+    border-bottom: none;
+}
+
+.list li::before {
     content: '';
     position: absolute;
     left: 0;
-    top: 1.25rem;
+    top: 1.2rem;
     width: 5px;
     height: 5px;
-    background: #333;
+    background: #F37E4A;
     border-radius: 50%;
 }
 
-.beginnersList li strong {
-    color: #111;
-    font-weight: 600;
-}
-
 .faqLink {
-    margin-top: 1.5rem;
-    font-size: 0.95rem;
-    text-align: center;
+    margin: 1.2rem 0 0;
+    font-size: 0.92rem;
 }
 
-.faqLink a {
-    color: #333;
-    text-decoration: underline;
-    text-decoration-color: rgba(0, 0, 0, 0.25);
-    text-underline-offset: 3px;
-    transition: text-decoration-color 0.2s;
+.link {
+    color: #c2532a;
+    text-decoration: none;
+    border-bottom: 1px solid #ead8cd;
+    transition: color 0.2s, border-color 0.2s;
 }
 
-.faqLink a:hover {
-    text-decoration-color: #111;
+.link:hover {
+    color: #a23f1c;
+    border-bottom-color: #c2532a;
 }
 
+/* ---------- links ---------- */
 .linksSection {
-    padding: 2rem 0 5rem;
-    text-align: center;
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: 0.8rem;
     flex-wrap: wrap;
+    margin-bottom: 1rem;
 }
 
-.linkBtn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.9rem 2rem;
-    border: 1px solid #333;
-    border-radius: 50px;
-    background: transparent;
-    color: #333;
-    font-family: var(--font-jp);
-    font-size: 0.9rem;
-    text-decoration: none;
-    transition: background 0.2s, color 0.2s;
-    min-width: 170px;
-}
-
-.linkBtn:hover {
-    background: #111;
+.linkBtnPrimary {
+    display: inline-block;
+    padding: 0.95rem 1.8rem;
+    font-size: 0.88rem;
+    font-weight: 500;
     color: #fff;
+    background: #222;
+    border-radius: 50px;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: background 0.2s;
 }
 
+.linkBtnPrimary:hover {
+    background: #000;
+}
+
+.linkBtnSecondary {
+    display: inline-block;
+    padding: 0.95rem 1.8rem;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: #333;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.linkBtnSecondary:hover {
+    border-color: #999;
+    color: #000;
+}
+
+/* ---------- responsive ---------- */
 @media (max-width: 768px) {
-    .header {
-        padding: 6rem 0 2rem;
+    .page {
+        padding: 5.5rem 1.2rem 3rem;
     }
 
-    .pageTitle {
-        font-size: 1.8rem;
+    .title {
+        font-size: 1.55rem;
     }
 
-    .pageTitleJp {
-        font-size: 1.3rem;
+    .titleSub {
+        font-size: 0.95rem;
     }
 
-    .subCopy {
-        font-size: 0.94rem;
+    .lead {
+        font-size: 0.95rem;
     }
 
-    .runRow {
+    .runCard {
+        padding: 1.6rem 1.3rem 1.8rem;
+    }
+
+    .runName {
+        font-size: 1.15rem;
+    }
+
+    .runBody {
         grid-template-columns: 1fr;
-        gap: 1rem;
-        padding: 2rem 0;
-        text-align: center;
+        gap: 1.4rem;
     }
 
-    .runNumber {
-        display: none;
+    .runMapCol {
+        order: -1;
     }
 
-    .runInfo {
-        align-items: center;
-    }
-
-    .runMapImage {
-        width: 100%;
-        max-width: 280px;
-        height: auto;
+    .runMapWrap {
+        max-width: 360px;
     }
 
     .runDescription {
-        text-align: left;
+        font-size: 0.95rem;
     }
 
-    .beginnersSection {
-        padding: 3rem 0;
+    .sectionTitle {
+        font-size: 1.1rem;
+    }
+
+    .callout {
+        padding: 1.2rem;
+    }
+
+    .runForWhom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
     }
 
     .linksSection {
         flex-direction: column;
-        align-items: center;
-        gap: 0.8rem;
-        padding-bottom: 4rem;
+        align-items: stretch;
     }
 
-    .linkBtn {
-        width: 100%;
-        max-width: 280px;
+    .linkBtnPrimary,
+    .linkBtnSecondary {
+        text-align: center;
     }
 }
