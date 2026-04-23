@@ -1,147 +1,292 @@
-.aboutHero {
-    min-height: 40vh;
+.page {
+    max-width: 840px;
+    margin: 0 auto;
+    padding: 7rem 1.5rem 4rem;
+    color: #222;
+}
+
+.page h1,
+.page h2,
+.page h3 {
+    border: none;
+    padding: 0;
+}
+
+/* ---------- breadcrumb ---------- */
+.breadcrumb {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    text-align: center;
-    padding: 8rem 2rem 2rem;
-    background: var(--color-bg);
+    justify-content: flex-start;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    color: #888;
+    letter-spacing: 0.05em;
+    margin-bottom: 2.5rem;
+    padding: 0;
+    background: none;
+    position: static;
+    box-shadow: none;
+}
+
+.breadcrumbLink {
+    color: #888;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.breadcrumbLink:hover {
+    color: #333;
+}
+
+.breadcrumbSep {
+    color: #ccc;
+    font-size: 0.85rem;
+}
+
+.breadcrumbCurrent {
+    color: #444;
+}
+
+/* ---------- hero ---------- */
+.hero {
+    text-align: left;
+    margin-bottom: 2.8rem;
+}
+
+.eyebrow {
+    font-family: var(--font-en);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    color: #F37E4A;
+    margin: 0 0 1.2rem;
+    text-transform: uppercase;
+    font-weight: 500;
 }
 
 .title {
-    font-size: 2.2rem;
-    letter-spacing: 0.1em;
-    font-weight: 400;
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
-    font-family: var(--font-en);
+    font-family: var(--font-jp);
+    font-size: 2.1rem;
+    font-weight: 700;
+    line-height: 1.55;
+    color: #111;
+    letter-spacing: 0.03em;
+    margin: 0 0 1.6rem;
+    text-transform: none;
 }
 
-.introContainer {
-    max-width: 760px;
-    margin: 0 auto 2.5rem;
-    text-align: center;
+.lead {
+    font-size: 1rem;
+    line-height: 2;
+    color: #555;
+    margin: 0;
+    max-width: 720px;
 }
 
-.introText {
-    margin-bottom: 1rem;
-    line-height: 1.85;
-    color: #444;
-    font-size: 1.02rem;
-    max-width: none;
+/* ---------- hero image ---------- */
+.heroImageWrap {
+    width: 100%;
+    margin-bottom: 4rem;
+    border-radius: 4px;
+    overflow: hidden;
 }
 
 .heroImage {
     width: 100%;
-    max-width: 860px;
     height: auto;
-    margin: 0 auto 2rem;
     display: block;
-    border-radius: 12px;
 }
 
-.titleJp {
-    font-family: var(--font-jp);
-    text-transform: none;
-    font-size: 1.65rem;
-    letter-spacing: 0.03em;
-    font-weight: 600;
+/* ---------- body ---------- */
+.body {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
 }
 
-.section {
-    padding: 3rem 0;
-    background: var(--color-bg);
+/* ---------- numbered section ---------- */
+.numberedSection {
+    padding: 0;
 }
 
-.contentContainer {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 0 2rem;
+.sectionHead {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.4rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid #ececec;
+}
+
+.sectionNum {
+    font-family: var(--font-en);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #F37E4A;
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
 }
 
 .sectionTitle {
     font-family: var(--font-jp);
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 1.2rem;
-    letter-spacing: 0.02em;
-    color: var(--color-text);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111;
+    letter-spacing: 0.03em;
+    margin: 0;
+    line-height: 1.5;
 }
 
+.sectionBody {
+    padding-left: 0;
+}
+
+/* ---------- text ---------- */
 .text {
     font-size: 1rem;
     line-height: 1.95;
-    color: #444;
-    margin-bottom: 1rem;
-    max-width: none;
+    color: #333;
+    margin: 0 0 1.1rem;
 }
 
+.text:last-child {
+    margin-bottom: 0;
+}
+
+/* ---------- list ---------- */
 .list {
     list-style: none;
     padding: 0;
-    margin: 1rem 0;
+    margin: 0;
 }
 
 .list li {
     font-size: 0.98rem;
     line-height: 1.85;
-    color: #444;
-    padding: 0.45rem 0 0.45rem 1.2rem;
+    color: #333;
+    padding: 0.55rem 0 0.55rem 1.4rem;
     position: relative;
+    border-bottom: 1px solid #f3f3f3;
+}
+
+.list li:last-child {
+    border-bottom: none;
 }
 
 .list li::before {
     content: '';
     position: absolute;
     left: 0;
-    top: 1.1rem;
+    top: 1.2rem;
     width: 5px;
     height: 5px;
-    background: #333;
+    background: #F37E4A;
     border-radius: 50%;
 }
 
-.faqSection {
-    padding: 3rem 0;
-    background: var(--color-bg);
+/* ---------- callout ---------- */
+.callout {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    background: #fbf7f3;
+    border-radius: 6px;
+    padding: 1.4rem 1.5rem;
+    margin-bottom: 1.6rem;
+}
+
+.calloutIcon {
+    font-size: 1.3rem;
+    color: #F37E4A;
+    line-height: 1.6;
+    flex-shrink: 0;
+}
+
+.calloutBody {
+    flex: 1;
+    min-width: 0;
+}
+
+.calloutTitle {
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: #222;
+    margin: 0 0 0.3rem;
+    line-height: 1.6;
+}
+
+.calloutTitle strong {
+    color: #c2532a;
+    font-weight: 700;
+}
+
+.calloutSub {
+    font-size: 0.86rem;
+    color: #777;
+    margin: 0;
+    line-height: 1.7;
+}
+
+/* ---------- FAQ ---------- */
+.faqList {
+    margin: 0;
+    padding: 0;
 }
 
 .faqItem {
-    margin-bottom: 2rem;
+    padding: 1.4rem 0;
+    border-bottom: 1px solid #ececec;
+}
+
+.faqItem:first-child {
+    padding-top: 0.4rem;
 }
 
 .faqItem:last-child {
-    margin-bottom: 0;
+    border-bottom: none;
+    padding-bottom: 0.4rem;
 }
 
 .faqQuestion {
-    font-family: var(--font-jp);
-    font-size: 1.05rem;
-    font-weight: 600;
-    margin-bottom: 0.6rem;
-    color: var(--color-text);
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #111;
+    margin: 0 0 0.7rem;
+    line-height: 1.6;
 }
 
+.faqQMark {
+    font-family: var(--font-en);
+    font-size: 0.9rem;
+    color: #F37E4A;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+.faqAnswer {
+    font-size: 0.95rem;
+    line-height: 1.95;
+    color: #555;
+    margin: 0;
+    padding-left: 1.7rem;
+}
+
+/* ---------- link ---------- */
 .link {
-    color: var(--color-text);
-    text-decoration: underline;
-    text-decoration-color: rgba(0, 0, 0, 0.25);
-    text-underline-offset: 3px;
-    transition: text-decoration-color 0.2s;
+    color: #c2532a;
+    text-decoration: none;
+    border-bottom: 1px solid #ead8cd;
+    transition: color 0.2s, border-color 0.2s;
 }
 
 .link:hover {
-    text-decoration-color: var(--color-text);
+    color: #a23f1c;
+    border-bottom-color: #c2532a;
 }
 
-.contactText {
-    font-size: 1rem;
-    line-height: 1.8;
-    color: #555;
-    margin-top: 0.5rem;
-}
-
+/* ---------- fade ---------- */
 .fadeIn {
     opacity: 0;
     transform: translateY(20px);
@@ -153,41 +298,50 @@
     transform: translateY(0);
 }
 
-@media (max-width: 768px) {
-    .aboutHero {
-        padding: 6rem 1.5rem 1.5rem;
+/* ---------- responsive ---------- */
+@media (max-width: 640px) {
+    .page {
+        padding: 5.5rem 1.2rem 3rem;
     }
 
     .title {
-        font-size: 1.9rem;
-        letter-spacing: 0.08em;
+        font-size: 1.55rem;
     }
 
-    .titleJp {
-        font-size: 1.3rem;
+    .lead {
+        font-size: 0.95rem;
     }
 
-    .heroImage {
-        margin-bottom: 1.5rem;
+    .heroImageWrap {
+        margin-bottom: 3rem;
     }
 
-    .section {
-        padding: 2.5rem 0;
-    }
-
-    .contentContainer {
-        padding: 0 1.5rem;
+    .body {
+        gap: 2.8rem;
     }
 
     .sectionTitle {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+    }
+
+    .sectionHead {
+        gap: 0.7rem;
     }
 
     .text {
         font-size: 0.96rem;
     }
 
+    .callout {
+        padding: 1.2rem 1.2rem;
+    }
+
     .faqQuestion {
-        font-size: 1rem;
+        font-size: 0.97rem;
+    }
+
+    .faqAnswer {
+        font-size: 0.92rem;
+        padding-left: 1.4rem;
     }
 }
