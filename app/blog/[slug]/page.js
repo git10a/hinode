@@ -1,33 +1,23 @@
 import Image from 'next/image';
-import { client } from '../../../lib/microcms';
-import styles from './post.module.css';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import BlogEndCta from '../../../components/BlogEndCta';
+import { client } from '../../../lib/microcms';
+import { getUpcomingGroupEvents } from '../../../lib/strava';
+import PostSidebar from '../../../components/PostSidebar';
+import RelatedPosts from '../../../components/RelatedPosts';
+import PostBottomStrip from '../../../components/PostBottomStrip';
+import styles from './post.module.css';
 
 export const revalidate = 60;
 
 export async function generateMetadata({ params }) {
     const post = await getBlogPost(params.slug);
 
-    // 記事が存在しない場合（下書きまたは削除済み）は noindex を返す
     if (!post) {
-        return {
-            robots: {
-                index: false,
-                follow: false,
-            },
-        };
+        return { robots: { index: false, follow: false } };
     }
-
-    // publishedAt がない記事（下書き状態）も noindex
     if (!post.publishedAt) {
-        return {
-            title: post.title,
-            robots: {
-                index: false,
-                follow: false,
-            },
-        };
+        return { title: post.title, robots: { index: false, follow: false } };
     }
 
     const url = `https://hinode-run.com/blog/${params.slug}`;
@@ -38,16 +28,14 @@ export async function generateMetadata({ params }) {
         openGraph: {
             title: post.title,
             description: post.description || `${post.title}の記事です。`,
-            url: url,
+            url,
             siteName: 'HINODE',
             type: 'article',
-            images: post.thumbnail ? [
-                {
-                    url: post.thumbnail.url,
-                    width: post.thumbnail.width,
-                    height: post.thumbnail.height,
-                }
-            ] : [],
+            images: post.thumbnail ? [{
+                url: post.thumbnail.url,
+                width: post.thumbnail.width,
+                height: post.thumbnail.height,
+            }] : [],
         },
         twitter: {
             card: 'summary_large_image',
@@ -61,9 +49,7 @@ export async function generateMetadata({ params }) {
 export async function generateStaticParams() {
     try {
         const data = await client.get({ endpoint: 'blogs', queries: { limit: 100 } });
-        return data.contents.map((post) => ({
-            slug: post.id,
-        }));
+        return data.contents.map((post) => ({ slug: post.id }));
     } catch (e) {
         return [];
     }
@@ -71,75 +57,136 @@ export async function generateStaticParams() {
 
 async function getBlogPost(id) {
     try {
-        const data = await client.get({
-            endpoint: 'blogs',
-            contentId: id,
-        });
-        return data;
+        return await client.get({ endpoint: 'blogs', contentId: id });
     } catch (error) {
         return null;
     }
 }
 
+async function getRelatedPosts(currentId, limit = 3) {
+    try {
+        const data = await client.get({
+            endpoint: 'blogs',
+            queries: {
+                fields: 'id,title,publishedAt,thumbnail',
+                limit: limit + 1,
+            },
+        });
+        return data.contents.filter((p) => p.id !== currentId).slice(0, limit);
+    } catch (e) {
+        return [];
+    }
+}
+
+function formatJapaneseDate(iso) {
+    const d = new Date(iso);
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}.${m}.${day}`;
+}
+
 export default async function BlogPost({ params }) {
     const post = await getBlogPost(params.slug);
 
-    // 記事が存在しない、または publishedAt がない（下書き）場合は 404
     if (!post || !post.publishedAt) {
         notFound();
     }
 
+    const [relatedPosts, upcomingEvents] = await Promise.all([
+        getRelatedPosts(post.id),
+        getUpcomingGroupEvents(),
+    ]);
+    const nextEvent = upcomingEvents[0] || null;
+
     const jsonLd = {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": post.title,
-        "image": post.thumbnail ? [post.thumbnail.url] : [],
-        "datePublished": post.publishedAt,
-        "dateModified": post.updatedAt,
-        "author": {
-            "@type": "Organization",
-            "name": "HINODE"
-        }
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: post.title,
+        image: post.thumbnail ? [post.thumbnail.url] : [],
+        datePublished: post.publishedAt,
+        dateModified: post.updatedAt,
+        author: { '@type': 'Organization', name: 'HINODE' },
     };
 
     return (
-        <article className={styles.container}>
+        <div className={styles.page}>
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
 
-            <div className={styles.header}>
-                <time className={styles.date}>{new Date(post.publishedAt).toLocaleDateString('ja-JP')}</time>
-                <h1 className={styles.title}>{post.title}</h1>
+            <nav className={styles.breadcrumb} aria-label="breadcrumb">
+                <Link href="/" className={styles.breadcrumbLink}>HOME</Link>
+                <span className={styles.breadcrumbSep}>›</span>
+                <Link href="/blog" className={styles.breadcrumbLink}>BLOG</Link>
+            </nav>
+
+            <div className={styles.layout}>
+                <article className={styles.article}>
+                    <div className={styles.articleHeader}>
+                        <time className={styles.date}>{formatJapaneseDate(post.publishedAt)}</time>
+                        <h1 className={styles.title}>{post.title}</h1>
+                        {post.description && (
+                            <p className={styles.description}>{post.description}</p>
+                        )}
+                    </div>
+
+                    {post.thumbnail && (
+                        <div className={styles.thumbnailWrapper}>
+                            <Image
+                                src={post.thumbnail.url}
+                                alt={post.title}
+                                width={post.thumbnail.width}
+                                height={post.thumbnail.height}
+                                sizes="(max-width: 840px) 100vw, 720px"
+                                priority
+                                className={styles.thumbnail}
+                            />
+                        </div>
+                    )}
+
+                    {post.content ? (
+                        <div
+                            className={styles.content}
+                            dangerouslySetInnerHTML={{ __html: post.content }}
+                        />
+                    ) : (
+                        <div className={styles.content}>
+                            <p>本文がありません。</p>
+                        </div>
+                    )}
+
+                    <div className={styles.inlineCta}>
+                        <p className={styles.inlineCtaLead}>
+                            <span className={styles.inlineCtaIcon} aria-hidden="true">☼</span>
+                            参加してみる
+                        </p>
+                        <p className={styles.inlineCtaSub}>
+                            気になった方は、開催日程を見てください。<br />
+                            参加人数や雰囲気はStravaでも見られます。
+                        </p>
+                        <div className={styles.inlineCtaActions}>
+                            <Link href="/schedule" className={styles.inlineCtaBtnPrimary}>
+                                開催日程を見る →
+                            </Link>
+                            <a
+                                href="https://www.strava.com/clubs/1772485"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={styles.inlineCtaBtnSecondary}
+                            >
+                                Stravaクラブを見る →
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <PostSidebar nextEvent={nextEvent} />
             </div>
 
-            {post.thumbnail && (
-                <div className={styles.thumbnailWrapper}>
-                    <Image
-                        src={post.thumbnail.url}
-                        alt={post.title}
-                        width={post.thumbnail.width}
-                        height={post.thumbnail.height}
-                        sizes="(max-width: 840px) 100vw, 840px"
-                        priority
-                        className={styles.thumbnail}
-                    />
-                </div>
-            )}
-
-            {post.content ? (
-                <div
-                    className={styles.content}
-                    dangerouslySetInnerHTML={{ __html: post.content }}
-                />
-            ) : (
-                <div className={styles.content}>
-                    <p>本文がありません。MicroCMSで「本文」フィールド（API ID: content）に入力があるか確認してください。</p>
-                </div>
-            )}
-
-            <BlogEndCta post={post} />
-        </article>
+            <RelatedPosts posts={relatedPosts} />
+            <PostBottomStrip />
+        </div>
     );
 }
