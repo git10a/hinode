@@ -77,19 +77,9 @@
     z-index: 0;
 }
 
-.heroSlideshow {
-    position: absolute;
-    inset: 0;
-}
-
-.heroSlide {
-    position: absolute;
-    inset: 0;
-    will-change: opacity;
-}
-
 .heroImage {
     object-fit: cover;
+    object-position: center 70%;
 }
 
 .heroOverlay {
@@ -473,6 +463,20 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
+}
+
+.valueImageWrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #f3f3f3;
+    margin-bottom: 0.3rem;
+}
+
+.valueImage {
+    object-fit: cover;
 }
 
 .valueIconWrap {

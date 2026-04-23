@@ -1,14 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { MEMBER_COUNT } from '../lib/stats';
-import HeroSlideshow from './HeroSlideshow';
 import styles from './HomeContent.module.css';
-
-const HERO_SLIDES = [
-    { src: '/assets/hinodeyoyogi.jpg', alt: '代々木公園で走るHINODEメンバー', position: 'center 50%' },
-    { src: '/assets/hinodekyoto2.jpg', alt: '京都での朝ラン', position: 'center 50%' },
-    { src: '/assets/hinodecoffee.jpg', alt: '走った後のコーヒー', position: 'center 50%' },
-];
 
 const CHIPS = ['参加無料', '予約不要', '1人参加多め', '4km前後ゆっくり'];
 
@@ -64,39 +57,20 @@ const VALUES = [
     {
         title: '競争しない',
         desc: '速さではなく、朝の習慣を続けることを大切に。自分のペースでゆっくり走ります。',
-        icon: (
-            <svg viewBox="0 0 24 24" className={styles.valueIcon}>
-                <circle cx="12" cy="5" r="2.2" />
-                <path d="M9 10l2.5-1 2 2 2.5 0.5" />
-                <path d="M10 13l-2 4" />
-                <path d="M13.5 11.2l1 3.3 3 2.5" />
-                <path d="M8 21l2-4" />
-            </svg>
-        ),
+        image: '/assets/hinodekyoto2.jpg',
+        alt: '京都での朝ラン',
     },
     {
         title: '1人でも来やすい',
         desc: '初参加やソロ参加の方も毎回いらっしゃいますので、お気軽にお越しください。',
-        icon: (
-            <svg viewBox="0 0 24 24" className={styles.valueIcon}>
-                <circle cx="8.5" cy="8.5" r="2.3" />
-                <circle cx="15.5" cy="8.5" r="2.3" />
-                <path d="M3.5 19c0-3 2.2-5 5-5s5 2 5 5" />
-                <path d="M10.5 19c0-3 2.2-5 5-5s5 2 5 5" />
-            </svg>
-        ),
+        image: '/assets/hinodeyoyogi.jpg',
+        alt: '代々木公園で走るHINODEメンバー',
     },
     {
         title: '走った後も心地いい',
         desc: '走った後はコーヒーを飲んで帰る人も。急がず、朝の時間をそのまま楽しみます。',
-        icon: (
-            <svg viewBox="0 0 24 24" className={styles.valueIcon}>
-                <path d="M5 9h11v6a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V9z" />
-                <path d="M16 11h2.5a2 2 0 0 1 0 4H16" />
-                <path d="M8 4c0 1-1 1.5-1 2.5S8 8 8 9" />
-                <path d="M12 4c0 1-1 1.5-1 2.5s1 1.5 1 2.5" />
-            </svg>
-        ),
+        image: '/assets/hinodecoffee.jpg',
+        alt: '走った後のコーヒー',
     },
 ];
 
@@ -147,13 +121,13 @@ export default function HomeContent({ latestPosts = [], upcomingEvents = [], mem
             {/* Hero */}
             <section className={styles.hero}>
                 <div className={styles.heroImageWrapper}>
-                    <HeroSlideshow
-                        slides={HERO_SLIDES}
-                        intervalMs={7000}
-                        fadeMs={2500}
-                        className={styles.heroSlideshow}
-                        slideClassName={styles.heroSlide}
-                        imageClassName={styles.heroImage}
+                    <Image
+                        src="/assets/komazawa.jpg"
+                        alt=""
+                        fill
+                        priority
+                        sizes="100vw"
+                        className={styles.heroImage}
                     />
                     <div className={styles.heroOverlay} aria-hidden="true" />
                 </div>
@@ -285,7 +259,15 @@ export default function HomeContent({ latestPosts = [], upcomingEvents = [], mem
                 <div className={styles.valuesGrid}>
                     {VALUES.map((v) => (
                         <div key={v.title} className={styles.valueItem}>
-                            <div className={styles.valueIconWrap}>{v.icon}</div>
+                            <div className={styles.valueImageWrap}>
+                                <Image
+                                    src={v.image}
+                                    alt={v.alt}
+                                    fill
+                                    sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 380px"
+                                    className={styles.valueImage}
+                                />
+                            </div>
                             <h3 className={styles.valueTitle}>{v.title}</h3>
                             <p className={styles.valueDesc}>{v.desc}</p>
                         </div>
