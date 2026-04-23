@@ -3,12 +3,11 @@ import Image from 'next/image';
 import { client } from '../../lib/microcms';
 import styles from './blog.module.css';
 
-// Revalidate every hour
 export const revalidate = 60;
 
 export const metadata = {
     title: 'BLOG | HINODE',
-    description: 'HINODEの活動ログや哲学を発信。',
+    description: '朝のランニングの良さを、日々伝えるHINODEのブログ。活動ログや朝ランにまつわる考えを発信。',
 };
 
 async function getBlogPosts() {
@@ -16,8 +15,8 @@ async function getBlogPosts() {
         const data = await client.get({
             endpoint: 'blogs',
             queries: {
-                fields: 'id,title,publishedAt,thumbnail',
-                limit: 10,
+                fields: 'id,title,publishedAt,thumbnail,description',
+                limit: 20,
             },
         });
         return data.contents;
@@ -27,38 +26,95 @@ async function getBlogPosts() {
     }
 }
 
+function formatDate(iso) {
+    const d = new Date(iso);
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}.${m}.${day}`;
+}
+
 export default async function BlogPage() {
     const posts = await getBlogPosts();
+    const [featured, ...rest] = posts;
 
     return (
-        <div className={styles.container}>
-            <h1 className={styles.pageTitle}>BLOG</h1>
+        <div className={styles.page}>
+            <section className={styles.hero}>
+                <div className={styles.heroImageWrapper}>
+                    <Image
+                        src="/assets/Toyosu.jpg"
+                        alt=""
+                        fill
+                        priority
+                        sizes="100vw"
+                        className={styles.heroImage}
+                    />
+                    <div className={styles.heroOverlay} aria-hidden="true" />
+                </div>
 
-            {posts.length === 0 ? (
-                <p style={{ textAlign: 'center' }}>記事がまだありません。</p>
-            ) : (
-                <div className={styles.grid}>
-                    {posts.map((post) => (
-                        <Link href={`/blog/${post.id}`} key={post.id} className={styles.card}>
-                            {post.thumbnail && (
-                                <div className={styles.thumbnailWrapper}>
+                <div className={styles.heroInner}>
+                    <div className={styles.heroText}>
+                        <h1 className={styles.pageTitle}>BLOG</h1>
+                        <p className={styles.subtitle}>朝のランニングの良さを、日々伝えるHINODEのブログ</p>
+                    </div>
+
+                    {featured && (
+                        <Link href={`/blog/${featured.id}`} className={styles.featured}>
+                            {featured.thumbnail && (
+                                <div className={styles.featuredThumb}>
                                     <Image
-                                        src={post.thumbnail.url}
-                                        alt={post.title}
+                                        src={featured.thumbnail.url}
+                                        alt={featured.title}
                                         fill
-                                        sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 340px"
-                                        className={styles.thumbnail}
+                                        sizes="(max-width: 768px) 100vw, 220px"
+                                        className={styles.featuredImage}
                                     />
                                 </div>
                             )}
-                            <div className={styles.content}>
-                                <time className={styles.date}>{new Date(post.publishedAt).toLocaleDateString('ja-JP')}</time>
-                                <h2 className={styles.title}>{post.title}</h2>
+                            <div className={styles.featuredBody}>
+                                <span className={styles.featuredLabel}>FEATURED</span>
+                                <h2 className={styles.featuredTitle}>{featured.title}</h2>
+                                {featured.description && (
+                                    <p className={styles.featuredDesc}>{featured.description}</p>
+                                )}
+                                <time className={styles.featuredDate}>{formatDate(featured.publishedAt)}</time>
                             </div>
                         </Link>
-                    ))}
+                    )}
                 </div>
-            )}
+            </section>
+
+            <section className={styles.listSection}>
+                {posts.length === 0 ? (
+                    <p className={styles.empty}>記事がまだありません。</p>
+                ) : rest.length === 0 ? null : (
+                    <div className={styles.grid}>
+                        {rest.map((post) => (
+                            <Link href={`/blog/${post.id}`} key={post.id} className={styles.card}>
+                                {post.thumbnail && (
+                                    <div className={styles.thumbnailWrapper}>
+                                        <Image
+                                            src={post.thumbnail.url}
+                                            alt={post.title}
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 520px"
+                                            className={styles.thumbnail}
+                                        />
+                                    </div>
+                                )}
+                                <div className={styles.content}>
+                                    <time className={styles.date}>{formatDate(post.publishedAt)}</time>
+                                    <h2 className={styles.title}>{post.title}</h2>
+                                    {post.description && (
+                                        <p className={styles.excerpt}>{post.description}</p>
+                                    )}
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                )}
+            </section>
         </div>
     );
 }
