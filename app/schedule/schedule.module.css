@@ -49,7 +49,7 @@
 
 /* ---------- hero ---------- */
 .hero {
-    margin-bottom: 4rem;
+    margin-bottom: 2.4rem;
     text-align: left;
 }
 
@@ -89,6 +89,201 @@
     color: #555;
     margin: 0;
     max-width: 720px;
+}
+
+.heroFacts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin-top: 1.4rem;
+}
+
+.heroFacts span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.1rem;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid #f0d8c8;
+    border-radius: 999px;
+    background: #fbf7f3;
+    color: #5c5149;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+}
+
+/* ---------- guide ---------- */
+.guideSection {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 2rem;
+    align-items: start;
+    margin-bottom: 4.5rem;
+    padding: 2rem;
+    border: 1px solid #f0e4d9;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #fff8f1 0%, #f8fbff 100%);
+}
+
+.guideKicker {
+    font-family: var(--font-en);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: #4f8f68;
+    margin: 0 0 0.8rem;
+    text-transform: uppercase;
+}
+
+.guideTitle {
+    font-family: var(--font-jp);
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: #111;
+    letter-spacing: 0.03em;
+    line-height: 1.5;
+    margin: 0 0 1rem;
+}
+
+.guideLead,
+.guideText {
+    font-size: 0.96rem;
+    line-height: 1.95;
+    color: #4f4a45;
+    margin: 0;
+    max-width: none;
+}
+
+.guideText {
+    margin-top: 0.8rem;
+}
+
+.guideActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1.4rem;
+}
+
+.primaryGuideLink,
+.secondaryGuideLink {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.6rem;
+    padding: 0.72rem 1rem;
+    border-radius: 6px;
+    font-size: 0.86rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.primaryGuideLink {
+    background: #222;
+    color: #fff;
+}
+
+.primaryGuideLink:hover {
+    background: #000;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.secondaryGuideLink {
+    border: 1px solid #d9cabe;
+    background: rgba(255, 255, 255, 0.72);
+    color: #4f4a45;
+}
+
+.secondaryGuideLink:hover {
+    border-color: #bcaea2;
+    background: #fff;
+    color: #111;
+}
+
+.flowPanel {
+    padding: 1.5rem;
+    border: 1px solid #eaded3;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 14px 30px rgba(53, 39, 29, 0.06);
+}
+
+.flowTitle {
+    font-family: var(--font-jp);
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #111;
+    letter-spacing: 0.03em;
+    margin: 0 0 1rem;
+}
+
+.flowList {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.flowItem {
+    display: grid;
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+    gap: 0.85rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #efe4da;
+}
+
+.flowItem:first-child {
+    padding-top: 0;
+}
+
+.flowItem:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.flowNumber {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.15rem;
+    height: 2.15rem;
+    border-radius: 50%;
+    background: #F37E4A;
+    color: #fff;
+    font-family: var(--font-en);
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.flowItem h4 {
+    font-family: var(--font-jp);
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 1.6;
+    color: #222;
+    letter-spacing: 0.03em;
+    margin: 0 0 0.25rem;
+}
+
+.flowItem h4 a {
+    color: inherit;
+    border-bottom: 1px solid rgba(243, 126, 74, 0.45);
+}
+
+.flowItem p {
+    font-size: 0.84rem;
+    line-height: 1.75;
+    color: #66605a;
+    margin: 0;
+    max-width: none;
 }
 
 /* ---------- runs ---------- */
@@ -296,8 +491,8 @@
     flex: 1;
 }
 
-/* ---------- beginners section ---------- */
-.beginners {
+/* ---------- FAQ ---------- */
+.faqSection {
     margin-bottom: 4rem;
 }
 
@@ -329,6 +524,38 @@
     line-height: 1.5;
 }
 
+.faqGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.6rem;
+}
+
+.faqItem {
+    padding: 1.25rem 1.3rem;
+    border: 1px solid #eee3d9;
+    border-radius: 6px;
+    background: #fff;
+}
+
+.faqItem h3 {
+    font-family: var(--font-jp);
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.6;
+    letter-spacing: 0.03em;
+    color: #222;
+    margin: 0 0 0.6rem;
+}
+
+.faqItem p {
+    font-size: 0.88rem;
+    line-height: 1.85;
+    color: #5c5650;
+    margin: 0;
+    max-width: none;
+}
+
 .callout {
     display: flex;
     align-items: flex-start;
@@ -336,7 +563,6 @@
     background: #fbf7f3;
     border-radius: 6px;
     padding: 1.4rem 1.5rem;
-    margin-bottom: 1.6rem;
 }
 
 .calloutIcon {
@@ -369,53 +595,6 @@
     color: #777;
     margin: 0;
     line-height: 1.7;
-}
-
-.list {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 1.5rem;
-}
-
-.list li {
-    font-size: 0.98rem;
-    line-height: 1.85;
-    color: #333;
-    padding: 0.55rem 0 0.55rem 1.4rem;
-    position: relative;
-    border-bottom: 1px solid #f3f3f3;
-}
-
-.list li:last-child {
-    border-bottom: none;
-}
-
-.list li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 1.2rem;
-    width: 5px;
-    height: 5px;
-    background: #F37E4A;
-    border-radius: 50%;
-}
-
-.faqLink {
-    margin: 1.2rem 0 0;
-    font-size: 0.92rem;
-}
-
-.link {
-    color: #c2532a;
-    text-decoration: none;
-    border-bottom: 1px solid #ead8cd;
-    transition: color 0.2s, border-color 0.2s;
-}
-
-.link:hover {
-    color: #a23f1c;
-    border-bottom-color: #c2532a;
 }
 
 /* ---------- links ---------- */
@@ -481,6 +660,38 @@
         font-size: 0.95rem;
     }
 
+    .heroFacts {
+        gap: 0.45rem;
+    }
+
+    .heroFacts span {
+        font-size: 0.78rem;
+    }
+
+    .guideSection {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1.4rem 1.2rem;
+        margin-bottom: 3.5rem;
+    }
+
+    .guideTitle {
+        font-size: 1.25rem;
+    }
+
+    .guideActions {
+        flex-direction: column;
+    }
+
+    .primaryGuideLink,
+    .secondaryGuideLink {
+        width: 100%;
+    }
+
+    .flowPanel {
+        padding: 1.2rem;
+    }
+
     .runCard {
         padding: 1.6rem 1.3rem 1.8rem;
     }
@@ -508,6 +719,10 @@
 
     .sectionTitle {
         font-size: 1.1rem;
+    }
+
+    .faqGrid {
+        grid-template-columns: 1fr;
     }
 
     .callout {

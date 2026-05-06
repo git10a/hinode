@@ -5,8 +5,8 @@ import NextRunDate from '../../components/NextRunDate';
 import PostBottomStrip from '../../components/PostBottomStrip';
 
 export const metadata = {
-    title: '東京の朝ラン開催日程｜皇居・目黒川・代々木公園で毎週開催',
-    description: 'HINODEの朝ラン開催日程ページです。皇居・目黒川・代々木公園で毎週開催。集合場所、曜日、距離、参加しやすさ、初参加時の注意点をまとめています。最新情報はStravaとInstagramで確認できます。',
+    title: '東京の日の出ラン開催日程｜皇居・目黒川・代々木公園で毎週開催',
+    description: 'HINODEの日の出ラン開催日程ページです。皇居・目黒川・代々木公園で毎週開催。集合場所、曜日、距離、参加しやすさ、初参加時の流れをまとめています。最新情報はStravaとInstagramで確認できます。',
 };
 
 const STRAVA_CLUB_URL = 'https://www.strava.com/clubs/1772485';
@@ -15,8 +15,8 @@ const EVENTS_JSON_LD = [
     {
         "@context": "https://schema.org",
         "@type": "Event",
-        "name": "皇居の朝ラン｜HINODE",
-        "description": "毎週水曜6:30から皇居で開催する朝ラン。約5km、左回りで1周。参加無料・予約不要。",
+        "name": "皇居の日の出ラン｜HINODE",
+        "description": "毎週水曜6:30から皇居で開催する日の出ラン。約5km、左回りで1周。参加無料・予約不要。",
         "eventSchedule": { "@type": "Schedule", "repeatFrequency": "P1W", "byDay": "https://schema.org/Wednesday", "startTime": "06:30", "scheduleTimezone": "Asia/Tokyo" },
         "location": { "@type": "Place", "name": "桔梗門前派出所", "address": { "@type": "PostalAddress", "addressLocality": "東京都千代田区", "addressCountry": "JP" } },
         "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
@@ -27,8 +27,8 @@ const EVENTS_JSON_LD = [
     {
         "@context": "https://schema.org",
         "@type": "Event",
-        "name": "目黒川の朝ラン｜HINODE",
-        "description": "毎週木曜6:30から中目黒で開催する朝ラン。約4km、目黒川沿いを1周。参加無料・予約不要。",
+        "name": "目黒川の日の出ラン｜HINODE",
+        "description": "毎週木曜6:30から中目黒で開催する日の出ラン。約4km、目黒川沿いを1周。参加無料・予約不要。",
         "eventSchedule": { "@type": "Schedule", "repeatFrequency": "P1W", "byDay": "https://schema.org/Thursday", "startTime": "06:30", "scheduleTimezone": "Asia/Tokyo" },
         "location": { "@type": "Place", "name": "スターバックス 中目黒蔦屋書店前", "address": { "@type": "PostalAddress", "addressLocality": "東京都目黒区", "addressCountry": "JP" } },
         "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
@@ -39,8 +39,8 @@ const EVENTS_JSON_LD = [
     {
         "@context": "https://schema.org",
         "@type": "Event",
-        "name": "代々木公園の朝ラン｜HINODE",
-        "description": "毎週日曜7:30から代々木公園で開催する朝ラン。約3〜6km、左回りで1〜2周。参加無料・予約不要。",
+        "name": "代々木公園の日の出ラン｜HINODE",
+        "description": "毎週日曜7:30から代々木公園で開催する日の出ラン。約3〜6km、左回りで1〜2周。参加無料・予約不要。",
         "eventSchedule": { "@type": "Schedule", "repeatFrequency": "P1W", "byDay": "https://schema.org/Sunday", "startTime": "07:30", "scheduleTimezone": "Asia/Tokyo" },
         "location": { "@type": "Place", "name": "原宿時計塔前", "address": { "@type": "PostalAddress", "addressLocality": "東京都渋谷区", "addressCountry": "JP" } },
         "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
@@ -50,11 +50,65 @@ const EVENTS_JSON_LD = [
     }
 ];
 
+const guideFacts = [
+    '参加無料',
+    'ソロ参加多め',
+    '4〜5km前後',
+    '06:30〜07:00/kmほど',
+];
+
+const participationSteps = [
+    {
+        title: 'Stravaクラブに参加',
+        description: 'まずはHINODEのStravaクラブへ。直近のイベントもここから確認できます。',
+        href: STRAVA_CLUB_URL,
+    },
+    {
+        title: '直近のイベントを確認',
+        description: '開催場所と時間を見て、行けそうな朝を選んでください。',
+    },
+    {
+        title: '集合場所に3分前くらいに来る',
+        description: 'きっちり早く来なくても大丈夫です。走れる格好でそのままどうぞ。',
+    },
+    {
+        title: 'みんなでゆっくり走る',
+        description: '会話しながら走れるくらいのペースで、無理なく進みます。',
+    },
+    {
+        title: '終わったら自由解散',
+        description: '時間がある方はカフェへ。予定がある方はそのまま解散でOKです。',
+    },
+];
+
+const faqItems = [
+    {
+        question: '1人で行っても大丈夫ですか？',
+        answer: 'むしろ1人参加が多いです。はじめましての方も、その朝から自然に混ざれる雰囲気です。',
+    },
+    {
+        question: '速く走れないとダメですか？',
+        answer: 'そんなことまったくありません。HINODEは速く走る場所ではなく、早朝に走り続けるための場所です。',
+    },
+    {
+        question: '途中で歩いてもいいですか？',
+        answer: 'もちろん大丈夫です。その日の体調に合わせて、無理なく参加してください。',
+    },
+    {
+        question: '参加費は？',
+        answer: '無料です。',
+    },
+    {
+        question: '事前連絡は必要？',
+        answer: '基本はStravaイベントへの参加でOKです。行かない時も連絡はまったく必要ありません。気が向いたら来てください。',
+    },
+];
+
 const RUNS = [
     {
         id: 'kokyo',
         num: '01',
-        name: '皇居の朝ラン',
+        name: '皇居の日の出ラン',
         day: '毎週水曜',
         time: '06:30〜',
         distance: '約5km',
@@ -72,7 +126,7 @@ const RUNS = [
     {
         id: 'meguro',
         num: '02',
-        name: '目黒川の朝ラン',
+        name: '目黒川の日の出ラン',
         day: '毎週木曜',
         time: '06:30〜',
         distance: '約4km',
@@ -83,14 +137,14 @@ const RUNS = [
         dayOfWeek: 4,
         timeRaw: '06:30',
         description: (
-            <>中目黒駅のスターバックス蔦屋書店前に集合。<br />目黒川をぐるっと回るコース。<br />走り終わったらスタバでコーヒーを。8時開店の「I&apos;m donut ?」にも並ばずに行けます。</>
+            <>中目黒駅のスターバックス蔦屋書店前に集合。<br />目黒川をぐるっと回るコース。</>
         ),
         forWhom: '中目黒エリアで朝ランしたい方・平日朝に短く走りたい方・距離が短めで参加しやすい回です。',
     },
     {
         id: 'yoyogi',
         num: '03',
-        name: '代々木公園の朝ラン',
+        name: '代々木公園の日の出ラン',
         day: '毎週日曜',
         time: '07:30〜',
         distance: '約3〜6km',
@@ -101,7 +155,7 @@ const RUNS = [
         dayOfWeek: 0,
         timeRaw: '07:30',
         description: (
-            <>原宿時計塔に集合。<br />代々木公園を左回りで1〜2周。<br />公園を降りて少し歩いたところにはVERVE COFFEEなど、カフェスポットあり。</>
+            <>原宿時計塔に集合。<br />代々木公園を左回りで1〜2周。<br />公園近くにはドトールやVERVE COFFEEがあります。</>
         ),
         forWhom: '代々木公園で朝ランしたい方・まず朝ランを始めてみたい方・初心者や会話しながら走りたい方に向いています。',
         note: (
@@ -130,14 +184,64 @@ export default function EventPage() {
             <div className={styles.hero}>
                 <p className={styles.eyebrow}>SCHEDULE</p>
                 <h1 className={styles.title}>
-                    東京の朝ラン開催日程<br />
+                    東京の日の出ラン開催日程<br />
                     <span className={styles.titleSub}>皇居・目黒川・代々木公園</span>
                 </h1>
                 <p className={styles.lead}>
-                    皇居・目黒川・代々木公園で毎週開催。<br />
+                    HINODEは、朝の時間にゆっくり走るランニングコミュニティです。<br />
                     予約不要・参加費無料・1人参加OK。
                 </p>
+                <div className={styles.heroFacts} aria-label="HINODEの参加しやすさ">
+                    {guideFacts.map((fact) => (
+                        <span key={fact}>{fact}</span>
+                    ))}
+                </div>
             </div>
+
+            <section className={styles.guideSection} aria-labelledby="first-time-guide-title">
+                <div className={styles.guideIntro}>
+                    <p className={styles.guideKicker}>FIRST RUN GUIDE</p>
+                    <h2 id="first-time-guide-title" className={styles.guideTitle}>HINODE初参加ガイド</h2>
+                    <p className={styles.guideLead}>
+                        はじめて朝ランの集まりに行く時は、少し緊張すると思います。
+                        HINODEは、ソロ参加が多く、会話しながら走れるくらいのペースで進みます。
+                    </p>
+                    <p className={styles.guideText}>
+                        予約や細かい連絡はいりません。気が向いた朝に、集合場所へふらっと来てください。
+                    </p>
+                    <div className={styles.guideActions}>
+                        <a href={STRAVA_CLUB_URL} target="_blank" rel="noopener noreferrer" className={styles.primaryGuideLink}>
+                            Stravaクラブに参加 →
+                        </a>
+                        <a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer" className={styles.secondaryGuideLink}>
+                            Instagramで連絡する
+                        </a>
+                    </div>
+                </div>
+
+                <div className={styles.flowPanel}>
+                    <h3 className={styles.flowTitle}>参加の流れ</h3>
+                    <ol className={styles.flowList}>
+                        {participationSteps.map((step, index) => (
+                            <li key={step.title} className={styles.flowItem}>
+                                <span className={styles.flowNumber}>{String(index + 1).padStart(2, '0')}</span>
+                                <div>
+                                    <h4>
+                                        {step.href ? (
+                                            <a href={step.href} target="_blank" rel="noopener noreferrer">
+                                                {step.title} →
+                                            </a>
+                                        ) : (
+                                            step.title
+                                        )}
+                                    </h4>
+                                    <p>{step.description}</p>
+                                </div>
+                            </li>
+                        ))}
+                    </ol>
+                </div>
+            </section>
 
             <section className={styles.runs}>
                 {RUNS.map((run) => (
@@ -194,27 +298,26 @@ export default function EventPage() {
                 ))}
             </section>
 
-            <section className={styles.beginners}>
+            <section className={styles.faqSection} aria-labelledby="first-time-faq-title">
                 <div className={styles.sectionHead}>
                     <span className={styles.sectionNum}>04</span>
-                    <h2 className={styles.sectionTitle}>初参加の方へ</h2>
+                    <h2 id="first-time-faq-title" className={styles.sectionTitle}>よくある不安</h2>
+                </div>
+                <div className={styles.faqGrid}>
+                    {faqItems.map((item) => (
+                        <article key={item.question} className={styles.faqItem}>
+                            <h3>Q. {item.question}</h3>
+                            <p>A. {item.answer}</p>
+                        </article>
+                    ))}
                 </div>
                 <div className={styles.callout}>
                     <span className={styles.calloutIcon} aria-hidden="true">☼</span>
                     <div className={styles.calloutBody}>
                         <p className={styles.calloutTitle}>手首の<strong>黄色いゴムバンド</strong>が目印です</p>
-                        <p className={styles.calloutSub}>集合場所では、それを目印に合流してください。</p>
+                        <p className={styles.calloutSub}>集合場所では、それを目印に合流してください。ほかに聞きたいことがあればInstagramで気軽にご連絡ください。</p>
                     </div>
                 </div>
-                <ul className={styles.list}>
-                    <li>予約不要・参加費無料。走れる服装とシューズだけで大丈夫です</li>
-                    <li>ペース・距離は自由、歩いても途中参加・途中離脱も問題なし</li>
-                    <li>参加者の約3割はほぼ初めてのランニング。1人参加も多いです</li>
-                    <li>雨天は基本中止。開催可否は当日の <a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer" className={styles.link}>Instagram</a> / <a href="https://strava.app.link/pQ0uMuWWj2b" target="_blank" rel="noopener noreferrer" className={styles.link}>Strava</a> で確認してください</li>
-                </ul>
-                <p className={styles.faqLink}>
-                    <Link href="/about#faq" className={styles.link}>よくある質問はこちら →</Link>
-                </p>
             </section>
 
             <section className={styles.linksSection}>
