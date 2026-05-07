@@ -91,26 +91,31 @@
     max-width: 720px;
 }
 
-.heroFacts {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.55rem;
-    margin-top: 1.4rem;
+.firstRunCallout {
+    max-width: 760px;
+    margin-top: 1.6rem;
+    padding: 1.35rem 1.5rem;
+    border: 1px solid #f0d8c8;
+    border-radius: 6px;
+    background: #fbf7f3;
 }
 
-.heroFacts span {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 2.1rem;
-    padding: 0.35rem 0.75rem;
-    border: 1px solid #f0d8c8;
-    border-radius: 999px;
-    background: #fbf7f3;
-    color: #5c5149;
-    font-size: 0.82rem;
-    font-weight: 500;
+.firstRunCallout h2 {
+    font-family: var(--font-jp);
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.5;
     letter-spacing: 0.03em;
+    color: #c2532a;
+    margin: 0 0 0.45rem;
+}
+
+.firstRunCallout p {
+    font-size: 0.92rem;
+    line-height: 1.85;
+    color: #4f4a45;
+    margin: 0;
+    max-width: none;
 }
 
 /* ---------- guide ---------- */
@@ -338,6 +343,36 @@
     letter-spacing: 0.03em;
     margin: 0 0 0.4rem;
     line-height: 1.5;
+}
+
+.runRecommendation {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    flex-wrap: wrap;
+    margin: 0 0 0.45rem;
+    font-size: 0.86rem;
+    line-height: 1.7;
+    color: #5c5650;
+    max-width: none;
+}
+
+.runRecommendation span:first-child {
+    flex-shrink: 0;
+    color: #c2532a;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 0.12rem 0.45rem;
+    border: 1px solid #f0d8c8;
+    border-radius: 3px;
+    background: #fbf7f3;
+}
+
+.runRecommendationPrimary span:first-child {
+    color: #fff;
+    border-color: #F37E4A;
+    background: #F37E4A;
 }
 
 .runMeta {
@@ -660,12 +695,12 @@
         font-size: 0.95rem;
     }
 
-    .heroFacts {
-        gap: 0.45rem;
+    .firstRunCallout {
+        padding: 1.15rem 1.2rem;
     }
 
-    .heroFacts span {
-        font-size: 0.78rem;
+    .firstRunCallout h2 {
+        font-size: 1rem;
     }
 
     .guideSection {

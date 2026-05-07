@@ -40,7 +40,7 @@ const EVENTS_JSON_LD = [
         "@context": "https://schema.org",
         "@type": "Event",
         "name": "代々木公園の日の出ラン｜HINODE",
-        "description": "毎週日曜7:30から代々木公園で開催する日の出ラン。約3〜6km、左回りで1〜2周。参加無料・予約不要。",
+        "description": "毎週日曜7:30から代々木公園で開催する日の出ラン。約2〜4km、左回りで1、2周。参加無料・予約不要。",
         "eventSchedule": { "@type": "Schedule", "repeatFrequency": "P1W", "byDay": "https://schema.org/Sunday", "startTime": "07:30", "scheduleTimezone": "Asia/Tokyo" },
         "location": { "@type": "Place", "name": "原宿時計塔前", "address": { "@type": "PostalAddress", "addressLocality": "東京都渋谷区", "addressCountry": "JP" } },
         "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
@@ -48,13 +48,6 @@ const EVENTS_JSON_LD = [
         "organizer": { "@type": "SportsClub", "name": "HINODE", "url": "https://hinode-run.com/" },
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY", "availability": "https://schema.org/InStock", "url": "https://hinode-run.com/schedule" }
     }
-];
-
-const guideFacts = [
-    '参加無料',
-    'ソロ参加多め',
-    '4〜5km前後',
-    '06:30〜07:00/kmほど',
 ];
 
 const participationSteps = [
@@ -112,6 +105,8 @@ const RUNS = [
         day: '毎週水曜',
         time: '06:30〜',
         distance: '約5km',
+        recommendationLabel: 'おすすめ',
+        recommendation: '平日朝にしっかり走りたい人向け',
         meet: '桔梗門前派出所',
         mapImage: '/assets/kokyo-run-map.png',
         mapAlt: '皇居ラン',
@@ -130,6 +125,8 @@ const RUNS = [
         day: '毎週木曜',
         time: '06:30〜',
         distance: '約4km',
+        recommendationLabel: 'おすすめ',
+        recommendation: '短めの距離で平日朝に走りたい人向け',
         meet: 'スターバックス 中目黒蔦屋書店前',
         mapImage: '/assets/meguro-run-map.png',
         mapAlt: '目黒川ラン',
@@ -147,7 +144,9 @@ const RUNS = [
         name: '代々木公園の日の出ラン',
         day: '毎週日曜',
         time: '07:30〜',
-        distance: '約3〜6km',
+        distance: '約2〜4km',
+        recommendationLabel: '初参加に一番おすすめ',
+        isFirstChoice: true,
         meet: '原宿時計塔前',
         mapImage: '/assets/yoyogi-run-map.png',
         mapAlt: '代々木公園ラン',
@@ -155,7 +154,7 @@ const RUNS = [
         dayOfWeek: 0,
         timeRaw: '07:30',
         description: (
-            <>原宿時計塔に集合。<br />代々木公園を左回りで1〜2周。<br />公園近くにはドトールやVERVE COFFEEがあります。</>
+            <>原宿時計塔に集合。<br />代々木公園を左回りで1、2周。<br />公園近くにはドトールやVERVE COFFEEがあります。</>
         ),
         forWhom: 'いきなり6時半スタートは難しいから体を慣らしたい方、週末も朝から活動したい方',
         note: (
@@ -191,10 +190,12 @@ export default function EventPage() {
                     HINODEは、朝の時間にゆっくり走るランニングコミュニティです。<br />
                     予約不要・参加費無料・1人参加OK。
                 </p>
-                <div className={styles.heroFacts} aria-label="HINODEの参加しやすさ">
-                    {guideFacts.map((fact) => (
-                        <span key={fact}>{fact}</span>
-                    ))}
+                <div className={styles.firstRunCallout}>
+                    <h2>初参加なら日曜がおすすめ</h2>
+                    <p>
+                        初参加の方は、まず日曜7:30の代々木公園ランがおすすめです。
+                        距離は2〜4km、会話できるペースで走ります。1人参加も多く、朝ランに慣れていない方でも参加しやすい回です。
+                    </p>
                 </div>
             </div>
 
@@ -250,6 +251,12 @@ export default function EventPage() {
                             <span className={styles.runNum}>{run.num}</span>
                             <div className={styles.runHeadText}>
                                 <h2 className={styles.runName}>{run.name}</h2>
+                                <p className={`${styles.runRecommendation} ${run.isFirstChoice ? styles.runRecommendationPrimary : ''}`}>
+                                    <span>{run.recommendationLabel}</span>
+                                    {run.recommendation && (
+                                        <span>{run.recommendation}</span>
+                                    )}
+                                </p>
                                 <p className={styles.runMeta}>
                                     <span className={styles.runDay}>{run.day}</span>
                                     <span className={styles.runDot} aria-hidden="true">·</span>
