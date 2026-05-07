@@ -95,6 +95,10 @@ const faqItems = [
         question: '事前連絡は必要？',
         answer: '基本はStravaイベントへの参加でOKです。行かない時も連絡はまったく必要ありません。気が向いたら来てください。',
     },
+    {
+        question: '写真に写らなくても大丈夫ですか？',
+        answer: '大丈夫です。HINODEでは、基本的に集合写真は撮りません。日の出や街の景色がきれいなタイミングで、景色の写真を撮るために立ち止まることはありますが、参加者の顔出しやSNS掲載を前提にした場ではありません。',
+    },
 ];
 
 const RUNS = [
@@ -107,7 +111,6 @@ const RUNS = [
         distance: '約5km',
         recommendationLabel: 'おすすめ',
         recommendation: '平日朝にしっかり走りたい人向け',
-        meet: '桔梗門前派出所',
         mapImage: '/assets/kokyo-run-map.png',
         mapAlt: '皇居ラン',
         mapUrl: 'https://maps.app.goo.gl/E9HkSojyPZw6zo1b9',
@@ -127,7 +130,6 @@ const RUNS = [
         distance: '約4km',
         recommendationLabel: 'おすすめ',
         recommendation: '短めの距離で平日朝に走りたい人向け',
-        meet: 'スターバックス 中目黒蔦屋書店前',
         mapImage: '/assets/meguro-run-map.png',
         mapAlt: '目黒川ラン',
         mapUrl: 'https://maps.app.goo.gl/SKixyw53vfJnp1p36',
@@ -147,7 +149,6 @@ const RUNS = [
         distance: '約2〜4km',
         recommendationLabel: '初参加に一番おすすめ',
         isFirstChoice: true,
-        meet: '原宿時計塔前',
         mapImage: '/assets/yoyogi-run-map.png',
         mapAlt: '代々木公園ラン',
         mapUrl: 'https://maps.app.goo.gl/dB3L15dHByAoC4jw9',

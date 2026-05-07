@@ -56,6 +56,10 @@ const FAQ = [
             <>必須ではありませんが、<a href="https://strava.app.link/pQ0uMuWWj2b" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a> で「参加」を押してもらえると他の人も参加しやすくなります。</>
         ),
     },
+    {
+        q: '写真に写らなくても大丈夫ですか？',
+        a: '大丈夫です。HINODEでは、基本的に集合写真は撮りません。日の出や街の景色がきれいなタイミングで、景色の写真を撮るために立ち止まることはありますが、参加者の顔出しやSNS掲載を前提にした場ではありません。',
+    },
 ];
 
 export default function AboutContent() {
