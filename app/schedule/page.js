@@ -9,46 +9,103 @@ export const metadata = {
     description: 'HINODEの日の出ラン開催日程ページです。皇居・目黒川・代々木公園で毎週開催。集合場所、曜日、距離、参加しやすさ、初参加時の流れをまとめています。最新情報はStravaとInstagramで確認できます。',
 };
 
-const STRAVA_CLUB_URL = 'https://www.strava.com/clubs/1772485';
+export const dynamic = 'force-dynamic';
 
-const EVENTS_JSON_LD = [
-    {
-        "@context": "https://schema.org",
-        "@type": "Event",
-        "name": "皇居の日の出ラン｜HINODE",
-        "description": "毎週水曜6:30から皇居で開催する日の出ラン。約5km、左回りで1周。参加無料・予約不要。",
-        "eventSchedule": { "@type": "Schedule", "repeatFrequency": "P1W", "byDay": "https://schema.org/Wednesday", "startTime": "06:30", "scheduleTimezone": "Asia/Tokyo" },
-        "location": { "@type": "Place", "name": "桔梗門前派出所", "address": { "@type": "PostalAddress", "addressLocality": "東京都千代田区", "addressCountry": "JP" } },
-        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-        "eventStatus": "https://schema.org/EventScheduled",
-        "organizer": { "@type": "SportsClub", "name": "HINODE", "url": "https://hinode-run.com/" },
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY", "availability": "https://schema.org/InStock", "url": "https://hinode-run.com/schedule" }
-    },
-    {
-        "@context": "https://schema.org",
-        "@type": "Event",
-        "name": "目黒川の日の出ラン｜HINODE",
-        "description": "毎週木曜6:30から中目黒で開催する日の出ラン。約4km、目黒川沿いを1周。参加無料・予約不要。",
-        "eventSchedule": { "@type": "Schedule", "repeatFrequency": "P1W", "byDay": "https://schema.org/Thursday", "startTime": "06:30", "scheduleTimezone": "Asia/Tokyo" },
-        "location": { "@type": "Place", "name": "スターバックス 中目黒蔦屋書店前", "address": { "@type": "PostalAddress", "addressLocality": "東京都目黒区", "addressCountry": "JP" } },
-        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-        "eventStatus": "https://schema.org/EventScheduled",
-        "organizer": { "@type": "SportsClub", "name": "HINODE", "url": "https://hinode-run.com/" },
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY", "availability": "https://schema.org/InStock", "url": "https://hinode-run.com/schedule" }
-    },
-    {
-        "@context": "https://schema.org",
-        "@type": "Event",
-        "name": "代々木公園の日の出ラン｜HINODE",
-        "description": "毎週日曜7:30から代々木公園で開催する日の出ラン。約2〜4km、左回りで1、2周。参加無料・予約不要。",
-        "eventSchedule": { "@type": "Schedule", "repeatFrequency": "P1W", "byDay": "https://schema.org/Sunday", "startTime": "07:30", "scheduleTimezone": "Asia/Tokyo" },
-        "location": { "@type": "Place", "name": "原宿時計塔前", "address": { "@type": "PostalAddress", "addressLocality": "東京都渋谷区", "addressCountry": "JP" } },
-        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-        "eventStatus": "https://schema.org/EventScheduled",
-        "organizer": { "@type": "SportsClub", "name": "HINODE", "url": "https://hinode-run.com/" },
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY", "availability": "https://schema.org/InStock", "url": "https://hinode-run.com/schedule" }
+const STRAVA_CLUB_URL = 'https://www.strava.com/clubs/1772485';
+const EVENT_DURATION_MINUTES = 60;
+
+function getJstWallClockDate(date) {
+    return new Date(date.toLocaleString('en-US', { timeZone: 'Asia/Tokyo' }));
+}
+
+function pad2(value) {
+    return String(value).padStart(2, '0');
+}
+
+function formatJstDateTime(date) {
+    const year = date.getFullYear();
+    const month = pad2(date.getMonth() + 1);
+    const day = pad2(date.getDate());
+    const hours = pad2(date.getHours());
+    const minutes = pad2(date.getMinutes());
+
+    return `${year}-${month}-${day}T${hours}:${minutes}:00+09:00`;
+}
+
+function getNextEventStart(dayOfWeek, time, now = new Date()) {
+    const jstNow = getJstWallClockDate(now);
+    const [hours, minutes] = time.split(':').map(Number);
+    const currentMinutes = jstNow.getHours() * 60 + jstNow.getMinutes();
+    const eventMinutes = hours * 60 + minutes;
+
+    let daysUntil = dayOfWeek - jstNow.getDay();
+    if (daysUntil < 0) {
+        daysUntil += 7;
+    } else if (daysUntil === 0 && currentMinutes >= eventMinutes + EVENT_DURATION_MINUTES) {
+        daysUntil = 7;
     }
-];
+
+    const start = new Date(jstNow);
+    start.setDate(start.getDate() + daysUntil);
+    start.setHours(hours, minutes, 0, 0);
+
+    return start;
+}
+
+function eventDateFields(dayOfWeek, time, now) {
+    const start = getNextEventStart(dayOfWeek, time, now);
+    const end = new Date(start);
+    end.setMinutes(end.getMinutes() + EVENT_DURATION_MINUTES);
+
+    return {
+        startDate: formatJstDateTime(start),
+        endDate: formatJstDateTime(end),
+    };
+}
+
+function createEventsJsonLd(now = new Date()) {
+    return [
+        {
+            "@context": "https://schema.org",
+            "@type": "Event",
+            "name": "皇居の日の出ラン｜HINODE",
+            "description": "毎週水曜6:30から皇居で開催する日の出ラン。約5km、左回りで1周。参加無料・予約不要。",
+            ...eventDateFields(3, '06:30', now),
+            "eventSchedule": { "@type": "Schedule", "repeatFrequency": "P1W", "byDay": "https://schema.org/Wednesday", "startTime": "06:30", "scheduleTimezone": "Asia/Tokyo" },
+            "location": { "@type": "Place", "name": "桔梗門前派出所", "address": { "@type": "PostalAddress", "addressLocality": "東京都千代田区", "addressCountry": "JP" } },
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "organizer": { "@type": "SportsClub", "name": "HINODE", "url": "https://hinode-run.com/" },
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY", "availability": "https://schema.org/InStock", "url": "https://hinode-run.com/schedule" }
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "Event",
+            "name": "目黒川の日の出ラン｜HINODE",
+            "description": "毎週木曜6:30から中目黒で開催する日の出ラン。約4km、目黒川沿いを1周。参加無料・予約不要。",
+            ...eventDateFields(4, '06:30', now),
+            "eventSchedule": { "@type": "Schedule", "repeatFrequency": "P1W", "byDay": "https://schema.org/Thursday", "startTime": "06:30", "scheduleTimezone": "Asia/Tokyo" },
+            "location": { "@type": "Place", "name": "スターバックス 中目黒蔦屋書店前", "address": { "@type": "PostalAddress", "addressLocality": "東京都目黒区", "addressCountry": "JP" } },
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "organizer": { "@type": "SportsClub", "name": "HINODE", "url": "https://hinode-run.com/" },
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY", "availability": "https://schema.org/InStock", "url": "https://hinode-run.com/schedule" }
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "Event",
+            "name": "代々木公園の日の出ラン｜HINODE",
+            "description": "毎週日曜7:30から代々木公園で開催する日の出ラン。約2〜4km、左回りで1、2周。参加無料・予約不要。",
+            ...eventDateFields(0, '07:30', now),
+            "eventSchedule": { "@type": "Schedule", "repeatFrequency": "P1W", "byDay": "https://schema.org/Sunday", "startTime": "07:30", "scheduleTimezone": "Asia/Tokyo" },
+            "location": { "@type": "Place", "name": "原宿時計塔前", "address": { "@type": "PostalAddress", "addressLocality": "東京都渋谷区", "addressCountry": "JP" } },
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "organizer": { "@type": "SportsClub", "name": "HINODE", "url": "https://hinode-run.com/" },
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY", "availability": "https://schema.org/InStock", "url": "https://hinode-run.com/schedule" }
+        }
+    ];
+}
 
 const participationSteps = [
     {
@@ -165,9 +222,11 @@ const RUNS = [
 ];
 
 export default function EventPage() {
+    const eventsJsonLd = createEventsJsonLd();
+
     return (
         <div className={styles.page}>
-            {EVENTS_JSON_LD.map((event, i) => (
+            {eventsJsonLd.map((event, i) => (
                 <script
                     key={i}
                     type="application/ld+json"
