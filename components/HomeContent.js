@@ -38,6 +38,7 @@ const WEEKLY_ITEMS = [
 ];
 
 const DAY_LABEL_JP = ['日', '月', '火', '水', '木', '金', '土'];
+const EVENT_DURATION_MINUTES = 60;
 
 function formatEventDate(iso) {
     if (!iso) return null;
@@ -47,6 +48,52 @@ function formatEventDate(iso) {
     const d = jst.getUTCDate();
     const w = DAY_LABEL_JP[jst.getUTCDay()];
     return `${m}/${d}(${w})`;
+}
+
+function formatWallClockDate(date) {
+    const m = date.getMonth() + 1;
+    const d = date.getDate();
+    const w = DAY_LABEL_JP[date.getDay()];
+    return `${m}/${d}(${w})`;
+}
+
+function getJstWallClockDate(date) {
+    return new Date(date.toLocaleString('en-US', { timeZone: 'Asia/Tokyo' }));
+}
+
+function getJstTimestamp(date) {
+    return Date.UTC(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate(),
+        date.getHours() - 9,
+        date.getMinutes(),
+        date.getSeconds(),
+        date.getMilliseconds()
+    );
+}
+
+function getNextRegularEvent(item, now = new Date()) {
+    const jstNow = getJstWallClockDate(now);
+    const [hours, minutes] = item.time.split(':').map(Number);
+    const currentMinutes = jstNow.getHours() * 60 + jstNow.getMinutes();
+    const eventMinutes = hours * 60 + minutes;
+
+    let daysUntil = item.dayIndex - jstNow.getDay();
+    if (daysUntil < 0) {
+        daysUntil += 7;
+    } else if (daysUntil === 0 && currentMinutes >= eventMinutes + EVENT_DURATION_MINUTES) {
+        daysUntil = 7;
+    }
+
+    const start = new Date(jstNow);
+    start.setDate(start.getDate() + daysUntil);
+    start.setHours(hours, minutes, 0, 0);
+
+    return {
+        nextDate: formatWallClockDate(start),
+        nextTimestamp: getJstTimestamp(start),
+    };
 }
 
 function stravaEventUrl(eventId) {
@@ -105,13 +152,20 @@ export default function HomeContent({ latestPosts = [], upcomingEvents = [], mem
     const regularDays = new Set(WEEKLY_ITEMS.map((i) => i.dayIndex));
     const regularCards = WEEKLY_ITEMS.map((item) => {
         const next = upcomingEvents.find((e) => e.dayOfWeek === item.dayIndex);
+        const fallback = getNextRegularEvent(item);
         return {
             ...item,
-            nextDate: next ? formatEventDate(next.startAt) : null,
+            nextDate: next ? formatEventDate(next.startAt) : fallback.nextDate,
+            nextTimestamp: next ? new Date(next.startAt).getTime() : fallback.nextTimestamp,
             href: next ? stravaEventUrl(next.eventId) : item.anchor,
             external: !!next,
         };
-    });
+    })
+        .sort((a, b) => a.nextTimestamp - b.nextTimestamp)
+        .map((item, index) => ({
+            ...item,
+            isNext: index === 0,
+        }));
     const adhocEvents = upcomingEvents
         .filter((e) => !regularDays.has(e.dayOfWeek))
         .slice(0, 2);
@@ -194,7 +248,14 @@ export default function HomeContent({ latestPosts = [], upcomingEvents = [], mem
                             : { href: item.href };
                         const Tag = item.external ? 'a' : Link;
                         return (
-                            <Tag {...cardProps} key={item.place} className={styles.weeklyCard}>
+                            <Tag
+                                {...cardProps}
+                                key={item.place}
+                                className={`${styles.weeklyCard} ${item.isNext ? styles.weeklyCardNext : ''}`}
+                            >
+                                {item.isNext && (
+                                    <span className={styles.weeklyNextBadge}>次の開催</span>
+                                )}
                                 <div className={styles.weeklyThumb}>
                                     <Image
                                         src={item.image}
