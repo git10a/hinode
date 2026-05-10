@@ -106,16 +106,17 @@
     aspect-ratio: 1 / 1;
     border-radius: 8px;
     overflow: hidden;
-    background: #f2f2f2;
+    background: #faf7f0;
 }
 
 .featuredImage {
-    object-fit: cover;
+    object-fit: contain;
+    object-position: center;
     transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .featured:hover .featuredImage {
-    transform: scale(1.05);
+    transform: none;
 }
 
 .featuredBody {
@@ -206,17 +207,18 @@
     aspect-ratio: 4 / 3;
     overflow: hidden;
     border-radius: 10px;
-    background: #f2f2f2;
+    background: #faf7f0;
     margin-bottom: 1.5rem;
 }
 
 .thumbnail {
-    object-fit: cover;
+    object-fit: contain;
+    object-position: center;
     transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .card:hover .thumbnail {
-    transform: scale(1.04);
+    transform: none;
 }
 
 .content {

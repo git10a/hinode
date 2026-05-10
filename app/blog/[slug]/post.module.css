@@ -394,14 +394,15 @@
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 10;
-    background: #f3f3f3;
+    background: #faf7f0;
     border-radius: 4px;
     overflow: hidden;
     margin-bottom: 0.8rem;
 }
 
 .relatedThumb :global(img) {
-    object-fit: cover;
+    object-fit: contain;
+    object-position: center;
 }
 
 .relatedBody {
