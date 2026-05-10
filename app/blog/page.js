@@ -98,7 +98,7 @@ export default async function BlogPage() {
                                             src={post.thumbnail.url}
                                             alt={post.title}
                                             fill
-                                            sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 520px"
+                                            sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 360px"
                                             className={styles.thumbnail}
                                         />
                                     </div>

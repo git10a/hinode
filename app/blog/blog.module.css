@@ -171,9 +171,9 @@
    List section
 ========================= */
 .listSection {
-    max-width: 1180px;
+    max-width: 1120px;
     margin: 0 auto;
-    padding: 6rem 2rem 7rem;
+    padding: 5rem 2rem 7rem;
 }
 
 .empty {
@@ -184,8 +184,8 @@
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 3.5rem 2.5rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 3rem 2rem;
     width: 100%;
 }
 
@@ -204,11 +204,11 @@
 .thumbnailWrapper {
     position: relative;
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 10;
     overflow: hidden;
     border-radius: 10px;
     background: #faf7f0;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.15rem;
 }
 
 .thumbnail {
@@ -229,19 +229,19 @@
 
 .date {
     font-family: var(--font-en);
-    font-size: 0.8rem;
+    font-size: 0.74rem;
     letter-spacing: 0.12em;
     color: #888;
-    margin-bottom: 0.7rem;
+    margin-bottom: 0.55rem;
 }
 
 .title {
-    font-size: 1.25rem;
+    font-size: 1.02rem;
     font-weight: 600;
-    line-height: 1.6;
+    line-height: 1.65;
     color: #111;
     letter-spacing: 0.04em;
-    margin: 0 0 0.75rem;
+    margin: 0 0 0.6rem;
     border: none;
     padding: 0;
     transition: color 0.3s ease;
@@ -252,8 +252,8 @@
 }
 
 .excerpt {
-    font-size: 0.88rem;
-    line-height: 1.9;
+    font-size: 0.82rem;
+    line-height: 1.85;
     color: #666;
     margin: 0;
     display: -webkit-box;
@@ -274,6 +274,10 @@
 
     .featured {
         max-width: 520px;
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
