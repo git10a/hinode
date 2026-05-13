@@ -13,6 +13,8 @@ export const dynamic = 'force-dynamic';
 
 const STRAVA_CLUB_URL = 'https://www.strava.com/clubs/1772485';
 const EVENT_DURATION_MINUTES = 60;
+const SITE_URL = 'https://hinode-run.com';
+const EVENT_PERFORMER = { "@type": "PerformingGroup", "name": "HINODE" };
 
 function getJstWallClockDate(date) {
     return new Date(date.toLocaleString('en-US', { timeZone: 'Asia/Tokyo' }));
@@ -63,12 +65,35 @@ function eventDateFields(dayOfWeek, time, now) {
     };
 }
 
+function createFreeOffer(dayOfWeek, time, now, sectionId) {
+    const validFrom = getNextEventStart(dayOfWeek, time, now);
+    validFrom.setDate(validFrom.getDate() - 7);
+
+    return {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "JPY",
+        "availability": "https://schema.org/InStock",
+        "url": `${SITE_URL}/schedule#${sectionId}`,
+        "validFrom": formatJstDateTime(validFrom),
+    };
+}
+
+function assetUrl(path) {
+    return `${SITE_URL}${path}`;
+}
+
 function createEventsJsonLd(now = new Date()) {
     return [
         {
             "@context": "https://schema.org",
             "@type": "Event",
             "name": "皇居の日の出ラン｜HINODE",
+            "url": `${SITE_URL}/schedule#kokyo`,
+            "image": [
+                assetUrl('/assets/kokyo-run-map.png'),
+                assetUrl('/assets/Kokyo.jpg'),
+            ],
             "description": "毎週水曜6:30から皇居で開催する日の出ラン。約5km、左回りで1周。参加無料・予約不要。",
             ...eventDateFields(3, '06:30', now),
             "eventSchedule": { "@type": "Schedule", "repeatFrequency": "P1W", "byDay": "https://schema.org/Wednesday", "startTime": "06:30", "scheduleTimezone": "Asia/Tokyo" },
@@ -76,12 +101,18 @@ function createEventsJsonLd(now = new Date()) {
             "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
             "eventStatus": "https://schema.org/EventScheduled",
             "organizer": { "@type": "SportsClub", "name": "HINODE", "url": "https://hinode-run.com/" },
-            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY", "availability": "https://schema.org/InStock", "url": "https://hinode-run.com/schedule" }
+            "performer": EVENT_PERFORMER,
+            "offers": createFreeOffer(3, '06:30', now, 'kokyo')
         },
         {
             "@context": "https://schema.org",
             "@type": "Event",
             "name": "目黒川の日の出ラン｜HINODE",
+            "url": `${SITE_URL}/schedule#meguro`,
+            "image": [
+                assetUrl('/assets/meguro-run-map.png'),
+                assetUrl('/assets/Meguro.png'),
+            ],
             "description": "毎週木曜6:30から中目黒で開催する日の出ラン。約4km、目黒川沿いを1周。参加無料・予約不要。",
             ...eventDateFields(4, '06:30', now),
             "eventSchedule": { "@type": "Schedule", "repeatFrequency": "P1W", "byDay": "https://schema.org/Thursday", "startTime": "06:30", "scheduleTimezone": "Asia/Tokyo" },
@@ -89,12 +120,18 @@ function createEventsJsonLd(now = new Date()) {
             "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
             "eventStatus": "https://schema.org/EventScheduled",
             "organizer": { "@type": "SportsClub", "name": "HINODE", "url": "https://hinode-run.com/" },
-            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY", "availability": "https://schema.org/InStock", "url": "https://hinode-run.com/schedule" }
+            "performer": EVENT_PERFORMER,
+            "offers": createFreeOffer(4, '06:30', now, 'meguro')
         },
         {
             "@context": "https://schema.org",
             "@type": "Event",
             "name": "代々木公園の日の出ラン｜HINODE",
+            "url": `${SITE_URL}/schedule#yoyogi`,
+            "image": [
+                assetUrl('/assets/yoyogi-run-map.png'),
+                assetUrl('/assets/Yoyogi.png'),
+            ],
             "description": "毎週日曜7:30から代々木公園で開催する日の出ラン。約2〜4km、左回りで1、2周。参加無料・予約不要。",
             ...eventDateFields(0, '07:30', now),
             "eventSchedule": { "@type": "Schedule", "repeatFrequency": "P1W", "byDay": "https://schema.org/Sunday", "startTime": "07:30", "scheduleTimezone": "Asia/Tokyo" },
@@ -102,7 +139,8 @@ function createEventsJsonLd(now = new Date()) {
             "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
             "eventStatus": "https://schema.org/EventScheduled",
             "organizer": { "@type": "SportsClub", "name": "HINODE", "url": "https://hinode-run.com/" },
-            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY", "availability": "https://schema.org/InStock", "url": "https://hinode-run.com/schedule" }
+            "performer": EVENT_PERFORMER,
+            "offers": createFreeOffer(0, '07:30', now, 'yoyogi')
         }
     ];
 }
