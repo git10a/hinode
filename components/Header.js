@@ -7,12 +7,22 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import SOCIAL_LINKS from '../lib/socialLinks';
 
-const NAV_LINKS = [
+const PRIMARY_NAV_LINKS = [
     { href: '/about/', label: 'HINODEとは' },
     { href: '/schedule/', label: '開催日程・参加方法' },
     { href: '/blog/', label: 'BLOG' },
-    { href: '/sunrise/', label: '日の出時刻' },
 ];
+
+const MENU_LINKS = [
+    ...PRIMARY_NAV_LINKS,
+    ...SOCIAL_LINKS.map((link) => ({ ...link, external: true })),
+    { href: '/sunrise/', label: '日の出時刻', priority: 'low' },
+];
+
+function normalizePath(path) {
+    const normalized = path.replace(/\/$/, '');
+    return normalized || '/';
+}
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -56,6 +66,18 @@ export default function Header() {
         ? (isScrolled ? 'scrolled' : '')
         : 'blog-header';
 
+    const currentPath = normalizePath(pathname || '/');
+    const isActiveLink = (link) => {
+        if (link.external) return false;
+        const targetPath = normalizePath(link.href);
+        return currentPath === targetPath || (targetPath !== '/' && currentPath.startsWith(`${targetPath}/`));
+    };
+    const linkClassName = (link) => [
+        isActiveLink(link) ? 'active' : '',
+        link.external ? 'external' : '',
+    ].filter(Boolean).join(' ');
+    const itemClassName = (link) => link.priority === 'low' ? 'low-priority' : '';
+
     return (
         <header className={headerClass}>
             <div className="container">
@@ -71,14 +93,14 @@ export default function Header() {
                         />
                     </Link>
                     <ul className="nav-links">
-                        {NAV_LINKS.map(link => (
-                            <li key={link.href}>
+                        {MENU_LINKS.map(link => (
+                            <li key={link.href} className={itemClassName(link)}>
                                 {link.external ? (
-                                    <a href={link.href} target="_blank" rel="noopener noreferrer">
+                                    <a href={link.href} target="_blank" rel="noopener noreferrer" className={linkClassName(link)}>
                                         {link.label}
                                     </a>
                                 ) : (
-                                    <Link href={link.href}>{link.label}</Link>
+                                    <Link href={link.href} className={linkClassName(link)}>{link.label}</Link>
                                 )}
                             </li>
                         ))}
@@ -96,24 +118,17 @@ export default function Header() {
 
                     <div className={`mobile-menu ${isMenuOpen ? 'active' : ''}`}>
                         <ul className="mobile-nav-links">
-                            {NAV_LINKS.map(link => (
-                                <li key={link.href}>
+                            {MENU_LINKS.map(link => (
+                                <li key={link.href} className={itemClassName(link)}>
                                     {link.external ? (
-                                        <a href={link.href} target="_blank" rel="noopener noreferrer" onClick={closeMenu}>
+                                        <a href={link.href} target="_blank" rel="noopener noreferrer" onClick={closeMenu} className={linkClassName(link)}>
                                             {link.label}
                                         </a>
                                     ) : (
-                                        <Link href={link.href} onClick={closeMenu}>
+                                        <Link href={link.href} onClick={closeMenu} className={linkClassName(link)}>
                                             {link.label}
                                         </Link>
                                     )}
-                                </li>
-                            ))}
-                            {SOCIAL_LINKS.map(link => (
-                                <li key={link.href}>
-                                    <a href={link.href} target="_blank" rel="noopener noreferrer" onClick={closeMenu}>
-                                        {link.label}
-                                    </a>
                                 </li>
                             ))}
                         </ul>
