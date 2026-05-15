@@ -20,9 +20,7 @@ export default function Footer() {
             </svg>
         ),
         strava: (
-            <svg className="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15.387 17.944l-2.089-4.116h-3.065l5.154 10.172 5.155-10.172h-3.066l-2.089 4.116zm-4.011-8.528l-1.477 2.916h-2.171l3.648-7.209 3.648 7.209h-2.171l-1.477-2.916z" />
-            </svg>
+            <img className="social-icon social-icon-image" src="/assets/strava.png" alt="" />
         )
     };
 

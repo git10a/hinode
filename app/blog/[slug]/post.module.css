@@ -411,6 +411,13 @@
     flex-shrink: 0;
 }
 
+.sidebarBtnLogo {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
 .sidebarBtnArrow {
     margin-left: auto;
     color: inherit;

@@ -97,10 +97,7 @@ export default function PostSidebar({ nextEvent }) {
                         rel="noopener noreferrer"
                         className={styles.sidebarBtnSecondary}
                     >
-                        <svg viewBox="0 0 24 24" className={styles.sidebarBtnIcon} aria-hidden="true">
-                            <path d="M9 4l5 10h-3l-2-4-2 4H4z" fill="currentColor" stroke="none" />
-                            <path d="M14 14l3 6 3-6h-2l-1 2-1-2z" fill="currentColor" stroke="none" />
-                        </svg>
+                        <img src="/assets/strava.png" alt="" className={styles.sidebarBtnLogo} />
                         Stravaクラブを見る
                         <span className={styles.sidebarBtnArrow} aria-hidden="true">›</span>
                     </a>

@@ -818,6 +818,10 @@ footer p {
     transition: transform 0.3s, fill 0.3s;
 }
 
+.social-icon-image {
+    object-fit: contain;
+}
+
 .social-icon:hover {
     transform: scale(1.2);
     fill: var(--color-text);
