@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { MEMBER_COUNT } from '../lib/stats';
+import ShareScheduleButton from './ShareScheduleButton';
 import styles from './HomeContent.module.css';
 
 const CHIPS = ['参加無料', '予約不要', '1人参加多め', '4km前後ゆっくり'];
@@ -186,6 +187,7 @@ export default function HomeContent({ latestPosts = [], upcomingEvents = [], mem
             nextTimestamp: next ? new Date(next.startAt).getTime() : fallback.nextTimestamp,
             href: next ? stravaEventUrl(next.eventId) : item.anchor,
             external: !!next,
+            sharePath: item.anchor,
             participantCount: next?.participantCount,
             participants: next?.participants || [],
         };
@@ -277,45 +279,55 @@ export default function HomeContent({ latestPosts = [], upcomingEvents = [], mem
                             : { href: item.href };
                         const Tag = item.external ? 'a' : Link;
                         return (
-                            <Tag
-                                {...cardProps}
+                            <article
                                 key={item.place}
                                 className={`${styles.weeklyCard} ${item.isNext ? styles.weeklyCardNext : ''}`}
                             >
-                                {item.isNext && (
-                                    <span className={styles.weeklyNextBadge}>次の開催</span>
-                                )}
-                                <div className={styles.weeklyThumb}>
-                                    <Image
-                                        src={item.image}
-                                        alt={item.place}
-                                        fill
-                                        sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 380px"
-                                    />
-                                </div>
-                                <div className={styles.weeklyBody}>
-                                    <div className={styles.weeklyDay}>
-                                        {item.nextDate && (
-                                            <span className={styles.weeklyDate}>{item.nextDate}</span>
-                                        )}
-                                        <span className={styles.weeklyDayName}>{item.day} {item.time}</span>
-                                        <span className={styles.weeklyDivider}>｜</span>
-                                        <span className={styles.weeklyPlace}>{item.place}</span>
+                                <Tag {...cardProps} className={styles.weeklyCardMain}>
+                                    {item.isNext && (
+                                        <span className={styles.weeklyNextBadge}>次の開催</span>
+                                    )}
+                                    <div className={styles.weeklyThumb}>
+                                        <Image
+                                            src={item.image}
+                                            alt={item.place}
+                                            fill
+                                            sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 380px"
+                                        />
                                     </div>
-                                    <p className={styles.weeklyLocation}>
-                                        <svg viewBox="0 0 24 24" className={styles.weeklyLocationIcon} aria-hidden="true">
-                                            <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" />
-                                            <circle cx="12" cy="9" r="2.5" />
-                                        </svg>
-                                        {item.location}
-                                    </p>
-                                    <ParticipantPreview
-                                        count={item.participantCount}
-                                        participants={item.participants}
-                                        className={styles.weeklyParticipants}
+                                    <div className={styles.weeklyBody}>
+                                        <div className={styles.weeklyDay}>
+                                            {item.nextDate && (
+                                                <span className={styles.weeklyDate}>{item.nextDate}</span>
+                                            )}
+                                            <span className={styles.weeklyDayName}>{item.day} {item.time}</span>
+                                            <span className={styles.weeklyDivider}>｜</span>
+                                            <span className={styles.weeklyPlace}>{item.place}</span>
+                                        </div>
+                                        <p className={styles.weeklyLocation}>
+                                            <svg viewBox="0 0 24 24" className={styles.weeklyLocationIcon} aria-hidden="true">
+                                                <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" />
+                                                <circle cx="12" cy="9" r="2.5" />
+                                            </svg>
+                                            {item.location}
+                                        </p>
+                                        <ParticipantPreview
+                                            count={item.participantCount}
+                                            participants={item.participants}
+                                            className={styles.weeklyParticipants}
+                                        />
+                                        <span className={styles.weeklyCardCta}>
+                                            {item.external ? 'Stravaページを見る' : '集合場所と参加方法を見る'}
+                                        </span>
+                                    </div>
+                                </Tag>
+                                <div className={styles.weeklyCardActions}>
+                                    <ShareScheduleButton
+                                        path={item.sharePath}
+                                        className={styles.weeklyShareButton}
                                     />
                                 </div>
-                            </Tag>
+                            </article>
                         );
                     })}
                 </div>

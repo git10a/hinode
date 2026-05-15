@@ -164,6 +164,34 @@
     margin-top: 0.8rem;
 }
 
+.stravaGuide {
+    margin-top: 1.2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(234, 222, 211, 0.9);
+}
+
+.stravaGuide h3 {
+    font-family: var(--font-jp);
+    font-size: 0.98rem;
+    font-weight: 700;
+    line-height: 1.55;
+    color: #222;
+    letter-spacing: 0.03em;
+    margin: 0 0 0.55rem;
+}
+
+.stravaGuide p {
+    font-size: 0.9rem;
+    line-height: 1.85;
+    color: #5f5851;
+    margin: 0;
+    max-width: none;
+}
+
+.stravaGuide p + p {
+    margin-top: 0.55rem;
+}
+
 .guideActions {
     display: flex;
     flex-wrap: wrap;
@@ -524,6 +552,59 @@
 .runForWhomText {
     color: #666;
     flex: 1;
+}
+
+.runActions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.7rem 1rem;
+}
+
+.stravaRunLink {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.35rem;
+    padding: 0.62rem 0.95rem;
+    border-radius: 6px;
+    background: #222;
+    color: #fff;
+    font-size: 0.84rem;
+    font-weight: 600;
+    line-height: 1.5;
+    text-decoration: none;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.stravaRunLink:hover {
+    background: #000;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+    transform: translateY(-1px);
+}
+
+.shareRunButton {
+    align-self: flex-start;
+    min-height: 2.35rem;
+    padding: 0.62rem 0.95rem;
+    border: 1px solid #ead8cd;
+    border-radius: 6px;
+    background: #fff;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.84rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #c2532a;
+    text-decoration: none;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.shareRunButton:hover {
+    background: #fbf7f3;
+    color: #9f3f1c;
+    border-bottom-color: #9f3f1c;
+    border-color: #e3c6b6;
 }
 
 /* ---------- FAQ ---------- */
