@@ -103,6 +103,7 @@ export default async function BlogPost({ params }) {
         '@context': 'https://schema.org',
         '@type': 'BlogPosting',
         headline: post.title,
+        description: post.description || `${post.title}の記事です。`,
         image: post.thumbnail ? [post.thumbnail.url] : [],
         datePublished: post.publishedAt,
         dateModified: post.updatedAt,
@@ -127,9 +128,6 @@ export default async function BlogPost({ params }) {
                     <div className={styles.articleHeader}>
                         <time className={styles.date}>{formatJapaneseDate(post.publishedAt)}</time>
                         <h1 className={styles.title}>{post.title}</h1>
-                        {post.description && (
-                            <p className={styles.description}>{post.description}</p>
-                        )}
                     </div>
 
                     {post.thumbnail && (
