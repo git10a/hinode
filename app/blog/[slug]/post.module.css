@@ -301,6 +301,61 @@
     margin-top: 0.2rem;
 }
 
+.sidebarParticipants {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-height: 28px;
+    margin: -0.2rem 0 1.2rem;
+    color: #777;
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+}
+
+.sidebarParticipantAvatars {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.sidebarParticipantAvatar,
+.sidebarParticipantOverflow {
+    width: 26px;
+    height: 26px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.sidebarParticipantAvatar {
+    display: block;
+    object-fit: cover;
+    background: #eee;
+}
+
+.sidebarParticipantAvatar + .sidebarParticipantAvatar,
+.sidebarParticipantOverflow {
+    margin-left: -0.5rem;
+}
+
+.sidebarParticipantOverflow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5efe2;
+    color: #8d7130;
+    font-family: var(--font-en);
+    font-size: 0.64rem;
+    font-weight: 600;
+    letter-spacing: 0;
+}
+
+.sidebarParticipantText {
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
 .sidebarActions {
     display: flex;
     flex-direction: column;

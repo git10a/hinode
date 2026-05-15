@@ -100,6 +100,33 @@ function stravaEventUrl(eventId) {
     return `https://www.strava.com/clubs/${STRAVA_CLUB_ID}/group_events/${eventId}`;
 }
 
+function ParticipantPreview({ count, participants = [], className = '' }) {
+    if (!count) return null;
+    const overflowCount = Math.max(0, count - participants.length);
+    const classNames = [styles.participants, className].filter(Boolean).join(' ');
+
+    return (
+        <div className={classNames} aria-label={`${count}人が参加予定`}>
+            {participants.length > 0 && (
+                <span className={styles.participantAvatars} aria-hidden="true">
+                    {participants.map((participant) => (
+                        <img
+                            key={participant.id}
+                            src={participant.image}
+                            alt=""
+                            className={styles.participantAvatar}
+                        />
+                    ))}
+                    {overflowCount > 0 && (
+                        <span className={styles.participantOverflow}>+{overflowCount}</span>
+                    )}
+                </span>
+            )}
+            <span className={styles.participantText}>{count}人が参加予定</span>
+        </div>
+    );
+}
+
 const VALUES = [
     {
         title: '競争しない',
@@ -159,6 +186,8 @@ export default function HomeContent({ latestPosts = [], upcomingEvents = [], mem
             nextTimestamp: next ? new Date(next.startAt).getTime() : fallback.nextTimestamp,
             href: next ? stravaEventUrl(next.eventId) : item.anchor,
             external: !!next,
+            participantCount: next?.participantCount,
+            participants: next?.participants || [],
         };
     })
         .sort((a, b) => a.nextTimestamp - b.nextTimestamp)
@@ -280,6 +309,11 @@ export default function HomeContent({ latestPosts = [], upcomingEvents = [], mem
                                         </svg>
                                         {item.location}
                                     </p>
+                                    <ParticipantPreview
+                                        count={item.participantCount}
+                                        participants={item.participants}
+                                        className={styles.weeklyParticipants}
+                                    />
                                 </div>
                             </Tag>
                         );
@@ -303,6 +337,11 @@ export default function HomeContent({ latestPosts = [], upcomingEvents = [], mem
                                         {e.address && (
                                             <span className={styles.adhocAddress}>{e.address}</span>
                                         )}
+                                        <ParticipantPreview
+                                            count={e.participantCount}
+                                            participants={e.participants}
+                                            className={styles.adhocParticipants}
+                                        />
                                         <span className={styles.adhocArrow} aria-hidden="true">→</span>
                                     </a>
                                 </li>

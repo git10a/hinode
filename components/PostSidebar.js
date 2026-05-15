@@ -15,6 +15,32 @@ function formatNext(iso) {
     return { date: `${m}/${d}(${w})`, time: `${hh}:${mm}` };
 }
 
+function SidebarParticipants({ count, participants = [] }) {
+    if (!count) return null;
+    const overflowCount = Math.max(0, count - participants.length);
+
+    return (
+        <div className={styles.sidebarParticipants} aria-label={`${count}人が参加予定`}>
+            {participants.length > 0 && (
+                <span className={styles.sidebarParticipantAvatars} aria-hidden="true">
+                    {participants.map((participant) => (
+                        <img
+                            key={participant.id}
+                            src={participant.image}
+                            alt=""
+                            className={styles.sidebarParticipantAvatar}
+                        />
+                    ))}
+                    {overflowCount > 0 && (
+                        <span className={styles.sidebarParticipantOverflow}>+{overflowCount}</span>
+                    )}
+                </span>
+            )}
+            <span className={styles.sidebarParticipantText}>{count}人が参加予定</span>
+        </div>
+    );
+}
+
 export default function PostSidebar({ nextEvent }) {
     const next = nextEvent ? formatNext(nextEvent.startAt) : null;
 
@@ -48,6 +74,11 @@ export default function PostSidebar({ nextEvent }) {
                         一緒に、気持ちのいい朝を過ごしましょう。
                     </p>
                 )}
+
+                <SidebarParticipants
+                    count={nextEvent?.participantCount}
+                    participants={nextEvent?.participants}
+                />
 
                 <div className={styles.sidebarActions}>
                     <Link href="/schedule" className={styles.sidebarBtnPrimary}>
