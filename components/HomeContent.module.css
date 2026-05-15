@@ -116,7 +116,7 @@
     color: #fff;
     line-height: 1;
     margin: 0 0 1.75rem;
-    text-transform: uppercase;
+    text-transform: none;
 }
 
 .heroHeadline {
@@ -465,7 +465,7 @@
     letter-spacing: 0.18em;
     color: #999;
     margin: 0 0 0.85rem;
-    text-transform: uppercase;
+    text-transform: none;
 }
 
 .adhocList {

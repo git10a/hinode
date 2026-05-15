@@ -5,7 +5,7 @@ import NextRunDate from '../../components/NextRunDate';
 import PostBottomStrip from '../../components/PostBottomStrip';
 
 export const metadata = {
-    title: '東京の日の出ラン開催日程｜皇居・目黒川・代々木公園で毎週開催',
+    title: '東京の朝ランコミュニティ開催日程｜皇居・目黒川・代々木公園',
     description: 'HINODEの日の出ラン開催日程ページです。皇居・目黒川・代々木公園で毎週開催。集合場所、曜日、距離、参加しやすさ、初参加時の流れをまとめています。最新情報はStravaとInstagramで確認できます。',
 };
 
@@ -281,7 +281,7 @@ export default function EventPage() {
             <div className={styles.hero}>
                 <p className={styles.eyebrow}>SCHEDULE</p>
                 <h1 className={styles.title}>
-                    東京の日の出ラン開催日程<br />
+                    東京の朝ランコミュニティ開催日程<br />
                     <span className={styles.titleSub}>皇居・目黒川・代々木公園</span>
                 </h1>
                 <p className={styles.lead}>

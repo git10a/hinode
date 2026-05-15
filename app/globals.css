@@ -65,7 +65,7 @@ h3 {
 h1 {
     font-size: 4rem;
     letter-spacing: 0.15em;
-    text-transform: uppercase;
+    text-transform: none;
     font-weight: 400;
 }
 
@@ -101,7 +101,7 @@ p {
     font-weight: 400;
     cursor: pointer;
     transition: all var(--transition-speed);
-    text-transform: uppercase;
+    text-transform: none;
     letter-spacing: 0.15em;
 }
 
@@ -781,7 +781,7 @@ footer {
     border-top: 1px solid var(--color-border);
     color: #888;
     font-size: 0.5rem;
-    text-transform: uppercase;
+    text-transform: none;
     letter-spacing: 0.15em;
     background-color: var(--color-bg);
     transition: background-color 0.1s linear;
@@ -1268,7 +1268,7 @@ footer p {
 
 .stat-label {
     font-size: 0.75rem;
-    text-transform: uppercase;
+    text-transform: none;
     letter-spacing: 0.1em;
     color: #555;
     margin-top: 0.3rem;

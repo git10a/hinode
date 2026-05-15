@@ -111,7 +111,7 @@ export default function SunrisePage() {
           font-size: 0.8rem;
           letter-spacing: 0.25em;
           color: #F37E4A;
-          text-transform: uppercase;
+          text-transform: none;
           margin-bottom: 1rem;
         }
         .sunrise-list-h1 {

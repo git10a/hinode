@@ -14,7 +14,7 @@
     letter-spacing: 0.12em;
     font-weight: 400;
     margin-bottom: 2rem;
-    text-transform: uppercase;
+    text-transform: none;
     font-family: var(--font-en);
     position: relative;
     display: inline-block;
@@ -38,7 +38,7 @@
     letter-spacing: 0.15em;
     color: #999;
     margin-bottom: 2rem;
-    text-transform: uppercase;
+    text-transform: none;
 }
 
 .section {

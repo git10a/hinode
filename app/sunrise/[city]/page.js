@@ -348,7 +348,7 @@ export default function CityPage({ params }) {
           font-size: 0.75rem;
           letter-spacing: 0.3em;
           color: #F37E4A;
-          text-transform: uppercase;
+          text-transform: none;
           margin-bottom: 0.8rem;
         }
         .sc-h1 {
@@ -403,7 +403,7 @@ export default function CityPage({ params }) {
         }
         .sc-card-label {
           font-size: 0.75rem;
-          text-transform: uppercase;
+          text-transform: none;
           letter-spacing: 0.15em;
           color: #999;
           margin-bottom: 0.8rem;
@@ -512,7 +512,7 @@ export default function CityPage({ params }) {
           font-size: 0.8rem;
           font-weight: 500;
           color: #999;
-          text-transform: uppercase;
+          text-transform: none;
           letter-spacing: 0.08em;
           background: #fafafa;
         }
@@ -541,7 +541,7 @@ export default function CityPage({ params }) {
           font-size: 0.8rem;
           font-weight: 600;
           color: #999;
-          text-transform: uppercase;
+          text-transform: none;
           margin-bottom: 0.5rem;
         }
         .sc-monthly-sunrise {
@@ -604,7 +604,7 @@ export default function CityPage({ params }) {
           font-size: 0.75rem;
           letter-spacing: 0.25em;
           color: #F37E4A;
-          text-transform: uppercase;
+          text-transform: none;
           margin-bottom: 0.8rem;
         }
         .sc-feedback-title {
