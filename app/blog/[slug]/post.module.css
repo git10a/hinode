@@ -148,12 +148,17 @@
 }
 
 .content blockquote {
-    border-left: 2px solid #F37E4A;
-    padding: 0.4rem 0 0.4rem 1.2rem;
     margin: 2rem 0;
+    padding: 1.15rem 1.25rem;
     color: #555;
     font-style: normal;
-    background: transparent;
+    background: #f7f7f5;
+    border: 1px solid #eeeeeb;
+    border-radius: 6px;
+}
+
+.content blockquote p:last-child {
+    margin-bottom: 0;
 }
 
 .content a {
