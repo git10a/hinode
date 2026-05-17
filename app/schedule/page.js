@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import Link from 'next/link';
+import Script from 'next/script';
 import styles from './schedule.module.css';
 import NextRunDate from '../../components/NextRunDate';
 import PostBottomStrip from '../../components/PostBottomStrip';
@@ -7,7 +7,7 @@ import ShareScheduleButton from '../../components/ShareScheduleButton';
 import { getUpcomingGroupEvents } from '../../lib/strava';
 
 export const metadata = {
-    title: '東京の朝ランコミュニティ開催日程｜皇居・目黒川・代々木公園',
+    title: 'HINODEのグループラン日程｜皇居・目黒川・代々木公園',
     description: 'HINODEの日の出ラン開催日程ページです。皇居・目黒川・代々木公園で毎週開催。集合場所、曜日、距離、参加しやすさ、初参加時の流れをまとめています。Stravaなしでも参加できます。',
 };
 
@@ -218,9 +218,13 @@ const RUNS = [
         distance: '約5km',
         recommendationLabel: 'おすすめ',
         recommendation: '平日朝にしっかり走りたい人向け',
-        mapImage: '/assets/kokyo-run-map.png',
-        mapAlt: '皇居ラン',
         mapUrl: 'https://maps.app.goo.gl/E9HkSojyPZw6zo1b9',
+        routeEmbed: {
+            embedId: '3425111489577090166',
+            mapHash: '13.24/35.68375/139.75284',
+            fromEmbed: 'true',
+            token: '3YSa6yh87lxuCt0mzvhY9UdGrvz2HsXJkxn3pK7dbag',
+        },
         dayOfWeek: 3,
         timeRaw: '06:30',
         description: (
@@ -237,9 +241,13 @@ const RUNS = [
         distance: '約4km',
         recommendationLabel: 'おすすめ',
         recommendation: '短めの距離で平日朝に走りたい人向け',
-        mapImage: '/assets/meguro-run-map.png',
-        mapAlt: '目黒川ラン',
         mapUrl: 'https://maps.app.goo.gl/SKixyw53vfJnp1p36',
+        routeEmbed: {
+            embedId: '3471979912283975976',
+            mapHash: '13.55/35.63905/139.70505',
+            fromEmbed: 'false',
+            token: 'sN752PL7E92oUeMlAq18khZvZ7wOebJp2bFaM2myM5s',
+        },
         dayOfWeek: 4,
         timeRaw: '06:30',
         description: (
@@ -256,9 +264,13 @@ const RUNS = [
         distance: '約2〜4km',
         recommendationLabel: '初参加に一番おすすめ',
         isFirstChoice: true,
-        mapImage: '/assets/yoyogi-run-map.png',
-        mapAlt: '代々木公園ラン',
         mapUrl: 'https://maps.app.goo.gl/dB3L15dHByAoC4jw9',
+        routeEmbed: {
+            embedId: '3471970663805426564',
+            mapHash: '14.88/35.6713/139.69663',
+            fromEmbed: 'true',
+            token: '-xVAs3bI3zddvxv_pjpAHUQmaurOqidqJl5C_VJ5i7c',
+        },
         dayOfWeek: 0,
         timeRaw: '07:30',
         description: (
@@ -283,6 +295,7 @@ export default async function EventPage() {
 
     return (
         <div className={styles.page}>
+            <Script src="https://strava-embeds.com/embed.js" strategy="afterInteractive" />
             {eventsJsonLd.map((event, i) => (
                 <script
                     key={i}
@@ -300,7 +313,7 @@ export default async function EventPage() {
             <div className={styles.hero}>
                 <p className={styles.eyebrow}>SCHEDULE</p>
                 <h1 className={styles.title}>
-                    東京の朝ランコミュニティ開催日程<br />
+                    HINODEのグループラン日程<br />
                     <span className={styles.titleSub}>皇居・目黒川・代々木公園</span>
                 </h1>
                 <p className={styles.lead}>
@@ -316,13 +329,107 @@ export default async function EventPage() {
                 </div>
             </div>
 
+            <section id="regular-runs" className={styles.runsSection} aria-labelledby="regular-runs-title">
+                <div className={styles.runsInner}>
+                    <div className={styles.runsHeader}>
+                        <p className={styles.runsKicker}>GROUP RUNS</p>
+                        <h2 id="regular-runs-title" className={styles.runsTitle}>開催場所ごとの日程・集合場所</h2>
+                        <p className={styles.runsLead}>
+                            皇居・目黒川・代々木公園それぞれの曜日、距離、集合場所をまとめています。
+                        </p>
+                    </div>
+
+                    <div className={styles.runs}>
+                        {RUNS.map((run) => {
+                            const stravaEvent = regularEventsByDay.get(run.dayOfWeek);
+
+                            return (
+                                <article key={run.id} id={run.id} className={styles.runCard}>
+                                    <div className={styles.runHead}>
+                                        <span className={styles.runNum}>{run.num}</span>
+                                        <div className={styles.runHeadText}>
+                                            <h3 className={styles.runName}>{run.name}</h3>
+                                            <p className={`${styles.runRecommendation} ${run.isFirstChoice ? styles.runRecommendationPrimary : ''}`}>
+                                                <span>{run.recommendationLabel}</span>
+                                                {run.recommendation && (
+                                                    <span>{run.recommendation}</span>
+                                                )}
+                                            </p>
+                                            <p className={styles.runMeta}>
+                                                <span className={styles.runDay}>{run.day}</span>
+                                                <span className={styles.runDot} aria-hidden="true">·</span>
+                                                <span className={styles.runTime}>{run.time}</span>
+                                                <span className={styles.runDot} aria-hidden="true">·</span>
+                                                <span className={styles.runDistance}>{run.distance}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className={styles.runBody}>
+                                        <div className={styles.runRouteCol}>
+                                            <div className={styles.runRouteFrame}>
+                                                <div
+                                                    className={`strava-embed-placeholder ${styles.stravaRouteEmbed}`}
+                                                    data-embed-type="route"
+                                                    data-embed-id={run.routeEmbed.embedId}
+                                                    data-units="metric"
+                                                    data-style="standard"
+                                                    data-map-hash={run.routeEmbed.mapHash}
+                                                    data-from-embed={run.routeEmbed.fromEmbed}
+                                                    data-token={run.routeEmbed.token}
+                                                />
+                                            </div>
+                                            <a
+                                                href={run.mapUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className={styles.googleMapLink}
+                                            >
+                                                Google mapで集合場所を見る →
+                                            </a>
+                                        </div>
+
+                                        <div className={styles.runDescCol}>
+                                            <NextRunDate dayOfWeek={run.dayOfWeek} time={run.timeRaw} className={styles.nextDate} />
+                                            <p className={styles.runDescription}>{run.description}</p>
+                                            {run.note && (
+                                                <p className={styles.runNote}>{run.note}</p>
+                                            )}
+                                            <div className={styles.runForWhom}>
+                                                <span className={styles.runForWhomLabel}>こんな方に</span>
+                                                <span className={styles.runForWhomText}>{run.forWhom}</span>
+                                            </div>
+                                            <div className={styles.runActions}>
+                                                {stravaEvent && (
+                                                    <a
+                                                        href={stravaEventUrl(stravaEvent.eventId)}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className={styles.stravaRunLink}
+                                                    >
+                                                        Stravaページを見る
+                                                    </a>
+                                                )}
+                                                <ShareScheduleButton
+                                                    path={`/schedule#${run.id}`}
+                                                    className={styles.shareRunButton}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            );
+                        })}
+                    </div>
+                </div>
+            </section>
+
             <section className={styles.guideSection} aria-labelledby="first-time-guide-title">
                 <div className={styles.guideIntro}>
                     <p className={styles.guideKicker}>FIRST RUN GUIDE</p>
                     <h2 id="first-time-guide-title" className={styles.guideTitle}>HINODE初参加ガイド</h2>
                     <p className={styles.guideLead}>
-                        はじめて朝ランの集まりに行く時は、少し緊張すると思います。
-                        HINODEは、ソロ参加が多く、会話しながら走れるくらいのペースで進みます。
+                        HINODEは、ソロ参加のランナーも多く、会話しながら走れるくらいのゆったりめなペースで走ります。
                     </p>
                     <p className={styles.guideText}>
                         予約や細かい連絡はいりません。気が向いた朝に、集合場所へふらっと来てください。
@@ -330,10 +437,10 @@ export default async function EventPage() {
                     <div className={styles.stravaGuide}>
                         <h3>Stravaなしでも参加できます</h3>
                         <p>
-                            まずはこのページの日程と集合場所が分かれば大丈夫です。Stravaを使っていない友達を誘う時も、このページのリンクを送ってください。
+                            日程どおりに集合していただければ大丈夫です。
                         </p>
                         <p>
-                            Stravaに入っておくと、HINODEで一緒に走った記録を残せたり、普段のランニングも記録できたりします。ランニング友達とつながって、お互いの頑張りを見られるので、走り続けるきっかけにもなります。
+                            Stravaは必須ではありませんが、使っておくとHINODEで走った記録や普段のランニングを残せます。ほかの参加者ともつながれるので、走る習慣を続けるきっかけにもなります。
                         </p>
                     </div>
                     <div className={styles.guideActions}>
@@ -374,87 +481,6 @@ export default async function EventPage() {
                         ))}
                     </ol>
                 </div>
-            </section>
-
-            <section id="regular-runs" className={styles.runs}>
-                {RUNS.map((run) => {
-                    const stravaEvent = regularEventsByDay.get(run.dayOfWeek);
-
-                    return (
-                        <article key={run.id} id={run.id} className={styles.runCard}>
-                            <div className={styles.runHead}>
-                                <span className={styles.runNum}>{run.num}</span>
-                                <div className={styles.runHeadText}>
-                                    <h2 className={styles.runName}>{run.name}</h2>
-                                    <p className={`${styles.runRecommendation} ${run.isFirstChoice ? styles.runRecommendationPrimary : ''}`}>
-                                        <span>{run.recommendationLabel}</span>
-                                        {run.recommendation && (
-                                            <span>{run.recommendation}</span>
-                                        )}
-                                    </p>
-                                    <p className={styles.runMeta}>
-                                        <span className={styles.runDay}>{run.day}</span>
-                                        <span className={styles.runDot} aria-hidden="true">·</span>
-                                        <span className={styles.runTime}>{run.time}</span>
-                                        <span className={styles.runDot} aria-hidden="true">·</span>
-                                        <span className={styles.runDistance}>{run.distance}</span>
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className={styles.runBody}>
-                                <div className={styles.runMapCol}>
-                                    <div className={styles.runMapWrap}>
-                                        <Image
-                                            src={run.mapImage}
-                                            alt={run.mapAlt}
-                                            width={400}
-                                            height={280}
-                                            sizes="(max-width: 768px) 100vw, 280px"
-                                            className={styles.runMapImage}
-                                        />
-                                    </div>
-                                    <a
-                                        href={run.mapUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className={styles.googleMapLink}
-                                    >
-                                        Google mapで集合場所を見る →
-                                    </a>
-                                </div>
-
-                                <div className={styles.runDescCol}>
-                                    <NextRunDate dayOfWeek={run.dayOfWeek} time={run.timeRaw} className={styles.nextDate} />
-                                    <p className={styles.runDescription}>{run.description}</p>
-                                    {run.note && (
-                                        <p className={styles.runNote}>{run.note}</p>
-                                    )}
-                                    <div className={styles.runForWhom}>
-                                        <span className={styles.runForWhomLabel}>こんな方に</span>
-                                        <span className={styles.runForWhomText}>{run.forWhom}</span>
-                                    </div>
-                                    <div className={styles.runActions}>
-                                        {stravaEvent && (
-                                            <a
-                                                href={stravaEventUrl(stravaEvent.eventId)}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className={styles.stravaRunLink}
-                                            >
-                                                Stravaページを見る
-                                            </a>
-                                        )}
-                                        <ShareScheduleButton
-                                            path={`/schedule#${run.id}`}
-                                            className={styles.shareRunButton}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    );
-                })}
             </section>
 
             <section className={styles.faqSection} aria-labelledby="first-time-faq-title">
