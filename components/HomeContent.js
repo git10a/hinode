@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { MEMBER_COUNT } from '../lib/stats';
 import ShareScheduleButton from './ShareScheduleButton';
+import ParticipantPreview from './ParticipantPreview';
 import styles from './HomeContent.module.css';
 
 const CHIPS = ['参加無料', '予約不要', '1人参加多め', '4km前後ゆっくり'];
@@ -99,33 +100,6 @@ function getNextRegularEvent(item, now = new Date()) {
 
 function stravaEventUrl(eventId) {
     return `https://www.strava.com/clubs/${STRAVA_CLUB_ID}/group_events/${eventId}`;
-}
-
-function ParticipantPreview({ count, participants = [], className = '' }) {
-    if (!count) return null;
-    const overflowCount = Math.max(0, count - participants.length);
-    const classNames = [styles.participants, className].filter(Boolean).join(' ');
-
-    return (
-        <div className={classNames} aria-label={`${count}人が参加予定`}>
-            {participants.length > 0 && (
-                <span className={styles.participantAvatars} aria-hidden="true">
-                    {participants.map((participant) => (
-                        <img
-                            key={participant.id}
-                            src={participant.image}
-                            alt=""
-                            className={styles.participantAvatar}
-                        />
-                    ))}
-                    {overflowCount > 0 && (
-                        <span className={styles.participantOverflow}>+{overflowCount}</span>
-                    )}
-                </span>
-            )}
-            <span className={styles.participantText}>{count}人が参加予定</span>
-        </div>
-    );
 }
 
 const VALUES = [

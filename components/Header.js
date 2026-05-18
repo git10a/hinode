@@ -10,6 +10,7 @@ import SOCIAL_LINKS from '../lib/socialLinks';
 const PRIMARY_NAV_LINKS = [
     { href: '/about/', label: 'HINODEとは' },
     { href: '/schedule/', label: '開催日程・参加方法' },
+    { href: '/first-run/', label: '初めての人へ' },
     { href: '/blog/', label: 'BLOG' },
 ];
 

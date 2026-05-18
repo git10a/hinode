@@ -8,7 +8,7 @@ import { getUpcomingGroupEvents } from '../../lib/strava';
 
 export const metadata = {
     title: 'HINODEのグループラン日程｜皇居・目黒川・代々木公園',
-    description: 'HINODEの日の出ラン開催日程ページです。皇居・目黒川・代々木公園で毎週開催。集合場所、曜日、距離、参加しやすさ、初参加時の流れをまとめています。Stravaなしでも参加できます。',
+    description: 'HINODEの日の出ラン開催日程ページです。皇居・目黒川・代々木公園で毎週開催。曜日、時間、集合場所、距離、Stravaイベントへの導線と最小限のFAQをまとめています。',
 };
 
 export const dynamic = 'force-dynamic';
@@ -18,6 +18,7 @@ const STRAVA_CLUB_URL = `https://www.strava.com/clubs/${STRAVA_CLUB_ID}`;
 const EVENT_DURATION_MINUTES = 60;
 const SITE_URL = 'https://hinode-run.com';
 const EVENT_PERFORMER = { "@type": "PerformingGroup", "name": "HINODE" };
+const FIRST_RUN_GUIDE_URL = '/first-run';
 
 function stravaEventUrl(eventId) {
     return `https://www.strava.com/clubs/${STRAVA_CLUB_ID}/group_events/${eventId}`;
@@ -152,59 +153,22 @@ function createEventsJsonLd(now = new Date()) {
     ];
 }
 
-const participationSteps = [
-    {
-        title: '行けそうな日程を選ぶ',
-        description: 'このページで次回開催日、集合場所、距離を確認できます。友達に送る時も、このページのリンクで大丈夫です。',
-        href: '#regular-runs',
-    },
-    {
-        title: 'Stravaはあれば便利',
-        description: '参加の必須条件ではありません。使っている方は、参加表明やランニング記録、ランニング仲間とのつながりに使えます。',
-        href: STRAVA_CLUB_URL,
-    },
-    {
-        title: '集合場所に3分前くらいに来る',
-        description: 'きっちり早く来なくても大丈夫です。走れる格好でそのままどうぞ。',
-    },
-    {
-        title: 'みんなでゆっくり走る',
-        description: '会話しながら走れるくらいのペースで、無理なく進みます。',
-    },
-    {
-        title: '終わったら自由解散',
-        description: '時間がある方はカフェへ。予定がある方はそのまま解散でOKです。',
-    },
-];
-
 const faqItems = [
     {
         question: '1人で行っても大丈夫ですか？',
-        answer: 'むしろ1人参加が多いです。はじめましての方も、その朝から自然に混ざれる雰囲気です。',
+        answer: '大丈夫です。1人参加の方も多く、予約や事前連絡なしで参加できます。',
     },
     {
         question: '速く走れないとダメですか？',
-        answer: 'そんなことまったくありません。HINODEは速く走る場所ではなく、早朝に走り続けるための場所です。',
+        answer: '大丈夫です。会話しながら走れるくらいのペースで、無理なく走ります。',
     },
     {
-        question: '途中で歩いてもいいですか？',
-        answer: 'もちろん大丈夫です。その日の体調に合わせて、無理なく参加してください。',
-    },
-    {
-        question: '参加費は？',
-        answer: '無料です。',
+        question: '参加費や予約は必要ですか？',
+        answer: '参加無料・予約不要です。開催日程と集合場所を確認して、そのまま集合場所へ来てください。',
     },
     {
         question: 'Stravaをやっていなくても参加できますか？',
-        answer: '参加できます。このページで日程と集合場所を確認して、そのまま来てもらえれば大丈夫です。Stravaは参加の必須条件ではありません。',
-    },
-    {
-        question: '事前連絡は必要？',
-        answer: '必要ありません。Stravaを使っている方はイベントで参加表明してもらえると、他の人も参加しやすくなります。行かない時の連絡はいりません。',
-    },
-    {
-        question: '写真に写らなくても大丈夫ですか？',
-        answer: '大丈夫です。HINODEでは、基本的に集合写真は撮りません。日の出や街の景色がきれいなタイミングで、景色の写真を撮るために立ち止まることはありますが、参加者の顔出しやSNS掲載を前提にした場ではありません。',
+        answer: '参加できます。Stravaは参加表明や記録に使えますが、必須ではありません。',
     },
 ];
 
@@ -321,11 +285,15 @@ export default async function EventPage() {
                     予約不要・参加費無料・1人参加OK。
                 </p>
                 <div className={styles.firstRunCallout}>
-                    <h2>初参加なら日曜がおすすめ</h2>
+                    <h2>初めて参加する方へ</h2>
                     <p>
-                        初参加の方は、まず日曜7:30の代々木公園ランがおすすめです。
-                        距離は2〜4km、会話できるペースで走ります。1人参加も多く、朝ランに慣れていない方でも参加しやすい回です。
+                        HINODEは、予約不要・参加無料・1人参加歓迎の朝ランコミュニティです。
+                        初めての方は、日曜7:30の代々木公園ランが参加しやすいです。
+                        当日の流れ、服装、荷物、写真方針、Stravaの使い方などは、初参加ガイドにまとめています。
                     </p>
+                    <Link href={FIRST_RUN_GUIDE_URL} className={styles.firstRunCalloutLink}>
+                        初参加ガイドを見る →
+                    </Link>
                 </div>
             </div>
 
@@ -424,69 +392,10 @@ export default async function EventPage() {
                 </div>
             </section>
 
-            <section className={styles.guideSection} aria-labelledby="first-time-guide-title">
-                <div className={styles.guideIntro}>
-                    <p className={styles.guideKicker}>FIRST RUN GUIDE</p>
-                    <h2 id="first-time-guide-title" className={styles.guideTitle}>HINODE初参加ガイド</h2>
-                    <p className={styles.guideLead}>
-                        HINODEは、ソロ参加のランナーも多く、会話しながら走れるくらいのゆったりめなペースで走ります。
-                    </p>
-                    <p className={styles.guideText}>
-                        予約や細かい連絡はいりません。気が向いた朝に、集合場所へふらっと来てください。
-                    </p>
-                    <div className={styles.stravaGuide}>
-                        <h3>Stravaなしでも参加できます</h3>
-                        <p>
-                            日程どおりに集合していただければ大丈夫です。
-                        </p>
-                        <p>
-                            Stravaは必須ではありませんが、使っておくとHINODEで走った記録や普段のランニングを残せます。ほかの参加者ともつながれるので、走る習慣を続けるきっかけにもなります。
-                        </p>
-                    </div>
-                    <div className={styles.guideActions}>
-                        <a href="#regular-runs" className={styles.primaryGuideLink}>
-                            日程と集合場所を見る →
-                        </a>
-                        <a href={STRAVA_CLUB_URL} target="_blank" rel="noopener noreferrer" className={styles.secondaryGuideLink}>
-                            Stravaクラブを見る
-                        </a>
-                    </div>
-                </div>
-
-                <div className={styles.flowPanel}>
-                    <h3 className={styles.flowTitle}>参加の流れ</h3>
-                    <ol className={styles.flowList}>
-                        {participationSteps.map((step, index) => (
-                            <li key={step.title} className={styles.flowItem}>
-                                <span className={styles.flowNumber}>{String(index + 1).padStart(2, '0')}</span>
-                                <div>
-                                    <h4>
-                                        {step.href ? (
-                                            step.href.startsWith('http') ? (
-                                                <a href={step.href} target="_blank" rel="noopener noreferrer">
-                                                    {step.title} →
-                                                </a>
-                                            ) : (
-                                                <a href={step.href}>
-                                                    {step.title} →
-                                                </a>
-                                            )
-                                        ) : (
-                                            step.title
-                                        )}
-                                    </h4>
-                                    <p>{step.description}</p>
-                                </div>
-                            </li>
-                        ))}
-                    </ol>
-                </div>
-            </section>
-
             <section className={styles.faqSection} aria-labelledby="first-time-faq-title">
                 <div className={styles.sectionHead}>
-                    <span className={styles.sectionNum}>04</span>
-                    <h2 id="first-time-faq-title" className={styles.sectionTitle}>よくある不安</h2>
+                    <span className={styles.sectionNum}>02</span>
+                    <h2 id="first-time-faq-title" className={styles.sectionTitle}>よくある質問</h2>
                 </div>
                 <div className={styles.faqGrid}>
                     {faqItems.map((item) => (
@@ -495,6 +404,11 @@ export default async function EventPage() {
                             <p>A. {item.answer}</p>
                         </article>
                     ))}
+                </div>
+                <div className={styles.faqGuideLinkWrap}>
+                    <Link href={FIRST_RUN_GUIDE_URL} className={styles.faqGuideLink}>
+                        初参加の詳しい流れを見る →
+                    </Link>
                 </div>
                 <div className={styles.callout}>
                     <span className={styles.calloutIcon} aria-hidden="true">☼</span>

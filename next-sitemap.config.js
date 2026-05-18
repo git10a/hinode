@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const SITE_URL = 'https://hinode-run.com';
-const EXTRA_STATIC_PATHS = ['/', '/schedule'];
+const EXTRA_STATIC_PATHS = ['/', '/schedule', '/first-run'];
 
 const INDEX_SUNRISE_CITIES = new Set([
   'tokyo-chiyoda', 'tokyo-meguro', 'tokyo-shibuya',
