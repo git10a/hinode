@@ -31,6 +31,46 @@ const SECTIONS = [
     },
 ];
 
+const STRAVA_CLUB_URL = 'https://www.strava.com/clubs/1772485';
+
+const QUICK_FACTS = [
+    {
+        label: '予約不要',
+        text: '予定が合えばそのまま集合場所へ',
+    },
+    {
+        label: '参加無料',
+        text: '走れる服装とシューズだけでOK',
+    },
+    {
+        label: '初心者歓迎',
+        text: '毎回、約3割がほぼ初めてのランニング',
+    },
+    {
+        label: '1人参加OK',
+        text: '黄色いゴムバンドを目印に合流',
+    },
+];
+
+const FIRST_JOIN_STEPS = [
+    {
+        title: '日程を見る',
+        text: '皇居・目黒川・代々木公園の開催日と集合場所を確認します。',
+    },
+    {
+        title: '集合場所へ行く',
+        text: '予約は不要です。開始数分前に、走れる服装で来てください。',
+    },
+    {
+        title: '目印を探す',
+        text: '手首に黄色いゴムバンドをつけている人を探してください。',
+    },
+    {
+        title: '無理なく走る',
+        text: 'ペースも距離も自由です。歩いても途中離脱しても大丈夫です。',
+    },
+];
+
 const FAQ = [
     {
         q: '集合場所で誰もいなかったら？',
@@ -85,19 +125,61 @@ export default function AboutContent() {
                 <p className={styles.lead}>
                     HINODEは、日の出前に集まり、日の出とともに走る東京の朝ランコミュニティです。初心者でも参加でき、参加費無料、予約不要。皇居・目黒川・代々木公園を中心に、1人参加でも来やすい場を目指しています。
                 </p>
+                <div className={styles.heroActions}>
+                    <Link href="/schedule" className={styles.primaryCta}>
+                        開催日程を見る <span aria-hidden="true">→</span>
+                    </Link>
+                    <a
+                        href={STRAVA_CLUB_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.secondaryCta}
+                    >
+                        Stravaで参加表明
+                    </a>
+                </div>
+                <dl className={styles.quickFacts} aria-label="HINODEの参加しやすさ">
+                    {QUICK_FACTS.map((fact) => (
+                        <div key={fact.label} className={styles.quickFact}>
+                            <dt>{fact.label}</dt>
+                            <dd>{fact.text}</dd>
+                        </div>
+                    ))}
+                </dl>
             </div>
 
             <div className={`${styles.heroImageWrap} ${styles.fadeIn}`}>
                 <Image
-                    src="/assets/about-hero-real.png"
-                    alt="HINODEの朝ラン - 日の出とともに走る東京のランニングコミュニティ"
-                    width={1024}
-                    height={451}
+                    src="/assets/about-hero-yokohama-sunrise.png"
+                    alt="日の出前の横浜の水辺と橋の風景"
+                    width={2282}
+                    height={1030}
                     sizes="(max-width: 900px) 100vw, 860px"
                     priority
                     className={styles.heroImage}
                 />
             </div>
+
+            <section className={`${styles.startGuide} ${styles.fadeIn}`} aria-labelledby="first-join-title">
+                <div className={styles.startGuideHeader}>
+                    <p className={styles.guideEyebrow}>FIRST JOIN</p>
+                    <h2 id="first-join-title" className={styles.guideTitle}>
+                        初めての参加は、この順番で大丈夫です
+                    </h2>
+                    <p className={styles.guideLead}>
+                        申込フォームも会員登録もありません。集合場所に来て、目印を見つけて、走れる範囲で一緒に走ります。
+                    </p>
+                </div>
+                <ol className={styles.stepList}>
+                    {FIRST_JOIN_STEPS.map((step, index) => (
+                        <li key={step.title} className={styles.stepItem}>
+                            <span className={styles.stepNum}>{String(index + 1).padStart(2, '0')}</span>
+                            <h3>{step.title}</h3>
+                            <p>{step.text}</p>
+                        </li>
+                    ))}
+                </ol>
+            </section>
 
             <article className={styles.body}>
                 {SECTIONS.map((s) => (
