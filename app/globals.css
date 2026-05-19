@@ -1315,6 +1315,22 @@ footer p {
     color: var(--color-text);
 }
 
+.footer-sub-links {
+    margin-bottom: 1.2rem;
+}
+
+.footer-sub-links a {
+    font-size: 0.72rem;
+    color: #888;
+    text-transform: none;
+    letter-spacing: 0.05em;
+    transition: color 0.3s;
+}
+
+.footer-sub-links a:hover {
+    color: var(--color-text);
+}
+
 /* Privacy Page */
 .privacy-page {
     background: var(--color-bg);

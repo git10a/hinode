@@ -17,7 +17,6 @@ const PRIMARY_NAV_LINKS = [
 const MENU_LINKS = [
     ...PRIMARY_NAV_LINKS,
     ...SOCIAL_LINKS.map((link) => ({ ...link, external: true })),
-    { href: '/sunrise/', label: '日の出時刻', priority: 'low' },
 ];
 
 function normalizePath(path) {
