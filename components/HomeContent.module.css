@@ -1013,7 +1013,7 @@
     }
 
     .closingBtn {
-        flex: 1;
+        flex: 1 1 100%;
         justify-content: center;
     }
 }

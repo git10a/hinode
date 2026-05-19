@@ -474,6 +474,14 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                         >
                             Instagram
                         </a>
+                        <a
+                            href="https://www.strava.com/clubs/hinode"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`${styles.closingBtn} ${styles.closingBtnSecondary}`}
+                        >
+                            Strava
+                        </a>
                     </div>
                 </div>
             </section>
