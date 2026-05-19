@@ -1,4 +1,5 @@
 import { Outfit, Zen_Kaku_Gothic_New } from 'next/font/google';
+import Script from 'next/script';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import './globals.css';
@@ -74,6 +75,18 @@ export default function RootLayout({ children }) {
                 <Header />
                 <main>{children}</main>
                 <Footer />
+                <Script
+                    src="https://www.googletagmanager.com/gtag/js?id=G-CDCR6WTVNQ"
+                    strategy="afterInteractive"
+                />
+                <Script id="google-analytics" strategy="afterInteractive">
+                    {`
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-CDCR6WTVNQ');
+                    `}
+                </Script>
             </body>
         </html>
     );
