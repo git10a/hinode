@@ -396,6 +396,53 @@
     flex-shrink: 0;
 }
 
+.weeklyWeather {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 0.85rem;
+    padding-top: 0.75rem;
+    width: 100%;
+    border-top: 1px solid #f0ede5;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: #666;
+}
+
+.weeklyWeatherIcon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    color: #C5A14C;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.weeklyWeather[data-weather="cloudy"] .weeklyWeatherIcon {
+    color: #8b9298;
+}
+
+.weeklyWeather[data-weather="rain"] .weeklyWeatherIcon,
+.weeklyWeather[data-weather="storm"] .weeklyWeatherIcon {
+    color: #497ca6;
+}
+
+.weeklyWeather[data-weather="snow"] .weeklyWeatherIcon,
+.weeklyWeather[data-weather="fog"] .weeklyWeatherIcon {
+    color: #9ba9b5;
+}
+
+.weeklyWeatherTemp {
+    font-family: var(--font-en);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #222;
+}
+
 .weeklyParticipants {
     margin-top: 1rem;
 }

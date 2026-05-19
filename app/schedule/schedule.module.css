@@ -382,17 +382,6 @@
     margin: 0;
 }
 
-.runNote {
-    font-size: 0.9rem;
-    line-height: 1.85;
-    color: #555;
-    background: #fafafa;
-    padding: 1rem 1.1rem;
-    border-radius: 4px;
-    margin: 0;
-    border-left: 2px solid #F37E4A;
-}
-
 .noteLink {
     color: #c2532a;
     text-decoration: none;

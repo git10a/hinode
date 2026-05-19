@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { MEMBER_COUNT } from '../lib/stats';
+import { getWeatherForecastsForRuns } from '../lib/weather';
 import ShareScheduleButton from './ShareScheduleButton';
 import ParticipantPreview from './ParticipantPreview';
+import WeatherIcon from './WeatherIcon';
 import styles from './HomeContent.module.css';
 
 const CHIPS = ['参加無料', '予約不要', '1人参加多め', '4km前後ゆっくり'];
@@ -11,6 +13,7 @@ const STRAVA_CLUB_ID = '1772485';
 
 const WEEKLY_ITEMS = [
     {
+        id: 'kokyo',
         day: '水曜',
         dayIndex: 3,
         time: '06:30',
@@ -18,8 +21,10 @@ const WEEKLY_ITEMS = [
         location: '桔梗門派出所前',
         image: '/assets/Kokyo.jpg',
         anchor: '/schedule#kokyo',
+        weatherLocation: { latitude: 35.68375, longitude: 139.75284 },
     },
     {
+        id: 'meguro',
         day: '木曜',
         dayIndex: 4,
         time: '06:30',
@@ -27,8 +32,10 @@ const WEEKLY_ITEMS = [
         location: 'スタバ蔦屋書店前（中目黒）',
         image: '/assets/Meguro.png',
         anchor: '/schedule#meguro',
+        weatherLocation: { latitude: 35.63905, longitude: 139.70505 },
     },
     {
+        id: 'yoyogi',
         day: '日曜',
         dayIndex: 0,
         time: '07:30',
@@ -36,6 +43,7 @@ const WEEKLY_ITEMS = [
         location: '原宿時計塔前',
         image: '/assets/Yoyogi.png',
         anchor: '/schedule#yoyogi',
+        weatherLocation: { latitude: 35.6713, longitude: 139.69663 },
     },
 ];
 
@@ -149,10 +157,10 @@ function formatDate(iso) {
     return `${y}.${m}.${day}`;
 }
 
-export default function HomeContent({ latestPosts = [], upcomingEvents = [], memberCount = null }) {
+export default async function HomeContent({ latestPosts = [], upcomingEvents = [], memberCount = null }) {
     const displayedMemberCount = memberCount ?? MEMBER_COUNT;
     const regularDays = new Set(WEEKLY_ITEMS.map((i) => i.dayIndex));
-    const regularCards = WEEKLY_ITEMS.map((item) => {
+    const regularCardsWithoutWeather = WEEKLY_ITEMS.map((item) => {
         const next = upcomingEvents.find((e) => e.dayOfWeek === item.dayIndex);
         const fallback = getNextRegularEvent(item);
         return {
@@ -171,6 +179,17 @@ export default function HomeContent({ latestPosts = [], upcomingEvents = [], mem
             ...item,
             isNext: index === 0,
         }));
+    const weatherForecasts = await getWeatherForecastsForRuns(
+        regularCardsWithoutWeather.map((item) => ({
+            id: item.id,
+            startAt: item.nextTimestamp,
+            ...item.weatherLocation,
+        }))
+    );
+    const regularCards = regularCardsWithoutWeather.map((item) => ({
+        ...item,
+        weather: weatherForecasts[item.id],
+    }));
     const adhocEvents = upcomingEvents
         .filter((e) => !regularDays.has(e.dayOfWeek))
         .slice(0, 2);
@@ -285,6 +304,20 @@ export default function HomeContent({ latestPosts = [], upcomingEvents = [], mem
                                             </svg>
                                             {item.location}
                                         </p>
+                                        {item.weather && (
+                                            <p
+                                                className={styles.weeklyWeather}
+                                                data-weather={item.weather.tone}
+                                                aria-label={`${item.weather.condition} ${item.weather.temperature}℃`}
+                                            >
+                                                <WeatherIcon
+                                                    tone={item.weather.tone}
+                                                    className={styles.weeklyWeatherIcon}
+                                                    title={item.weather.condition}
+                                                />
+                                                <span className={styles.weeklyWeatherTemp}>{item.weather.temperature}℃</span>
+                                            </p>
+                                        )}
                                         <ParticipantPreview
                                             count={item.participantCount}
                                             participants={item.participants}

@@ -180,8 +180,6 @@ const RUNS = [
         day: '毎週水曜',
         time: '06:30〜',
         distance: '約5km',
-        recommendationLabel: 'おすすめ',
-        recommendation: '平日朝にしっかり走りたい人向け',
         mapUrl: 'https://maps.app.goo.gl/E9HkSojyPZw6zo1b9',
         routeEmbed: {
             embedId: '3425111489577090166',
@@ -203,8 +201,6 @@ const RUNS = [
         day: '毎週木曜',
         time: '06:30〜',
         distance: '約4km',
-        recommendationLabel: 'おすすめ',
-        recommendation: '短めの距離で平日朝に走りたい人向け',
         mapUrl: 'https://maps.app.goo.gl/SKixyw53vfJnp1p36',
         routeEmbed: {
             embedId: '3471979912283975976',
@@ -317,12 +313,14 @@ export default async function EventPage() {
                                         <span className={styles.runNum}>{run.num}</span>
                                         <div className={styles.runHeadText}>
                                             <h3 className={styles.runName}>{run.name}</h3>
-                                            <p className={`${styles.runRecommendation} ${run.isFirstChoice ? styles.runRecommendationPrimary : ''}`}>
-                                                <span>{run.recommendationLabel}</span>
-                                                {run.recommendation && (
-                                                    <span>{run.recommendation}</span>
-                                                )}
-                                            </p>
+                                            {run.recommendationLabel && (
+                                                <p className={`${styles.runRecommendation} ${run.isFirstChoice ? styles.runRecommendationPrimary : ''}`}>
+                                                    <span>{run.recommendationLabel}</span>
+                                                    {run.recommendation && (
+                                                        <span>{run.recommendation}</span>
+                                                    )}
+                                                </p>
+                                            )}
                                             <p className={styles.runMeta}>
                                                 <span className={styles.runDay}>{run.day}</span>
                                                 <span className={styles.runDot} aria-hidden="true">·</span>
@@ -361,7 +359,7 @@ export default async function EventPage() {
                                             <NextRunDate dayOfWeek={run.dayOfWeek} time={run.timeRaw} className={styles.nextDate} />
                                             <p className={styles.runDescription}>{run.description}</p>
                                             {run.note && (
-                                                <p className={styles.runNote}>{run.note}</p>
+                                                <p className={styles.runDescription}>{run.note}</p>
                                             )}
                                             <div className={styles.runForWhom}>
                                                 <span className={styles.runForWhomLabel}>こんな方に</span>
@@ -409,13 +407,6 @@ export default async function EventPage() {
                     <Link href={FIRST_RUN_GUIDE_URL} className={styles.faqGuideLink}>
                         初参加の詳しい流れを見る →
                     </Link>
-                </div>
-                <div className={styles.callout}>
-                    <span className={styles.calloutIcon} aria-hidden="true">☼</span>
-                    <div className={styles.calloutBody}>
-                        <p className={styles.calloutTitle}>手首の<strong>黄色いゴムバンド</strong>が目印です</p>
-                        <p className={styles.calloutSub}>集合場所では、それを目印に合流してください。ほかに聞きたいことがあればInstagramで気軽にご連絡ください。</p>
-                    </div>
                 </div>
             </section>
 
