@@ -301,6 +301,31 @@
     margin-top: 0.2rem;
 }
 
+.sidebarLocation {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin: -0.05rem 0 0.4rem;
+    color: #777;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+}
+
+.sidebarLocationIcon {
+    width: 13px;
+    height: 13px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    flex-shrink: 0;
+}
+
+.sidebarLocationText {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
 .sidebarParticipants {
     display: flex;
     align-items: center;

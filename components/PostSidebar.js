@@ -1,8 +1,15 @@
 import Link from 'next/link';
+import SCHEDULE_ITEMS from '../lib/scheduleItems';
 import styles from '../app/blog/[slug]/post.module.css';
 
 const STRAVA_CLUB_URL = 'https://www.strava.com/clubs/1772485';
 const DAY_LABEL_JP = ['日', '月', '火', '水', '木', '金', '土'];
+const SCHEDULE_LOCATION_BY_KEY = new Map(
+    SCHEDULE_ITEMS.map((item) => {
+        const place = item.label.split('｜').pop();
+        return [`${item.dayOfWeek}-${item.time}`, `${place} ${item.location}`];
+    })
+);
 
 function formatNext(iso) {
     const utc = new Date(iso);
@@ -13,6 +20,12 @@ function formatNext(iso) {
     const hh = String(jst.getUTCHours()).padStart(2, '0');
     const mm = String(jst.getUTCMinutes()).padStart(2, '0');
     return { date: `${m}/${d}(${w})`, time: `${hh}:${mm}` };
+}
+
+function getEventLocation(event, formattedTime) {
+    const address = event?.address?.trim();
+    if (address) return address;
+    return SCHEDULE_LOCATION_BY_KEY.get(`${event?.dayOfWeek}-${formattedTime}`) || '';
 }
 
 function SidebarParticipants({ count, participants = [] }) {
@@ -43,6 +56,7 @@ function SidebarParticipants({ count, participants = [] }) {
 
 export default function PostSidebar({ nextEvent }) {
     const next = nextEvent ? formatNext(nextEvent.startAt) : null;
+    const nextLocation = next ? getEventLocation(nextEvent, next.time) : '';
 
     return (
         <aside className={styles.sidebar}>
@@ -67,6 +81,15 @@ export default function PostSidebar({ nextEvent }) {
                 {next ? (
                     <p className={styles.sidebarLead}>
                         <strong>{next.date} {next.time}</strong>
+                        {nextLocation && (
+                            <span className={styles.sidebarLocation}>
+                                <svg viewBox="0 0 24 24" className={styles.sidebarLocationIcon} aria-hidden="true">
+                                    <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" />
+                                    <circle cx="12" cy="9" r="2.5" />
+                                </svg>
+                                <span className={styles.sidebarLocationText}>{nextLocation}</span>
+                            </span>
+                        )}
                         <span className={styles.sidebarSubLine}>一緒に、気持ちのいい朝を過ごしましょう。</span>
                     </p>
                 ) : (
