@@ -17,13 +17,15 @@ const zenKaku = Zen_Kaku_Gothic_New({
     display: 'swap',
 });
 
+const siteDescription = 'HINODEは東京の朝ランコミュニティ。代々木公園・皇居・目黒川で、日の出の時間にゆっくり走ります。20代30代を中心に、学生から50代まで。1人参加OK・予約不要・参加費無料。';
+
 export const metadata = {
     title: 'HINODE｜東京の朝ランコミュニティ｜皇居・目黒川・代々木公園',
-    description: 'HINODEは、東京で日の出とともに走る朝ランコミュニティ。皇居（水曜）・目黒川（木曜）・代々木公園（日曜）で週3回開催。参加無料・予約不要・1人参加OK。',
+    description: siteDescription,
     metadataBase: new URL('https://hinode-run.com'),
     openGraph: {
         title: 'HINODE｜東京の朝ランコミュニティ｜皇居・目黒川・代々木公園',
-        description: 'HINODEは、東京で日の出とともに走る朝ランコミュニティ。皇居（水曜）・目黒川（木曜）・代々木公園（日曜）で週3回開催。参加無料・予約不要・1人参加OK。',
+        description: siteDescription,
         url: 'https://hinode-run.com',
         siteName: 'HINODE',
         locale: 'ja_JP',
@@ -33,7 +35,7 @@ export const metadata = {
     twitter: {
         card: 'summary_large_image',
         title: 'HINODE｜東京の朝ランコミュニティ｜皇居・目黒川・代々木公園',
-        description: 'HINODEは、東京で日の出とともに走る朝ランコミュニティ。皇居（水曜）・目黒川（木曜）・代々木公園（日曜）で週3回開催。参加無料・予約不要・1人参加OK。',
+        description: siteDescription,
         images: ['/assets/ogp-home.png'],
     },
     icons: {
@@ -48,7 +50,7 @@ export default function RootLayout({ children }) {
         "@type": "SportsClub",
         "name": "HINODE",
         "alternateName": ["日の出ラン", "HINODE Running Club", "HINODE Tokyo"],
-        "description": "東京で日の出とともに走る朝ランコミュニティ。皇居・目黒川・代々木公園で週3回開催。参加無料・予約不要。",
+        "description": siteDescription,
         "url": "https://hinode-run.com/",
         "logo": "https://hinode-run.com/assets/logo-black.png",
         "foundingDate": "2025-11",
