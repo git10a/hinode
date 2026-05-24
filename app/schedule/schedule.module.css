@@ -173,14 +173,6 @@
     margin: 0 0 0.45rem;
 }
 
-.nextRunsLead {
-    font-size: 0.9rem;
-    line-height: 1.85;
-    color: #5f5851;
-    margin: 0;
-    max-width: 720px;
-}
-
 .nextRunsGrid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -281,22 +273,50 @@
 }
 
 .nextRunActions {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.55rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
     margin-top: 1rem;
 }
 
-.nextRunPrimary,
-.nextRunSecondary,
+.nextRunDetailsLink {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.7rem;
+    color: #9b4a24;
+    border-bottom: 1px solid rgba(155, 74, 36, 0.24);
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.nextRunDetailsLink:hover {
+    color: #111;
+    border-bottom-color: rgba(17, 17, 17, 0.38);
+}
+
+.nextRunButtonActions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
 .nextRunSubAction,
 .nextRunShare {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 2.4rem;
-    padding: 0.62rem 0.82rem;
+    width: 100%;
+    min-height: 2.45rem;
+    padding: 0.65rem 0.9rem;
     border-radius: 6px;
+    border: 1px solid #e8dcc9;
+    background: #fffaf1;
+    color: #795d2d;
     font-family: inherit;
     font-size: 0.82rem;
     font-weight: 600;
@@ -305,45 +325,18 @@
     text-align: center;
     text-decoration: none;
     overflow-wrap: anywhere;
-    transition: background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
-}
-
-.nextRunPrimary {
-    border: 1px solid #222;
-    background: #222;
-    color: #fff;
-}
-
-.nextRunPrimary:hover {
-    background: #000;
-    border-color: #000;
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
-    transform: translateY(-1px);
-}
-
-.nextRunSecondary {
-    border: 1px solid #f0d8c8;
-    background: #fbf7f3;
-    color: #c2532a;
-}
-
-.nextRunSubAction,
-.nextRunShare {
-    border: 1px solid #ead8cd;
-    background: #fff;
-    color: #795d2d;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 
 .nextRunShare {
     cursor: pointer;
 }
 
-.nextRunSecondary:hover,
 .nextRunSubAction:hover,
 .nextRunShare:hover {
-    background: #fbf7f3;
-    border-color: #e3c6b6;
-    color: #9f3f1c;
+    background: #fff6df;
+    border-color: #d3bd86;
+    color: #111;
 }
 
 /* ---------- runs ---------- */

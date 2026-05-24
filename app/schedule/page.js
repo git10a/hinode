@@ -334,10 +334,7 @@ export default async function EventPage() {
             <section className={styles.nextRunsSection} aria-labelledby="next-runs-title">
                 <div className={styles.nextRunsHeader}>
                     <p className={styles.nextRunsKicker}>NEXT RUNS</p>
-                    <h2 id="next-runs-title" className={styles.nextRunsTitle}>次に行ける日程</h2>
-                    <p className={styles.nextRunsLead}>
-                        直近の開催だけ先に確認できます。初めての方は流れを見てから、慣れている方は集合場所へそのまま進めます。
-                    </p>
+                    <h2 id="next-runs-title" className={styles.nextRunsTitle}>直近の日程</h2>
                 </div>
                 <div className={styles.nextRunsGrid}>
                     {nextRunCards.map((run, index) => (
@@ -366,26 +363,25 @@ export default async function EventPage() {
                                 className={styles.nextRunParticipants}
                             />
                             <div className={styles.nextRunActions}>
-                                <Link href={FIRST_RUN_GUIDE_URL} className={styles.nextRunPrimary}>
-                                    初参加ガイドはこちら
+                                <Link href={`#${run.id}`} className={styles.nextRunDetailsLink}>
+                                    初参加ガイドや集合場所はこちら
                                 </Link>
-                                <Link href={`#${run.id}`} className={styles.nextRunSecondary}>
-                                    集合場所を見る
-                                </Link>
-                                {run.stravaEvent && (
-                                    <a
-                                        href={stravaEventUrl(run.stravaEvent.eventId)}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className={styles.nextRunSubAction}
-                                    >
-                                        Stravaページを見る
-                                    </a>
-                                )}
-                                <ShareScheduleButton
-                                    path={`/schedule#${run.id}`}
-                                    className={styles.nextRunShare}
-                                />
+                                <div className={styles.nextRunButtonActions}>
+                                    {run.stravaEvent && (
+                                        <a
+                                            href={stravaEventUrl(run.stravaEvent.eventId)}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={styles.nextRunSubAction}
+                                        >
+                                            Stravaページを見る
+                                        </a>
+                                    )}
+                                    <ShareScheduleButton
+                                        path={`/schedule#${run.id}`}
+                                        className={styles.nextRunShare}
+                                    />
+                                </div>
                             </div>
                         </article>
                     ))}
