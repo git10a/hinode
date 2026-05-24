@@ -167,8 +167,8 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
             ...item,
             nextDate: next ? formatEventDate(next.startAt) : fallback.nextDate,
             nextTimestamp: next ? new Date(next.startAt).getTime() : fallback.nextTimestamp,
-            href: next ? stravaEventUrl(next.eventId) : item.anchor,
-            external: !!next,
+            detailsHref: item.anchor,
+            stravaHref: next ? stravaEventUrl(next.eventId) : null,
             sharePath: item.anchor,
             participantCount: next?.participantCount,
             participants: next?.participants || [],
@@ -267,16 +267,12 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                 </div>
                 <div className={styles.weeklyGrid}>
                     {regularCards.map((item) => {
-                        const cardProps = item.external
-                            ? { href: item.href, target: '_blank', rel: 'noopener noreferrer' }
-                            : { href: item.href };
-                        const Tag = item.external ? 'a' : Link;
                         return (
                             <article
                                 key={item.place}
                                 className={`${styles.weeklyCard} ${item.isNext ? styles.weeklyCardNext : ''}`}
                             >
-                                <Tag {...cardProps} className={styles.weeklyCardMain}>
+                                <Link href={item.detailsHref} className={styles.weeklyCardMain}>
                                     {item.isNext && (
                                         <span className={styles.weeklyNextBadge}>次の開催</span>
                                     )}
@@ -324,15 +320,27 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                                             className={styles.weeklyParticipants}
                                         />
                                         <span className={styles.weeklyCardCta}>
-                                            {item.external ? 'Stravaページを見る' : '集合場所と参加方法を見る'}
+                                            初参加ガイドや集合場所はこちら
                                         </span>
                                     </div>
-                                </Tag>
+                                </Link>
                                 <div className={styles.weeklyCardActions}>
-                                    <ShareScheduleButton
-                                        path={item.sharePath}
-                                        className={styles.weeklyShareButton}
-                                    />
+                                    <div className={styles.weeklySecondaryActions}>
+                                        {item.stravaHref && (
+                                            <a
+                                                href={item.stravaHref}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className={styles.weeklyStravaButton}
+                                            >
+                                                Stravaページを見る
+                                            </a>
+                                        )}
+                                        <ShareScheduleButton
+                                            path={item.sharePath}
+                                            className={styles.weeklyShareButton}
+                                        />
+                                    </div>
                                 </div>
                             </article>
                         );

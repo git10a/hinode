@@ -3,6 +3,7 @@
     margin: 0 auto;
     padding: 7rem 1.5rem 4rem;
     color: #222;
+    overflow-wrap: anywhere;
 }
 
 .page h1,
@@ -231,14 +232,33 @@
     display: inline-block;
     padding: 0.85rem 1.5rem;
     font-size: 0.88rem;
-    color: #555;
+    font-weight: 500;
+    color: #333;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.inlineCtaBtnSecondary:hover {
+    color: #222;
+    border-color: #999;
+}
+
+.inlineCtaBtnTertiary {
+    display: inline-block;
+    padding: 0.85rem 1.2rem;
+    font-size: 0.88rem;
+    color: #666;
     text-decoration: none;
     letter-spacing: 0.03em;
     border-bottom: 1px solid transparent;
     transition: color 0.2s, border-color 0.2s;
 }
 
-.inlineCtaBtnSecondary:hover {
+.inlineCtaBtnTertiary:hover {
     color: #222;
     border-bottom-color: #ccc;
 }
@@ -425,6 +445,27 @@
 .sidebarBtnSecondary:hover {
     border-color: #999;
     color: #000;
+}
+
+.sidebarBtnTertiary {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.72rem 1rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #666;
+    background: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: background 0.2s, color 0.2s;
+}
+
+.sidebarBtnTertiary:hover {
+    background: #f7f7f5;
+    color: #222;
 }
 
 .sidebarBtnIcon {

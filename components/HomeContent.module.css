@@ -466,29 +466,50 @@
 }
 
 .weeklyCardActions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
     padding: 0 1.5rem 1.45rem;
 }
 
+.weeklySecondaryActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+}
+
+.weeklyStravaButton,
 .weeklyShareButton {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
     min-height: 2.45rem;
     padding: 0.65rem 0.9rem;
-    border: 1px solid #e8dcc9;
     border-radius: 6px;
-    background: #fffaf1;
-    color: #795d2d;
-    cursor: pointer;
     font-family: inherit;
     font-size: 0.8rem;
     font-weight: 600;
     letter-spacing: 0.04em;
     line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    overflow-wrap: anywhere;
     transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 
+.weeklyStravaButton,
+.weeklyShareButton {
+    flex: 1 1 9.5rem;
+    border: 1px solid #e8dcc9;
+    background: #fffaf1;
+    color: #795d2d;
+}
+
+.weeklyShareButton {
+    cursor: pointer;
+}
+
+.weeklyStravaButton:hover,
 .weeklyShareButton:hover {
     border-color: #d3bd86;
     background: #fff6df;
@@ -981,6 +1002,15 @@
 
     .weeklyCardActions {
         padding: 0 1.25rem 1.25rem;
+    }
+
+    .weeklySecondaryActions {
+        flex-direction: column;
+    }
+
+    .weeklyStravaButton,
+    .weeklyShareButton {
+        width: 100%;
     }
 
     .valuesGrid {

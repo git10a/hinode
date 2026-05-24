@@ -162,17 +162,20 @@ export default async function BlogPost({ params }) {
                         </p>
                         <p className={styles.inlineCtaSub}>
                             気になった方は、開催日程を見てください。<br />
-                            参加人数や雰囲気はStravaでも見られます。
+                            初めての方は、当日の流れも先に確認できます。
                         </p>
                         <div className={styles.inlineCtaActions}>
                             <Link href="/schedule" className={styles.inlineCtaBtnPrimary}>
                                 開催日程を見る →
                             </Link>
+                            <Link href="/first-run" className={styles.inlineCtaBtnSecondary}>
+                                初参加ガイドを見る →
+                            </Link>
                             <a
                                 href="https://www.strava.com/clubs/1772485"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className={styles.inlineCtaBtnSecondary}
+                                className={styles.inlineCtaBtnTertiary}
                             >
                                 Stravaクラブを見る →
                             </a>

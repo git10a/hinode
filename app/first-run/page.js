@@ -164,11 +164,7 @@ export default async function FirstRunPage() {
     const upcomingEvents = await getUpcomingGroupEvents();
     const firstChoiceEvent = upcomingEvents.find((event) => event.dayOfWeek === FIRST_CHOICE_RUN.dayOfWeek);
     const firstChoiceDate = firstChoiceEvent ? formatEventDate(firstChoiceEvent.startAt) : getNextRegularEvent(FIRST_CHOICE_RUN);
-    const firstChoiceHref = firstChoiceEvent ? stravaEventUrl(firstChoiceEvent.eventId) : FIRST_CHOICE_RUN.href;
-    const FirstChoiceLink = firstChoiceEvent ? 'a' : Link;
-    const firstChoiceLinkProps = firstChoiceEvent
-        ? { href: firstChoiceHref, target: '_blank', rel: 'noopener noreferrer' }
-        : { href: firstChoiceHref };
+    const firstChoiceStravaHref = firstChoiceEvent ? stravaEventUrl(firstChoiceEvent.eventId) : null;
 
     return (
         <div className={styles.page}>
@@ -208,7 +204,7 @@ export default async function FirstRunPage() {
                         alt="朝の光の中で走るHINODEメンバー"
                         width={1294}
                         height={1726}
-                        sizes="(max-width: 900px) 100vw, 420px"
+                        sizes="(max-width: 900px) 100vw, 520px"
                         priority
                         className={styles.heroImage}
                     />
@@ -242,46 +238,53 @@ export default async function FirstRunPage() {
                     </p>
                 </div>
                 <article className={styles.firstChoiceCard}>
-                    <FirstChoiceLink {...firstChoiceLinkProps} className={styles.firstChoiceCardMain}>
-                        <div className={styles.firstChoiceThumb}>
-                            <Image
-                                src={FIRST_CHOICE_RUN.image}
-                                alt={FIRST_CHOICE_RUN.place}
-                                fill
-                                sizes="(max-width: 768px) 100vw, 210px"
-                            />
-                        </div>
-                        <div className={styles.firstChoiceBody}>
-                            <p className={styles.firstChoiceMeta}>
-                                {firstChoiceDate && (
-                                    <span className={styles.firstChoiceDate}>{firstChoiceDate}</span>
-                                )}
-                                <span className={styles.firstChoiceDayTime}>{FIRST_CHOICE_RUN.day} {FIRST_CHOICE_RUN.timeRaw}</span>
-                                <span className={styles.firstChoiceDivider} aria-hidden="true">｜</span>
-                            </p>
-                            <h3 className={styles.firstChoicePlace}>{FIRST_CHOICE_RUN.place}</h3>
-                            <p className={styles.firstChoiceLocation}>
-                                <svg viewBox="0 0 24 24" className={styles.firstChoiceLocationIcon} aria-hidden="true">
-                                    <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" />
-                                    <circle cx="12" cy="9" r="2.5" />
-                                </svg>
-                                {FIRST_CHOICE_RUN.location}
-                            </p>
-                            <ParticipantPreview
-                                count={firstChoiceEvent?.participantCount}
-                                participants={firstChoiceEvent?.participants || []}
-                                className={styles.firstChoiceParticipants}
-                            />
-                            <span className={styles.firstChoiceCta}>
-                                {firstChoiceEvent ? 'Stravaページを見る' : '集合場所と参加方法を見る'}
-                            </span>
-                        </div>
-                    </FirstChoiceLink>
-                    <div className={styles.firstChoiceActions}>
-                        <ShareScheduleButton
-                            path={FIRST_CHOICE_RUN.href}
-                            className={styles.firstChoiceShareButton}
+                    <div className={styles.firstChoiceThumb}>
+                        <Image
+                            src={FIRST_CHOICE_RUN.image}
+                            alt={FIRST_CHOICE_RUN.place}
+                            fill
+                            sizes="(max-width: 768px) 100vw, 300px"
                         />
+                    </div>
+                    <div className={styles.firstChoiceBody}>
+                        <p className={styles.firstChoiceMeta}>
+                            {firstChoiceDate && (
+                                <span className={styles.firstChoiceDate}>{firstChoiceDate}</span>
+                            )}
+                            <span className={styles.firstChoiceDayTime}>{FIRST_CHOICE_RUN.day} {FIRST_CHOICE_RUN.timeRaw}</span>
+                        </p>
+                        <h3 className={styles.firstChoicePlace}>{FIRST_CHOICE_RUN.place}</h3>
+                        <p className={styles.firstChoiceLocation}>
+                            <svg viewBox="0 0 24 24" className={styles.firstChoiceLocationIcon} aria-hidden="true">
+                                <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" />
+                                <circle cx="12" cy="9" r="2.5" />
+                            </svg>
+                            {FIRST_CHOICE_RUN.location}
+                        </p>
+                        <ParticipantPreview
+                            count={firstChoiceEvent?.participantCount}
+                            participants={firstChoiceEvent?.participants || []}
+                            className={styles.firstChoiceParticipants}
+                        />
+                        <div className={styles.firstChoiceActions}>
+                            <Link href={FIRST_CHOICE_RUN.href} className={styles.firstChoicePrimaryButton}>
+                                集合場所と参加方法を見る
+                            </Link>
+                            {firstChoiceStravaHref && (
+                                <a
+                                    href={firstChoiceStravaHref}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={styles.firstChoiceSubButton}
+                                >
+                                    Stravaページを見る
+                                </a>
+                            )}
+                            <ShareScheduleButton
+                                path={FIRST_CHOICE_RUN.href}
+                                className={styles.firstChoiceShareButton}
+                            />
+                        </div>
                     </div>
                 </article>
             </section>

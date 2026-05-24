@@ -3,6 +3,7 @@ import SCHEDULE_ITEMS from '../lib/scheduleItems';
 import styles from '../app/blog/[slug]/post.module.css';
 
 const STRAVA_CLUB_URL = 'https://www.strava.com/clubs/1772485';
+const FIRST_RUN_GUIDE_URL = '/first-run';
 const DAY_LABEL_JP = ['日', '月', '火', '水', '木', '金', '土'];
 const SCHEDULE_LOCATION_BY_KEY = new Map(
     SCHEDULE_ITEMS.map((item) => {
@@ -111,14 +112,22 @@ export default function PostSidebar({ nextEvent }) {
                             <line x1="8" y1="3.5" x2="8" y2="6.5" />
                             <line x1="16" y1="3.5" x2="16" y2="6.5" />
                         </svg>
-                        開催日程を見る
+                        他の日程も見る
+                        <span className={styles.sidebarBtnArrow} aria-hidden="true">›</span>
+                    </Link>
+                    <Link href={FIRST_RUN_GUIDE_URL} className={styles.sidebarBtnSecondary}>
+                        <svg viewBox="0 0 24 24" className={styles.sidebarBtnIcon} aria-hidden="true">
+                            <path d="M6 20V5" />
+                            <path d="M6 6.5c2.8-1.7 5.1 1.2 8 0 1.1-.5 2-.9 3.5-.5v7.2c-1.5-.4-2.4 0-3.5.5-2.9 1.2-5.2-1.7-8 0" />
+                        </svg>
+                        初参加ガイドを見る
                         <span className={styles.sidebarBtnArrow} aria-hidden="true">›</span>
                     </Link>
                     <a
                         href={STRAVA_CLUB_URL}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={styles.sidebarBtnSecondary}
+                        className={styles.sidebarBtnTertiary}
                     >
                         <img src="/assets/strava.png" alt="" className={styles.sidebarBtnLogo} />
                         Stravaクラブを見る

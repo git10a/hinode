@@ -3,6 +3,7 @@ import Script from 'next/script';
 import styles from './schedule.module.css';
 import NextRunDate from '../../components/NextRunDate';
 import PostBottomStrip from '../../components/PostBottomStrip';
+import ParticipantPreview from '../../components/ParticipantPreview';
 import ShareScheduleButton from '../../components/ShareScheduleButton';
 import { getUpcomingGroupEvents } from '../../lib/strava';
 
@@ -19,6 +20,7 @@ const EVENT_DURATION_MINUTES = 60;
 const SITE_URL = 'https://hinode-run.com';
 const EVENT_PERFORMER = { "@type": "PerformingGroup", "name": "HINODE" };
 const FIRST_RUN_GUIDE_URL = '/first-run';
+const DAY_LABEL_JP = ['日', '月', '火', '水', '木', '金', '土'];
 
 function stravaEventUrl(eventId) {
     return `https://www.strava.com/clubs/${STRAVA_CLUB_ID}/group_events/${eventId}`;
@@ -153,6 +155,19 @@ function createEventsJsonLd(now = new Date()) {
     ];
 }
 
+function formatUpcomingRunStart(date) {
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const dayName = DAY_LABEL_JP[date.getDay()];
+    const hours = pad2(date.getHours());
+    const minutes = pad2(date.getMinutes());
+
+    return {
+        date: `${month}/${day}(${dayName})`,
+        time: `${hours}:${minutes}`,
+    };
+}
+
 const faqItems = [
     {
         question: '1人で行っても大丈夫ですか？',
@@ -177,6 +192,8 @@ const RUNS = [
         id: 'kokyo',
         num: '01',
         name: '皇居の日の出ラン',
+        place: '皇居',
+        meetingPlace: '桔梗門前派出所',
         day: '毎週水曜',
         time: '06:30〜',
         distance: '約5km',
@@ -198,6 +215,8 @@ const RUNS = [
         id: 'meguro',
         num: '02',
         name: '目黒川の日の出ラン',
+        place: '目黒川',
+        meetingPlace: 'スターバックス 中目黒蔦屋書店前',
         day: '毎週木曜',
         time: '06:30〜',
         distance: '約4km',
@@ -219,6 +238,8 @@ const RUNS = [
         id: 'yoyogi',
         num: '03',
         name: '代々木公園の日の出ラン',
+        place: '代々木公園',
+        meetingPlace: '原宿時計塔前',
         day: '毎週日曜',
         time: '07:30〜',
         distance: '約2〜4km',
@@ -252,6 +273,23 @@ export default async function EventPage() {
             regularEventsByDay.set(event.dayOfWeek, event);
         }
     }
+    const nextRunCards = RUNS.map((run) => {
+        const stravaEvent = regularEventsByDay.get(run.dayOfWeek);
+        const start = stravaEvent
+            ? getJstWallClockDate(new Date(stravaEvent.startAt))
+            : getNextEventStart(run.dayOfWeek, run.timeRaw);
+        const next = formatUpcomingRunStart(start);
+
+        return {
+            ...run,
+            nextDate: next.date,
+            nextTime: next.time,
+            nextTimestamp: stravaEvent ? new Date(stravaEvent.startAt).getTime() : start.getTime(),
+            stravaEvent,
+        };
+    })
+        .sort((a, b) => a.nextTimestamp - b.nextTimestamp)
+        .slice(0, 2);
 
     return (
         <div className={styles.page}>
@@ -292,6 +330,67 @@ export default async function EventPage() {
                     </Link>
                 </div>
             </div>
+
+            <section className={styles.nextRunsSection} aria-labelledby="next-runs-title">
+                <div className={styles.nextRunsHeader}>
+                    <p className={styles.nextRunsKicker}>NEXT RUNS</p>
+                    <h2 id="next-runs-title" className={styles.nextRunsTitle}>次に行ける日程</h2>
+                    <p className={styles.nextRunsLead}>
+                        直近の開催だけ先に確認できます。初めての方は流れを見てから、慣れている方は集合場所へそのまま進めます。
+                    </p>
+                </div>
+                <div className={styles.nextRunsGrid}>
+                    {nextRunCards.map((run, index) => (
+                        <article key={run.id} className={styles.nextRunCard}>
+                            <div className={styles.nextRunTop}>
+                                <span className={styles.nextRunBadge}>{index === 0 ? '最直近' : '次の候補'}</span>
+                                {run.isFirstChoice && (
+                                    <span className={styles.nextRunGuideBadge}>初参加向け</span>
+                                )}
+                            </div>
+                            <p className={styles.nextRunDate}>
+                                <span>{run.nextDate}</span>
+                                <span>{run.nextTime}</span>
+                            </p>
+                            <h3 className={styles.nextRunName}>{run.name}</h3>
+                            <p className={styles.nextRunLocation}>
+                                <svg viewBox="0 0 24 24" className={styles.nextRunLocationIcon} aria-hidden="true">
+                                    <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" />
+                                    <circle cx="12" cy="9" r="2.5" />
+                                </svg>
+                                {run.meetingPlace}
+                            </p>
+                            <ParticipantPreview
+                                count={run.stravaEvent?.participantCount}
+                                participants={run.stravaEvent?.participants}
+                                className={styles.nextRunParticipants}
+                            />
+                            <div className={styles.nextRunActions}>
+                                <Link href={FIRST_RUN_GUIDE_URL} className={styles.nextRunPrimary}>
+                                    初参加ガイドはこちら
+                                </Link>
+                                <Link href={`#${run.id}`} className={styles.nextRunSecondary}>
+                                    集合場所を見る
+                                </Link>
+                                {run.stravaEvent && (
+                                    <a
+                                        href={stravaEventUrl(run.stravaEvent.eventId)}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={styles.nextRunSubAction}
+                                    >
+                                        Stravaページを見る
+                                    </a>
+                                )}
+                                <ShareScheduleButton
+                                    path={`/schedule#${run.id}`}
+                                    className={styles.nextRunShare}
+                                />
+                            </div>
+                        </article>
+                    ))}
+                </div>
+            </section>
 
             <section id="regular-runs" className={styles.runsSection} aria-labelledby="regular-runs-title">
                 <div className={styles.runsInner}>
