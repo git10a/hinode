@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { client } from '../../lib/microcms';
+import { getPopularBlogPostIds } from '../../lib/googleAnalytics';
 import styles from './blog.module.css';
 
 export const revalidate = 60;
@@ -28,13 +29,22 @@ const BLOG_CATEGORIES = [
     },
 ];
 
+const BLOG_RESULTS_ID = 'blog-results';
+
+const POPULAR_POST_FALLBACK_IDS = [
+    'r95ekgzgrrv',
+    'i421thvit3u',
+    '66n7fgwfkoz',
+    'na6531kvbdg',
+];
+
 async function getBlogPosts() {
     try {
         const data = await client.get({
             endpoint: 'blogs',
             queries: {
                 fields: 'id,title,publishedAt,thumbnail,description',
-                limit: 20,
+                limit: 100,
             },
         });
         return data.contents;
@@ -72,11 +82,27 @@ function buildBlogHref({ category = 'all', q = '' }) {
     if (category !== 'all') params.set('category', category);
     if (q) params.set('q', q);
     const query = params.toString();
-    return query ? `/blog?${query}` : '/blog';
+    const href = query ? `/blog?${query}` : '/blog';
+    return `${href}#${BLOG_RESULTS_ID}`;
+}
+
+function getFeaturedPost(posts, popularPostIds = []) {
+    const postsById = new Map(posts.map((post) => [post.id, post]));
+    const featuredIds = [...popularPostIds, ...POPULAR_POST_FALLBACK_IDS];
+
+    for (const id of featuredIds) {
+        if (postsById.has(id)) {
+            return postsById.get(id);
+        }
+    }
+
+    return posts[0] || null;
 }
 
 export default async function BlogPage({ searchParams = {} }) {
     const posts = await getBlogPosts();
+    const popularPostIds = await getPopularBlogPostIds();
+    const featured = getFeaturedPost(posts, popularPostIds);
     const requestedCategory = typeof searchParams.category === 'string' ? searchParams.category : 'all';
     const activeCategory = BLOG_CATEGORIES.some((category) => category.id === requestedCategory)
         ? requestedCategory
@@ -88,7 +114,6 @@ export default async function BlogPage({ searchParams = {} }) {
         const matchesSearch = !searchQuery || getPostSearchText(post).includes(searchQuery);
         return matchesCategory && matchesSearch;
     });
-    const [featured, ...rest] = filteredPosts;
     const activeCategoryLabel = activeCategory === 'all'
         ? 'すべて'
         : BLOG_CATEGORIES.find((category) => category.id === activeCategory)?.label;
@@ -146,7 +171,7 @@ export default async function BlogPage({ searchParams = {} }) {
                         <p className={styles.browseKicker}>BROWSE</p>
                         <h2 id="blog-browse-title" className={styles.browseTitle}>読みたい記事を探す</h2>
                     </div>
-                    <form action="/blog" className={styles.searchForm}>
+                    <form action={`/blog#${BLOG_RESULTS_ID}`} method="get" className={styles.searchForm}>
                         {activeCategory !== 'all' && (
                             <input type="hidden" name="category" value={activeCategory} />
                         )}
@@ -190,20 +215,20 @@ export default async function BlogPage({ searchParams = {} }) {
                         <div className={styles.activeFilter}>
                             <span>{activeCategoryLabel}</span>
                             {rawSearchQuery && <span>「{rawSearchQuery}」</span>}
-                            <Link href="/blog" className={styles.clearFilter}>条件をクリア</Link>
+                            <Link href={`/blog#${BLOG_RESULTS_ID}`} className={styles.clearFilter}>条件をクリア</Link>
                         </div>
                     )}
                 </div>
             </section>
 
-            <section className={styles.listSection}>
+            <section id={BLOG_RESULTS_ID} className={styles.listSection}>
                 {posts.length === 0 ? (
                     <p className={styles.empty}>記事がまだありません。</p>
                 ) : filteredPosts.length === 0 ? (
                     <p className={styles.empty}>条件に合う記事が見つかりませんでした。</p>
-                ) : rest.length === 0 ? null : (
+                ) : (
                     <div className={styles.grid}>
-                        {rest.map((post) => (
+                        {filteredPosts.map((post) => (
                             <Link href={`/blog/${post.id}`} key={post.id} className={styles.card}>
                                 {post.thumbnail && (
                                     <div className={styles.thumbnailWrapper}>
