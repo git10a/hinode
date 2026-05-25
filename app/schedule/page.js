@@ -9,7 +9,7 @@ import { getUpcomingGroupEvents } from '../../lib/strava';
 
 export const metadata = {
     title: 'HINODEのグループラン日程｜皇居・目黒川・代々木公園',
-    description: 'HINODEの日の出ラン開催日程ページです。皇居・目黒川・代々木公園で毎週開催。曜日、時間、集合場所、距離、Stravaイベントへの導線と最小限のFAQをまとめています。',
+    description: 'HINODEの日の出ラン開催日程ページです。皇居・目黒川・代々木公園で毎週開催。土曜日は不定期の企画ランも開催。曜日、時間、集合場所、距離、Stravaイベントへの導線をまとめています。',
 };
 
 export const dynamic = 'force-dynamic';
@@ -190,8 +190,7 @@ const faqItems = [
 const RUNS = [
     {
         id: 'kokyo',
-        num: '01',
-        name: '皇居の日の出ラン',
+        name: '皇居ラン',
         place: '皇居',
         meetingPlace: '桔梗門前派出所',
         day: '毎週水曜',
@@ -209,8 +208,7 @@ const RUNS = [
     },
     {
         id: 'meguro',
-        num: '02',
-        name: '目黒川の日の出ラン',
+        name: '目黒川ラン',
         place: '目黒川',
         meetingPlace: 'スターバックス 中目黒蔦屋書店前',
         day: '毎週木曜',
@@ -228,14 +226,13 @@ const RUNS = [
     },
     {
         id: 'yoyogi',
-        num: '03',
-        name: '代々木公園の日の出ラン',
+        name: '代々木公園ラン',
         place: '代々木公園',
         meetingPlace: '原宿時計塔前',
         day: '毎週日曜',
         time: '07:30〜',
         distance: '約2〜4km',
-        recommendationLabel: '初参加に一番おすすめ',
+        recommendationLabel: '初参加におすすめ',
         isFirstChoice: true,
         mapUrl: 'https://maps.app.goo.gl/dB3L15dHByAoC4jw9',
         routeImage: '/assets/strava-route-yoyogi.png',
@@ -252,15 +249,38 @@ const RUNS = [
     },
 ];
 
+const SPECIAL_RUNS = [
+    {
+        title: '街や公園へ走りに行く',
+        text: '上野公園など、いつもの集合場所とは違う場所へ走りに行く日があります。',
+    },
+    {
+        title: '目的地を決めて走る',
+        text: 'おいしいパン屋を目指すコースなど、走った先の楽しみを決めることもあります。',
+    },
+    {
+        title: '長めのチャレンジ',
+        text: '山手線一周ランのように、途中参加・途中離脱しやすい長めの企画もあります。',
+    },
+    {
+        title: '本当の日の出を見に行く',
+        text: '夏には4時半スタートで、日の出そのものを見に行く朝もあります。',
+    },
+];
+
 export default async function EventPage() {
     const eventsJsonLd = createEventsJsonLd();
     const upcomingEvents = await getUpcomingGroupEvents();
+    const regularDayIndexes = new Set(RUNS.map((run) => run.dayOfWeek));
     const regularEventsByDay = new Map();
     for (const event of upcomingEvents) {
-        if (!regularEventsByDay.has(event.dayOfWeek)) {
+        if (regularDayIndexes.has(event.dayOfWeek) && !regularEventsByDay.has(event.dayOfWeek)) {
             regularEventsByDay.set(event.dayOfWeek, event);
         }
     }
+    const specialEvents = upcomingEvents
+        .filter((event) => !regularDayIndexes.has(event.dayOfWeek))
+        .slice(0, 3);
     const nextRunCards = RUNS.map((run) => {
         const stravaEvent = regularEventsByDay.get(run.dayOfWeek);
         const start = stravaEvent
@@ -290,13 +310,12 @@ export default async function EventPage() {
             ))}
 
             <nav className={styles.breadcrumb} aria-label="breadcrumb">
-                <Link href="/" className={styles.breadcrumbLink}>HOME</Link>
+                <Link href="/" className={styles.breadcrumbLink}>ホーム</Link>
                 <span className={styles.breadcrumbSep}>›</span>
-                <span className={styles.breadcrumbCurrent}>SCHEDULE</span>
+                <span className={styles.breadcrumbCurrent}>開催日程</span>
             </nav>
 
             <div className={styles.hero}>
-                <p className={styles.eyebrow}>SCHEDULE</p>
                 <h1 className={styles.title}>
                     HINODEのグループラン日程<br />
                     <span className={styles.titleSub}>皇居・目黒川・代々木公園</span>
@@ -320,7 +339,6 @@ export default async function EventPage() {
 
             <section className={styles.nextRunsSection} aria-labelledby="next-runs-title">
                 <div className={styles.nextRunsHeader}>
-                    <p className={styles.nextRunsKicker}>NEXT RUNS</p>
                     <h2 id="next-runs-title" className={styles.nextRunsTitle}>直近の日程</h2>
                 </div>
                 <div className={styles.nextRunsGrid}>
@@ -375,10 +393,70 @@ export default async function EventPage() {
                 </div>
             </section>
 
+            <section id="special-runs" className={styles.specialRunsSection} aria-labelledby="special-runs-title">
+                <div className={styles.specialRunsHeader}>
+                    <h2 id="special-runs-title" className={styles.specialRunsTitle}>
+                        土曜日は、ときどき企画ラン
+                    </h2>
+                    <p className={styles.specialRunsLead}>
+                        水曜・木曜・日曜の定例ランとは別に、土曜日は不定期の企画ランも開催しています。街へ出たり、目的地を決めたり、少し長めに走ったりする日です。
+                    </p>
+                </div>
+                <div className={styles.specialExamplesBox}>
+                    <div className={styles.specialExamplesIntro}>
+                        <span>たとえば...</span>
+                    </div>
+                    <ul className={styles.specialExamples}>
+                        {SPECIAL_RUNS.map((item) => (
+                            <li key={item.title} className={styles.specialExample}>
+                                <h3>{item.title}</h3>
+                                <p>{item.text}</p>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                {specialEvents.length > 0 && (
+                    <div className={styles.specialUpcoming}>
+                        <h3 className={styles.specialUpcomingTitle}>直近の企画</h3>
+                        <ul className={styles.specialUpcomingList}>
+                            {specialEvents.map((event) => {
+                                const start = formatUpcomingRunStart(getJstWallClockDate(new Date(event.startAt)));
+
+                                return (
+                                    <li key={event.eventId} className={styles.specialUpcomingItem}>
+                                        <a
+                                            href={stravaEventUrl(event.eventId)}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={styles.specialUpcomingLink}
+                                        >
+                                            <span className={styles.specialUpcomingDate}>
+                                                {start.date} {start.time}
+                                            </span>
+                                            <span className={styles.specialUpcomingName}>{event.title}</span>
+                                            {event.address && (
+                                                <span className={styles.specialUpcomingAddress}>{event.address}</span>
+                                            )}
+                                            <ParticipantPreview
+                                                count={event.participantCount}
+                                                participants={event.participants}
+                                                className={styles.specialUpcomingParticipants}
+                                            />
+                                        </a>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </div>
+                )}
+                <p className={styles.specialRunsNote}>
+                    最新の企画は <a href={STRAVA_CLUB_URL} target="_blank" rel="noopener noreferrer">Strava</a> と <a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer">Instagram</a> で告知しています。
+                </p>
+            </section>
+
             <section id="regular-runs" className={styles.runsSection} aria-labelledby="regular-runs-title">
                 <div className={styles.runsInner}>
                     <div className={styles.runsHeader}>
-                        <p className={styles.runsKicker}>GROUP RUNS</p>
                         <h2 id="regular-runs-title" className={styles.runsTitle}>開催場所ごとの日程・集合場所</h2>
                         <p className={styles.runsLead}>
                             皇居・目黒川・代々木公園それぞれの曜日、距離、集合場所をまとめています。
@@ -392,17 +470,15 @@ export default async function EventPage() {
                             return (
                                 <article key={run.id} id={run.id} className={styles.runCard}>
                                     <div className={styles.runHead}>
-                                        <span className={styles.runNum}>{run.num}</span>
                                         <div className={styles.runHeadText}>
-                                            <h3 className={styles.runName}>{run.name}</h3>
-                                            {run.recommendationLabel && (
-                                                <p className={`${styles.runRecommendation} ${run.isFirstChoice ? styles.runRecommendationPrimary : ''}`}>
-                                                    <span>{run.recommendationLabel}</span>
-                                                    {run.recommendation && (
-                                                        <span>{run.recommendation}</span>
-                                                    )}
-                                                </p>
-                                            )}
+                                            <div className={styles.runTitleRow}>
+                                                <h3 className={styles.runName}>{run.name}</h3>
+                                                {run.recommendationLabel && (
+                                                    <span className={`${styles.runRecommendationBadge} ${run.isFirstChoice ? styles.runRecommendationBadgePrimary : ''}`}>
+                                                        {run.recommendationLabel}
+                                                    </span>
+                                                )}
+                                            </div>
                                             <p className={styles.runMeta}>
                                                 <span className={styles.runDay}>{run.day}</span>
                                                 <span className={styles.runDot} aria-hidden="true">·</span>

@@ -54,16 +54,6 @@
     text-align: left;
 }
 
-.eyebrow {
-    font-family: var(--font-en);
-    font-size: 0.75rem;
-    letter-spacing: 0.18em;
-    color: #F37E4A;
-    margin: 0 0 1.2rem;
-    text-transform: none;
-    font-weight: 500;
-}
-
 .title {
     font-family: var(--font-jp);
     font-size: 2rem;
@@ -151,16 +141,6 @@
 
 .nextRunsHeader {
     margin-bottom: 1.2rem;
-}
-
-.nextRunsKicker {
-    font-family: var(--font-en);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    color: #c2532a;
-    margin: 0 0 0.55rem;
-    text-transform: none;
 }
 
 .nextRunsTitle {
@@ -339,6 +319,187 @@
     color: #111;
 }
 
+/* ---------- special runs ---------- */
+.specialRunsSection {
+    margin: 0 0 3.6rem;
+    padding: 2.3rem 0 2.4rem;
+    border-top: 1px solid #ececec;
+    border-bottom: 1px solid #ececec;
+}
+
+.specialRunsHeader {
+    max-width: 720px;
+    margin-bottom: 1.35rem;
+}
+
+.specialRunsTitle {
+    font-family: var(--font-jp);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #111;
+    letter-spacing: 0.03em;
+    line-height: 1.5;
+    margin: 0 0 0.55rem;
+}
+
+.specialRunsLead {
+    font-size: 0.94rem;
+    line-height: 1.9;
+    color: #5f5851;
+    margin: 0;
+    max-width: none;
+}
+
+.specialExamplesBox {
+    padding: 1.15rem 1.25rem 1.2rem;
+    border: 1px dashed #ead8cd;
+    border-radius: 8px;
+    background: rgba(255, 250, 244, 0.42);
+}
+
+.specialExamplesIntro {
+    display: flex;
+    align-items: center;
+    margin: 0 0 0.9rem;
+    color: #c2532a;
+}
+
+.specialExamplesIntro span {
+    flex-shrink: 0;
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 0.08em;
+}
+
+.specialExamples {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem 1rem;
+    padding: 0;
+    margin: 0;
+}
+
+.specialExample {
+    padding: 0.15rem 0;
+}
+
+.specialExample h3 {
+    font-family: var(--font-jp);
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.6;
+    letter-spacing: 0.03em;
+    color: #222;
+    margin: 0 0 0.25rem;
+}
+
+.specialExample p {
+    font-size: 0.86rem;
+    line-height: 1.85;
+    letter-spacing: 0.02em;
+    color: #666;
+    margin: 0;
+    max-width: none;
+}
+
+.specialUpcoming {
+    margin-top: 1.6rem;
+    padding-top: 1.2rem;
+    border-top: 1px dashed #e9ded2;
+}
+
+.specialUpcomingTitle {
+    font-family: var(--font-jp);
+    font-size: 0.98rem;
+    font-weight: 700;
+    line-height: 1.6;
+    letter-spacing: 0.03em;
+    color: #222;
+    margin: 0 0 0.75rem;
+}
+
+.specialUpcomingList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    padding: 0;
+    margin: 0;
+}
+
+.specialUpcomingItem {
+    margin: 0;
+}
+
+.specialUpcomingLink {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem 0.85rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid #eee3d9;
+    border-radius: 6px;
+    background: #fff;
+    color: #222;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.specialUpcomingLink:hover {
+    border-color: #e3c6b6;
+    background: #fbf7f3;
+}
+
+.specialUpcomingDate {
+    flex-shrink: 0;
+    font-family: var(--font-en);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #c2532a;
+}
+
+.specialUpcomingName {
+    flex: 1 1 16rem;
+    min-width: 0;
+    font-size: 0.92rem;
+    font-weight: 600;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+}
+
+.specialUpcomingAddress {
+    flex-basis: 100%;
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: #888;
+}
+
+.specialUpcomingParticipants {
+    flex-basis: 100%;
+}
+
+.specialRunsNote {
+    margin: 1.15rem 0 0;
+    font-size: 0.84rem;
+    line-height: 1.9;
+    letter-spacing: 0.03em;
+    color: #777;
+}
+
+.specialRunsNote a {
+    color: #c2532a;
+    text-decoration: none;
+    border-bottom: 1px solid #ead8cd;
+}
+
+.specialRunsNote a:hover {
+    color: #a23f1c;
+    border-bottom-color: #c2532a;
+}
+
 /* ---------- runs ---------- */
 .runsSection {
     margin: 0 calc(50% - 50vw) 4.5rem;
@@ -355,16 +516,6 @@
 .runsHeader {
     max-width: 720px;
     margin-bottom: 2rem;
-}
-
-.runsKicker {
-    font-family: var(--font-en);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    color: #c2532a;
-    margin: 0 0 0.7rem;
-    text-transform: none;
 }
 
 .runsTitle {
@@ -388,7 +539,7 @@
 .runs {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.2rem;
     margin-bottom: 0;
 }
 
@@ -396,32 +547,21 @@
     background: #fff;
     border: 1px solid #f0e2d6;
     border-radius: 6px;
-    padding: 2rem 2rem 2.2rem;
+    padding: 1.35rem 1.45rem 1.45rem;
     transition: border-color 0.2s, box-shadow 0.2s;
-    box-shadow: 0 12px 30px rgba(118, 78, 46, 0.06);
+    box-shadow: 0 8px 22px rgba(118, 78, 46, 0.04);
 }
 
 .runCard:hover {
     border-color: #e7cdb9;
-    box-shadow: 0 16px 34px rgba(118, 78, 46, 0.1);
+    box-shadow: 0 12px 26px rgba(118, 78, 46, 0.08);
 }
 
 .runHead {
     display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    padding-bottom: 1.2rem;
-    margin-bottom: 1.6rem;
+    padding-bottom: 0.85rem;
+    margin-bottom: 1rem;
     border-bottom: 1px solid #f0f0f0;
-}
-
-.runNum {
-    font-family: var(--font-en);
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: #F37E4A;
-    letter-spacing: 0.08em;
-    flex-shrink: 0;
 }
 
 .runHeadText {
@@ -429,41 +569,44 @@
     min-width: 0;
 }
 
+.runTitleRow {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.6rem;
+    margin: 0 0 0.3rem;
+    flex-wrap: nowrap;
+}
+
 .runName {
     font-family: var(--font-jp);
-    font-size: 1.3rem;
+    font-size: 1.16rem;
     font-weight: 700;
     color: #111;
     letter-spacing: 0.03em;
-    margin: 0 0 0.4rem;
+    margin: 0;
     line-height: 1.5;
+    min-width: 0;
 }
 
-.runRecommendation {
-    display: flex;
+.runRecommendationBadge {
+    display: inline-flex;
     align-items: center;
-    gap: 0.55rem;
-    flex-wrap: wrap;
-    margin: 0 0 0.45rem;
-    font-size: 0.86rem;
-    line-height: 1.7;
-    color: #5c5650;
-    max-width: none;
-}
-
-.runRecommendation span:first-child {
+    justify-content: center;
     flex-shrink: 0;
     color: #c2532a;
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 700;
+    line-height: 1.4;
     letter-spacing: 0.08em;
-    padding: 0.12rem 0.45rem;
+    padding: 0.18rem 0.5rem;
     border: 1px solid #f0d8c8;
     border-radius: 3px;
     background: #fbf7f3;
+    white-space: nowrap;
 }
 
-.runRecommendationPrimary span:first-child {
+.runRecommendationBadgePrimary {
     color: #fff;
     border-color: #F37E4A;
     background: #F37E4A;
@@ -475,7 +618,7 @@
     gap: 0.5rem;
     flex-wrap: wrap;
     margin: 0;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     color: #777;
 }
 
@@ -500,22 +643,22 @@
 
 .runBody {
     display: grid;
-    grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1fr);
-    gap: 2rem;
+    grid-template-columns: minmax(240px, 0.62fr) minmax(0, 1fr);
+    gap: 1.35rem;
     align-items: start;
 }
 
 .runRouteCol {
     display: flex;
     flex-direction: column;
-    gap: 0.7rem;
+    gap: 0.5rem;
     min-width: 0;
 }
 
 .runRouteFrame {
     position: relative;
     width: 100%;
-    aspect-ratio: 998 / 500;
+    aspect-ratio: 16 / 7;
     background: #fff8ef;
     border: 1px solid #f0e2d6;
     border-radius: 6px;
@@ -540,7 +683,7 @@
 }
 
 .googleMapLink {
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     color: #555;
     text-decoration: none;
     letter-spacing: 0.02em;
@@ -557,7 +700,7 @@
 .runDescCol {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.72rem;
     min-width: 0;
 }
 
@@ -566,18 +709,18 @@
     align-items: center;
     align-self: flex-start;
     font-family: var(--font-jp);
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     font-weight: 600;
     color: #c2532a;
     background: #fbf7f3;
-    padding: 0.4rem 0.85rem;
+    padding: 0.32rem 0.7rem;
     border-radius: 4px;
     letter-spacing: 0.02em;
 }
 
 .runDescription {
-    font-size: 0.96rem;
-    line-height: 1.9;
+    font-size: 0.9rem;
+    line-height: 1.75;
     color: #333;
     margin: 0;
 }
@@ -597,16 +740,16 @@
 .runForWhom {
     display: flex;
     align-items: baseline;
-    gap: 0.8rem;
-    padding-top: 1rem;
+    gap: 0.65rem;
+    padding-top: 0.75rem;
     border-top: 1px solid #f0f0f0;
-    font-size: 0.88rem;
-    line-height: 1.8;
+    font-size: 0.82rem;
+    line-height: 1.75;
 }
 
 .runForWhomLabel {
     flex-shrink: 0;
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     font-weight: 600;
     color: #F37E4A;
     letter-spacing: 0.1em;
@@ -625,19 +768,19 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.7rem 1rem;
+    gap: 0.55rem 0.75rem;
 }
 
 .stravaRunLink {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 2.35rem;
-    padding: 0.62rem 0.95rem;
+    min-height: 2.15rem;
+    padding: 0.5rem 0.85rem;
     border-radius: 6px;
     background: #222;
     color: #fff;
-    font-size: 0.84rem;
+    font-size: 0.8rem;
     font-weight: 600;
     line-height: 1.5;
     text-decoration: none;
@@ -652,14 +795,14 @@
 
 .shareRunButton {
     align-self: flex-start;
-    min-height: 2.35rem;
-    padding: 0.62rem 0.95rem;
+    min-height: 2.15rem;
+    padding: 0.5rem 0.85rem;
     border: 1px solid #ead8cd;
     border-radius: 6px;
     background: #fff;
     cursor: pointer;
     font-family: inherit;
-    font-size: 0.84rem;
+    font-size: 0.8rem;
     font-weight: 600;
     line-height: 1.5;
     color: #c2532a;
@@ -910,6 +1053,36 @@
 
     .nextRunActions {
         grid-template-columns: 1fr;
+    }
+
+    .specialRunsSection {
+        margin-bottom: 2.9rem;
+        padding: 2rem 0 2.1rem;
+    }
+
+    .specialRunsTitle {
+        font-size: 1.2rem;
+    }
+
+    .specialRunsLead {
+        font-size: 0.9rem;
+    }
+
+    .specialExamples {
+        grid-template-columns: 1fr;
+    }
+
+    .specialUpcomingLink {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.35rem;
+    }
+
+    .specialUpcomingName,
+    .specialUpcomingAddress,
+    .specialUpcomingParticipants {
+        flex-basis: auto;
+        width: 100%;
     }
 
     .runsSection {

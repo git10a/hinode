@@ -376,6 +376,15 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                         </ul>
                     </div>
                 )}
+
+                <div className={styles.occasionalTeaser}>
+                    <p>
+                        土曜日は不定期で、上野公園やパン屋を目指すラン、山手線一周ランなども開催しています。
+                    </p>
+                    <Link href="/schedule#special-runs" className={styles.occasionalTeaserLink}>
+                        企画ランを見る →
+                    </Link>
+                </div>
             </section>
 
             {/* Values */}
