@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Script from 'next/script';
+import Image from 'next/image';
 import styles from './schedule.module.css';
 import NextRunDate from '../../components/NextRunDate';
 import PostBottomStrip from '../../components/PostBottomStrip';
@@ -198,12 +198,8 @@ const RUNS = [
         time: '06:30〜',
         distance: '約5km',
         mapUrl: 'https://maps.app.goo.gl/E9HkSojyPZw6zo1b9',
-        routeEmbed: {
-            embedId: '3425111489577090166',
-            mapHash: '13.24/35.68375/139.75284',
-            fromEmbed: 'true',
-            token: '3YSa6yh87lxuCt0mzvhY9UdGrvz2HsXJkxn3pK7dbag',
-        },
+        routeImage: '/assets/strava-route-kokyo.png',
+        routeUrl: 'https://www.strava.com/routes/3425111489577090166',
         dayOfWeek: 3,
         timeRaw: '06:30',
         description: (
@@ -221,12 +217,8 @@ const RUNS = [
         time: '06:30〜',
         distance: '約4km',
         mapUrl: 'https://maps.app.goo.gl/SKixyw53vfJnp1p36',
-        routeEmbed: {
-            embedId: '3471979912283975976',
-            mapHash: '13.55/35.63905/139.70505',
-            fromEmbed: 'false',
-            token: 'sN752PL7E92oUeMlAq18khZvZ7wOebJp2bFaM2myM5s',
-        },
+        routeImage: '/assets/strava-route-meguro.png',
+        routeUrl: 'https://www.strava.com/routes/3471979912283975976',
         dayOfWeek: 4,
         timeRaw: '06:30',
         description: (
@@ -246,12 +238,8 @@ const RUNS = [
         recommendationLabel: '初参加に一番おすすめ',
         isFirstChoice: true,
         mapUrl: 'https://maps.app.goo.gl/dB3L15dHByAoC4jw9',
-        routeEmbed: {
-            embedId: '3471970663805426564',
-            mapHash: '14.88/35.6713/139.69663',
-            fromEmbed: 'true',
-            token: '-xVAs3bI3zddvxv_pjpAHUQmaurOqidqJl5C_VJ5i7c',
-        },
+        routeImage: '/assets/strava-route-yoyogi.png',
+        routeUrl: 'https://www.strava.com/routes/3471970663805426564',
         dayOfWeek: 0,
         timeRaw: '07:30',
         description: (
@@ -293,7 +281,6 @@ export default async function EventPage() {
 
     return (
         <div className={styles.page}>
-            <Script src="https://strava-embeds.com/embed.js" strategy="afterInteractive" />
             {eventsJsonLd.map((event, i) => (
                 <script
                     key={i}
@@ -429,16 +416,21 @@ export default async function EventPage() {
                                     <div className={styles.runBody}>
                                         <div className={styles.runRouteCol}>
                                             <div className={styles.runRouteFrame}>
-                                                <div
-                                                    className={`strava-embed-placeholder ${styles.stravaRouteEmbed}`}
-                                                    data-embed-type="route"
-                                                    data-embed-id={run.routeEmbed.embedId}
-                                                    data-units="metric"
-                                                    data-style="standard"
-                                                    data-map-hash={run.routeEmbed.mapHash}
-                                                    data-from-embed={run.routeEmbed.fromEmbed}
-                                                    data-token={run.routeEmbed.token}
-                                                />
+                                                <a
+                                                    href={run.routeUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className={styles.routeImageLink}
+                                                    aria-label={`${run.name}のStravaルートを見る`}
+                                                >
+                                                    <Image
+                                                        src={run.routeImage}
+                                                        alt={`${run.name}のStravaルートマップ`}
+                                                        fill
+                                                        sizes="(max-width: 768px) calc(100vw - 5rem), (max-width: 900px) calc(100vw - 7rem), 420px"
+                                                        className={styles.routeImage}
+                                                    />
+                                                </a>
                                             </div>
                                             <a
                                                 href={run.mapUrl}

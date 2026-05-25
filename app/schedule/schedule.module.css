@@ -515,24 +515,28 @@
 .runRouteFrame {
     position: relative;
     width: 100%;
-    height: 430px;
+    aspect-ratio: 998 / 500;
     background: #fff8ef;
     border: 1px solid #f0e2d6;
     border-radius: 6px;
     overflow: hidden;
 }
 
-.stravaRouteEmbed {
-    width: 100%;
-    min-height: 650px;
+.routeImageLink {
+    position: absolute;
+    inset: 0;
+    display: block;
+    background: #f6f1ec;
 }
 
-.runRouteFrame iframe {
-    width: 100% !important;
-    height: 650px !important;
-    min-height: 650px;
-    border: 0;
+.routeImage {
     display: block;
+    object-fit: cover;
+    transition: transform 0.25s ease;
+}
+
+.routeImageLink:hover .routeImage {
+    transform: scale(1.015);
 }
 
 .googleMapLink {
@@ -850,6 +854,17 @@
 }
 
 /* ---------- responsive ---------- */
+@media (max-width: 900px) {
+    .runBody {
+        grid-template-columns: 1fr;
+        gap: 1.4rem;
+    }
+
+    .runRouteCol {
+        order: -1;
+    }
+}
+
 @media (max-width: 768px) {
     .page {
         --bottom-strip-page-gutter: 1.2rem;
@@ -929,19 +944,6 @@
 
     .runRouteCol {
         order: -1;
-    }
-
-    .runRouteFrame,
-    .stravaRouteEmbed,
-    .runRouteFrame iframe {
-        height: 390px;
-        min-height: 390px;
-    }
-
-    .stravaRouteEmbed,
-    .runRouteFrame iframe {
-        height: 640px !important;
-        min-height: 640px;
     }
 
     .runDescription {
