@@ -487,6 +487,99 @@
     padding: 0 2.8rem 1.25rem 0;
 }
 
+.aiGuideCard {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1.2rem;
+    align-items: center;
+    margin-top: 1.6rem;
+    padding: 1.25rem;
+    border: 1px solid #eaded3;
+    border-radius: 8px;
+    background: #fffdf9;
+    box-shadow: 0 12px 28px rgba(53, 39, 29, 0.05);
+}
+
+.aiGuideText {
+    min-width: 0;
+}
+
+.aiGuideKicker {
+    margin: 0 0 0.45rem;
+    color: #4f8f68;
+    font-family: var(--font-en);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+}
+
+.aiGuideTitle {
+    margin: 0;
+    color: #111;
+    font-family: var(--font-jp);
+    font-size: 1.08rem;
+    font-weight: 700;
+    line-height: 1.55;
+    letter-spacing: 0.03em;
+}
+
+.aiGuideLead {
+    margin: 0.45rem 0 0;
+    max-width: 520px;
+    color: #5c5650;
+    font-size: 0.9rem;
+    line-height: 1.85;
+}
+
+.aiGuideActions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.55rem;
+}
+
+.aiGuidePrimary,
+.aiGuideSecondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.55rem;
+    padding: 0.68rem 0.95rem;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+.aiGuidePrimary {
+    border: 1px solid #222;
+    background: #222;
+    color: #fff;
+}
+
+.aiGuidePrimary:hover {
+    border-color: #000;
+    background: #000;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.aiGuideSecondary {
+    border: 1px solid #e8dcc9;
+    background: #fff;
+    color: #5f554c;
+}
+
+.aiGuideSecondary:hover {
+    border-color: #d8c8b5;
+    background: #fbf6ee;
+    color: #111;
+}
+
 .inlineLink {
     color: #c2532a;
     text-decoration: none;
@@ -522,6 +615,7 @@
 
 @media (max-width: 768px) {
     .page {
+        --bottom-strip-page-gutter: 1.2rem;
         padding: 5.5rem 1.2rem 3rem;
     }
 
@@ -557,6 +651,21 @@
     .firstChoicePrimaryButton,
     .firstChoiceSubButton,
     .firstChoiceShareButton {
+        width: 100%;
+    }
+
+    .aiGuideCard {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .aiGuideActions {
+        justify-content: stretch;
+    }
+
+    .aiGuidePrimary,
+    .aiGuideSecondary {
         width: 100%;
     }
 

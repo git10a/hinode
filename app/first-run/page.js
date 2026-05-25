@@ -13,6 +13,8 @@ export const metadata = {
 
 const STRAVA_CLUB_URL = 'https://www.strava.com/clubs/1772485';
 const STRAVA_CLUB_ID = '1772485';
+const NOTEBOOK_LM_URL = 'https://notebooklm.google.com/notebook/40deb023-33ff-4bf9-985a-08cbfe6df7aa';
+const INSTAGRAM_URL = 'https://www.instagram.com/hinode_run/';
 
 export const revalidate = 60;
 
@@ -304,6 +306,34 @@ export default async function FirstRunPage() {
                         </details>
                     ))}
                 </div>
+                <aside className={styles.aiGuideCard} aria-labelledby="ai-guide-title">
+                    <div className={styles.aiGuideText}>
+                        <p className={styles.aiGuideKicker}>HINODE案内所</p>
+                        <h3 id="ai-guide-title" className={styles.aiGuideTitle}>まだ不安なことがあれば</h3>
+                        <p className={styles.aiGuideLead}>
+                            初参加・持ち物・集合場所など、HINODEのことをAIに質問できます。
+                            回答にないことはInstagram DMでも遠慮なく聞いてください。
+                        </p>
+                    </div>
+                    <div className={styles.aiGuideActions}>
+                        <a
+                            href={NOTEBOOK_LM_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={styles.aiGuidePrimary}
+                        >
+                            HINODE案内所で質問する
+                        </a>
+                        <a
+                            href={INSTAGRAM_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={styles.aiGuideSecondary}
+                        >
+                            Instagramで聞く
+                        </a>
+                    </div>
+                </aside>
             </section>
 
             <PostBottomStrip />

@@ -565,7 +565,7 @@
 
 /* ---------- bottom strip ---------- */
 .bottomStrip {
-    margin: 5rem -1.5rem -4rem;
+    margin: 5rem calc(var(--bottom-strip-page-gutter, 1.5rem) * -1) -4rem;
     padding: 4rem 1.5rem;
     background: #faf7f3;
     border-top: 1px solid #f0e9e0;
