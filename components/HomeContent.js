@@ -10,6 +10,7 @@ import styles from './HomeContent.module.css';
 const CHIPS = ['参加無料', '予約不要', '1人参加多め', '4km前後ゆっくり'];
 
 const STRAVA_CLUB_ID = '1772485';
+const FIRST_RUN_GUIDE_URL = '/first-run';
 
 const WEEKLY_ITEMS = [
     {
@@ -435,6 +436,12 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                             )}
                         </div>
                     ))}
+                </div>
+                <div className={styles.firstTimeCta}>
+                    <Link href={FIRST_RUN_GUIDE_URL} className={styles.firstTimeCtaLink}>
+                        初参加ガイドを見る
+                        <span className={styles.firstTimeCtaArrow} aria-hidden="true">→</span>
+                    </Link>
                 </div>
             </section>
 
