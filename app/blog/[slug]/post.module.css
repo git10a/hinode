@@ -8,7 +8,10 @@
 
 .page h1,
 .page h2,
-.page h3 {
+.page h3,
+.page h4,
+.page h5,
+.page h6 {
     border: none;
     padding: 0;
 }
@@ -109,21 +112,59 @@
     color: #333;
 }
 
+.content :is(h1, h2, h3, h4, h5, h6) {
+    color: #111;
+    font-family: var(--font-jp);
+    font-weight: 700;
+    line-height: 1.55;
+    letter-spacing: 0.02em;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+}
+
+.content h1,
+.content h2 {
+    max-width: 100%;
+    margin: 3.8rem 0 1.35rem;
+    padding: 0.1rem 0 0.1rem 1rem;
+    border-left: 3px solid #F37E4A;
+}
+
+.content h1 {
+    font-size: 1.55rem;
+}
+
 .content h2 {
     font-size: 1.4rem;
-    font-weight: 700;
-    color: #111;
-    margin: 3.5rem 0 1.2rem;
-    letter-spacing: 0.02em;
-    line-height: 1.6;
 }
 
 .content h3 {
-    font-size: 1.12rem;
-    font-weight: 700;
-    color: #111;
-    margin: 2.4rem 0 0.8rem;
-    line-height: 1.6;
+    max-width: 100%;
+    margin: 2.8rem 0 0.95rem;
+    padding-bottom: 0.45rem;
+    border-bottom: 1px solid #ead8cd;
+    font-size: 1.16rem;
+}
+
+.content h4 {
+    margin: 2.3rem 0 0.75rem;
+    padding-left: 0.75rem;
+    border-left: 2px solid #e8ded4;
+    font-size: 1.05rem;
+}
+
+.content h5 {
+    margin: 2rem 0 0.65rem;
+    color: #333;
+    font-size: 0.98rem;
+    letter-spacing: 0.04em;
+}
+
+.content h6 {
+    margin: 1.8rem 0 0.55rem;
+    color: #666;
+    font-size: 0.9rem;
+    letter-spacing: 0.06em;
 }
 
 .content p {
@@ -680,13 +721,37 @@
         line-height: 1.95;
     }
 
+    .content h1,
     .content h2 {
-        font-size: 1.2rem;
+        margin-top: 3rem;
+        padding: 0.05rem 0 0.05rem 0.85rem;
+    }
+
+    .content h1 {
+        font-size: 1.32rem;
+    }
+
+    .content h2 {
+        font-size: 1.22rem;
         margin-top: 2.8rem;
     }
 
     .content h3 {
         font-size: 1.05rem;
+        margin-top: 2.4rem;
+        padding-bottom: 0.38rem;
+    }
+
+    .content h4 {
+        font-size: 1rem;
+    }
+
+    .content h5 {
+        font-size: 0.94rem;
+    }
+
+    .content h6 {
+        font-size: 0.88rem;
     }
 
     .inlineCta {
