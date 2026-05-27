@@ -350,7 +350,17 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
 
                 {adhocEvents.length > 0 && (
                     <div className={styles.adhocBlock}>
-                        <p className={styles.adhocLabel}>その他の開催</p>
+                        <div className={styles.adhocHeader}>
+                            <div>
+                                <h3 className={styles.adhocLabel}>土曜の企画ラン</h3>
+                                <p className={styles.adhocLead}>
+                                    土曜日は不定期で、目的地を決めたり、少し長めに走ったりする日があります。
+                                </p>
+                            </div>
+                            <Link href="/schedule#special-runs" className={styles.adhocHeaderLink}>
+                                企画ランを見る →
+                            </Link>
+                        </div>
                         <ul className={styles.adhocList}>
                             {adhocEvents.map((e) => (
                                 <li key={e.eventId} className={styles.adhocItem}>
@@ -378,14 +388,16 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                     </div>
                 )}
 
-                <div className={styles.occasionalTeaser}>
-                    <p>
-                        土曜日は不定期で、上野公園やパン屋を目指すラン、山手線一周ランなども開催しています。
-                    </p>
-                    <Link href="/schedule#special-runs" className={styles.occasionalTeaserLink}>
-                        企画ランを見る →
-                    </Link>
-                </div>
+                {adhocEvents.length === 0 && (
+                    <div className={styles.occasionalTeaser}>
+                        <p>
+                            土曜日は不定期で、上野公園やパン屋を目指すラン、山手線一周ランなども開催しています。
+                        </p>
+                        <Link href="/schedule#special-runs" className={styles.occasionalTeaserLink}>
+                            企画ランを見る →
+                        </Link>
+                    </div>
+                )}
             </section>
 
             {/* Values */}

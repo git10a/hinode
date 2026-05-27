@@ -528,25 +528,63 @@
 
 .adhocBlock {
     margin-top: 2.25rem;
-    padding-top: 1.75rem;
-    border-top: 1px dashed #e5e0d4;
+    padding: 1.35rem;
+    border: 1px solid #eee3d2;
+    border-radius: 10px;
+    background: #fffaf4;
+}
+
+.adhocHeader {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.2rem;
+    margin-bottom: 1rem;
 }
 
 .adhocLabel {
-    font-size: 0.78rem;
-    letter-spacing: 0.18em;
-    color: #999;
-    margin: 0 0 0.85rem;
+    font-family: var(--font-jp);
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    color: #222;
+    margin: 0 0 0.25rem;
     text-transform: none;
+}
+
+.adhocLead {
+    margin: 0;
+    max-width: 34rem;
+    color: #777;
+    font-size: 0.84rem;
+    line-height: 1.8;
+    letter-spacing: 0.03em;
+}
+
+.adhocHeaderLink {
+    flex-shrink: 0;
+    color: #9b4a24;
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(155, 74, 36, 0.24);
+}
+
+.adhocHeaderLink:hover {
+    color: #111;
+    border-bottom-color: rgba(17, 17, 17, 0.38);
 }
 
 .adhocList {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
 }
 
 .adhocItem {
@@ -556,9 +594,11 @@
 .adhocLink {
     display: flex;
     align-items: center;
+    align-content: flex-start;
     flex-wrap: wrap;
     gap: 0.85rem;
-    padding: 0.85rem 1.1rem;
+    min-height: 9.6rem;
+    padding: 1rem 1.05rem;
     border: 1px solid #ece6d6;
     border-radius: 8px;
     background: #fff;
@@ -585,8 +625,9 @@
     font-size: 0.95rem;
     font-weight: 500;
     color: #222;
-    flex: 1 1 auto;
+    flex: 1 1 12rem;
     min-width: 0;
+    line-height: 1.65;
 }
 
 .adhocAddress {
@@ -605,6 +646,7 @@
     color: #aaa;
     font-size: 1rem;
     margin-left: auto;
+    align-self: flex-end;
 }
 
 .occasionalTeaser {
@@ -1066,6 +1108,20 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 0.45rem;
+    }
+
+    .adhocBlock {
+        padding: 1.15rem;
+    }
+
+    .adhocHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.55rem;
+    }
+
+    .adhocList {
+        grid-template-columns: 1fr;
     }
 
     .weeklyGrid,
