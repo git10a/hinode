@@ -17,7 +17,7 @@ const zenKaku = Zen_Kaku_Gothic_New({
     display: 'swap',
 });
 
-const siteTitle = 'HINODE｜東京の朝ラン・ランニングコミュニティ';
+const siteTitle = 'HINODE｜東京の朝ランコミュニティ｜初心者・ひとり参加歓迎';
 const siteDescription = 'HINODEは東京の朝ラン・ランニングコミュニティ。皇居・目黒川・代々木公園で毎週、日の出の時間にゆっくり走ります。予約不要・参加無料・1人参加OK。朝活として誰かと気軽に走りたい方へ。';
 
 export const metadata = {
