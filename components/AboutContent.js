@@ -56,7 +56,7 @@ const FAQ = [
     {
         q: '集合場所で誰もいなかったら？',
         a: (
-            <>雨の日など開催できない場合は <a href="https://strava.app.link/pQ0uMuWWj2b" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a> / <a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a> で前もって告知します。不安なことがあればいつでもご連絡ください。</>
+            <>中止の告知がないかぎり、必ず誰かがいます。目印の黄色いバンドを手首に付けている人にお声がけください。雨の日など開催できない場合は <a href="https://strava.app.link/pQ0uMuWWj2b" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a> / <a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a> で前もって告知します。不安なことがあればいつでもご連絡ください。</>
         ),
     },
     {
@@ -69,7 +69,7 @@ const FAQ = [
     },
     {
         q: '日の出の時間はもっと早くありませんか？',
-        a: 'はい、夏場は5時ごろに日の出を迎えます。しかしそれだと電車で来てくださる方が参加できないので、基本的に6時半を固定としています。秋から冬にかけての半年ほどはそれで日の出が見れるので、その季節をぜひお楽しみに。',
+        a: 'はい、夏場は5時ごろに日の出を迎えます。しかしそれだと電車で来てくださる方が参加できないので、基本的に6時半を固定としています。秋冬の季節はその時間で日の出が見れるので、その季節を楽しみにしていてください。',
     },
     {
         q: '何を持っていけばいいですか？',
