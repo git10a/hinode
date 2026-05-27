@@ -297,11 +297,21 @@
     box-shadow: 0 16px 34px rgba(197, 161, 76, 0.22), 0 12px 28px rgba(0, 0, 0, 0.08);
 }
 
-.weeklyNextBadge {
+.weeklyBadges {
     position: absolute;
     top: 1rem;
     left: 1rem;
+    right: 1rem;
     z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    align-items: flex-start;
+    pointer-events: none;
+}
+
+.weeklyNextBadge,
+.weeklyRecommendBadge {
     display: inline-flex;
     align-items: center;
     min-height: 1.75rem;
@@ -313,6 +323,12 @@
     background: #111;
     border-radius: 999px;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
+}
+
+.weeklyRecommendBadge {
+    color: #3f3110;
+    background: #f6df9b;
+    box-shadow: 0 6px 16px rgba(197, 161, 76, 0.18);
 }
 
 .weeklyThumb {
@@ -542,10 +558,10 @@
     margin-bottom: 1rem;
 }
 
-.adhocLabel {
+.adhocBlock .adhocLabel {
     font-family: var(--font-jp);
-    font-size: 1.05rem;
-    font-weight: 700;
+    font-size: 1.18rem;
+    font-weight: 800;
     line-height: 1.5;
     letter-spacing: 0.04em;
     color: #222;

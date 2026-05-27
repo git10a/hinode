@@ -45,6 +45,7 @@ const WEEKLY_ITEMS = [
         image: '/assets/Yoyogi.png',
         anchor: '/schedule#yoyogi',
         weatherLocation: { latitude: 35.6713, longitude: 139.69663 },
+        recommendedForFirstRun: true,
     },
 ];
 
@@ -274,8 +275,15 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                                 className={`${styles.weeklyCard} ${item.isNext ? styles.weeklyCardNext : ''}`}
                             >
                                 <Link href={item.detailsHref} className={styles.weeklyCardMain}>
-                                    {item.isNext && (
-                                        <span className={styles.weeklyNextBadge}>次の開催</span>
+                                    {(item.isNext || item.recommendedForFirstRun) && (
+                                        <div className={styles.weeklyBadges}>
+                                            {item.isNext && (
+                                                <span className={styles.weeklyNextBadge}>次の開催</span>
+                                            )}
+                                            {item.recommendedForFirstRun && (
+                                                <span className={styles.weeklyRecommendBadge}>初参加におすすめ</span>
+                                            )}
+                                        </div>
                                     )}
                                     <div className={styles.weeklyThumb}>
                                         <Image

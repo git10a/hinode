@@ -390,7 +390,7 @@ export default async function EventPage() {
             <section id="special-runs" className={styles.specialRunsSection} aria-labelledby="special-runs-title">
                 <div className={styles.specialRunsHeader}>
                     <h2 id="special-runs-title" className={styles.specialRunsTitle}>
-                        土曜日は、ときどき企画ラン
+                        土曜の企画ラン
                     </h2>
                     <p className={styles.specialRunsLead}>
                         水曜・木曜・日曜の定例ランとは別に、土曜日は不定期の企画ランも開催しています。街へ出たり、目的地を決めたり、少し長めに走ったりする日です。
