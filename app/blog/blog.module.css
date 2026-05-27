@@ -80,7 +80,7 @@
     font-weight: 400;
 }
 
-/* FEATURED card overlay */
+/* Featured card overlay */
 .featured {
     display: grid;
     grid-template-columns: 180px 1fr;
@@ -129,11 +129,10 @@
 }
 
 .featuredLabel {
-    font-family: var(--font-en);
     font-size: 0.7rem;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.04em;
     color: #F37E4A;
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: 0.75rem;
 }
 
@@ -185,20 +184,7 @@
 }
 
 .browseHeader {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
     margin-bottom: 1.1rem;
-}
-
-.browseKicker {
-    font-family: var(--font-en);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    color: #F37E4A;
-    margin: 0;
-    text-transform: none;
 }
 
 .browseTitle {
@@ -524,12 +510,6 @@
 
     .browseInner {
         padding: 2.4rem 1.25rem 0;
-    }
-
-    .browseHeader {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.25rem;
     }
 
     .searchForm {

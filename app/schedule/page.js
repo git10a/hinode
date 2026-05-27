@@ -309,12 +309,6 @@ export default async function EventPage() {
                 />
             ))}
 
-            <nav className={styles.breadcrumb} aria-label="breadcrumb">
-                <Link href="/" className={styles.breadcrumbLink}>ホーム</Link>
-                <span className={styles.breadcrumbSep}>›</span>
-                <span className={styles.breadcrumbCurrent}>開催日程</span>
-            </nav>
-
             <div className={styles.hero}>
                 <h1 className={styles.title}>
                     HINODEのグループラン日程<br />

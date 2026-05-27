@@ -16,37 +16,6 @@
     padding: 0;
 }
 
-/* ---------- breadcrumb ---------- */
-.breadcrumb {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 0.4rem;
-    font-size: 0.78rem;
-    color: #888;
-    letter-spacing: 0.05em;
-    margin-bottom: 2.5rem;
-    padding: 0;
-    background: none;
-    position: static;
-    box-shadow: none;
-}
-
-.breadcrumbLink {
-    color: #888;
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.breadcrumbLink:hover {
-    color: #333;
-}
-
-.breadcrumbSep {
-    color: #ccc;
-    font-size: 0.85rem;
-}
-
 /* ---------- 2-col layout ---------- */
 .layout {
     display: grid;
@@ -612,6 +581,11 @@
     border-top: 1px solid #f0e9e0;
 }
 
+.bottomStripCompact {
+    margin-top: 0;
+    border-top: 0;
+}
+
 .bottomStripInner {
     max-width: 1140px;
     margin: 0 auto;
@@ -764,17 +738,35 @@
     }
 
     .bottomStrip {
-        margin: 4rem -1.2rem -3rem;
-        padding: 3rem 1.2rem;
+        margin: 4rem calc(var(--bottom-strip-page-gutter, 1.2rem) * -1) -3rem;
+        padding: 3.2rem 1.2rem;
     }
 
     .bottomStripInner {
+        width: 100%;
         flex-direction: column;
         align-items: flex-start;
         gap: 1.5rem;
     }
 
+    .bottomStripText,
+    .bottomStripCta {
+        width: 100%;
+        min-width: 0;
+    }
+
     .bottomStripHeadline {
         font-size: 1.2rem;
+    }
+
+    .bottomStripCta {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .bottomStripBtnPrimary,
+    .bottomStripBtnSecondary {
+        width: 100%;
+        text-align: center;
     }
 }

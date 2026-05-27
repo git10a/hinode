@@ -52,7 +52,7 @@ const FAQ = [
     },
     {
         q: '初心者でも参加できるか',
-        a: '毎回、参加者の約3割がほぼ初めてのランニングです。歩いても、途中離脱しても、途中参加しても問題ありません。'
+        a: '毎回、参加者の4割前後が初参加・ソロ参加です。歩いても、途中離脱しても、途中参加しても問題ありません。'
     },
     {
         q: 'なぜ朝にこだわるのか',
@@ -79,7 +79,6 @@ export default function PressContent() {
     return (
         <section className={styles.pressPage}>
             <div className={styles.container}>
-                <p className={`${styles.kicker} ${styles.fadeIn}`}>Press Kit</p>
                 <h1 className={`${styles.title} ${styles.fadeIn}`}>
                     HINODE プレスキット
                 </h1>
@@ -131,7 +130,7 @@ export default function PressContent() {
                         <li>累計延べ参加人数: <strong>約350名</strong>(2026年4月時点・概数)</li>
                         <li>平均参加人数: 平日4名前後 / 日曜10名弱</li>
                         <li>参加者層: 中学生から50代まで。学生・会社員・経営者など職業は多様</li>
-                        <li>初参加比率: 毎回の参加者の約3割がほぼ初めてのランニング</li>
+                        <li>初参加・ソロ参加比率: 毎回4割前後</li>
                     </ul>
                 </div>
 

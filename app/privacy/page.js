@@ -7,7 +7,6 @@ export default function Privacy() {
     return (
         <section className="privacy-page">
             <div className="privacy-container">
-                <p className="privacy-kicker">Privacy Policy</p>
                 <h1>プライバシーポリシー</h1>
                 <p className="privacy-lead">
                     HINODEのウェブサイトとコミュニティ活動における、情報の取り扱いについてまとめています。
@@ -35,7 +34,7 @@ export default function Privacy() {
                         <h2>コミュニティ活動について</h2>
                         <p>ランニングイベントへの参加に際して、以下の点をご理解ください。</p>
                         <ul>
-                            <li>イベント参加時に撮影された写真・動画は、SNS等で共有される場合があります</li>
+                            <li>通常のグループランでは、参加者の顔が写る集合写真や動画の撮影・SNS掲載を前提にしていません。取材、記録、告知素材などで個人が判別できる写真・動画の撮影や掲載が必要になった場合は、用途を説明し、対象となる方の同意を確認します</li>
                             <li>参加に際して個人情報の提供を求める場合は、その都度利用目的をお知らせします</li>
                         </ul>
                     </section>

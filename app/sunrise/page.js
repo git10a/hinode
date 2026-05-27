@@ -61,7 +61,6 @@ export default function SunrisePage() {
 
       <div className="sunrise-list-hero">
         <div className="container">
-          <p className="sunrise-list-eyebrow">SUNRISE TIMES</p>
           <h1 className="sunrise-list-h1">全国の日の出時刻</h1>
           <p className="sunrise-list-sub">
             全国{cities.length}都市の日の出・日の入り時刻を確認できます。<br />
@@ -105,14 +104,6 @@ export default function SunrisePage() {
           border-bottom: 1px solid var(--color-border);
           text-align: center;
           background: #fafafa;
-        }
-        .sunrise-list-eyebrow {
-          font-family: var(--font-en);
-          font-size: 0.8rem;
-          letter-spacing: 0.25em;
-          color: #F37E4A;
-          text-transform: none;
-          margin-bottom: 1rem;
         }
         .sunrise-list-h1 {
           font-size: 2.5rem;

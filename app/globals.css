@@ -1344,15 +1344,6 @@ footer p {
     padding: 0 2rem;
 }
 
-.privacy-kicker {
-    font-family: var(--font-en);
-    font-size: 0.85rem;
-    letter-spacing: 0.24em;
-    text-transform: none;
-    color: #888;
-    margin-bottom: 0.8rem;
-}
-
 .privacy-page h1 {
     font-family: var(--font-jp);
     font-size: 1.9rem;

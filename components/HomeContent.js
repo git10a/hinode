@@ -7,7 +7,7 @@ import ParticipantPreview from './ParticipantPreview';
 import WeatherIcon from './WeatherIcon';
 import styles from './HomeContent.module.css';
 
-const CHIPS = ['参加無料', '予約不要', '1人参加多め', '4km前後ゆっくり'];
+const CHIPS = ['参加無料', '予約不要', '1人参加多め', '写真なし', '4km前後ゆっくり'];
 
 const STRAVA_CLUB_ID = '1772485';
 const FIRST_RUN_GUIDE_URL = '/first-run';

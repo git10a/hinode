@@ -44,7 +44,7 @@ const QUICK_FACTS = [
     },
     {
         label: '初心者歓迎',
-        text: '毎回、約3割がほぼ初めてのランニング',
+        text: '毎回、4割前後が初参加・ソロ参加',
     },
     {
         label: '1人参加OK',
@@ -110,14 +110,7 @@ export default function AboutContent() {
 
     return (
         <div className={styles.page}>
-            <nav className={styles.breadcrumb} aria-label="breadcrumb">
-                <Link href="/" className={styles.breadcrumbLink}>HOME</Link>
-                <span className={styles.breadcrumbSep}>›</span>
-                <span className={styles.breadcrumbCurrent}>ABOUT</span>
-            </nav>
-
             <div className={`${styles.hero} ${styles.fadeIn}`}>
-                <p className={styles.eyebrow}>ABOUT HINODE</p>
                 <h1 className={styles.title}>
                     東京で日の出とともに走る、<br />
                     朝ランコミュニティ
@@ -162,7 +155,6 @@ export default function AboutContent() {
 
             <section className={`${styles.startGuide} ${styles.fadeIn}`} aria-labelledby="first-join-title">
                 <div className={styles.startGuideHeader}>
-                    <p className={styles.guideEyebrow}>FIRST JOIN</p>
                     <h2 id="first-join-title" className={styles.guideTitle}>
                         初めての参加は、この順番で大丈夫です
                     </h2>
@@ -206,7 +198,7 @@ export default function AboutContent() {
                             </div>
                         </div>
                         <ul className={styles.list}>
-                            <li>初心者歓迎 — 毎回、参加者の約3割はほぼ初めてのランニングです</li>
+                            <li>初参加歓迎 — 毎回、参加者の4割前後が初参加・ソロ参加です</li>
                             <li>参加費無料・予約不要 — 集合場所へ来るだけで参加できます</li>
                             <li>ペース・距離は自由 — 歩いても途中離脱・途中参加も問題なし</li>
                             <li>雨天は基本中止 — 開催可否は当日の <a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a> / <a href="https://strava.app.link/pQ0uMuWWj2b" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a> で確認できます</li>

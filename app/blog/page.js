@@ -153,7 +153,7 @@ export default async function BlogPage({ searchParams = {} }) {
                                 </div>
                             )}
                             <div className={styles.featuredBody}>
-                                <span className={styles.featuredLabel}>FEATURED</span>
+                                <span className={styles.featuredLabel}>おすすめ記事</span>
                                 <h2 className={styles.featuredTitle}>{featured.title}</h2>
                                 {featured.description && (
                                     <p className={styles.featuredDesc}>{featured.description}</p>
@@ -168,7 +168,6 @@ export default async function BlogPage({ searchParams = {} }) {
             <section className={styles.browseSection} aria-labelledby="blog-browse-title">
                 <div className={styles.browseInner}>
                     <div className={styles.browseHeader}>
-                        <p className={styles.browseKicker}>BROWSE</p>
                         <h2 id="blog-browse-title" className={styles.browseTitle}>読みたい記事を探す</h2>
                     </div>
                     <form action={`/blog#${BLOG_RESULTS_ID}`} method="get" className={styles.searchForm}>

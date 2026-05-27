@@ -117,12 +117,6 @@ export default async function BlogPost({ params }) {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
 
-            <nav className={styles.breadcrumb} aria-label="breadcrumb">
-                <Link href="/" className={styles.breadcrumbLink}>HOME</Link>
-                <span className={styles.breadcrumbSep}>›</span>
-                <Link href="/blog" className={styles.breadcrumbLink}>BLOG</Link>
-            </nav>
-
             <div className={styles.layout}>
                 <article className={styles.article}>
                     <div className={styles.articleHeader}>

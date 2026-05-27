@@ -123,7 +123,7 @@ const GUIDE_CARDS = [
     },
     {
         title: 'ひとり参加でも大丈夫？',
-        body: '大丈夫です。毎回半数ほどはソロ・初参加です。もちろんお友達などとお越しいただくのも大歓迎です。',
+        body: '大丈夫です。毎回4割前後はソロ・初参加です。もちろんお友達などとお越しいただくのも大歓迎です。',
     },
     {
         title: '写真に写らなくても大丈夫？',
@@ -175,168 +175,166 @@ export default async function FirstRunPage() {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSON_LD) }}
             />
 
-            <nav className={styles.breadcrumb} aria-label="breadcrumb">
-                <Link href="/" className={styles.breadcrumbLink}>HOME</Link>
-                <span className={styles.breadcrumbSep}>›</span>
-                <span className={styles.breadcrumbCurrent}>FIRST RUN GUIDE</span>
-            </nav>
-
-            <section className={styles.hero}>
-                <div className={styles.heroCopy}>
-                    <p className={styles.eyebrow}>FIRST RUN GUIDE</p>
-                    <h1 className={styles.title}>
-                        初めてHINODEに参加する方へ
-                    </h1>
-                    <p className={styles.lead}>
-                        HINODEは、予約不要・参加無料・1人参加歓迎の朝ランコミュニティです。
-                        初参加前に気になる、当日の流れ、集合場所での合流、服装、荷物、写真方針、Stravaの使い方をまとめました。
-                    </p>
-                    <div className={styles.heroActions}>
-                        <Link href="/schedule" className={styles.primaryCta}>
-                            開催スケジュールを見る →
-                        </Link>
-                        <a href={STRAVA_CLUB_URL} target="_blank" rel="noopener noreferrer" className={styles.secondaryCta}>
-                            Stravaクラブを見る
-                        </a>
-                    </div>
-                </div>
-                <div className={styles.heroImageWrap}>
-                    <Image
-                        src="/assets/PXL_20260108_221045036.jpg"
-                        alt="朝の光の中で走るHINODEメンバー"
-                        width={1294}
-                        height={1726}
-                        sizes="(max-width: 900px) 100vw, 520px"
-                        priority
-                        className={styles.heroImage}
-                    />
-                </div>
-            </section>
-
-            <section className={styles.section} aria-labelledby="flow-title">
-                <div className={styles.sectionHead}>
-                    <p className={styles.sectionKicker}>FLOW</p>
-                    <h2 id="flow-title" className={styles.sectionTitle}>当日の流れ</h2>
-                </div>
-                <ol className={styles.flowList}>
-                    {FLOW_STEPS.map((step, index) => (
-                        <li key={step.title} className={styles.flowItem}>
-                            <span className={styles.flowNumber}>{String(index + 1).padStart(2, '0')}</span>
-                            <div>
-                                <h3>{step.title}</h3>
-                                <p>{step.text}</p>
-                            </div>
-                        </li>
-                    ))}
-                </ol>
-            </section>
-
-            <section className={styles.quickSection} aria-labelledby="quick-title">
-                <div className={styles.sectionHead}>
-                    <p className={styles.sectionKicker}>FIRST CHOICE</p>
-                    <h2 id="quick-title" className={styles.sectionTitle}>最初は日曜7:30の代々木公園ランがおすすめです</h2>
-                    <p className={styles.sectionLead}>
-                        平日6:30の回より時間に余裕があり、距離も約2〜4km。初めての方が入りやすい回です。
-                    </p>
-                </div>
-                <article className={styles.firstChoiceCard}>
-                    <div className={styles.firstChoiceThumb}>
-                        <Image
-                            src={FIRST_CHOICE_RUN.image}
-                            alt={FIRST_CHOICE_RUN.place}
-                            fill
-                            sizes="(max-width: 768px) 100vw, 300px"
-                        />
-                    </div>
-                    <div className={styles.firstChoiceBody}>
-                        <p className={styles.firstChoiceMeta}>
-                            {firstChoiceDate && (
-                                <span className={styles.firstChoiceDate}>{firstChoiceDate}</span>
-                            )}
-                            <span className={styles.firstChoiceDayTime}>{FIRST_CHOICE_RUN.day} {FIRST_CHOICE_RUN.timeRaw}</span>
+            <div className={styles.pageInner}>
+                <section className={styles.hero}>
+                    <div className={styles.heroCopy}>
+                        <h1 className={styles.title}>
+                            初めてHINODEに参加する方へ
+                        </h1>
+                        <p className={styles.lead}>
+                            HINODEは、予約不要・参加無料・1人参加歓迎の朝ランコミュニティです。
+                            初参加前に気になる、当日の流れ、集合場所での合流、服装、荷物、写真方針、Stravaの使い方をまとめました。
                         </p>
-                        <h3 className={styles.firstChoicePlace}>{FIRST_CHOICE_RUN.place}</h3>
-                        <p className={styles.firstChoiceLocation}>
-                            <svg viewBox="0 0 24 24" className={styles.firstChoiceLocationIcon} aria-hidden="true">
-                                <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" />
-                                <circle cx="12" cy="9" r="2.5" />
-                            </svg>
-                            {FIRST_CHOICE_RUN.location}
-                        </p>
-                        <ParticipantPreview
-                            count={firstChoiceEvent?.participantCount}
-                            participants={firstChoiceEvent?.participants || []}
-                            className={styles.firstChoiceParticipants}
-                        />
-                        <div className={styles.firstChoiceActions}>
-                            <Link href={FIRST_CHOICE_RUN.href} className={styles.firstChoicePrimaryButton}>
-                                集合場所と参加方法を見る
+                        <div className={styles.heroActions}>
+                            <Link href="/schedule" className={styles.primaryCta}>
+                                開催スケジュールを見る →
                             </Link>
-                            {firstChoiceStravaHref && (
-                                <a
-                                    href={firstChoiceStravaHref}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={styles.firstChoiceSubButton}
-                                >
-                                    Stravaページを見る
-                                </a>
-                            )}
-                            <ShareScheduleButton
-                                path={FIRST_CHOICE_RUN.href}
-                                className={styles.firstChoiceShareButton}
-                            />
+                            <a href={STRAVA_CLUB_URL} target="_blank" rel="noopener noreferrer" className={styles.secondaryCta}>
+                                Stravaクラブを見る
+                            </a>
                         </div>
                     </div>
-                </article>
+                    <div className={styles.heroImageWrap}>
+                        <Image
+                            src="/assets/PXL_20260108_221045036.jpg"
+                            alt="朝の光の中で走るHINODEメンバー"
+                            width={1294}
+                            height={1726}
+                            sizes="(max-width: 900px) 100vw, 520px"
+                            priority
+                            className={styles.heroImage}
+                        />
+                    </div>
+                </section>
+            </div>
+
+            <section className={`${styles.sectionBand} ${styles.sectionBandWarm}`} aria-labelledby="flow-title">
+                <div className={styles.sectionInner}>
+                    <div className={styles.sectionHead}>
+                        <h2 id="flow-title" className={styles.sectionTitle}>当日の流れ</h2>
+                    </div>
+                    <ol className={styles.flowList}>
+                        {FLOW_STEPS.map((step, index) => (
+                            <li key={step.title} className={styles.flowItem}>
+                                <span className={styles.flowNumber}>{String(index + 1).padStart(2, '0')}</span>
+                                <div>
+                                    <h3>{step.title}</h3>
+                                    <p>{step.text}</p>
+                                </div>
+                            </li>
+                        ))}
+                    </ol>
+                </div>
             </section>
 
-            <section className={styles.section} aria-labelledby="guide-title">
-                <div className={styles.sectionHead}>
-                    <p className={styles.sectionKicker}>QUESTIONS</p>
-                    <h2 id="guide-title" className={styles.sectionTitle}>初参加前に気になること</h2>
-                </div>
-                <div className={styles.questionList}>
-                    {GUIDE_CARDS.map((item) => (
-                        <details key={item.title} className={styles.questionItem}>
-                            <summary>
-                                <span>{item.title}</span>
-                            </summary>
-                            <p>{item.body}</p>
-                        </details>
-                    ))}
-                </div>
-                <aside className={styles.aiGuideCard} aria-labelledby="ai-guide-title">
-                    <div className={styles.aiGuideText}>
-                        <p className={styles.aiGuideKicker}>HINODE案内所</p>
-                        <h3 id="ai-guide-title" className={styles.aiGuideTitle}>まだ不安なことがあれば</h3>
-                        <p className={styles.aiGuideLead}>
-                            初参加・持ち物・集合場所など、HINODEのことをAIに質問できます。
-                            回答にないことはInstagram DMでも遠慮なく聞いてください。
+            <section className={`${styles.sectionBand} ${styles.sectionBandChoice}`} aria-labelledby="quick-title">
+                <div className={styles.sectionInner}>
+                    <div className={styles.sectionHead}>
+                        <h2 id="quick-title" className={styles.sectionTitle}>最初は日曜7:30の代々木公園ランがおすすめです</h2>
+                        <p className={styles.sectionLead}>
+                            平日6:30の回より時間に余裕があり、距離も約2〜4km。初めての方が入りやすい回です。
                         </p>
                     </div>
-                    <div className={styles.aiGuideActions}>
-                        <a
-                            href={NOTEBOOK_LM_URL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={styles.aiGuidePrimary}
-                        >
-                            HINODE案内所で質問する
-                        </a>
-                        <a
-                            href={INSTAGRAM_URL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={styles.aiGuideSecondary}
-                        >
-                            Instagramで聞く
-                        </a>
-                    </div>
-                </aside>
+                    <article className={styles.firstChoiceCard}>
+                        <div className={styles.firstChoiceThumb}>
+                            <Image
+                                src={FIRST_CHOICE_RUN.image}
+                                alt={FIRST_CHOICE_RUN.place}
+                                fill
+                                sizes="(max-width: 768px) 100vw, 300px"
+                            />
+                        </div>
+                        <div className={styles.firstChoiceBody}>
+                            <p className={styles.firstChoiceMeta}>
+                                {firstChoiceDate && (
+                                    <span className={styles.firstChoiceDate}>{firstChoiceDate}</span>
+                                )}
+                                <span className={styles.firstChoiceDayTime}>{FIRST_CHOICE_RUN.day} {FIRST_CHOICE_RUN.timeRaw}</span>
+                            </p>
+                            <h3 className={styles.firstChoicePlace}>{FIRST_CHOICE_RUN.place}</h3>
+                            <p className={styles.firstChoiceLocation}>
+                                <svg viewBox="0 0 24 24" className={styles.firstChoiceLocationIcon} aria-hidden="true">
+                                    <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" />
+                                    <circle cx="12" cy="9" r="2.5" />
+                                </svg>
+                                {FIRST_CHOICE_RUN.location}
+                            </p>
+                            <ParticipantPreview
+                                count={firstChoiceEvent?.participantCount}
+                                participants={firstChoiceEvent?.participants || []}
+                                className={styles.firstChoiceParticipants}
+                            />
+                            <div className={styles.firstChoiceActions}>
+                                <Link href={FIRST_CHOICE_RUN.href} className={styles.firstChoicePrimaryButton}>
+                                    集合場所と参加方法を見る
+                                </Link>
+                                {firstChoiceStravaHref && (
+                                    <a
+                                        href={firstChoiceStravaHref}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={styles.firstChoiceSubButton}
+                                    >
+                                        Stravaページを見る
+                                    </a>
+                                )}
+                                <ShareScheduleButton
+                                    path={FIRST_CHOICE_RUN.href}
+                                    className={styles.firstChoiceShareButton}
+                                />
+                            </div>
+                        </div>
+                    </article>
+                </div>
             </section>
 
-            <PostBottomStrip />
+            <section className={`${styles.sectionBand} ${styles.sectionBandGreen}`} aria-labelledby="guide-title">
+                <div className={styles.sectionInner}>
+                    <div className={styles.sectionHead}>
+                        <h2 id="guide-title" className={styles.sectionTitle}>初参加前に気になること</h2>
+                    </div>
+                    <div className={styles.questionList}>
+                        {GUIDE_CARDS.map((item) => (
+                            <details key={item.title} className={styles.questionItem}>
+                                <summary>
+                                    <span>{item.title}</span>
+                                </summary>
+                                <p>{item.body}</p>
+                            </details>
+                        ))}
+                    </div>
+                    <aside className={styles.aiGuideCard} aria-labelledby="ai-guide-title">
+                        <div className={styles.aiGuideText}>
+                            <p className={styles.aiGuideKicker}>HINODE案内所</p>
+                            <h3 id="ai-guide-title" className={styles.aiGuideTitle}>まだ不安なことがあれば</h3>
+                            <p className={styles.aiGuideLead}>
+                                初参加・持ち物・集合場所など、HINODEのことをAIに質問できます。
+                                回答にないことはInstagram DMでも遠慮なく聞いてください。
+                            </p>
+                        </div>
+                        <div className={styles.aiGuideActions}>
+                            <a
+                                href={NOTEBOOK_LM_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={styles.aiGuidePrimary}
+                            >
+                                HINODE案内所で質問する
+                            </a>
+                            <a
+                                href={INSTAGRAM_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={styles.aiGuideSecondary}
+                            >
+                                Instagramで聞く
+                            </a>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+            <PostBottomStrip compact />
         </div>
     );
 }

@@ -168,14 +168,6 @@ export default function CityPage({ params }) {
       {/* Hero */}
       <div className="sc-hero">
         <div className="container">
-          <nav className="sc-breadcrumb">
-            <Link href="/">HINODE</Link>
-            <span> / </span>
-            <Link href="/sunrise">日の出時刻</Link>
-            <span> / </span>
-            <span>{city.name}</span>
-          </nav>
-          <p className="sc-eyebrow">SUNRISE TIME</p>
           <h1 className="sc-h1">{city.prefecture}{city.name}の日の出時刻</h1>
           <p className="sc-today-date">{today.date}</p>
         </div>
@@ -299,7 +291,6 @@ export default function CityPage({ params }) {
 
         {/* フィードバック */}
         <section className="sc-feedback">
-          <p className="sc-feedback-label">COMMUNITY</p>
           <h2 className="sc-feedback-title">情報の訂正・おすすめコースを教えてください</h2>
           <p className="sc-feedback-body">
             HINODEの運営がまだ走れていないエリアについては、情報が不正確な場合があります。
@@ -331,25 +322,6 @@ export default function CityPage({ params }) {
           background: #fafafa;
           padding: 5rem 0 3.5rem;
           border-bottom: 1px solid var(--color-border);
-        }
-        .sc-breadcrumb {
-          font-size: 0.8rem;
-          color: #999;
-          margin-bottom: 1.5rem;
-          letter-spacing: 0.05em;
-        }
-        .sc-breadcrumb a {
-          color: #999;
-          text-decoration: none;
-        }
-        .sc-breadcrumb a:hover { color: var(--color-text); }
-        .sc-eyebrow {
-          font-family: var(--font-en);
-          font-size: 0.75rem;
-          letter-spacing: 0.3em;
-          color: #F37E4A;
-          text-transform: none;
-          margin-bottom: 0.8rem;
         }
         .sc-h1 {
           font-size: 2.2rem;
@@ -598,14 +570,6 @@ export default function CityPage({ params }) {
           padding: 2.5rem;
           margin-bottom: 3rem;
           background: #fafafa;
-        }
-        .sc-feedback-label {
-          font-family: var(--font-en);
-          font-size: 0.75rem;
-          letter-spacing: 0.25em;
-          color: #F37E4A;
-          text-transform: none;
-          margin-bottom: 0.8rem;
         }
         .sc-feedback-title {
           font-size: 1.1rem;

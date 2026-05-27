@@ -1,9 +1,23 @@
 .page {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 7rem 1.5rem 4rem;
+    --first-run-max: 960px;
+    --first-run-side: 1.5rem;
+    --bottom-strip-page-gutter: 0px;
+    width: 100%;
+    padding: 9rem 0 4rem;
+    background: #fff;
     color: #222;
     overflow-wrap: anywhere;
+}
+
+.pageInner,
+.sectionInner {
+    max-width: var(--first-run-max);
+    margin: 0 auto;
+    padding: 0 var(--first-run-side);
+}
+
+.pageInner {
+    margin-bottom: 3.2rem;
 }
 
 .page h1,
@@ -13,68 +27,16 @@
     padding: 0;
 }
 
-.breadcrumb {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 0.4rem;
-    font-size: 0.78rem;
-    color: #888;
-    letter-spacing: 0.05em;
-    margin-bottom: 2.5rem;
-    padding: 0;
-    background: none;
-    position: static;
-    box-shadow: none;
-}
-
-.breadcrumbLink {
-    color: #888;
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.breadcrumbLink:hover {
-    color: #333;
-}
-
-.breadcrumbSep {
-    color: #ccc;
-    font-size: 0.85rem;
-}
-
-.breadcrumbCurrent {
-    color: #444;
-}
-
 .hero {
     display: grid;
     grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
     gap: 2.75rem;
     align-items: center;
-    margin-bottom: 4.5rem;
+    margin-bottom: 0;
 }
 
 .heroCopy {
     min-width: 0;
-}
-
-.eyebrow,
-.sectionKicker {
-    font-family: var(--font-en);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: none;
-    margin: 0 0 1rem;
-}
-
-.eyebrow {
-    color: #F37E4A;
-}
-
-.sectionKicker {
-    color: #4f8f68;
 }
 
 .title {
@@ -159,9 +121,20 @@
     display: block;
 }
 
-.quickSection,
-.section {
-    margin-bottom: 4rem;
+.sectionBand {
+    padding: 3.8rem 0;
+}
+
+.sectionBandWarm {
+    background: #fff8f2;
+}
+
+.sectionBandChoice {
+    background: #fffdf9;
+}
+
+.sectionBandGreen {
+    background: #fff8f2;
 }
 
 .sectionHead {
@@ -435,6 +408,14 @@
     border-bottom: 1px solid #eaded3;
 }
 
+.sectionBandGreen .questionList {
+    border-top-color: #eaded3;
+}
+
+.sectionBandGreen .questionItem {
+    border-bottom-color: #eaded3;
+}
+
 .questionItem summary {
     display: flex;
     align-items: center;
@@ -511,6 +492,11 @@
     border-radius: 8px;
     background: #fffdf9;
     box-shadow: 0 12px 28px rgba(53, 39, 29, 0.05);
+}
+
+.sectionBandGreen .aiGuideCard {
+    border-color: #eaded3;
+    background: #fff;
 }
 
 .aiGuideText {
@@ -628,8 +614,16 @@
 
 @media (max-width: 768px) {
     .page {
-        --bottom-strip-page-gutter: 1.2rem;
-        padding: 5.5rem 1.2rem 3rem;
+        --first-run-side: 1.2rem;
+        padding: 8.4rem 0 3rem;
+    }
+
+    .pageInner {
+        margin-bottom: 2.5rem;
+    }
+
+    .sectionBand {
+        padding: 3rem 0;
     }
 
     .title {

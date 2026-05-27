@@ -3,9 +3,9 @@ import styles from '../app/blog/[slug]/post.module.css';
 
 const STRAVA_CLUB_URL = 'https://www.strava.com/clubs/1772485';
 
-export default function PostBottomStrip() {
+export default function PostBottomStrip({ compact = false }) {
     return (
-        <section className={styles.bottomStrip}>
+        <section className={`${styles.bottomStrip} ${compact ? styles.bottomStripCompact : ''}`}>
             <div className={styles.bottomStripInner}>
                 <div className={styles.bottomStripText}>
                     <p className={styles.bottomStripHeadline}>

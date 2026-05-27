@@ -13,41 +13,6 @@
     padding: 0;
 }
 
-/* ---------- breadcrumb ---------- */
-.breadcrumb {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 0.4rem;
-    font-size: 0.78rem;
-    color: #888;
-    letter-spacing: 0.05em;
-    margin-bottom: 2.5rem;
-    padding: 0;
-    background: none;
-    position: static;
-    box-shadow: none;
-}
-
-.breadcrumbLink {
-    color: #888;
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.breadcrumbLink:hover {
-    color: #333;
-}
-
-.breadcrumbSep {
-    color: #ccc;
-    font-size: 0.85rem;
-}
-
-.breadcrumbCurrent {
-    color: #444;
-}
-
 /* ---------- hero ---------- */
 .hero {
     margin-bottom: 2.4rem;

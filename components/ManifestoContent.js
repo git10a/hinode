@@ -12,7 +12,6 @@ export default function ManifestoContent() {
     return (
         <section className={styles.manifestoPage}>
             <div className={styles.container}>
-                <p className={`${styles.kicker} ${styles.fadeIn}`}>Manifesto</p>
                 <h1 className={`${styles.title} ${styles.fadeIn}`}>HINODE</h1>
                 <p className={`${styles.subtitle} ${styles.fadeIn}`}>
                     日の出前に集まり、日の出とともに走る。<br />東京の朝ランコミュニティ。

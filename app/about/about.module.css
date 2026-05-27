@@ -12,55 +12,10 @@
     padding: 0;
 }
 
-/* ---------- breadcrumb ---------- */
-.breadcrumb {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 0.4rem;
-    font-size: 0.78rem;
-    color: #888;
-    letter-spacing: 0;
-    margin-bottom: 2.2rem;
-    padding: 0;
-    background: none;
-    position: static;
-    box-shadow: none;
-}
-
-.breadcrumbLink {
-    color: #888;
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.breadcrumbLink:hover {
-    color: #333;
-}
-
-.breadcrumbSep {
-    color: #ccc;
-    font-size: 0.85rem;
-}
-
-.breadcrumbCurrent {
-    color: #444;
-}
-
 /* ---------- hero ---------- */
 .hero {
     text-align: left;
     margin-bottom: 2.6rem;
-}
-
-.eyebrow {
-    font-family: var(--font-en);
-    font-size: 0.75rem;
-    letter-spacing: 0;
-    color: #F37E4A;
-    margin: 0 0 1.2rem;
-    text-transform: none;
-    font-weight: 500;
 }
 
 .title {
@@ -193,15 +148,6 @@
 .startGuideHeader {
     max-width: 720px;
     margin-bottom: 1.8rem;
-}
-
-.guideEyebrow {
-    font-family: var(--font-en);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0;
-    color: #F37E4A;
-    margin: 0 0 0.8rem;
 }
 
 .guideTitle {
