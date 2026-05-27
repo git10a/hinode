@@ -59,6 +59,7 @@ function formatEventStart(date) {
 const PAST_RUNS = [
     {
         title: '東京湾で初日の出を拝むラン',
+        date: '2026.01.01',
         label: '初日の出',
         image: '/assets/Takeshiba.jpg',
         alt: '東京湾の朝焼けと水面',
@@ -67,6 +68,7 @@ const PAST_RUNS = [
     },
     {
         title: '横浜で日の出ラン',
+        date: '2026.01.09',
         label: '横浜',
         image: '/assets/event-run-yokohama-sunrise.jpg',
         alt: '横浜の海辺から見える朝焼けと橋',
@@ -76,6 +78,7 @@ const PAST_RUNS = [
     },
     {
         title: '東京マラソンEXPO 2026会場まで走って、現地で爆買いラン',
+        date: '2026.02.28',
         label: 'EXPO',
         image: '/assets/event-run-tokyo-marathon-expo-2026.png',
         alt: '東京マラソンEXPO 2026の会場',
@@ -85,6 +88,7 @@ const PAST_RUNS = [
     },
     {
         title: 'おおたかの森ラン',
+        date: '2026.05.09',
         label: 'おおたかの森',
         image: '/assets/event-run-otakanomori.png',
         alt: 'おおたかの森の緑と橋のある道',
@@ -205,7 +209,7 @@ export default async function EventRunsPage() {
                             priority
                         />
                         <div className={styles.heroStamp}>
-                            <span>Archive 01</span>
+                            <span>{PAST_RUNS[0].date}</span>
                             <strong>東京湾へ、初日の出を見に行く</strong>
                         </div>
                     </div>
@@ -329,7 +333,7 @@ export default async function EventRunsPage() {
                                 <span className={styles.archiveLabel}>{run.label}</span>
                             </div>
                             <div className={styles.archiveBody}>
-                                <span className={styles.archiveNumber}>{String(index + 1).padStart(2, '0')}</span>
+                                <span className={styles.archiveNumber}>{run.date}</span>
                                 <h3>{run.title}</h3>
                                 <p>{run.description}</p>
                                 <ul className={styles.detailList} aria-label={`${run.title}の特徴`}>
