@@ -42,6 +42,7 @@ export default function Footer() {
                     <Link href="/privacy">プライバシーポリシー</Link>
                 </div>
                 <div className="footer-sub-links">
+                    <Link href="/event-runs">企画ラン</Link>
                     <Link href="/sunrise">日の出時刻</Link>
                 </div>
                 <div className="social-links">

@@ -251,20 +251,20 @@ const RUNS = [
 
 const SPECIAL_RUNS = [
     {
-        title: '街や公園へ走りに行く',
-        text: '上野公園など、いつもの集合場所とは違う場所へ走りに行く日があります。',
+        title: '東京湾で初日の出を拝む',
+        text: '元日の早朝に東京湾まで走り、海の向こうから明るくなる空を見に行く日があります。',
     },
     {
-        title: '目的地を決めて走る',
-        text: 'おいしいパン屋を目指すコースなど、走った先の楽しみを決めることもあります。',
+        title: '横浜で日の出を見る',
+        text: '横浜の海辺まで走り、空が明るくなっていく時間をゆっくり眺める朝があります。',
     },
     {
-        title: '長めのチャレンジ',
-        text: '山手線一周ランのように、途中参加・途中離脱しやすい長めの企画もあります。',
+        title: '東京マラソンEXPOへ走る',
+        text: '東京マラソンEXPO 2026の会場まで走って、現地でランニング用品を見る企画もあります。',
     },
     {
-        title: '本当の日の出を見に行く',
-        text: '夏には4時半スタートで、日の出そのものを見に行く朝もあります。',
+        title: 'おおたかの森へ出かける',
+        text: 'いつもの定例開催地を離れて、おおたかの森のような街と緑の近い場所にも出かけます。',
     },
 ];
 
@@ -409,6 +409,9 @@ export default async function EventPage() {
                         ))}
                     </ul>
                 </div>
+                <Link href="/event-runs" className={styles.specialRunsAction}>
+                    これまでの企画ランを見る →
+                </Link>
                 {specialEvents.length > 0 && (
                     <div className={styles.specialUpcoming}>
                         <h3 className={styles.specialUpcomingTitle}>直近の企画</h3>

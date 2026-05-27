@@ -365,7 +365,7 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                                     土曜日は不定期で、目的地を決めたり、少し長めに走ったりする日があります。
                                 </p>
                             </div>
-                            <Link href="/schedule#special-runs" className={styles.adhocHeaderLink}>
+                            <Link href="/event-runs" className={styles.adhocHeaderLink}>
                                 企画ランを見る →
                             </Link>
                         </div>
@@ -399,9 +399,9 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                 {adhocEvents.length === 0 && (
                     <div className={styles.occasionalTeaser}>
                         <p>
-                            土曜日は不定期で、上野公園やパン屋を目指すラン、山手線一周ランなども開催しています。
+                            土曜日は不定期で、上野公園・木場公園・勝どきへ行ったり、横浜の日の出や東京マラソンEXPOを目的地にするランも開催しています。
                         </p>
-                        <Link href="/schedule#special-runs" className={styles.occasionalTeaserLink}>
+                        <Link href="/event-runs" className={styles.occasionalTeaserLink}>
                             企画ランを見る →
                         </Link>
                     </div>
