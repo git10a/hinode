@@ -17,14 +17,15 @@ const zenKaku = Zen_Kaku_Gothic_New({
     display: 'swap',
 });
 
-const siteDescription = 'HINODEは東京の朝ランコミュニティ。代々木公園・皇居・目黒川で、日の出の時間にゆっくり走ります。20代30代を中心に、学生から50代まで。1人参加OK・予約不要・参加費無料。';
+const siteTitle = 'HINODE｜東京の朝ラン・ランニングコミュニティ';
+const siteDescription = 'HINODEは東京の朝ラン・ランニングコミュニティ。皇居・目黒川・代々木公園で毎週、日の出の時間にゆっくり走ります。予約不要・参加無料・1人参加OK。朝活として誰かと気軽に走りたい方へ。';
 
 export const metadata = {
-    title: 'HINODE｜東京の朝ランコミュニティ｜皇居・目黒川・代々木公園',
+    title: siteTitle,
     description: siteDescription,
     metadataBase: new URL('https://hinode-run.com'),
     openGraph: {
-        title: 'HINODE｜東京の朝ランコミュニティ｜皇居・目黒川・代々木公園',
+        title: siteTitle,
         description: siteDescription,
         url: 'https://hinode-run.com',
         siteName: 'HINODE',
@@ -34,7 +35,7 @@ export const metadata = {
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'HINODE｜東京の朝ランコミュニティ｜皇居・目黒川・代々木公園',
+        title: siteTitle,
         description: siteDescription,
         images: ['/assets/ogp-home.png'],
     },

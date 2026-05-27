@@ -216,10 +216,10 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                     <div className={styles.heroCopy}>
                         <p className={styles.heroBrand}>HINODE</p>
                         <h1 className={styles.heroHeadline}>
-                            日の出とともに、<br />走りだそう。
+                            東京の朝ランコミュニティ
                         </h1>
                         <p className={styles.heroSub}>
-                            人との競争ではなく、自分との約束を守り続けるためのコミュニティ。
+                            皇居や代々木公園を中心に、毎朝だれかと気軽に走り続けられる場所をつくっています。
                         </p>
 
                         <div className={styles.heroChips}>
@@ -413,6 +413,9 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                 <div className={styles.sectionHeader}>
                     <h2 className={styles.sectionTitle}>HINODEとは</h2>
                 </div>
+                <p className={styles.valuesLead}>
+                    HINODEは、東京で朝ラン仲間を探している人のためのランニングコミュニティです。皇居・目黒川・代々木公園で毎週開催し、速さや経験よりも、朝の時間を誰かと気持ちよく走ることを大切にしています。
+                </p>
                 <div className={styles.valuesGrid}>
                     {VALUES.map((v) => (
                         <div key={v.title} className={styles.valueItem}>

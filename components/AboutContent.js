@@ -12,8 +12,8 @@ const SECTIONS = [
         title: 'HINODEはどんなコミュニティか',
         body: (
             <>
-                <p className={styles.text}>週3回（水・木・日曜）のグループランを基本に、土曜日は不定期の企画ランも開催しています。上野公園へ行ったり、おいしいパン屋を目指したり、山手線一周ランをしたりする日もあります。ペースも距離も自由で、苦しくなったら歩いても問題ありません。速さではなく、走り続ける規律そのものを大事にしています。</p>
-                <p className={styles.text}>競技志向のクラブではありません。ランキングやコーチング、練習メニューはなく、継続したい人のためのコミュニティです。中学生から50代まで、老若男女が参加しています。</p>
+                <p className={styles.text}>皇居・目黒川・代々木公園などでのグループランを基本に、土曜日は不定期の企画ランも開催しています。上野公園や駒沢公園へ行ったり、おいしいパン屋を目指したり、山手線一周ランをしたりする日もあります。ペースも距離も自由で、苦しくなったら歩いても問題ありません。速さではなく、走り続ける規律そのものを大事にしています。</p>
+                <p className={styles.text}>競技志向のクラブではありません。ランキングやコーチング、練習メニューはなく、朝ランを継続したい人のためのコミュニティです。中学生から50代まで、老若男女が参加しています。</p>
             </>
         ),
     },
@@ -33,25 +33,6 @@ const SECTIONS = [
 
 const STRAVA_CLUB_URL = 'https://www.strava.com/clubs/1772485';
 
-const QUICK_FACTS = [
-    {
-        label: '予約不要',
-        text: '予定が合えばそのまま集合場所へ',
-    },
-    {
-        label: '参加無料',
-        text: '走れる服装とシューズだけでOK',
-    },
-    {
-        label: '初心者歓迎',
-        text: '毎回、4割前後が初参加・ソロ参加',
-    },
-    {
-        label: '1人参加OK',
-        text: '黄色いゴムバンドを目印に合流',
-    },
-];
-
 const FIRST_JOIN_STEPS = [
     {
         title: '日程を見る',
@@ -59,7 +40,7 @@ const FIRST_JOIN_STEPS = [
     },
     {
         title: '集合場所へ行く',
-        text: '予約は不要です。開始数分前に、走れる服装で来てください。',
+        text: 'Stravaで参加表明しておくと安心です。開始数分前に、走れる服装で来てください。',
     },
     {
         title: '目印を探す',
@@ -75,16 +56,20 @@ const FAQ = [
     {
         q: '集合場所で誰もいなかったら？',
         a: (
-            <>手首に黄色いゴムバンドをつけている人がいないか探してみてください。雨の日など開催できない場合は <a href="https://strava.app.link/pQ0uMuWWj2b" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a> / <a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a> で前もって告知します。</>
+            <>雨の日など開催できない場合は <a href="https://strava.app.link/pQ0uMuWWj2b" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a> / <a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a> で前もって告知します。不安なことがあればいつでもご連絡ください。</>
         ),
     },
     {
         q: 'どんな人が参加していますか？',
-        a: '中学生から50代まで老若男女問わず参加しています。',
+        a: '25歳から35歳くらいのメンバーが5割ほどいらっしゃいますが、中学生から50代まで老若男女問わず参加しています。',
     },
     {
         q: '開始時間はいつですか？',
-        a: '平日は6:30、日曜は7:30スタートです。太陽は待ってくれないので時間通りにスタートします。数分前には集合しておいてください。夏場は日の出が早く6:30だと少し日の出を過ぎますが、電車で来る方も参加しやすいよう通年同じ時刻に固定しています。',
+        a: '平日は6:30、日曜は7:30スタートです。時間通りにスタートしますので、2分前には集合しておいてください。',
+    },
+    {
+        q: '日の出の時間はもっと早くありませんか？',
+        a: 'はい、夏場は5時ごろに日の出を迎えます。しかしそれだと電車で来てくださる方が参加できないので、基本的に6時半を固定としています。秋から冬にかけての半年ほどはそれで日の出が見れるので、その季節をぜひお楽しみに。',
     },
     {
         q: '何を持っていけばいいですか？',
@@ -116,7 +101,7 @@ export default function AboutContent() {
                     朝ランコミュニティ
                 </h1>
                 <p className={styles.lead}>
-                    HINODEは、日の出前に集まり、日の出とともに走る東京の朝ランコミュニティです。初心者でも参加でき、参加費無料、予約不要。皇居・目黒川・代々木公園を中心に、1人参加でも来やすい場を目指しています。
+                    HINODEは、日の出前に集まり、日の出とともに走る東京の朝ランコミュニティです。初心者でももちろん参加でき、参加は無料です。皇居・目黒川・代々木公園を中心に、1人参加でも来やすい場を目指しています。
                 </p>
                 <div className={styles.heroActions}>
                     <Link href="/schedule" className={styles.primaryCta}>
@@ -131,14 +116,6 @@ export default function AboutContent() {
                         Stravaで参加表明
                     </a>
                 </div>
-                <dl className={styles.quickFacts} aria-label="HINODEの参加しやすさ">
-                    {QUICK_FACTS.map((fact) => (
-                        <div key={fact.label} className={styles.quickFact}>
-                            <dt>{fact.label}</dt>
-                            <dd>{fact.text}</dd>
-                        </div>
-                    ))}
-                </dl>
             </div>
 
             <div className={`${styles.heroImageWrap} ${styles.fadeIn}`}>
@@ -171,6 +148,15 @@ export default function AboutContent() {
                         </li>
                     ))}
                 </ol>
+                <div className={styles.guideCta}>
+                    <div className={styles.guideCtaText}>
+                        <p className={styles.guideCtaLabel}>詳しくは</p>
+                        <p>集合場所、持ち物、当日の流れを初参加ガイドにまとめています。</p>
+                    </div>
+                    <Link href="/first-run" className={styles.guideCtaLink}>
+                        初参加ガイドを見る <span aria-hidden="true">→</span>
+                    </Link>
+                </div>
             </section>
 
             <article className={styles.body}>
@@ -187,21 +173,14 @@ export default function AboutContent() {
                 <section className={`${styles.numberedSection} ${styles.fadeIn}`}>
                     <div className={styles.sectionHead}>
                         <span className={styles.sectionNum}>03</span>
-                        <h2 className={styles.sectionTitle}>初めてでも参加できる理由</h2>
+                        <h2 className={styles.sectionTitle}>初めてでも参加しやすい理由</h2>
                     </div>
                     <div className={styles.sectionBody}>
-                        <div className={styles.callout}>
-                            <span className={styles.calloutIcon} aria-hidden="true">☼</span>
-                            <div className={styles.calloutBody}>
-                                <p className={styles.calloutTitle}>手首の<strong>黄色いゴムバンド</strong>が目印です</p>
-                                <p className={styles.calloutSub}>集合場所では、それを目印に合流してください。</p>
-                            </div>
-                        </div>
                         <ul className={styles.list}>
                             <li>初参加歓迎 — 毎回、参加者の4割前後が初参加・ソロ参加です</li>
-                            <li>参加費無料・予約不要 — 集合場所へ来るだけで参加できます</li>
+                            <li>参加費無料 — Stravaで参加表明しておくと、当日の人数感が分かって安心です</li>
                             <li>ペース・距離は自由 — 歩いても途中離脱・途中参加も問題なし</li>
-                            <li>雨天は基本中止 — 開催可否は当日の <a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a> / <a href="https://strava.app.link/pQ0uMuWWj2b" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a> で確認できます</li>
+                            <li>走ること自体にフォーカス — 写真や動画の撮影は基本なし</li>
                         </ul>
                     </div>
                 </section>
@@ -232,8 +211,23 @@ export default function AboutContent() {
                         <h2 className={styles.sectionTitle}>開催と最新情報</h2>
                     </div>
                     <div className={styles.sectionBody}>
-                        <p className={styles.text}>皇居・目黒川・代々木公園で週3回（水・木・日曜）開催。<a href="/schedule" className={styles.link}>開催日程と参加方法を見る →</a></p>
-                        <p className={styles.text}>開催可否やその他の案内は <a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a> と <a href="https://strava.app.link/pQ0uMuWWj2b" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a> で告知しています。</p>
+                        <div className={styles.infoPanel}>
+                            <div className={styles.infoItem}>
+                                <span className={styles.infoLabel}>開催場所</span>
+                                <p>皇居・目黒川・代々木公園で週3回（水・木・日曜）開催。土曜日は不定期で企画ランもあります。</p>
+                                <Link href="/schedule" className={styles.infoLink}>
+                                    開催日程と参加方法を見る <span aria-hidden="true">→</span>
+                                </Link>
+                            </div>
+                            <div className={styles.infoItem}>
+                                <span className={styles.infoLabel}>最新情報</span>
+                                <p>開催可否や当日の案内は Instagram と Strava で告知しています。</p>
+                                <div className={styles.infoLinks}>
+                                    <a href="https://www.instagram.com/hinode_run/" className={styles.infoLink} target="_blank" rel="noopener noreferrer">Instagram</a>
+                                    <a href="https://strava.app.link/pQ0uMuWWj2b" className={styles.infoLink} target="_blank" rel="noopener noreferrer">Strava</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
             </article>
