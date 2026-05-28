@@ -201,49 +201,19 @@ export default async function EventRunsPage() {
                         </ul>
                     </div>
                     <div className={styles.heroMedia}>
-                        <Image
-                            src="/assets/Takeshiba.jpg"
-                            alt="東京湾の朝焼け"
-                            fill
-                            sizes="(max-width: 760px) 100vw, 46vw"
-                            priority
-                        />
+                        <div className={styles.heroImageFrame}>
+                            <Image
+                                src="/assets/Takeshiba.jpg"
+                                alt="東京湾の朝焼け"
+                                fill
+                                sizes="(max-width: 760px) 100vw, 46vw"
+                                priority
+                            />
+                        </div>
                         <div className={styles.heroStamp}>
                             <span>{PAST_RUNS[0].date}</span>
                             <strong>東京湾へ、初日の出を見に行く</strong>
                         </div>
-                    </div>
-                </div>
-                <div className={styles.heroFilm} aria-label="企画ランの写真">
-                    <div>
-                        <Image
-                            src="/assets/event-run-yokohama-sunrise.jpg"
-                            alt="横浜の海辺から見える朝焼けと橋"
-                            fill
-                            sizes="33vw"
-                            priority
-                            style={{ objectPosition: 'center 68%' }}
-                        />
-                    </div>
-                    <div>
-                        <Image
-                            src="/assets/event-run-tokyo-marathon-expo-2026.png"
-                            alt="東京マラソンEXPO 2026の会場"
-                            fill
-                            sizes="33vw"
-                            priority
-                            style={{ objectPosition: 'center 45%' }}
-                        />
-                    </div>
-                    <div>
-                        <Image
-                            src="/assets/event-run-otakanomori.png"
-                            alt="おおたかの森の緑と橋のある道"
-                            fill
-                            sizes="33vw"
-                            priority
-                            style={{ objectPosition: 'center 55%' }}
-                        />
                     </div>
                 </div>
             </section>

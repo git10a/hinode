@@ -162,8 +162,12 @@
     background: #333;
 }
 
+.heroImageFrame {
+    position: absolute;
+    inset: 0;
+}
+
 .heroMedia img,
-.heroFilm img,
 .archiveImage img {
     object-fit: cover;
 }
@@ -196,21 +200,6 @@
     font-weight: 700;
     line-height: 1.65;
     letter-spacing: 0;
-}
-
-.heroFilm {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
-    margin-top: 1rem;
-}
-
-.heroFilm div {
-    position: relative;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    border-radius: 6px;
-    background: #f2f2f2;
 }
 
 .upcomingSection,
@@ -619,21 +608,31 @@
         width: 100%;
     }
 
-    .heroFilm {
-        display: flex;
-        gap: 0.65rem;
-        overflow-x: auto;
-        padding-bottom: 0.2rem;
-        margin-left: -1rem;
-        margin-right: -1rem;
-        scroll-snap-type: x mandatory;
+    .heroMedia {
+        aspect-ratio: 16 / 10;
+        overflow: hidden;
+        border-radius: 0;
     }
 
-    .heroFilm div {
-        width: 76vw;
-        flex: 0 0 auto;
-        scroll-snap-align: start;
-        border-radius: 0;
+    .heroStamp {
+        top: 0.65rem;
+        right: auto;
+        bottom: auto;
+        left: 0.65rem;
+        width: min(12.5rem, calc(100% - 1.3rem));
+        padding: 0.5rem 0.6rem 0.55rem;
+        border-radius: 5px;
+        background: rgba(17, 17, 17, 0.76);
+    }
+
+    .heroStamp span {
+        margin-bottom: 0.2rem;
+        font-size: 0.62rem;
+    }
+
+    .heroStamp strong {
+        font-size: 0.78rem;
+        line-height: 1.5;
     }
 
     .sectionTitle {
