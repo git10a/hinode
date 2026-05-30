@@ -29,6 +29,10 @@ function getEventLocation(event, formattedTime) {
     return SCHEDULE_LOCATION_BY_KEY.get(`${event?.dayOfWeek}-${formattedTime}`) || '';
 }
 
+function stravaEventUrl(eventId) {
+    return `${STRAVA_CLUB_URL}/group_events/${eventId}`;
+}
+
 function SidebarParticipants({ count, participants = [] }) {
     if (!count) return null;
     const overflowCount = Math.max(0, count - participants.length);
@@ -58,6 +62,7 @@ function SidebarParticipants({ count, participants = [] }) {
 export default function PostSidebar({ nextEvent }) {
     const next = nextEvent ? formatNext(nextEvent.startAt) : null;
     const nextLocation = next ? getEventLocation(nextEvent, next.time) : '';
+    const nextEventHref = nextEvent?.eventId ? stravaEventUrl(nextEvent.eventId) : null;
 
     return (
         <aside className={styles.sidebar}>
@@ -81,7 +86,12 @@ export default function PostSidebar({ nextEvent }) {
 
                 {next ? (
                     <p className={styles.sidebarLead}>
-                        <strong>{next.date} {next.time}</strong>
+                        <span className={styles.sidebarEventMeta}>
+                            <strong>{next.date} {next.time}</strong>
+                            <Link href="/schedule" className={styles.sidebarScheduleLink}>
+                                他の日程↗
+                            </Link>
+                        </span>
                         {nextLocation && (
                             <span className={styles.sidebarLocation}>
                                 <svg viewBox="0 0 24 24" className={styles.sidebarLocationIcon} aria-hidden="true">
@@ -104,17 +114,20 @@ export default function PostSidebar({ nextEvent }) {
                     participants={nextEvent?.participants}
                 />
 
-                <div className={styles.sidebarActions}>
-                    <Link href="/schedule" className={styles.sidebarBtnPrimary}>
-                        <svg viewBox="0 0 24 24" className={styles.sidebarBtnIcon} aria-hidden="true">
-                            <rect x="4" y="5" width="16" height="15" rx="2" />
-                            <line x1="4" y1="9.5" x2="20" y2="9.5" />
-                            <line x1="8" y1="3.5" x2="8" y2="6.5" />
-                            <line x1="16" y1="3.5" x2="16" y2="6.5" />
-                        </svg>
-                        他の日程も見る
+                {nextEventHref && (
+                    <a
+                        href={nextEventHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.sidebarJoinEvent}
+                    >
+                        <img src="/assets/strava.png" alt="" className={styles.sidebarJoinLogo} />
+                        Stravaで参加する
                         <span className={styles.sidebarBtnArrow} aria-hidden="true">›</span>
-                    </Link>
+                    </a>
+                )}
+
+                <div className={styles.sidebarActions}>
                     <Link href={FIRST_RUN_GUIDE_URL} className={styles.sidebarBtnSecondary}>
                         <svg viewBox="0 0 24 24" className={styles.sidebarBtnIcon} aria-hidden="true">
                             <path d="M6 20V5" />
