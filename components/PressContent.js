@@ -116,9 +116,9 @@ export default function PressContent() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td>水</td><td>6:30〜</td><td>皇居</td><td>桔梗門前派出所</td><td>約5km</td></tr>
-                            <tr><td>木</td><td>6:30〜</td><td>目黒川</td><td>中目黒駅 スターバックス蔦屋書店前</td><td>約4km</td></tr>
-                            <tr><td>日</td><td>7:30〜</td><td>代々木公園</td><td>原宿時計塔</td><td>約3〜6km</td></tr>
+                            <tr><td>水</td><td>6:00〜</td><td>皇居</td><td>桔梗門前派出所</td><td>約5km</td></tr>
+                            <tr><td>木</td><td>6:00〜</td><td>目黒川</td><td>中目黒駅 スターバックス蔦屋書店前</td><td>約4km</td></tr>
+                            <tr><td>日</td><td>7:10〜</td><td>代々木公園</td><td>原宿時計塔</td><td>約3〜6km</td></tr>
                         </tbody>
                     </table>
                     <p className={styles.body}>雨天のみ中止。開催可否は当日Instagram / Stravaで告知。</p>
