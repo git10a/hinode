@@ -43,6 +43,7 @@ export default function Footer() {
                 </div>
                 <div className="footer-sub-links">
                     <Link href="/event-runs">企画ラン</Link>
+                    <Link href="/running-community-tokyo">東京のランニングコミュニティ</Link>
                     <Link href="/sunrise">日の出時刻</Link>
                 </div>
                 <div className="social-links">
