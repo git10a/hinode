@@ -753,6 +753,18 @@
     letter-spacing: 0.04em;
 }
 
+.inlineTextLink {
+    color: #9b4a24;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(155, 74, 36, 0.28);
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.inlineTextLink:hover {
+    color: #111;
+    border-bottom-color: rgba(17, 17, 17, 0.38);
+}
+
 .valuesGrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -889,6 +901,9 @@
 
 .firstTimeCta {
     display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem 1.1rem;
+    align-items: center;
     justify-content: center;
     margin-top: 2.35rem;
 }
@@ -925,6 +940,27 @@
 
 .firstTimeCtaLink:hover .firstTimeCtaArrow {
     transform: translateX(3px);
+}
+
+.firstTimeSubLink {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    color: #6b5f55;
+    font-size: 0.84rem;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    text-align: center;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(107, 95, 85, 0.28);
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.firstTimeSubLink:hover {
+    color: #111;
+    border-bottom-color: rgba(17, 17, 17, 0.4);
 }
 
 /* =========================
@@ -1226,10 +1262,15 @@
 
     .firstTimeCta {
         margin-top: 1.8rem;
+        flex-direction: column;
     }
 
     .firstTimeCtaLink {
         width: 100%;
+    }
+
+    .firstTimeSubLink {
+        min-height: auto;
     }
 
     .closing {

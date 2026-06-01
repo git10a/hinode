@@ -11,6 +11,7 @@ const CHIPS = ['参加無料', '予約不要', '1人参加多め', '写真なし
 
 const STRAVA_CLUB_ID = '1772485';
 const FIRST_RUN_GUIDE_URL = '/first-run';
+const RUNNING_COMMUNITY_TOKYO_URL = '/running-community-tokyo';
 
 const WEEKLY_ITEMS = [
     {
@@ -422,7 +423,7 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                     <h2 className={styles.sectionTitle}>HINODEとは</h2>
                 </div>
                 <p className={styles.valuesLead}>
-                    HINODEは、東京で朝ラン仲間を探している人のためのランニングコミュニティです。皇居・目黒川・代々木公園で毎週開催し、速さや経験よりも、朝の時間を誰かと気持ちよく走ることを大切にしています。
+                    HINODEは、<Link href={RUNNING_COMMUNITY_TOKYO_URL} className={styles.inlineTextLink}>東京で朝ラン仲間を探している人のためのランニングコミュニティ</Link>です。皇居・目黒川・代々木公園で毎週開催し、速さや経験よりも、朝の時間を誰かと気持ちよく走ることを大切にしています。
                 </p>
                 <div className={styles.valuesGrid}>
                     {VALUES.map((v) => (
@@ -472,6 +473,9 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                     <Link href={FIRST_RUN_GUIDE_URL} className={styles.firstTimeCtaLink}>
                         初参加ガイドを見る
                         <span className={styles.firstTimeCtaArrow} aria-hidden="true">→</span>
+                    </Link>
+                    <Link href={RUNNING_COMMUNITY_TOKYO_URL} className={styles.firstTimeSubLink}>
+                        初心者・一人参加向けの案内を見る
                     </Link>
                 </div>
             </section>
