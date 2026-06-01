@@ -158,6 +158,90 @@
     margin-bottom: 0.6rem;
 }
 
+.content :global(figure.table) {
+    max-width: 100%;
+    margin: 2.2rem 0 2.6rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.content :global(figure.table) table {
+    margin: 0;
+}
+
+.content table {
+    width: 100%;
+    margin: 2.2rem 0 2.6rem;
+    border: 1px solid #e8dfd5;
+    border-radius: 6px;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+    overflow: hidden;
+    background: #fff;
+    font-size: 0.94rem;
+    line-height: 1.75;
+    letter-spacing: 0.03em;
+}
+
+.content th,
+.content td {
+    padding: 0.95rem 1.05rem;
+    text-align: left;
+    vertical-align: top;
+    border-right: 1px solid #eee7df;
+    border-bottom: 1px solid #eee7df;
+    overflow-wrap: anywhere;
+}
+
+.content th {
+    color: #222;
+    font-weight: 700;
+    background: #faf7f3;
+}
+
+.content td {
+    color: #444;
+    background: #fff;
+}
+
+.content tbody tr:nth-child(even) td {
+    background: #fdfbf9;
+}
+
+.content tbody tr:hover td {
+    background: #fff8f1;
+}
+
+.content th:last-child,
+.content td:last-child {
+    border-right: 0;
+}
+
+.content tr:last-child td {
+    border-bottom: 0;
+}
+
+.content th p,
+.content td p {
+    margin: 0;
+}
+
+.content caption {
+    caption-side: bottom;
+    padding: 0.75rem 0.35rem 0;
+    color: #777;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    text-align: left;
+    letter-spacing: 0.03em;
+}
+
+.content table:has(tr > :nth-child(4)) {
+    min-width: 680px;
+    table-layout: auto;
+}
+
 .content blockquote {
     margin: 2rem 0;
     padding: 1.15rem 1.25rem;
@@ -761,6 +845,41 @@
 
     .content h6 {
         font-size: 0.88rem;
+    }
+
+    .content table {
+        width: 100%;
+        font-size: 0.9rem;
+    }
+
+    .content table:has(tr > :nth-child(4)) {
+        display: block;
+        min-width: 0;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .content table:has(tr > :nth-child(4)) thead,
+    .content table:has(tr > :nth-child(4)) tbody,
+    .content table:has(tr > :nth-child(4)) tfoot {
+        display: table;
+        width: 100%;
+        min-width: 640px;
+    }
+
+    .content thead,
+    .content tbody,
+    .content tfoot {
+        width: 100%;
+    }
+
+    .content :global(figure.table) table {
+        overflow: visible;
+    }
+
+    .content th,
+    .content td {
+        padding: 0.82rem 0.9rem;
     }
 
     .inlineCta {
