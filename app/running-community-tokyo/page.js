@@ -289,7 +289,7 @@ export default function RunningCommunityTokyoPage() {
                 </div>
                 <div className={styles.heroMedia}>
                     <Image
-                        src="/assets/about-hero-real.png"
+                        src="/assets/tokyotower.jpg"
                         alt="東京の朝焼け"
                         fill
                         sizes="(max-width: 900px) 100vw, 46vw"
