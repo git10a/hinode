@@ -327,7 +327,17 @@ export default async function EventPage() {
                 </p>
                 <div className={styles.scheduleQuickView}>
                     <div className={styles.scheduleQuickViewHead}>
-                        <p className={styles.scheduleQuickViewLabel}>定例ラン早見表</p>
+                        <div className={styles.scheduleQuickViewTitleRow}>
+                            <p className={styles.scheduleQuickViewLabel}>定例ラン早見表</p>
+                            <a
+                                href={STRAVA_CLUB_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={styles.scheduleQuickViewStrava}
+                            >
+                                詳細はStravaで
+                            </a>
+                        </div>
                         <p className={styles.scheduleQuickViewLead}>
                             6月1日からサマータイムをお試ししています。対象は、水曜・木曜・日曜のグループランです。
                         </p>

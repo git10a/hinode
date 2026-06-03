@@ -59,11 +59,15 @@
 }
 
 .scheduleQuickViewHead {
-    display: flex;
-    align-items: baseline;
-    gap: 0.8rem;
-    flex-wrap: wrap;
     margin: 0 0 0.85rem;
+}
+
+.scheduleQuickViewTitleRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.9rem;
+    margin: 0 0 0.35rem;
 }
 
 .scheduleQuickViewLabel {
@@ -73,6 +77,31 @@
     font-weight: 700;
     line-height: 1.6;
     letter-spacing: 0.08em;
+}
+
+.scheduleQuickViewStrava {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    min-height: 1.8rem;
+    padding: 0.28rem 0.65rem;
+    border: 1px solid #ead8cd;
+    border-radius: 999px;
+    background: #fff;
+    color: #9b4a24;
+    font-size: 0.74rem;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.scheduleQuickViewStrava:hover {
+    background: #fff6df;
+    border-color: #d9bea6;
+    color: #111;
 }
 
 .scheduleQuickViewLead {
@@ -1128,8 +1157,16 @@
         padding: 1.1rem 1rem;
     }
 
-    .scheduleQuickViewHead {
-        gap: 0.35rem;
+    .scheduleQuickViewTitleRow {
+        align-items: flex-start;
+        gap: 0.7rem;
+    }
+
+    .scheduleQuickViewStrava {
+        min-height: 1.7rem;
+        padding: 0.25rem 0.55rem;
+        font-size: 0.7rem;
+        white-space: nowrap;
     }
 
     .scheduleTableWrap {
