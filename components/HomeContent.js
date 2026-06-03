@@ -1,11 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { MEMBER_COUNT } from '../lib/stats';
-import { getWeatherForecastsForRuns } from '../lib/weather';
 import { formatPostDate, getPostDisplayDate } from '../lib/blogPosts';
-import ShareScheduleButton from './ShareScheduleButton';
 import ParticipantPreview from './ParticipantPreview';
-import WeatherIcon from './WeatherIcon';
 import styles from './HomeContent.module.css';
 
 const CHIPS = ['参加無料', '予約不要', '1人参加多め', '写真なし', '4km前後ゆっくり'];
@@ -24,7 +21,6 @@ const WEEKLY_ITEMS = [
         location: '桔梗門派出所前',
         image: '/assets/Kokyo.jpg',
         anchor: '/schedule#kokyo',
-        weatherLocation: { latitude: 35.68375, longitude: 139.75284 },
     },
     {
         id: 'meguro',
@@ -35,7 +31,6 @@ const WEEKLY_ITEMS = [
         location: 'スタバ蔦屋書店前（中目黒）',
         image: '/assets/Meguro.png',
         anchor: '/schedule#meguro',
-        weatherLocation: { latitude: 35.63905, longitude: 139.70505 },
     },
     {
         id: 'yoyogi',
@@ -46,7 +41,6 @@ const WEEKLY_ITEMS = [
         location: '原宿時計塔前',
         image: '/assets/Yoyogi.png',
         anchor: '/schedule#yoyogi',
-        weatherLocation: { latitude: 35.6713, longitude: 139.69663 },
         recommendedForFirstRun: true,
     },
 ];
@@ -156,7 +150,7 @@ const STEPS = [
 export default async function HomeContent({ latestPosts = [], upcomingEvents = [], memberCount = null }) {
     const displayedMemberCount = memberCount ?? MEMBER_COUNT;
     const regularDays = new Set(WEEKLY_ITEMS.map((i) => i.dayIndex));
-    const regularCardsWithoutWeather = WEEKLY_ITEMS.map((item) => {
+    const regularCards = WEEKLY_ITEMS.map((item) => {
         const next = upcomingEvents.find((e) => e.dayOfWeek === item.dayIndex);
         const fallback = getNextRegularEvent(item);
         return {
@@ -165,7 +159,6 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
             nextTimestamp: next ? new Date(next.startAt).getTime() : fallback.nextTimestamp,
             detailsHref: item.anchor,
             stravaHref: next ? stravaEventUrl(next.eventId) : null,
-            sharePath: item.anchor,
             participantCount: next?.participantCount,
             participants: next?.participants || [],
         };
@@ -175,17 +168,6 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
             ...item,
             isNext: index === 0,
         }));
-    const weatherForecasts = await getWeatherForecastsForRuns(
-        regularCardsWithoutWeather.map((item) => ({
-            id: item.id,
-            startAt: item.nextTimestamp,
-            ...item.weatherLocation,
-        }))
-    );
-    const regularCards = regularCardsWithoutWeather.map((item) => ({
-        ...item,
-        weather: weatherForecasts[item.id],
-    }));
     const adhocEvents = upcomingEvents
         .filter((e) => !regularDays.has(e.dayOfWeek))
         .slice(0, 2);
@@ -277,30 +259,32 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                                 className={`${styles.weeklyCard} ${item.isNext ? styles.weeklyCardNext : ''}`}
                             >
                                 <Link href={item.detailsHref} className={styles.weeklyCardMain}>
-                                    {(item.isNext || item.recommendedForFirstRun) && (
-                                        <div className={styles.weeklyBadges}>
-                                            {item.isNext && (
-                                                <span className={styles.weeklyNextBadge}>次の開催</span>
-                                            )}
-                                            {item.recommendedForFirstRun && (
-                                                <span className={styles.weeklyRecommendBadge}>初参加におすすめ</span>
-                                            )}
+                                    <div className={styles.weeklyMedia}>
+                                        <div className={styles.weeklyThumb}>
+                                            <Image
+                                                src={item.image}
+                                                alt={item.place}
+                                                fill
+                                                sizes="96px"
+                                            />
                                         </div>
-                                    )}
-                                    <div className={styles.weeklyThumb}>
-                                        <Image
-                                            src={item.image}
-                                            alt={item.place}
-                                            fill
-                                            sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 380px"
-                                        />
+                                        {(item.isNext || item.recommendedForFirstRun) && (
+                                            <div className={styles.weeklyBadges}>
+                                                {item.isNext && (
+                                                    <span className={styles.weeklyNextBadge}>次の開催</span>
+                                                )}
+                                                {item.recommendedForFirstRun && (
+                                                    <span className={styles.weeklyRecommendBadge}>初参加におすすめ</span>
+                                                )}
+                                            </div>
+                                        )}
                                     </div>
                                     <div className={styles.weeklyBody}>
                                         <div className={styles.weeklyDay}>
                                             {item.nextDate && (
                                                 <span className={styles.weeklyDate}>{item.nextDate}</span>
                                             )}
-                                            <span className={styles.weeklyDayName}>{item.day} {item.time}</span>
+                                            <span className={styles.weeklyTime}>{item.time}</span>
                                             <span className={styles.weeklyDivider}>｜</span>
                                             <span className={styles.weeklyPlace}>{item.place}</span>
                                         </div>
@@ -311,28 +295,11 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                                             </svg>
                                             {item.location}
                                         </p>
-                                        {item.weather && (
-                                            <p
-                                                className={styles.weeklyWeather}
-                                                data-weather={item.weather.tone}
-                                                aria-label={`${item.weather.condition} ${item.weather.temperature}℃`}
-                                            >
-                                                <WeatherIcon
-                                                    tone={item.weather.tone}
-                                                    className={styles.weeklyWeatherIcon}
-                                                    title={item.weather.condition}
-                                                />
-                                                <span className={styles.weeklyWeatherTemp}>{item.weather.temperature}℃</span>
-                                            </p>
-                                        )}
                                         <ParticipantPreview
                                             count={item.participantCount}
                                             participants={item.participants}
                                             className={styles.weeklyParticipants}
                                         />
-                                        <span className={styles.weeklyCardCta}>
-                                            初参加ガイドや集合場所はこちら
-                                        </span>
                                     </div>
                                 </Link>
                                 <div className={styles.weeklyCardActions}>
@@ -344,13 +311,12 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                                                 rel="noopener noreferrer"
                                                 className={styles.weeklyStravaButton}
                                             >
-                                                Stravaページを見る
+                                                Stravaで詳細を見る
                                             </a>
                                         )}
-                                        <ShareScheduleButton
-                                            path={item.sharePath}
-                                            className={styles.weeklyShareButton}
-                                        />
+                                        <Link href={FIRST_RUN_GUIDE_URL} className={styles.weeklyGuideButton}>
+                                            初参加ガイドを見る
+                                        </Link>
                                     </div>
                                 </div>
                             </article>

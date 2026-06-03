@@ -257,6 +257,7 @@
 .weeklyGrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    align-items: start;
     gap: 2rem;
 }
 
@@ -304,7 +305,7 @@
     color: inherit;
     background: #fff;
     border: 1px solid transparent;
-    border-radius: 10px;
+    border-radius: 8px;
     overflow: hidden;
     transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
         border-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
@@ -315,7 +316,9 @@
 .weeklyCardMain {
     display: flex;
     flex: 1;
-    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding: 1rem 1rem 0.85rem;
     color: inherit;
     text-decoration: none;
 }
@@ -335,31 +338,28 @@
 }
 
 .weeklyBadges {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    right: 1rem;
-    z-index: 2;
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem;
+    flex-direction: column;
+    gap: 0.4rem;
     align-items: flex-start;
-    pointer-events: none;
+    margin-top: 0.65rem;
 }
 
 .weeklyNextBadge,
 .weeklyRecommendBadge {
     display: inline-flex;
     align-items: center;
-    min-height: 1.75rem;
-    padding: 0.25rem 0.7rem;
-    font-size: 0.72rem;
+    justify-content: center;
+    min-height: 1.45rem;
+    padding: 0.18rem 0.55rem;
+    font-size: 0.66rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     color: #fff;
     background: #111;
     border-radius: 999px;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
+    white-space: nowrap;
 }
 
 .weeklyRecommendBadge {
@@ -368,10 +368,16 @@
     box-shadow: 0 6px 16px rgba(197, 161, 76, 0.18);
 }
 
+.weeklyMedia {
+    flex: 0 0 104px;
+    width: 104px;
+}
+
 .weeklyThumb {
     position: relative;
-    width: 100%;
-    aspect-ratio: 4 / 3;
+    width: 96px;
+    aspect-ratio: 1;
+    border-radius: 6px;
     overflow: hidden;
     background: #f2f2f2;
 }
@@ -389,22 +395,24 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 1.5rem 1.5rem 1.75rem;
+    min-width: 0;
+    padding: 0.05rem 0 0;
 }
 
 .weeklyDay {
     display: flex;
     align-items: baseline;
     flex-wrap: wrap;
-    gap: 0.55rem 0.85rem;
-    margin-bottom: 0.5rem;
+    gap: 0.35rem 0.6rem;
+    margin-bottom: 0.35rem;
+    line-height: 1.45;
 }
 
 .weeklyDate {
     display: inline-block;
-    padding: 0.2rem 0.6rem;
+    padding: 0.16rem 0.48rem;
     font-family: var(--font-en);
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     font-weight: 500;
     letter-spacing: 0.04em;
     color: #fff;
@@ -413,8 +421,8 @@
     line-height: 1.3;
 }
 
-.weeklyDayName {
-    font-size: 1.05rem;
+.weeklyTime {
+    font-size: 0.98rem;
     font-weight: 600;
     letter-spacing: 0.06em;
     color: #111;
@@ -425,104 +433,42 @@
 }
 
 .weeklyPlace {
-    font-size: 1.05rem;
+    font-size: 0.98rem;
     font-weight: 500;
     letter-spacing: 0.06em;
     color: #111;
 }
 
-.weeklyLocation {
+.page .weeklyLocation {
     display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.82rem;
-    color: #777;
+    align-items: flex-start;
+    gap: 0.32rem;
+    font-size: 0.72rem;
+    color: #858585;
     margin-bottom: 0;
+    line-height: 1.45;
+    letter-spacing: 0.03em;
 }
 
 .weeklyLocationIcon {
-    width: 13px;
-    height: 13px;
+    width: 11px;
+    height: 11px;
     stroke: currentColor;
     fill: none;
     stroke-width: 1.6;
     flex-shrink: 0;
-}
-
-.weeklyWeather {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.45rem;
-    margin-top: 0.85rem;
-    padding-top: 0.75rem;
-    width: 100%;
-    border-top: 1px solid #f0ede5;
-    font-size: 0.78rem;
-    line-height: 1.5;
-    color: #666;
-}
-
-.weeklyWeatherIcon {
-    width: 16px;
-    height: 16px;
-    flex-shrink: 0;
-    color: #C5A14C;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.8;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
-.weeklyWeather[data-weather="cloudy"] .weeklyWeatherIcon {
-    color: #8b9298;
-}
-
-.weeklyWeather[data-weather="rain"] .weeklyWeatherIcon,
-.weeklyWeather[data-weather="storm"] .weeklyWeatherIcon {
-    color: #497ca6;
-}
-
-.weeklyWeather[data-weather="snow"] .weeklyWeatherIcon,
-.weeklyWeather[data-weather="fog"] .weeklyWeatherIcon {
-    color: #9ba9b5;
-}
-
-.weeklyWeatherTemp {
-    font-family: var(--font-en);
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    color: #222;
+    margin-top: 0.22rem;
 }
 
 .weeklyParticipants {
-    margin-top: 1rem;
-}
-
-.weeklyCardCta {
-    display: inline-flex;
-    align-items: center;
-    min-height: 1.7rem;
-    margin-top: 1rem;
-    font-size: 0.78rem;
-    font-weight: 600;
-    line-height: 1.5;
-    letter-spacing: 0.04em;
-    color: #9b4a24;
-    border-bottom: 1px solid rgba(155, 74, 36, 0.24);
-}
-
-.weeklyCard:hover .weeklyCardCta {
-    color: #111;
-    border-bottom-color: rgba(17, 17, 17, 0.38);
+    margin-top: 0.65rem;
 }
 
 .weeklyCardActions {
     display: flex;
     flex-direction: column;
     gap: 0.65rem;
-    padding: 0 1.5rem 1.45rem;
+    padding: 0 1rem 1rem;
 }
 
 .weeklySecondaryActions {
@@ -532,38 +478,35 @@
 }
 
 .weeklyStravaButton,
-.weeklyShareButton {
+.weeklyGuideButton {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 2.45rem;
-    padding: 0.65rem 0.9rem;
+    min-height: 2.15rem;
+    padding: 0.48rem 0.65rem;
     border-radius: 6px;
     font-family: inherit;
-    font-size: 0.8rem;
+    font-size: 0.74rem;
     font-weight: 600;
-    letter-spacing: 0.04em;
-    line-height: 1.5;
+    letter-spacing: 0.02em;
+    line-height: 1.35;
     text-align: center;
     text-decoration: none;
     overflow-wrap: anywhere;
+    white-space: nowrap;
     transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 
 .weeklyStravaButton,
-.weeklyShareButton {
-    flex: 1 1 9.5rem;
+.weeklyGuideButton {
+    flex: 1 1 7rem;
     border: 1px solid #e8dcc9;
     background: #fffaf1;
     color: #795d2d;
 }
 
-.weeklyShareButton {
-    cursor: pointer;
-}
-
 .weeklyStravaButton:hover,
-.weeklyShareButton:hover {
+.weeklyGuideButton:hover {
     border-color: #d3bd86;
     background: #fff6df;
     color: #111;
@@ -1231,25 +1174,43 @@
     .stepsGrid,
     .postsGrid {
         grid-template-columns: 1fr;
-        gap: 1.75rem;
+        gap: 1rem;
+    }
+
+    .weeklyCardMain {
+        gap: 0.8rem;
+        padding: 0.9rem 0.9rem 0.8rem;
+    }
+
+    .weeklyMedia {
+        flex-basis: 84px;
+        width: 84px;
+    }
+
+    .weeklyThumb {
+        width: 84px;
     }
 
     .weeklyBody {
-        padding: 1.25rem 1.25rem 1.5rem;
+        padding: 0;
     }
 
     .weeklyCardActions {
-        padding: 0 1.25rem 1.25rem;
-    }
-
-    .weeklySecondaryActions {
-        flex-direction: column;
+        padding: 0 0.9rem 0.9rem;
     }
 
     .weeklyStravaButton,
-    .weeklyShareButton {
-        flex: 0 0 auto;
-        width: 100%;
+    .weeklyGuideButton {
+        flex-basis: 0;
+    }
+
+    .weeklyRecommendBadge {
+        max-width: 100%;
+        padding: 0.18rem 0.28rem;
+        font-size: 0.55rem;
+        line-height: 1.2;
+        letter-spacing: 0;
+        white-space: nowrap;
     }
 
     .valuesGrid {
