@@ -200,6 +200,7 @@ const RUNS = [
         name: '皇居ラン',
         place: '皇居',
         meetingPlace: '桔梗門前派出所',
+        meetingShort: '桔梗門派出所前',
         day: '毎週水曜',
         time: '06:00〜',
         distance: '約5km',
@@ -218,6 +219,7 @@ const RUNS = [
         name: '目黒川ラン',
         place: '目黒川',
         meetingPlace: 'スターバックス 中目黒蔦屋書店前',
+        meetingShort: '中目黒駅スタバ前',
         day: '毎週木曜',
         time: '06:00〜',
         distance: '約4km',
@@ -236,6 +238,7 @@ const RUNS = [
         name: '代々木公園ラン',
         place: '代々木公園',
         meetingPlace: '原宿時計塔前',
+        meetingShort: '原宿時計塔前',
         day: '毎週日曜',
         time: '07:10〜',
         distance: '約2〜4km',
@@ -335,6 +338,7 @@ export default async function EventPage() {
                                 <tr>
                                     <th scope="col">曜日</th>
                                     <th scope="col">場所</th>
+                                    <th scope="col">集合</th>
                                     <th scope="col">集合時間</th>
                                     <th scope="col">距離</th>
                                 </tr>
@@ -346,6 +350,7 @@ export default async function EventPage() {
                                         <td data-label="場所">
                                             <a href={`#${run.id}`}>{run.place}</a>
                                         </td>
+                                        <td data-label="集合">{run.meetingShort}</td>
                                         <td data-label="集合時間">{run.time.replace('〜', '')}</td>
                                         <td data-label="距離">{run.distance}</td>
                                     </tr>
