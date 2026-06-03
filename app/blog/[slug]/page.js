@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { client } from '../../../lib/microcms';
 import { getUpcomingGroupEvents } from '../../../lib/strava';
+import { formatPostDate, getPostDisplayDate, sortBlogPosts } from '../../../lib/blogPosts';
 import PostSidebar from '../../../components/PostSidebar';
 import RelatedPosts from '../../../components/RelatedPosts';
 import PostBottomStrip from '../../../components/PostBottomStrip';
@@ -68,22 +69,15 @@ async function getRelatedPosts(currentId, limit = 3) {
         const data = await client.get({
             endpoint: 'blogs',
             queries: {
-                fields: 'id,title,publishedAt,thumbnail',
-                limit: limit + 1,
+                fields: 'id,title,publishedAt,revisedAt,updatedAt,createdAt,thumbnail',
+                orders: '-revisedAt',
+                limit: 100,
             },
         });
-        return data.contents.filter((p) => p.id !== currentId).slice(0, limit);
+        return sortBlogPosts(data.contents).filter((p) => p.id !== currentId).slice(0, limit);
     } catch (e) {
         return [];
     }
-}
-
-function formatJapaneseDate(iso) {
-    const d = new Date(iso);
-    const y = d.getFullYear();
-    const m = String(d.getMonth() + 1).padStart(2, '0');
-    const day = String(d.getDate()).padStart(2, '0');
-    return `${y}.${m}.${day}`;
 }
 
 export default async function BlogPost({ params }) {
@@ -106,7 +100,7 @@ export default async function BlogPost({ params }) {
         description: post.description || `${post.title}の記事です。`,
         image: post.thumbnail ? [post.thumbnail.url] : [],
         datePublished: post.publishedAt,
-        dateModified: post.updatedAt,
+        dateModified: getPostDisplayDate(post),
         author: { '@type': 'Organization', name: 'HINODE' },
     };
 
@@ -120,7 +114,9 @@ export default async function BlogPost({ params }) {
             <div className={styles.layout}>
                 <article className={styles.article}>
                     <div className={styles.articleHeader}>
-                        <time className={styles.date}>{formatJapaneseDate(post.publishedAt)}</time>
+                        <time className={styles.date} dateTime={getPostDisplayDate(post)}>
+                            {formatPostDate(getPostDisplayDate(post))}
+                        </time>
                         <h1 className={styles.title}>{post.title}</h1>
                     </div>
 

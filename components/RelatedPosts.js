@@ -1,14 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { formatPostDate, getPostDisplayDate } from '../lib/blogPosts';
 import styles from '../app/blog/[slug]/post.module.css';
-
-function formatDate(iso) {
-    const d = new Date(iso);
-    const y = d.getFullYear();
-    const m = String(d.getMonth() + 1).padStart(2, '0');
-    const day = String(d.getDate()).padStart(2, '0');
-    return `${y}.${m}.${day}`;
-}
 
 export default function RelatedPosts({ posts = [] }) {
     if (posts.length === 0) return null;
@@ -30,7 +23,9 @@ export default function RelatedPosts({ posts = [] }) {
                             </div>
                         )}
                         <div className={styles.relatedBody}>
-                            <time className={styles.relatedDate}>{formatDate(post.publishedAt)}</time>
+                            <time className={styles.relatedDate} dateTime={getPostDisplayDate(post)}>
+                                {formatPostDate(getPostDisplayDate(post))}
+                            </time>
                             <h3 className={styles.relatedCardTitle}>{post.title}</h3>
                         </div>
                     </Link>

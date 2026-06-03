@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { MEMBER_COUNT } from '../lib/stats';
 import { getWeatherForecastsForRuns } from '../lib/weather';
+import { formatPostDate, getPostDisplayDate } from '../lib/blogPosts';
 import ShareScheduleButton from './ShareScheduleButton';
 import ParticipantPreview from './ParticipantPreview';
 import WeatherIcon from './WeatherIcon';
@@ -151,14 +152,6 @@ const STEPS = [
         desc: 'そのまま出勤する方、コーヒーを飲んで帰る方、それぞれです。',
     },
 ];
-
-function formatDate(iso) {
-    const d = new Date(iso);
-    const y = d.getFullYear();
-    const m = String(d.getMonth() + 1).padStart(2, '0');
-    const day = String(d.getDate()).padStart(2, '0');
-    return `${y}.${m}.${day}`;
-}
 
 export default async function HomeContent({ latestPosts = [], upcomingEvents = [], memberCount = null }) {
     const displayedMemberCount = memberCount ?? MEMBER_COUNT;
@@ -502,7 +495,9 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                                         />
                                     </div>
                                 )}
-                                <time className={styles.postDate}>{formatDate(post.publishedAt)}</time>
+                                <time className={styles.postDate} dateTime={getPostDisplayDate(post)}>
+                                    {formatPostDate(getPostDisplayDate(post))}
+                                </time>
                                 <h3 className={styles.postTitle}>{post.title}</h3>
                             </Link>
                         ))}

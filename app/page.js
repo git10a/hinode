@@ -1,5 +1,6 @@
 import HomeContent from '../components/HomeContent';
 import { client } from '../lib/microcms';
+import { sortBlogPosts } from '../lib/blogPosts';
 import { getUpcomingGroupEvents, getClubMemberCount } from '../lib/strava';
 
 export const revalidate = 60;
@@ -9,11 +10,12 @@ async function getLatestPosts() {
         const data = await client.get({
             endpoint: 'blogs',
             queries: {
-                fields: 'id,title,publishedAt,thumbnail',
-                limit: 3,
+                fields: 'id,title,publishedAt,revisedAt,updatedAt,createdAt,thumbnail',
+                orders: '-revisedAt',
+                limit: 100,
             },
         });
-        return data.contents;
+        return sortBlogPosts(data.contents).slice(0, 3);
     } catch (error) {
         console.error('Failed to fetch latest posts:', error);
         return [];

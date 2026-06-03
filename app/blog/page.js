@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { client } from '../../lib/microcms';
 import { getPopularBlogPostIds } from '../../lib/googleAnalytics';
+import { formatPostDate, getPostDisplayDate, sortBlogPosts } from '../../lib/blogPosts';
 import styles from './blog.module.css';
 
 export const revalidate = 60;
@@ -43,23 +44,16 @@ async function getBlogPosts() {
         const data = await client.get({
             endpoint: 'blogs',
             queries: {
-                fields: 'id,title,publishedAt,thumbnail,description',
+                fields: 'id,title,publishedAt,revisedAt,updatedAt,createdAt,thumbnail,description',
+                orders: '-revisedAt',
                 limit: 100,
             },
         });
-        return data.contents;
+        return sortBlogPosts(data.contents);
     } catch (error) {
         console.error('Failed to fetch blog posts:', error);
         return [];
     }
-}
-
-function formatDate(iso) {
-    const d = new Date(iso);
-    const y = d.getFullYear();
-    const m = String(d.getMonth() + 1).padStart(2, '0');
-    const day = String(d.getDate()).padStart(2, '0');
-    return `${y}.${m}.${day}`;
 }
 
 function normalizeText(value = '') {
@@ -158,7 +152,9 @@ export default async function BlogPage({ searchParams = {} }) {
                                 {featured.description && (
                                     <p className={styles.featuredDesc}>{featured.description}</p>
                                 )}
-                                <time className={styles.featuredDate}>{formatDate(featured.publishedAt)}</time>
+                                <time className={styles.featuredDate} dateTime={getPostDisplayDate(featured)}>
+                                    {formatPostDate(getPostDisplayDate(featured))}
+                                </time>
                             </div>
                         </Link>
                     )}
@@ -241,7 +237,9 @@ export default async function BlogPage({ searchParams = {} }) {
                                     </div>
                                 )}
                                 <div className={styles.content}>
-                                    <time className={styles.date}>{formatDate(post.publishedAt)}</time>
+                                    <time className={styles.date} dateTime={getPostDisplayDate(post)}>
+                                        {formatPostDate(getPostDisplayDate(post))}
+                                    </time>
                                     <h2 className={styles.title}>{post.title}</h2>
                                     {post.description && (
                                         <p className={styles.excerpt}>{post.description}</p>
