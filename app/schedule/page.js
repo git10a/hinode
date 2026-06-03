@@ -250,9 +250,6 @@ const RUNS = [
             <>原宿時計塔に集合。<br />代々木公園を左回りで1、2周。<br />公園近くにはドトールやVERVE COFFEEがあります。</>
         ),
         forWhom: 'いきなり6時スタートは難しいから体を慣らしたい方、週末も朝から活動したい方',
-        note: (
-            <>7:00ではなく7:10集合です。近くのRuntrip BASEが7:00オープンのため、この時間にしています。ここで朝ランのリズムに慣れ、そこから平日の <a href="#kokyo" className={styles.noteLink}>皇居（水曜6:00）</a> や <a href="#meguro" className={styles.noteLink}>目黒川（木曜6:00）</a> にお越しになるのもウェルカムです。</>
-        ),
     },
 ];
 
@@ -325,13 +322,41 @@ export default async function EventPage() {
                     HINODEは、朝の時間にゆっくり走るランニングコミュニティです。<br />
                     予約不要・参加費無料・1人参加OK。
                 </p>
-                <div className={styles.summerNotice}>
-                    <p className={styles.summerNoticeLabel}>6月1日からサマータイムをお試しします</p>
-                    <p>
-                        水曜の皇居ランと木曜の目黒川ランは6:00集合、日曜の代々木公園ランは7:10集合です。
+                <div className={styles.scheduleQuickView}>
+                    <div className={styles.scheduleQuickViewHead}>
+                        <p className={styles.scheduleQuickViewLabel}>定例ラン早見表</p>
+                        <p className={styles.scheduleQuickViewLead}>
+                            6月1日からサマータイムをお試ししています。対象は、水曜・木曜・日曜のグループランです。
+                        </p>
+                    </div>
+                    <div className={styles.scheduleTableWrap}>
+                        <table className={styles.scheduleTable}>
+                            <thead>
+                                <tr>
+                                    <th scope="col">曜日</th>
+                                    <th scope="col">場所</th>
+                                    <th scope="col">集合時間</th>
+                                    <th scope="col">距離</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {RUNS.map((run) => (
+                                    <tr key={run.id}>
+                                        <td data-label="曜日">{run.day}</td>
+                                        <td data-label="場所">
+                                            <a href={`#${run.id}`}>{run.place}</a>
+                                        </td>
+                                        <td data-label="集合時間">{run.time.replace('〜', '')}</td>
+                                        <td data-label="距離">{run.distance}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                    <p className={styles.scheduleQuickViewNote}>
+                        日曜は7:00ではなく7:10集合です。Runtrip BASEが7:00にオープンするため、この時間にしています。
                         まずは1か月ほど運用し、参加状況や気温を見ながら継続するか判断します。
                     </p>
-                    <p>日曜は7:00ではなく7:10集合です。Runtrip BASEが7:00にオープンするため、この時間にしています。</p>
                 </div>
                 <div className={styles.firstRunCallout}>
                     <h2>初めて参加する方へ</h2>
@@ -364,6 +389,10 @@ export default async function EventPage() {
                                 <span>{run.nextTime}</span>
                             </p>
                             <h3 className={styles.nextRunName}>{run.name}</h3>
+                            <p className={styles.nextRunMeta}>
+                                <span>{run.place}</span>
+                                <span>距離 {run.distance}</span>
+                            </p>
                             <p className={styles.nextRunLocation}>
                                 <svg viewBox="0 0 24 24" className={styles.nextRunLocationIcon} aria-hidden="true">
                                     <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" />
@@ -533,9 +562,6 @@ export default async function EventPage() {
                                         <div className={styles.runDescCol}>
                                             <NextRunDate dayOfWeek={run.dayOfWeek} time={run.timeRaw} className={styles.nextDate} />
                                             <p className={styles.runDescription}>{run.description}</p>
-                                            {run.note && (
-                                                <p className={styles.runDescription}>{run.note}</p>
-                                            )}
                                             <div className={styles.runForWhom}>
                                                 <span className={styles.runForWhomLabel}>こんな方に</span>
                                                 <span className={styles.runForWhomText}>{run.forWhom}</span>
