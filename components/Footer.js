@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import SOCIAL_LINKS from '../lib/socialLinks';
 import { getRunCount } from '../lib/stats';
@@ -20,7 +21,13 @@ export default function Footer() {
             </svg>
         ),
         strava: (
-            <img className="social-icon social-icon-image" src="/assets/strava.png" alt="" />
+            <Image
+                className="social-icon social-icon-image"
+                src="/assets/strava.png"
+                alt=""
+                width={36}
+                height={36}
+            />
         )
     };
 

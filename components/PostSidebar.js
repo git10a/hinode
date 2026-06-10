@@ -46,6 +46,8 @@ function SidebarParticipants({ count, participants = [] }) {
                             key={participant.id}
                             src={participant.image}
                             alt=""
+                            loading="lazy"
+                            decoding="async"
                             className={styles.sidebarParticipantAvatar}
                         />
                     ))}
@@ -121,7 +123,7 @@ export default function PostSidebar({ nextEvent }) {
                         rel="noopener noreferrer"
                         className={styles.sidebarJoinEvent}
                     >
-                        <img src="/assets/strava.png" alt="" className={styles.sidebarJoinLogo} />
+                        <img src="/assets/strava.png" alt="" loading="lazy" decoding="async" className={styles.sidebarJoinLogo} />
                         Stravaで参加する
                         <span className={styles.sidebarBtnArrow} aria-hidden="true">›</span>
                     </a>
@@ -142,7 +144,7 @@ export default function PostSidebar({ nextEvent }) {
                         rel="noopener noreferrer"
                         className={styles.sidebarBtnTertiary}
                     >
-                        <img src="/assets/strava.png" alt="" className={styles.sidebarBtnLogo} />
+                        <img src="/assets/strava.png" alt="" loading="lazy" decoding="async" className={styles.sidebarBtnLogo} />
                         Stravaクラブを見る
                         <span className={styles.sidebarBtnArrow} aria-hidden="true">›</span>
                     </a>

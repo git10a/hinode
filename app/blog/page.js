@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { client } from '../../lib/microcms';
+import { getAllBlogPosts } from '../../lib/microcms';
 import { getPopularBlogPostIds } from '../../lib/googleAnalytics';
 import { formatPostDate, getPostDisplayDate, sortBlogPosts } from '../../lib/blogPosts';
 import styles from './blog.module.css';
@@ -38,23 +38,6 @@ const POPULAR_POST_FALLBACK_IDS = [
     '66n7fgwfkoz',
     'na6531kvbdg',
 ];
-
-async function getBlogPosts() {
-    try {
-        const data = await client.get({
-            endpoint: 'blogs',
-            queries: {
-                fields: 'id,title,publishedAt,revisedAt,updatedAt,createdAt,thumbnail,description',
-                orders: '-revisedAt',
-                limit: 100,
-            },
-        });
-        return sortBlogPosts(data.contents);
-    } catch (error) {
-        console.error('Failed to fetch blog posts:', error);
-        return [];
-    }
-}
 
 function normalizeText(value = '') {
     return value.toLowerCase().trim();
@@ -94,8 +77,11 @@ function getFeaturedPost(posts, popularPostIds = []) {
 }
 
 export default async function BlogPage({ searchParams = {} }) {
-    const posts = await getBlogPosts();
-    const popularPostIds = await getPopularBlogPostIds();
+    const [rawPosts, popularPostIds] = await Promise.all([
+        getAllBlogPosts(),
+        getPopularBlogPostIds(),
+    ]);
+    const posts = sortBlogPosts(rawPosts);
     const featured = getFeaturedPost(posts, popularPostIds);
     const requestedCategory = typeof searchParams.category === 'string' ? searchParams.category : 'all';
     const activeCategory = BLOG_CATEGORIES.some((category) => category.id === requestedCategory)

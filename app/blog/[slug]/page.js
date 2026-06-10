@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { client } from '../../../lib/microcms';
+import { client, getBlogPostById, getAllBlogPosts } from '../../../lib/microcms';
 import { getUpcomingGroupEvents } from '../../../lib/strava';
-import { formatPostDate, getPostDisplayDate, sortBlogPosts } from '../../../lib/blogPosts';
+import { formatPostDate, getPostDisplayDate, sortBlogPosts, optimizeBlogContentHtml } from '../../../lib/blogPosts';
 import PostSidebar from '../../../components/PostSidebar';
 import RelatedPosts from '../../../components/RelatedPosts';
 import PostBottomStrip from '../../../components/PostBottomStrip';
@@ -12,7 +12,7 @@ import styles from './post.module.css';
 export const revalidate = 60;
 
 export async function generateMetadata({ params }) {
-    const post = await getBlogPost(params.slug);
+    const post = await getBlogPostById(params.slug);
 
     if (!post) {
         return { robots: { index: false, follow: false } };
@@ -49,48 +49,25 @@ export async function generateMetadata({ params }) {
 
 export async function generateStaticParams() {
     try {
-        const data = await client.get({ endpoint: 'blogs', queries: { limit: 100 } });
+        const data = await client.get({ endpoint: 'blogs', queries: { fields: 'id', limit: 100 } });
         return data.contents.map((post) => ({ slug: post.id }));
     } catch (e) {
         return [];
     }
 }
 
-async function getBlogPost(id) {
-    try {
-        return await client.get({ endpoint: 'blogs', contentId: id });
-    } catch (error) {
-        return null;
-    }
-}
-
-async function getRelatedPosts(currentId, limit = 3) {
-    try {
-        const data = await client.get({
-            endpoint: 'blogs',
-            queries: {
-                fields: 'id,title,publishedAt,revisedAt,updatedAt,createdAt,thumbnail',
-                orders: '-revisedAt',
-                limit: 100,
-            },
-        });
-        return sortBlogPosts(data.contents).filter((p) => p.id !== currentId).slice(0, limit);
-    } catch (e) {
-        return [];
-    }
-}
-
 export default async function BlogPost({ params }) {
-    const post = await getBlogPost(params.slug);
+    const [post, allPosts, upcomingEvents] = await Promise.all([
+        getBlogPostById(params.slug),
+        getAllBlogPosts(),
+        getUpcomingGroupEvents(),
+    ]);
 
     if (!post || !post.publishedAt) {
         notFound();
     }
 
-    const [relatedPosts, upcomingEvents] = await Promise.all([
-        getRelatedPosts(post.id),
-        getUpcomingGroupEvents(),
-    ]);
+    const relatedPosts = sortBlogPosts(allPosts).filter((p) => p.id !== post.id).slice(0, 3);
     const nextEvent = upcomingEvents[0] || null;
 
     const jsonLd = {
@@ -137,7 +114,7 @@ export default async function BlogPost({ params }) {
                     {post.content ? (
                         <div
                             className={styles.content}
-                            dangerouslySetInnerHTML={{ __html: post.content }}
+                            dangerouslySetInnerHTML={{ __html: optimizeBlogContentHtml(post.content) }}
                         />
                     ) : (
                         <div className={styles.content}>

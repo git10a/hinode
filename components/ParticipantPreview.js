@@ -15,6 +15,8 @@ export default function ParticipantPreview({ count, participants = [], className
                             key={participant.id}
                             src={participant.image}
                             alt=""
+                            loading="lazy"
+                            decoding="async"
                             className={styles.participantAvatar}
                         />
                     ))}

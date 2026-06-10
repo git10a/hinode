@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import useFadeInOnScroll from '../lib/useFadeInOnScroll';
 import styles from '../app/hinode-spot/hinode-spot.module.css';
 import RUNNING_COURSES from '../lib/runningCourses';
@@ -35,9 +36,11 @@ export default function RunningCourseContent() {
                         {RUNNING_COURSES.map(course => (
                             <div key={course.title} className={styles.courseCard}>
                                 <div className={styles.courseImageWrapper}>
-                                    <img
+                                    <Image
                                         src={course.image}
                                         alt={`${course.title}のコースマップ`}
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, 33vw"
                                         className={styles.courseImage}
                                     />
                                     <span className={styles.courseBadge}>{course.badge}</span>
