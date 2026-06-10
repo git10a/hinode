@@ -6,6 +6,11 @@ const nextConfig = {
     async redirects() {
         return [
             {
+                source: '/running-community-tokyo',
+                destination: '/',
+                statusCode: 301,
+            },
+            {
                 source: '/blog/ybshx0x8x',
                 destination: '/blog/kkzy8gvj1',
                 permanent: true,

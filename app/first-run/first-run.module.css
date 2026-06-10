@@ -160,6 +160,47 @@
     max-width: none;
 }
 
+.snapshotGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.snapshotItem {
+    padding: 1.15rem;
+    border: 1px solid #eaded3;
+    border-radius: 8px;
+    background: #fffdf9;
+}
+
+.snapshotValue {
+    margin: 0 0 0.5rem;
+    color: #c2532a;
+    font-family: var(--font-en);
+    font-size: 1.28rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+}
+
+.snapshotItem h3 {
+    margin: 0 0 0.45rem;
+    color: #222;
+    font-family: var(--font-jp);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.55;
+    letter-spacing: 0.03em;
+}
+
+.snapshotItem p:last-child {
+    margin: 0;
+    color: #5c5650;
+    font-size: 0.9rem;
+    line-height: 1.85;
+    max-width: none;
+}
+
 .firstChoiceCard {
     position: relative;
     display: grid;
@@ -659,6 +700,10 @@
     .firstChoiceSubButton,
     .firstChoiceShareButton {
         width: 100%;
+    }
+
+    .snapshotGrid {
+        grid-template-columns: 1fr;
     }
 
     .aiGuideCard {

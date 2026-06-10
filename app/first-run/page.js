@@ -8,7 +8,7 @@ import styles from './first-run.module.css';
 
 export const metadata = {
     title: 'HINODE初参加ガイド｜初めて朝ランに参加する方へ',
-    description: 'HINODEの初参加ガイドです。おすすめの回、当日の流れ、集合場所での合流、ペース、服装、荷物、写真方針、Strava、雨天時の確認方法をまとめています。',
+    description: 'HINODEの初参加ガイドです。おすすめの回、当日の流れ、集合場所での合流、初心者やひとり参加の不安、ペース、服装、荷物、写真方針、Strava、雨天時の確認方法をまとめています。',
 };
 
 const STRAVA_CLUB_URL = 'https://www.strava.com/clubs/1772485';
@@ -100,10 +100,40 @@ const FLOW_STEPS = [
     },
 ];
 
+const COMMUNITY_SNAPSHOTS = [
+    {
+        value: '10代〜60代',
+        title: '幅広い年齢層',
+        body: '中心は25〜35歳くらいですが、毎回いろいろな年代の方が参加しています。',
+    },
+    {
+        value: '6:4くらい',
+        title: '男女比の目安',
+        body: '男性が少し多めですが、男女どちらかに偏りすぎた雰囲気ではありません。',
+    },
+    {
+        value: '体感8割ほど',
+        title: 'ラン歴1年以内',
+        body: '走り始めてまだ長くない人も多いです。長く走っている人も、グループランではゆっくり走ります。',
+    },
+];
+
 const GUIDE_CARDS = [
     {
         title: 'どの回がおすすめ？',
         body: 'まずは日曜7:10の代々木公園ランがおすすめです。距離は約2〜4kmで、平日6:00の回より時間にも余裕があります。',
+    },
+    {
+        title: '速そうで怖い',
+        body: 'HINODEは距離やスピードを求める練習会ではありません。普段からよく走る人も、グループランでは会話できるくらいのペースで走ります。',
+    },
+    {
+        title: '初心者でも本当に参加できる？',
+        body: 'できます。代々木公園と目黒川は3km走れれば参加しやすいです。皇居は5kmでアップダウンもあるので、体力にまだ自信がない方は皇居以外からがおすすめです。',
+    },
+    {
+        title: 'ひとり参加で浮かない？',
+        body: '浮きません。一人参加の人の方が多く、過度な自己紹介もありません。呼ばれたい名前だけ言って、すぐに走り出すくらいの気軽さです。',
     },
     {
         title: '集合場所ではどう合流する？',
@@ -111,23 +141,27 @@ const GUIDE_CARDS = [
     },
     {
         title: 'どんなペース？',
-        body: '06:30/km〜07:00/kmくらいの会話しながら走れるペースです。歩いても途中離脱してもまったく問題ありません。',
-    },
-    {
-        title: '事前連絡は必要？',
-        body: '必要ありませんが、Stravaで参加表明してもらえると、他の人も参加しやすくなります。',
+        body: '目安は1kmあたり6〜7分台くらいです。会話しながら走れるペースで、歩いても途中離脱してもまったく問題ありません。',
     },
     {
         title: 'どんな人が来る？',
-        body: '中学生から50代まで、老若男女問わず参加しています。朝に走る習慣をつけたい人、1人では続きにくい人も来ています。',
+        body: '10代から60代まで幅広く、中心は25〜35歳くらいです。朝に走る習慣をつけたい人、1人では続きにくい人も来ています。',
     },
     {
-        title: 'ひとり参加でも大丈夫？',
-        body: '大丈夫です。毎回4割前後はソロ・初参加です。もちろんお友達などとお越しいただくのも大歓迎です。',
+        title: '走ったあと、交流はある？',
+        body: '行きたい人だけカフェに行くことがあります。次の予定に向かっても、追加で走りに行ってもまったく問題ありません。',
     },
     {
-        title: '写真に写らなくても大丈夫？',
-        body: 'HINODEでは、基本的に集合写真は撮りません。景色の写真を撮ることはありますが、参加者の顔出しやSNS掲載を前提にした場ではありません。',
+        title: '途中で離脱しても大丈夫？',
+        body: '大丈夫です。きつければ歩いても、先に帰ってもかまいません。走った後も自由解散です。',
+    },
+    {
+        title: '参加費や予約は必要？',
+        body: '無料です。予約も不要で、開催日の5分前に集合場所へ来てもらえれば参加できます。',
+    },
+    {
+        title: '写真や動画に写る？',
+        body: 'HINODEでは、運営側が写真や動画を基本的に撮らず、顔出し前提の場ではありません。景色の写真を撮ることはあります。',
     },
     {
         title: 'Stravaは必須？',
@@ -285,6 +319,26 @@ export default async function FirstRunPage() {
                             </div>
                         </div>
                     </article>
+                </div>
+            </section>
+
+            <section className={styles.sectionBand} aria-labelledby="people-title">
+                <div className={styles.sectionInner}>
+                    <div className={styles.sectionHead}>
+                        <h2 id="people-title" className={styles.sectionTitle}>実際に来ている人</h2>
+                        <p className={styles.sectionLead}>
+                            初参加やひとり参加の人も多く、速さや経験よりも朝に集まって走ることを大切にしています。
+                        </p>
+                    </div>
+                    <div className={styles.snapshotGrid}>
+                        {COMMUNITY_SNAPSHOTS.map((item) => (
+                            <article key={item.title} className={styles.snapshotItem}>
+                                <p className={styles.snapshotValue}>{item.value}</p>
+                                <h3>{item.title}</h3>
+                                <p>{item.body}</p>
+                            </article>
+                        ))}
+                    </div>
                 </div>
             </section>
 

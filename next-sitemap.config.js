@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const SITE_URL = 'https://hinode-run.com';
-const EXTRA_STATIC_PATHS = ['/', '/schedule', '/first-run', '/event-runs', '/running-community-tokyo'];
+const EXTRA_STATIC_PATHS = ['/', '/schedule', '/first-run', '/event-runs'];
 
 const INDEX_SUNRISE_CITIES = new Set([
   'tokyo-chiyoda', 'tokyo-meguro', 'tokyo-shibuya',
@@ -77,6 +77,8 @@ module.exports = {
     ...(await getBlogSitemapEntries(config)),
   ],
   transform: async (config, path) => {
+    if (path === '/running-community-tokyo') return null;
+
     // /sunrise/[city] のうちホワイトリスト外はサイトマップから除外
     const match = path.match(/^\/sunrise\/(.+)$/);
     if (match && !INDEX_SUNRISE_CITIES.has(match[1])) return null;
