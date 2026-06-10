@@ -6,11 +6,13 @@ const STRAVA_CLUB_URL = 'https://www.strava.com/clubs/1772485';
 const FIRST_RUN_GUIDE_URL = '/first-run';
 const DAY_LABEL_JP = ['日', '月', '火', '水', '木', '金', '土'];
 const SCHEDULE_LOCATION_BY_KEY = new Map(
-    SCHEDULE_ITEMS.map((item) => {
-        const place = item.label.split('｜').pop();
-        return [`${item.dayOfWeek}-${item.time}`, `${place} ${item.location}`];
-    })
+    SCHEDULE_ITEMS.map((item) => [`${item.dayOfWeek}-${item.time}`, item.location])
 );
+const FIXED_LOCATION_BY_TITLE = [
+    { pattern: /代々木/, location: '原宿時計塔前' },
+    { pattern: /目黒|中目黒/, location: '中目黒駅 蔦屋併設スタバ前' },
+    { pattern: /皇居/, location: '桔梗門派出所前' },
+];
 
 function formatNext(iso) {
     const utc = new Date(iso);
@@ -24,9 +26,16 @@ function formatNext(iso) {
 }
 
 function getEventLocation(event, formattedTime) {
+    const title = event?.title || '';
+    const fixedByTitle = FIXED_LOCATION_BY_TITLE.find(({ pattern }) => pattern.test(title));
+    if (fixedByTitle) return fixedByTitle.location;
+
+    const fixedBySchedule = SCHEDULE_LOCATION_BY_KEY.get(`${event?.dayOfWeek}-${formattedTime}`);
+    if (fixedBySchedule) return fixedBySchedule;
+
     const address = event?.address?.trim();
     if (address) return address;
-    return SCHEDULE_LOCATION_BY_KEY.get(`${event?.dayOfWeek}-${formattedTime}`) || '';
+    return '';
 }
 
 function stravaEventUrl(eventId) {
