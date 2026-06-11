@@ -16,9 +16,9 @@
 
 .participantAvatar,
 .participantOverflow {
-    width: 28px;
-    height: 28px;
-    border: 2px solid #fff;
+    width: var(--participant-avatar-size, 28px);
+    height: var(--participant-avatar-size, 28px);
+    border: var(--participant-avatar-border, 2px) solid #fff;
     border-radius: 50%;
     flex-shrink: 0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
@@ -32,7 +32,7 @@
 
 .participantAvatar + .participantAvatar,
 .participantOverflow {
-    margin-left: -0.55rem;
+    margin-left: var(--participant-avatar-overlap, -0.55rem);
 }
 
 .participantOverflow {

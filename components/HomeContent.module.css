@@ -462,6 +462,11 @@
 
 .weeklyParticipants {
     margin-top: 0.65rem;
+    max-width: 100%;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.5rem;
+    --participant-avatar-size: 24px;
+    --participant-avatar-overlap: -0.5rem;
 }
 
 .weeklyCardActions {
