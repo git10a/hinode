@@ -81,6 +81,10 @@ export default function RunningCourseContent() {
                 <div className={styles.contentContainer}>
                     <div className={styles.fadeIn}>
                         <p className={styles.ctaText}>
+                            各コースの距離・設備・日の出ポイントは
+                            <a href="/courses" className={styles.link}>東京の朝ランコースガイド</a>で詳しく解説しています。
+                        </p>
+                        <p className={styles.ctaText}>
                             一緒に日の出で走りませんか？<br />
                             スケジュールは<a href="/schedule" className={styles.link}>こちら</a>、
                             詳しい情報は<a href="https://strava.app.link/pQ0uMuWWj2b" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a>や

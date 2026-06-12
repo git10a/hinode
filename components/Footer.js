@@ -45,11 +45,13 @@ export default function Footer() {
                 </p>
                 <div className="footer-links">
                     <Link href="/manifesto">マニフェスト</Link>
+                    <Link href="/faq">よくある質問</Link>
                     <Link href="/press">プレスキット</Link>
                     <Link href="/privacy">プライバシーポリシー</Link>
                 </div>
                 <div className="footer-sub-links">
                     <Link href="/event-runs">企画ラン</Link>
+                    <Link href="/courses">朝ランコースガイド</Link>
                     <Link href="/">東京のランニングコミュニティ</Link>
                     <Link href="/sunrise">日の出時刻</Link>
                 </div>
