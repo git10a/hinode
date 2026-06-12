@@ -83,7 +83,6 @@ export default function CoursesPage() {
                     <h2 className={styles.sectionTitle}>朝ランにおすすめの東京のコース</h2>
                     <p className={styles.text}>
                         定期開催はしていませんが、朝走るのにおすすめのコースです。
-                        日の出の時刻は<Link href="/sunrise" className={styles.link}>日の出時刻ページ</Link>で確認できます。
                     </p>
                     <div className={styles.courseGrid}>
                         {otherCourses.map((course) => (

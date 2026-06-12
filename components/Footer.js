@@ -54,6 +54,7 @@ export default function Footer() {
                     <Link href="/courses">朝ランコースガイド</Link>
                     <Link href="/">東京のランニングコミュニティ</Link>
                     <Link href="/sunrise">日の出時刻</Link>
+                    <a href="https://www.shoes-match.com/" target="_blank" rel="noopener noreferrer">ランシュー診断</a>
                 </div>
                 <div className="social-links">
                     {SOCIAL_LINKS.map(link => (

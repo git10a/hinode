@@ -121,10 +121,6 @@ export default function CourseDetailPage({ params }) {
                     {course.morning.map((paragraph) => (
                         <p key={paragraph.slice(0, 16)} className={styles.text}>{paragraph}</p>
                     ))}
-                    <p className={styles.text}>
-                        日の出の時刻は季節で大きく変わります。
-                        <Link href="/sunrise" className={styles.link}>今日の日の出時刻</Link>を確認してから走り出すのがおすすめです。
-                    </p>
                 </div>
             </section>
 

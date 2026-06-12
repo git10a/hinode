@@ -21,7 +21,7 @@ export const metadata = {
     },
 };
 
-// FAQの本文。aLinks はページ内で <Link> 表示するための差し込み（JSON-LDにはプレーンテキストを使う）
+// FAQの本文。aJsx はページ内でリンク付き表示するための差し込み（JSON-LDにはプレーンテキストの a を使う）
 const FAQ_GROUPS = [
     {
         title: '参加について',
@@ -78,7 +78,15 @@ const FAQ_GROUPS = [
         items: [
             {
                 q: '服装や持ち物は何が必要ですか？',
-                a: '走れる服装とシューズがあれば十分です。荷物がある場合は、駅のコインロッカーやランニングステーションを使うと身軽に走れます。',
+                a: '走れる服装とシューズがあれば十分です。荷物がある場合は、駅のコインロッカーやランニングステーションを使うと身軽に走れます。シューズ選びに迷ったら、無料のランニングシューズ診断「シューズマッチ」も参考にしてください。詳しくはこちら: https://www.shoes-match.com/',
+                aJsx: (
+                    <>
+                        走れる服装とシューズがあれば十分です。荷物がある場合は、駅のコインロッカーやランニングステーションを使うと身軽に走れます。
+                        シューズ選びに迷ったら、無料の
+                        <a href="https://www.shoes-match.com/" target="_blank" rel="noopener noreferrer">ランニングシューズ診断「シューズマッチ」</a>
+                        も参考にしてください。
+                    </>
+                ),
             },
             {
                 q: 'どんな人が参加していますか？',
@@ -134,7 +142,7 @@ export default function FaqPage() {
                             {group.items.map((item) => (
                                 <div key={item.q} className={styles.faqItem}>
                                     <h3 className={styles.faqQuestion}>{item.q}</h3>
-                                    <p className={styles.faqAnswer}>{item.a}</p>
+                                    <p className={styles.faqAnswer}>{item.aJsx || item.a}</p>
                                 </div>
                             ))}
                         </div>

@@ -178,6 +178,17 @@ const GUIDE_CARDS = [
         schemaText: '代々木公園で走る場合は、Runtrip BASEでHINODEのメンバーと伝えるとタオルが無料で使えます。詳しくはこちら: https://hinode-run.com/blog/4n3rlaujfpd9',
     },
     {
+        title: 'シューズはどう選べばいい？',
+        body: (
+            <>
+                最初は手持ちの走れるスニーカーで大丈夫です。これから選ぶなら、90秒の質問に答えるだけで自分に合うシューズがわかる
+                <a href="https://www.shoes-match.com/" target="_blank" rel="noopener noreferrer" className={styles.inlineLink}>ランニングシューズ診断「シューズマッチ」</a>
+                も参考にしてください。
+            </>
+        ),
+        schemaText: '最初は手持ちの走れるスニーカーで大丈夫です。これから選ぶなら、90秒の質問に答えるだけで自分に合うシューズがわかるランニングシューズ診断「シューズマッチ」も参考にしてください。詳しくはこちら: https://www.shoes-match.com/',
+    },
+    {
         title: '雨の日はどうなる？',
         body: '雨天は基本中止です。開催可否は当日のInstagramまたはStravaで案内するので、家を出る前に確認してください。',
     },
