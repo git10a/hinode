@@ -1,7 +1,7 @@
 .page {
     max-width: 1140px;
     margin: 0 auto;
-    padding: 7rem 1.5rem 4rem;
+    padding: 11.2rem 1.5rem 4rem;
     color: #222;
     overflow-wrap: anywhere;
 }
@@ -35,13 +35,37 @@
     border-bottom: 1px solid #ececec;
 }
 
-.date {
-    display: block;
+.dateMeta {
+    display: flex;
+    gap: 0.95rem;
+    flex-wrap: wrap;
+    margin: 0 0 1rem;
+}
+
+.dateItem {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    margin: 0;
+}
+
+.dateLabel,
+.dateValue {
+    margin: 0;
+}
+
+.dateLabel {
     color: #999;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+}
+
+.dateValue {
+    color: #777;
     font-family: var(--font-en);
-    font-size: 0.82rem;
-    margin-bottom: 1rem;
-    letter-spacing: 0.08em;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
 }
 
 .title {
@@ -74,6 +98,68 @@
     display: block;
 }
 
+/* ---------- table of contents ---------- */
+.toc {
+    display: block;
+    margin: 0 0 3rem;
+    padding: 1.45rem 1.65rem 1.2rem;
+    background: #f7f7f5;
+    border: 0;
+    border-radius: 6px;
+}
+
+.tocTitle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 0.3rem;
+    color: #222;
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: 0.04em;
+}
+
+.tocIcon {
+    width: 10px;
+    height: 10px;
+    fill: #555;
+    flex-shrink: 0;
+}
+
+.tocList {
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tocItem,
+.tocItemSub {
+    line-height: 1.55;
+    border-bottom: 1px solid #dadada;
+}
+
+.tocList li:last-child {
+    border-bottom: none;
+}
+
+.tocLink {
+    display: block;
+    padding: 0.58rem 0;
+    color: #444;
+    font-size: 0.86rem;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.tocLink:hover {
+    color: #c2532a;
+}
+
+.tocItemSub .tocLink {
+    padding-left: 1.25rem;
+}
+
 /* ---------- content ---------- */
 .content {
     font-size: 1rem;
@@ -89,6 +175,7 @@
     letter-spacing: 0.02em;
     text-wrap: balance;
     overflow-wrap: anywhere;
+    scroll-margin-top: 6rem;
 }
 
 .content h1,
@@ -798,15 +885,50 @@
 
 @media (max-width: 640px) {
     .page {
-        padding: 5.5rem 1.2rem 3rem;
+        padding: 10.2rem 1.2rem 3rem;
     }
 
     .title {
         font-size: 1.5rem;
     }
 
+    .dateMeta {
+        gap: 0.65rem 0.9rem;
+    }
+
+    .dateLabel {
+        font-size: 0.66rem;
+    }
+
+    .dateValue {
+        font-size: 0.78rem;
+    }
+
     .description {
         font-size: 0.95rem;
+    }
+
+    .toc {
+        margin-bottom: 2.4rem;
+        padding: 1.25rem 1.1rem 1rem;
+    }
+
+    .tocTitle {
+        font-size: 0.88rem;
+    }
+
+    .tocList {
+        margin-top: 0.8rem;
+    }
+
+    .tocLink {
+        padding: 0.55rem 0;
+        font-size: 0.84rem;
+        line-height: 1.55;
+    }
+
+    .tocItemSub .tocLink {
+        padding-left: 1rem;
     }
 
     .content {

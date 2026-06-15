@@ -3,10 +3,11 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { client, getBlogPostById, getAllBlogPosts } from '../../../lib/microcms';
 import { getUpcomingGroupEvents } from '../../../lib/strava';
-import { formatPostDate, getPostDisplayDate, sortBlogPosts, optimizeBlogContentHtml } from '../../../lib/blogPosts';
+import { formatPostDate, getPostDisplayDate, sortBlogPosts, buildBlogContent } from '../../../lib/blogPosts';
 import PostSidebar from '../../../components/PostSidebar';
 import RelatedPosts from '../../../components/RelatedPosts';
 import PostBottomStrip from '../../../components/PostBottomStrip';
+import TableOfContents from '../../../components/TableOfContents';
 import styles from './post.module.css';
 
 export const revalidate = 60;
@@ -69,6 +70,9 @@ export default async function BlogPost({ params }) {
 
     const relatedPosts = sortBlogPosts(allPosts).filter((p) => p.id !== post.id).slice(0, 3);
     const nextEvent = upcomingEvents[0] || null;
+    const { html: contentHtml, toc } = buildBlogContent(post.content);
+    const createdDate = post.publishedAt || post.createdAt || '';
+    const editedDate = getPostDisplayDate(post) || createdDate;
 
     const jsonLd = {
         '@context': 'https://schema.org',
@@ -90,13 +94,6 @@ export default async function BlogPost({ params }) {
 
             <div className={styles.layout}>
                 <article className={styles.article}>
-                    <div className={styles.articleHeader}>
-                        <time className={styles.date} dateTime={getPostDisplayDate(post)}>
-                            {formatPostDate(getPostDisplayDate(post))}
-                        </time>
-                        <h1 className={styles.title}>{post.title}</h1>
-                    </div>
-
                     {post.thumbnail && (
                         <div className={styles.thumbnailWrapper}>
                             <Image
@@ -111,10 +108,30 @@ export default async function BlogPost({ params }) {
                         </div>
                     )}
 
+                    <div className={styles.articleHeader}>
+                        <dl className={styles.dateMeta}>
+                            <div className={styles.dateItem}>
+                                <dt className={styles.dateLabel}>作成日</dt>
+                                <dd className={styles.dateValue}>
+                                    <time dateTime={createdDate}>{formatPostDate(createdDate)}</time>
+                                </dd>
+                            </div>
+                            <div className={styles.dateItem}>
+                                <dt className={styles.dateLabel}>最終編集日</dt>
+                                <dd className={styles.dateValue}>
+                                    <time dateTime={editedDate}>{formatPostDate(editedDate)}</time>
+                                </dd>
+                            </div>
+                        </dl>
+                        <h1 className={styles.title}>{post.title}</h1>
+                    </div>
+
+                    <TableOfContents items={toc} />
+
                     {post.content ? (
                         <div
                             className={styles.content}
-                            dangerouslySetInnerHTML={{ __html: optimizeBlogContentHtml(post.content) }}
+                            dangerouslySetInnerHTML={{ __html: contentHtml }}
                         />
                     ) : (
                         <div className={styles.content}>
