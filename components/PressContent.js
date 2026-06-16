@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import useFadeInOnScroll from '../lib/useFadeInOnScroll';
 import { getRunCount, MEMBER_COUNT } from '../lib/stats';
@@ -202,8 +203,7 @@ export default function PressContent() {
                     <h2 className={styles.sectionTitle}>取材対応について</h2>
                     <table className={styles.table}>
                         <tbody>
-                            <tr><th>窓口(メール)</th><td>hinode.infomation@gmail.com</td></tr>
-                            <tr><th>窓口(SNS)</th><td>Instagram DM <a className={styles.link} href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer">@hinode_run</a></td></tr>
+                            <tr><th>窓口</th><td><Link className={styles.link} href="/work-contact">お仕事・取材のご相談フォーム</Link></td></tr>
                             <tr><th>対応可能時間</th><td>随時(早朝含む)</td></tr>
                             <tr><th>ラン帯同取材</th><td>歓迎。事前にご連絡いただき、開催地の集合場所までお越しください</td></tr>
                             <tr><th>顔出し</th><td><strong>NG</strong>(代表・参加者ともに)</td></tr>
@@ -262,9 +262,8 @@ export default function PressContent() {
 
                 {/* Contact block */}
                 <div className={`${styles.contactBlock} ${styles.fadeIn}`}>
-                    <h3>取材・メディアのお問い合わせ</h3>
-                    <p>Email: <a href="mailto:hinode.infomation@gmail.com">hinode.infomation@gmail.com</a></p>
-                    <p>Instagram DM: <a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer">@hinode_run</a></p>
+                    <h3>お仕事・取材のご相談</h3>
+                    <p><Link href="/work-contact">専用フォームからご連絡ください</Link></p>
                     <p>早朝取材・ラン帯同歓迎</p>
                 </div>
             </div>

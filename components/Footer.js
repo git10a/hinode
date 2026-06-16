@@ -47,6 +47,7 @@ export default function Footer() {
                     <Link href="/manifesto">マニフェスト</Link>
                     <Link href="/faq">よくある質問</Link>
                     <Link href="/press">プレスキット</Link>
+                    <Link href="/work-contact">お仕事・取材</Link>
                     <Link href="/privacy">プライバシーポリシー</Link>
                 </div>
                 <div className="footer-sub-links">

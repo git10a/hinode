@@ -298,7 +298,7 @@ export default function CityPage({ params }) {
             地元ランナーの声をぜひ教えてください。
           </p>
           <a
-            href={`mailto:hinode.infomation@gmail.com?subject=${encodeURIComponent(`[日の出スポット] ${city.prefecture}${city.name}について`)}`}
+            href={`mailto:hinode.run@gmail.com?subject=${encodeURIComponent(`[日の出スポット] ${city.prefecture}${city.name}について`)}`}
             className="sc-feedback-btn"
           >
             メールで教える →

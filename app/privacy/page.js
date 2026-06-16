@@ -24,7 +24,9 @@ export default function Privacy() {
                         <h2>ウェブサイトについて</h2>
                         <p>当ウェブサイト（hinode-run.com）では、以下の方針で運営しています。</p>
                         <ul>
-                            <li>ユーザー登録やログイン機能は設けておらず、個人情報の入力を求めることはありません</li>
+                            <li>ユーザー登録やログイン機能は設けていません</li>
+                            <li>お仕事・取材のご相談フォームでは、返信およびご相談内容の確認のため、お名前、メールアドレス、会社名・媒体名、相談内容を取得します</li>
+                            <li>フォーム送信には外部フォーム送信サービス（FormSubmit）を利用します</li>
                             <li>Cookieやアクセス解析ツールによる基本的なアクセス情報（閲覧ページ、参照元など）を収集する場合があります</li>
                             <li>外部サービス（Instagram、Strava等）へのリンクを含みますが、それらのサービスでの情報取り扱いは各サービスのプライバシーポリシーに従います</li>
                         </ul>
@@ -62,9 +64,9 @@ export default function Privacy() {
 
                     <section className="privacy-section privacy-contact">
                         <h2>お問い合わせ</h2>
-                        <p>本プライバシーポリシーに関するご質問やご意見がございましたら、以下までお問い合わせください。</p>
+                        <p>本プライバシーポリシーに関するご質問や、お仕事・取材のご相談は以下よりお問い合わせください。</p>
                         <p>
-                            Instagram: <a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer">@hinode_run</a>
+                            <a href="/work-contact">お仕事・取材のご相談フォーム</a>
                         </p>
                     </section>
                 </div>
