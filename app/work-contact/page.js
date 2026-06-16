@@ -78,7 +78,7 @@ export default function WorkContactPage() {
 
                     <label className={styles.field}>
                         <span>メールアドレス</span>
-                        <input type="email" name="メールアドレス" autoComplete="email" maxLength="254" required />
+                        <input type="email" name="email" autoComplete="email" maxLength="254" required />
                     </label>
 
                     <label className={styles.field}>
