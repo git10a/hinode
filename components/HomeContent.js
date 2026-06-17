@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '@/components/SiteLink';
 import Image from 'next/image';
 import { MEMBER_COUNT } from '../lib/stats';
 import { formatPostDate, getPostDisplayDate } from '../lib/blogPosts';

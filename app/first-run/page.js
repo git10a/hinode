@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from '@/components/SiteLink';
 import ParticipantPreview from '../../components/ParticipantPreview';
 import PostBottomStrip from '../../components/PostBottomStrip';
 import ShareScheduleButton from '../../components/ShareScheduleButton';
@@ -16,7 +16,7 @@ const STRAVA_CLUB_ID = '1772485';
 const NOTEBOOK_LM_URL = 'https://notebooklm.google.com/notebook/40deb023-33ff-4bf9-985a-08cbfe6df7aa';
 const INSTAGRAM_URL = 'https://www.instagram.com/hinode_run/';
 
-export const revalidate = 60;
+export const revalidate = 900;
 
 const FIRST_CHOICE_RUN = {
     day: '日曜',

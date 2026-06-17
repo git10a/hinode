@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from '@/components/SiteLink';
 import ParticipantPreview from '../../components/ParticipantPreview';
 import { getUpcomingGroupEvents } from '../../lib/strava';
 import styles from './event-runs.module.css';
@@ -34,7 +34,7 @@ export const metadata = {
     },
 };
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 900;
 
 function stravaEventUrl(eventId) {
     return `https://www.strava.com/clubs/${STRAVA_CLUB_ID}/group_events/${eventId}`;

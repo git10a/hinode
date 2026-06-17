@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '@/components/SiteLink';
 import styles from './faq.module.css';
 
 const SITE_URL = 'https://hinode-run.com';

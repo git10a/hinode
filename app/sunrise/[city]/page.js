@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
+import Link from '@/components/SiteLink';
 import { cities } from '../../../data/cities';
 import { getSunTimes, getSunTimesRange, getMonthlySunrise } from '../../../lib/sun';
 

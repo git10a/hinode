@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '@/components/SiteLink';
 import Image from 'next/image';
 import styles from './schedule.module.css';
 import NextRunDate from '../../components/NextRunDate';
@@ -12,7 +12,7 @@ export const metadata = {
     description: 'HINODEの日の出ラン開催日程ページです。皇居・目黒川・代々木公園で毎週開催。土曜日は不定期の企画ランも開催。曜日、時間、集合場所、距離、Stravaイベントへの導線をまとめています。',
 };
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 900;
 
 const STRAVA_CLUB_ID = '1772485';
 const STRAVA_CLUB_URL = `https://www.strava.com/clubs/${STRAVA_CLUB_ID}`;

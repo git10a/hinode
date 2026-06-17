@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '@/components/SiteLink';
 import styles from '../app/blog/[slug]/post.module.css';
 
 const STRAVA_CLUB_URL = 'https://www.strava.com/clubs/1772485';

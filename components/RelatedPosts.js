@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '@/components/SiteLink';
 import Image from 'next/image';
 import { formatPostDate, getPostDisplayDate } from '../lib/blogPosts';
 import styles from '../app/blog/[slug]/post.module.css';

@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '@/components/SiteLink';
 import SCHEDULE_ITEMS from '../lib/scheduleItems';
 import styles from '../app/blog/[slug]/post.module.css';
 

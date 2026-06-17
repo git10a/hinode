@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from '@/components/SiteLink';
 import useFadeInOnScroll from '../lib/useFadeInOnScroll';
 import PostBottomStrip from './PostBottomStrip';
 import styles from '../app/about/about.module.css';

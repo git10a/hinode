@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '@/components/SiteLink';
 import COURSE_GUIDES from '../../lib/courseGuides';
 import styles from './courses.module.css';
 

@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import Link from '@/components/SiteLink';
 import { useEffect, useState } from 'react';
 import useFadeInOnScroll from '../lib/useFadeInOnScroll';
 import { getRunCount, MEMBER_COUNT } from '../lib/stats';

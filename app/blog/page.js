@@ -1,11 +1,11 @@
-import Link from 'next/link';
+import Link from '@/components/SiteLink';
 import Image from 'next/image';
 import { getAllBlogPosts } from '../../lib/microcms';
 import { getPopularBlogPostIds } from '../../lib/googleAnalytics';
 import { formatPostDate, getPostDisplayDate, sortBlogPosts } from '../../lib/blogPosts';
 import styles from './blog.module.css';
 
-export const revalidate = 60;
+export const revalidate = 900;
 
 export const metadata = {
     title: 'BLOG | HINODE',

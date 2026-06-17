@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '@/components/SiteLink';
 import styles from './rules.module.css';
 
 const CONTACT_EMAIL = 'hinode.run@gmail.com';

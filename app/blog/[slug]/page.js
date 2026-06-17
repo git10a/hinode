@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from '@/components/SiteLink';
 import { notFound } from 'next/navigation';
 import { client, getBlogPostById, getAllBlogPosts } from '../../../lib/microcms';
 import { getUpcomingGroupEvents } from '../../../lib/strava';
@@ -10,7 +10,7 @@ import PostBottomStrip from '../../../components/PostBottomStrip';
 import TableOfContents from '../../../components/TableOfContents';
 import styles from './post.module.css';
 
-export const revalidate = 60;
+export const revalidate = 900;
 
 export async function generateMetadata({ params }) {
     const post = await getBlogPostById(params.slug);

@@ -1,4 +1,4 @@
-import { Outfit, Zen_Kaku_Gothic_New } from 'next/font/google';
+import { Outfit } from 'next/font/google';
 import Script from 'next/script';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -7,13 +7,6 @@ import './globals.css';
 const outfit = Outfit({
     subsets: ['latin'],
     variable: '--font-en',
-    display: 'swap',
-});
-
-const zenKaku = Zen_Kaku_Gothic_New({
-    weight: ['300', '400', '500', '700'],
-    subsets: ['latin'],
-    variable: '--font-jp',
     display: 'swap',
 });
 
@@ -67,7 +60,7 @@ export default function RootLayout({ children }) {
     };
 
     return (
-        <html lang="ja" className={`${outfit.variable} ${zenKaku.variable}`}>
+        <html lang="ja" className={outfit.variable}>
             <head>
                 <script
                     type="application/ld+json"

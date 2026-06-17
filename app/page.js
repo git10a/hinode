@@ -3,7 +3,7 @@ import { client } from '../lib/microcms';
 import { sortBlogPosts } from '../lib/blogPosts';
 import { getUpcomingGroupEvents, getClubMemberCount } from '../lib/strava';
 
-export const revalidate = 60;
+export const revalidate = 900;
 
 async function getLatestPosts() {
     try {
