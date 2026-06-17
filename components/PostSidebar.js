@@ -71,10 +71,11 @@ function SidebarParticipants({ count, participants = [] }) {
 }
 
 export default function PostSidebar({ nextEvent, runContext = null, contextEvent = null }) {
-    const displayEvent = contextEvent || (!runContext ? nextEvent : null);
-    const next = displayEvent ? formatNext(displayEvent.startAt) : null;
-    const nextLocation = runContext?.meetingPlace || (next ? getEventLocation(displayEvent, next.time) : '');
-    const nextEventHref = displayEvent?.eventId ? stravaEventUrl(displayEvent.eventId) : null;
+    const scheduleEvent = contextEvent || (!runContext ? nextEvent : null);
+    const stravaEvent = contextEvent || nextEvent;
+    const next = scheduleEvent ? formatNext(scheduleEvent.startAt) : null;
+    const nextLocation = runContext?.meetingPlace || (next ? getEventLocation(scheduleEvent, next.time) : '');
+    const nextEventHref = stravaEvent?.eventId ? stravaEventUrl(stravaEvent.eventId) : null;
     const scheduleText = next ? `${next.date} ${next.time}` : runContext?.regularLabel;
     const sidebarTitle = runContext
         ? `次回の${runContext.shortName}日程`
@@ -128,8 +129,8 @@ export default function PostSidebar({ nextEvent, runContext = null, contextEvent
                 )}
 
                 <SidebarParticipants
-                    count={displayEvent?.participantCount}
-                    participants={displayEvent?.participants}
+                    count={stravaEvent?.participantCount}
+                    participants={stravaEvent?.participants}
                 />
 
                 {nextEventHref && (
