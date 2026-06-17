@@ -4,6 +4,10 @@ import styles from '../work-contact.module.css';
 export const metadata = {
     title: '送信完了｜HINODE',
     description: 'HINODEへのお仕事・取材のご相談を受け付けました。',
+    robots: {
+        index: false,
+        follow: false,
+    },
 };
 
 export default function WorkContactThanksPage() {

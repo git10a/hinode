@@ -70,10 +70,15 @@ function SidebarParticipants({ count, participants = [] }) {
     );
 }
 
-export default function PostSidebar({ nextEvent }) {
-    const next = nextEvent ? formatNext(nextEvent.startAt) : null;
-    const nextLocation = next ? getEventLocation(nextEvent, next.time) : '';
-    const nextEventHref = nextEvent?.eventId ? stravaEventUrl(nextEvent.eventId) : null;
+export default function PostSidebar({ nextEvent, runContext = null, contextEvent = null }) {
+    const displayEvent = contextEvent || (!runContext ? nextEvent : null);
+    const next = displayEvent ? formatNext(displayEvent.startAt) : null;
+    const nextLocation = runContext?.meetingPlace || (next ? getEventLocation(displayEvent, next.time) : '');
+    const nextEventHref = displayEvent?.eventId ? stravaEventUrl(displayEvent.eventId) : null;
+    const scheduleText = next ? `${next.date} ${next.time}` : runContext?.regularLabel;
+    const sidebarTitle = runContext
+        ? `次回の${runContext.shortName}日程`
+        : '次のHINODEグループラン';
 
     return (
         <aside className={styles.sidebar}>
@@ -92,14 +97,14 @@ export default function PostSidebar({ nextEvent }) {
                             <line x1="16.6" y1="7.4" x2="18.4" y2="5.6" />
                         </g>
                     </svg>
-                    <h2 className={styles.sidebarTitle}>次のHINODEグループラン</h2>
+                    <h2 className={styles.sidebarTitle}>{sidebarTitle}</h2>
                 </div>
 
-                {next ? (
+                {scheduleText ? (
                     <p className={styles.sidebarLead}>
                         <span className={styles.sidebarEventMeta}>
-                            <strong>{next.date} {next.time}</strong>
-                            <Link href="/schedule" className={styles.sidebarScheduleLink}>
+                            <strong>{scheduleText}</strong>
+                            <Link href={runContext?.scheduleHref || '/schedule'} className={styles.sidebarScheduleLink}>
                                 他の日程↗
                             </Link>
                         </span>
@@ -112,7 +117,9 @@ export default function PostSidebar({ nextEvent }) {
                                 <span className={styles.sidebarLocationText}>{nextLocation}</span>
                             </span>
                         )}
-                        <span className={styles.sidebarSubLine}>一緒に、気持ちのいい朝を過ごしましょう。</span>
+                        <span className={styles.sidebarSubLine}>
+                            {runContext ? runContext.note : '一緒に、気持ちのいい朝を過ごしましょう。'}
+                        </span>
                     </p>
                 ) : (
                     <p className={styles.sidebarLead}>
@@ -121,8 +128,8 @@ export default function PostSidebar({ nextEvent }) {
                 )}
 
                 <SidebarParticipants
-                    count={nextEvent?.participantCount}
-                    participants={nextEvent?.participants}
+                    count={displayEvent?.participantCount}
+                    participants={displayEvent?.participants}
                 />
 
                 {nextEventHref && (
@@ -138,26 +145,28 @@ export default function PostSidebar({ nextEvent }) {
                     </a>
                 )}
 
-                <div className={styles.sidebarActions}>
-                    <Link href={FIRST_RUN_GUIDE_URL} className={styles.sidebarBtnSecondary}>
-                        <svg viewBox="0 0 24 24" className={styles.sidebarBtnIcon} aria-hidden="true">
-                            <path d="M6 20V5" />
-                            <path d="M6 6.5c2.8-1.7 5.1 1.2 8 0 1.1-.5 2-.9 3.5-.5v7.2c-1.5-.4-2.4 0-3.5.5-2.9 1.2-5.2-1.7-8 0" />
-                        </svg>
-                        初参加ガイドを見る
-                        <span className={styles.sidebarBtnArrow} aria-hidden="true">›</span>
-                    </Link>
-                    <a
-                        href={STRAVA_CLUB_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.sidebarBtnTertiary}
-                    >
-                        <img src="/assets/strava.png" alt="" loading="lazy" decoding="async" className={styles.sidebarBtnLogo} />
-                        Stravaクラブを見る
-                        <span className={styles.sidebarBtnArrow} aria-hidden="true">›</span>
-                    </a>
-                </div>
+                {!runContext && (
+                    <div className={styles.sidebarActions}>
+                        <Link href={FIRST_RUN_GUIDE_URL} className={styles.sidebarBtnSecondary}>
+                            <svg viewBox="0 0 24 24" className={styles.sidebarBtnIcon} aria-hidden="true">
+                                <path d="M6 20V5" />
+                                <path d="M6 6.5c2.8-1.7 5.1 1.2 8 0 1.1-.5 2-.9 3.5-.5v7.2c-1.5-.4-2.4 0-3.5.5-2.9 1.2-5.2-1.7-8 0" />
+                            </svg>
+                            初参加ガイドを見る
+                            <span className={styles.sidebarBtnArrow} aria-hidden="true">›</span>
+                        </Link>
+                        <a
+                            href={STRAVA_CLUB_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={styles.sidebarBtnTertiary}
+                        >
+                            <img src="/assets/strava.png" alt="" loading="lazy" decoding="async" className={styles.sidebarBtnLogo} />
+                            Stravaクラブを見る
+                            <span className={styles.sidebarBtnArrow} aria-hidden="true">›</span>
+                        </a>
+                    </div>
+                )}
             </div>
         </aside>
     );

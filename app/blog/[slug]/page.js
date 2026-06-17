@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { client, getBlogPostById, getAllBlogPosts } from '../../../lib/microcms';
 import { getUpcomingGroupEvents } from '../../../lib/strava';
 import { formatPostDate, getPostDisplayDate, sortBlogPosts, buildBlogContent } from '../../../lib/blogPosts';
+import { getBlogRunContext, getUpcomingEventForRunContext } from '../../../lib/blogRunContext';
 import PostSidebar from '../../../components/PostSidebar';
 import RelatedPosts from '../../../components/RelatedPosts';
 import PostBottomStrip from '../../../components/PostBottomStrip';
@@ -70,6 +71,8 @@ export default async function BlogPost({ params }) {
 
     const relatedPosts = sortBlogPosts(allPosts).filter((p) => p.id !== post.id).slice(0, 3);
     const nextEvent = upcomingEvents[0] || null;
+    const runContext = getBlogRunContext(post);
+    const contextEvent = getUpcomingEventForRunContext(upcomingEvents, runContext);
     const { html: contentHtml, toc } = buildBlogContent(post.content);
     const createdDate = post.publishedAt || post.createdAt || '';
     const editedDate = getPostDisplayDate(post) || createdDate;
@@ -142,36 +145,58 @@ export default async function BlogPost({ params }) {
                     <div className={styles.inlineCta}>
                         <p className={styles.inlineCtaLead}>
                             <span className={styles.inlineCtaIcon} aria-hidden="true">☼</span>
-                            参加してみる
+                            {runContext ? `${runContext.shortName}に参加してみる` : '参加してみる'}
                         </p>
+                        {runContext && (
+                            <div className={styles.inlineCtaMetaList} aria-label={`${runContext.shortName}の開催情報`}>
+                                <span className={styles.inlineCtaMetaItem}>{runContext.regularLabel}</span>
+                                <span className={styles.inlineCtaMetaItem}>{runContext.meetingPlace}</span>
+                                <span className={styles.inlineCtaMetaItem}>{runContext.distance}</span>
+                            </div>
+                        )}
                         <p className={styles.inlineCtaSub}>
-                            気になった方は、開催日程を見てください。<br />
-                            初めての方は、当日の流れも先に確認できます。
+                            {runContext ? (
+                                <>
+                                    {runContext.place}は、HINODEが毎週走っているコースです。<br />
+                                    初めての方は、集合場所と当日の流れだけ先に見ておけば大丈夫です。
+                                </>
+                            ) : (
+                                <>
+                                    気になった方は、開催日程を見てください。<br />
+                                    初めての方は、当日の流れも先に確認できます。
+                                </>
+                            )}
                         </p>
                         <div className={styles.inlineCtaActions}>
-                            <Link href="/schedule" className={styles.inlineCtaBtnPrimary}>
-                                開催日程を見る →
+                            <Link href={runContext?.scheduleHref || '/schedule'} className={styles.inlineCtaBtnPrimary}>
+                                {runContext ? `${runContext.place}の開催日程を見る →` : '開催日程を見る →'}
                             </Link>
                             <Link href="/first-run" className={styles.inlineCtaBtnSecondary}>
                                 初参加ガイドを見る →
                             </Link>
-                            <a
-                                href="https://www.strava.com/clubs/1772485"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={styles.inlineCtaBtnTertiary}
-                            >
-                                Stravaクラブを見る →
-                            </a>
+                            {runContext ? (
+                                <Link href={runContext.courseHref} className={styles.inlineCtaBtnTertiary}>
+                                    コースガイドを見る →
+                                </Link>
+                            ) : (
+                                <a
+                                    href="https://www.strava.com/clubs/1772485"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={styles.inlineCtaBtnTertiary}
+                                >
+                                    Stravaクラブを見る →
+                                </a>
+                            )}
                         </div>
                     </div>
                 </article>
 
-                <PostSidebar nextEvent={nextEvent} />
+                <PostSidebar nextEvent={nextEvent} runContext={runContext} contextEvent={contextEvent} />
             </div>
 
             <RelatedPosts posts={relatedPosts} />
-            <PostBottomStrip />
+            <PostBottomStrip runContext={runContext} />
         </div>
     );
 }

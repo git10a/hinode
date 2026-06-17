@@ -3,6 +3,10 @@ import RunningCourseContent from '../../components/RunningCourseContent';
 export const metadata = {
     title: '日の出スポット | HINODE',
     description: '日の出が美しく見えるスポットを紹介。東京の朝を感じる場所へ。',
+    robots: {
+        index: false,
+        follow: true,
+    },
     openGraph: {
         title: '日の出スポット | HINODE',
         description: '日の出が美しく見えるスポットを紹介。東京の朝を感じる場所へ。',
@@ -42,4 +46,3 @@ export default function HinodeSpot() {
         </section>
     );
 }
-

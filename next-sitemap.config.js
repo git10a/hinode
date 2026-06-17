@@ -5,6 +5,7 @@ const path = require('path');
 
 const SITE_URL = 'https://hinode-run.com';
 const EXTRA_STATIC_PATHS = ['/', '/schedule', '/first-run', '/event-runs'];
+const EXCLUDED_PATHS = new Set(['/work-contact/thanks', '/manifesto', '/hinode-spot']);
 
 const INDEX_SUNRISE_CITIES = new Set([
   'tokyo-chiyoda', 'tokyo-meguro', 'tokyo-shibuya',
@@ -72,11 +73,13 @@ module.exports = {
   generateRobotsTxt: true,
   sitemapSize: 7000,
   generateIndexSitemap: false,
+  exclude: [...EXCLUDED_PATHS],
   additionalPaths: async (config) => [
     ...EXTRA_STATIC_PATHS.map((loc) => createSitemapEntry(config, loc)),
     ...(await getBlogSitemapEntries(config)),
   ],
   transform: async (config, path) => {
+    if (EXCLUDED_PATHS.has(path)) return null;
     if (path === '/running-community-tokyo') return null;
 
     // /sunrise/[city] のうちホワイトリスト外はサイトマップから除外
