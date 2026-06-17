@@ -253,6 +253,22 @@
     background: rgba(255, 255, 255, 0.12);
 }
 
+.ruleDates {
+    margin-top: 1.4rem;
+    color: #888;
+    font-size: 0.78rem;
+    line-height: 1.8;
+    text-align: right;
+}
+
+.ruleDates p {
+    margin: 0;
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    max-width: none;
+}
+
 @media (max-width: 760px) {
     .page {
         padding: 7rem 0 4rem;
@@ -300,6 +316,10 @@
 
     .cta {
         padding: 1.35rem 1.1rem;
+    }
+
+    .ruleDates {
+        text-align: left;
     }
 
     .primaryLink,

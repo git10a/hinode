@@ -210,6 +210,9 @@ export default function RulesPage() {
                         <p>
                             本ルールは、HINODEの運営状況、参加者の安全確保、コミュニティの健全な継続のため、必要に応じて変更することがあります。
                         </p>
+                        <p>
+                            なお、本ルールの制定前に発生した行為であっても、HINODEの安全性・快適性・信頼性・継続性を損なうおそれがあるとHINODE運営が判断した場合、今後の参加可否の判断材料とすることがあります。
+                        </p>
                     </section>
                 </div>
 
@@ -219,6 +222,11 @@ export default function RulesPage() {
                         <Link href="/first-run" className={styles.primaryLink}>初参加ガイドを見る</Link>
                         <Link href="/schedule" className={styles.secondaryLink}>開催日程を見る</Link>
                     </div>
+                </div>
+
+                <div className={styles.ruleDates}>
+                    <p>制定日 2026年6月17日</p>
+                    <p>最終更新日 2026年6月17日</p>
                 </div>
             </div>
         </article>
