@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from '@/components/SiteLink';
 import { notFound } from 'next/navigation';
-import { client, getBlogPostById, getAllBlogPosts } from '../../../lib/microcms';
+import { getBlogPostById, getAllBlogPosts } from '../../../lib/microcms';
 import { getUpcomingGroupEvents } from '../../../lib/strava';
 import { formatPostDate, getPostDisplayDate, sortBlogPosts, buildBlogContent } from '../../../lib/blogPosts';
 import { getBlogRunContext, getUpcomingEventForRunContext } from '../../../lib/blogRunContext';
@@ -12,6 +12,7 @@ import TableOfContents from '../../../components/TableOfContents';
 import styles from './post.module.css';
 
 export const revalidate = 900;
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }) {
     const post = await getBlogPostById(params.slug);
@@ -47,15 +48,6 @@ export async function generateMetadata({ params }) {
             images: post.thumbnail ? [post.thumbnail.url] : [],
         },
     };
-}
-
-export async function generateStaticParams() {
-    try {
-        const data = await client.get({ endpoint: 'blogs', queries: { fields: 'id', limit: 100 } });
-        return data.contents.map((post) => ({ slug: post.id }));
-    } catch (e) {
-        return [];
-    }
 }
 
 export default async function BlogPost({ params }) {
