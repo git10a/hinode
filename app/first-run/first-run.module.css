@@ -441,6 +441,14 @@
     max-width: none;
 }
 
+.markerImage {
+    display: block;
+    width: min(100%, 680px);
+    height: auto;
+    margin-top: 1rem;
+    border-radius: 8px;
+}
+
 .questionList {
     border-top: 1px solid #eaded3;
 }

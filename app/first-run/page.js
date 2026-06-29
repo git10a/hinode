@@ -87,8 +87,9 @@ const FLOW_STEPS = [
         text: '走れる服装でお越しください。荷物がある方は、駅のロッカーやランステ利用がおすすめです。',
     },
     {
-        title: '黄色いゴムバンドが目印',
-        text: '手首に黄色いゴムバンドをつけている人が目印です。気さくなメンバーばかりなので、遠慮なくお声がけください。',
+        title: '黒いHINODE Tシャツが目印',
+        text: '背中に「HINODE」と書かれた黒いTシャツを着ているメンバーが目印です。気さくなメンバーばかりなので、遠慮なくお声がけください。',
+        image: '/assets/hinodet.jpeg',
     },
     {
         title: 'ゆっくりめに走る',
@@ -137,7 +138,7 @@ const GUIDE_CARDS = [
     },
     {
         title: '集合場所ではどう合流する？',
-        body: '集合場所に着いたら、黄色いゴムバンドを手首につけている人を目印にしてください。',
+        body: '集合場所に着いたら、背中に「HINODE」と書かれた黒いTシャツを着ているメンバーを目印にしてください。',
     },
     {
         title: 'どんなペース？',
@@ -265,6 +266,16 @@ export default async function FirstRunPage() {
                                 <div>
                                     <h3>{step.title}</h3>
                                     <p>{step.text}</p>
+                                    {step.image && (
+                                        <Image
+                                            src={step.image}
+                                            alt="背中にHINODEと書かれた黒いTシャツ"
+                                            width={1456}
+                                            height={1118}
+                                            sizes="(max-width: 768px) 100vw, 680px"
+                                            className={styles.markerImage}
+                                        />
+                                    )}
                                 </div>
                             </li>
                         ))}

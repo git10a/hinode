@@ -44,7 +44,7 @@ const FIRST_JOIN_STEPS = [
     },
     {
         title: '目印を探す',
-        text: '手首に黄色いゴムバンドをつけている人を探してください。',
+        text: '背中に「HINODE」と書かれた黒いTシャツを着ているメンバーを探してください。',
     },
     {
         title: '無理なく走る',
@@ -56,7 +56,7 @@ const FAQ = [
     {
         q: '集合場所で誰もいなかったら？',
         a: (
-            <>中止の告知がないかぎり、必ず誰かがいます。目印の黄色いバンドを手首に付けている人にお声がけください。雨の日など開催できない場合は <a href="https://strava.app.link/pQ0uMuWWj2b" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a> / <a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a> で前もって告知します。不安なことがあればいつでもご連絡ください。</>
+            <>中止の告知がないかぎり、必ず誰かがいます。背中に「HINODE」と書かれた黒いTシャツを着ているメンバーにお声がけください。雨の日など開催できない場合は <a href="https://strava.app.link/pQ0uMuWWj2b" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a> / <a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a> で前もって告知します。不安なことがあればいつでもご連絡ください。</>
         ),
     },
     {
