@@ -142,15 +142,15 @@ function createEventsJsonLd(now = new Date()) {
                 assetUrl('/assets/yoyogi-run-map.png'),
                 assetUrl('/assets/Yoyogi.png'),
             ],
-            "description": "毎週日曜7:10から代々木公園で開催する日の出ラン。約2〜4km、左回りで1、2周。参加無料・予約不要。",
-            ...eventDateFields(0, '07:10', now),
-            "eventSchedule": { "@type": "Schedule", "repeatFrequency": "P1W", "byDay": "https://schema.org/Sunday", "startTime": "07:10", "scheduleTimezone": "Asia/Tokyo" },
+            "description": "毎週日曜7:15から代々木公園で開催する日の出ラン。約2〜4km、左回りで1、2周。参加無料・予約不要。",
+            ...eventDateFields(0, '07:15', now),
+            "eventSchedule": { "@type": "Schedule", "repeatFrequency": "P1W", "byDay": "https://schema.org/Sunday", "startTime": "07:15", "scheduleTimezone": "Asia/Tokyo" },
             "location": { "@type": "Place", "name": "原宿時計塔前", "address": { "@type": "PostalAddress", "addressLocality": "東京都渋谷区", "addressCountry": "JP" } },
             "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
             "eventStatus": "https://schema.org/EventScheduled",
             "organizer": { "@type": "SportsClub", "name": "HINODE", "url": "https://hinode-run.com/" },
             "performer": EVENT_PERFORMER,
-            "offers": createFreeOffer(0, '07:10', now, 'yoyogi')
+            "offers": createFreeOffer(0, '07:15', now, 'yoyogi')
         }
     ];
 }
@@ -240,7 +240,7 @@ const RUNS = [
         meetingPlace: '原宿時計塔前',
         meetingShort: '原宿時計塔前',
         day: '毎週日曜',
-        time: '07:10〜',
+        time: '07:15〜',
         distance: '約2〜4km',
         recommendationLabel: '初参加におすすめ',
         isFirstChoice: true,
@@ -248,7 +248,7 @@ const RUNS = [
         routeImage: '/assets/strava-route-yoyogi.png',
         routeUrl: 'https://www.strava.com/routes/3471970663805426564',
         dayOfWeek: 0,
-        timeRaw: '07:10',
+        timeRaw: '07:15',
         description: (
             <>原宿時計塔に集合。<br />代々木公園を左回りで1、2周。<br />公園近くにはドトールやVERVE COFFEEがあります。</>
         ),
@@ -369,7 +369,7 @@ export default async function EventPage() {
                         </table>
                     </div>
                     <p className={styles.scheduleQuickViewNote}>
-                        日曜は7:00ではなく7:10集合です。Runtrip BASEが7:00にオープンするため、この時間にしています。
+                        日曜は7:00ではなく7:15集合です。Runtrip BASEが7:00にオープンするため、この時間にしています。
                         まずは1か月ほど運用し、参加状況や気温を見ながら継続するか判断します。
                     </p>
                 </div>
@@ -377,7 +377,7 @@ export default async function EventPage() {
                     <h2>初めて参加する方へ</h2>
                     <p>
                         HINODEは、予約不要・参加無料・1人参加歓迎の朝ランコミュニティです。
-                        初めての方は、日曜7:10の代々木公園ランが参加しやすいです。
+                        初めての方は、日曜7:15の代々木公園ランが参加しやすいです。
                         当日の流れ、服装、荷物、写真方針、Stravaの使い方などは、初参加ガイドにまとめています。
                     </p>
                     <Link href={FIRST_RUN_GUIDE_URL} className={styles.firstRunCalloutLink}>

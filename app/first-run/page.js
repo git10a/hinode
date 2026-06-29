@@ -21,8 +21,8 @@ export const revalidate = 900;
 const FIRST_CHOICE_RUN = {
     day: '日曜',
     dayOfWeek: 0,
-    time: '07:10〜',
-    timeRaw: '07:10',
+    time: '07:15〜',
+    timeRaw: '07:15',
     place: '代々木公園',
     location: '原宿時計塔前',
     image: '/assets/Yoyogi.png',
@@ -121,7 +121,7 @@ const COMMUNITY_SNAPSHOTS = [
 const GUIDE_CARDS = [
     {
         title: 'どの回がおすすめ？',
-        body: 'まずは日曜7:10の代々木公園ランがおすすめです。距離は約2〜4kmで、平日6:00の回より時間にも余裕があります。',
+        body: 'まずは日曜7:15の代々木公園ランがおすすめです。距離は約2〜4kmで、平日6:00の回より時間にも余裕があります。',
     },
     {
         title: '速そうで怖い',
@@ -275,7 +275,7 @@ export default async function FirstRunPage() {
             <section className={`${styles.sectionBand} ${styles.sectionBandChoice}`} aria-labelledby="quick-title">
                 <div className={styles.sectionInner}>
                     <div className={styles.sectionHead}>
-                        <h2 id="quick-title" className={styles.sectionTitle}>最初は日曜7:10の代々木公園ランがおすすめです</h2>
+                        <h2 id="quick-title" className={styles.sectionTitle}>最初は日曜7:15の代々木公園ランがおすすめです</h2>
                         <p className={styles.sectionLead}>
                             平日6:00の回より時間に余裕があり、距離も約2〜4km。初めての方が入りやすい回です。
                         </p>

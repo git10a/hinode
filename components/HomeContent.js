@@ -35,7 +35,7 @@ const WEEKLY_ITEMS = [
         id: 'yoyogi',
         day: '日曜',
         dayIndex: 0,
-        time: '07:10',
+        time: '07:15',
         place: '代々木公園',
         location: '原宿時計塔前',
         image: '/assets/Yoyogi.png',
@@ -245,10 +245,10 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                 <div className={styles.summerNotice}>
                     <p className={styles.summerNoticeLabel}>6月1日からサマータイムをお試しします</p>
                     <p>
-                        まずは1か月ほど、水曜・木曜は6:00集合、日曜は7:10集合で運用します。
+                        まずは1か月ほど、水曜・木曜は6:00集合、日曜は7:15集合で運用します。
                         参加状況や気温を見ながら、継続するか判断します。
                     </p>
-                    <p>日曜は7:00ではなく7:10集合です。Runtrip BASEが7:00オープンのため、この時間にしています。</p>
+                    <p>日曜は7:00ではなく7:15集合です。Runtrip BASEが7:00オープンのため、この時間にしています。</p>
                 </div>
                 <div className={styles.weeklyGrid}>
                     {regularCards.map((item) => {
