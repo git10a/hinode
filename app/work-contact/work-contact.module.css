@@ -187,6 +187,22 @@
     border-color: #333;
 }
 
+.submitButton:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
+.formError {
+    max-width: 100%;
+    margin: 0;
+    padding: 0.9rem 1rem;
+    border-left: 3px solid #b42318;
+    background: #fff5f4;
+    color: #8a1c13;
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
 .secondaryButton {
     border: 1px solid #111;
     color: #111;
