@@ -1,4 +1,7 @@
 import PressContent from '../../components/PressContent';
+import { getClubMemberCount } from '../../lib/strava';
+
+export const revalidate = 900;
 
 export const metadata = {
     title: 'プレスキット｜HINODE',
@@ -20,6 +23,7 @@ export const metadata = {
     },
 };
 
-export default function PressPage() {
-    return <PressContent />;
+export default async function PressPage() {
+    const memberCount = await getClubMemberCount();
+    return <PressContent memberCount={memberCount} />;
 }

@@ -8,8 +8,8 @@ import styles from '../app/press/press.module.css';
 
 const FAQ = [
     {
-        q: 'なぜ顔出しをしないのか',
-        a: 'HINODEは「誰が主宰か」「誰が参加しているか」よりも「何を続けているか」を優先しています。顔を出さないことで、特定の個人のブランディングではなく、習慣としてのランニングそのものに焦点を置くためです。'
+        q: 'なぜ普段の活動では顔出しをしないのか',
+        a: 'HINODEは「誰が主宰か」「誰が参加しているか」よりも「何を続けているか」を優先しています。そのため普段のSNSでは、参加者の顔出しを前提にしていません。取材時の撮影・出演については、内容に応じて個別に相談できます。'
     },
     {
         q: '初心者でも参加できるか',
@@ -53,8 +53,9 @@ const PRESS_LOGOS = [
     { src: '/assets/logo-white.png', download: 'hinode-logo-white.png', label: '白ロゴ(暗い背景用)', dark: true }
 ];
 
-export default function PressContent() {
+export default function PressContent({ memberCount = null }) {
     const [runCount, setRunCount] = useState(null);
+    const displayedMemberCount = memberCount ?? MEMBER_COUNT;
 
     useEffect(() => {
         setRunCount(getRunCount());
@@ -85,7 +86,6 @@ export default function PressContent() {
                     <ul className={styles.atGlanceList}>
                         <li><strong>ラン帯同取材 歓迎</strong><span>週3回開催(水・木・日)。早朝の撮影・同行に対応できます</span></li>
                         <li><strong>写真・ロゴ 即日使用可</strong><span>このページから直接ダウンロードできます</span></li>
-                        <li><strong>顔出しNG / 後ろ姿・足元OK</strong><span>音声のみの出演・匿名インタビューは相談可</span></li>
                         <li><strong>連絡窓口</strong><span><Link className={styles.link} href="/work-contact">取材のご相談フォーム</Link>で随時受付(早朝含む)</span></li>
                     </ul>
                 </div>
@@ -128,11 +128,11 @@ export default function PressContent() {
 
                     <h3 className={styles.subTitle}>規模感(本日時点)</h3>
                     <ul className={styles.list}>
-                        <li>Stravaクラブメンバー: <strong>{MEMBER_COUNT}名</strong></li>
+                        <li>Stravaクラブメンバー: <strong>{displayedMemberCount}名</strong></li>
                         <li>グループラン累計開催回数: <strong>{runCount !== null ? `${runCount}回` : '---'}</strong></li>
-                        <li>累計延べ参加人数: <strong>約350名</strong>(2026年4月時点・概数)</li>
-                        <li>平均参加人数: 平日4名前後 / 日曜10名弱</li>
-                        <li>参加者層: 中学生から50代まで。学生・会社員・経営者など職業は多様</li>
+                        <li>累計延べ参加人数: <strong>約800名</strong>(2026年7月時点・概数)</li>
+                        <li>平均参加人数: 平日5名前後 / 日曜15名前後</li>
+                        <li>参加者層: 中学生から60代まで。学生・会社員・経営者、海外の方など多様</li>
                         <li>初参加・ソロ参加比率: 毎回4割前後</li>
                     </ul>
                 </div>
@@ -157,7 +157,7 @@ export default function PressContent() {
                     <p className={styles.sectionNum}>03</p>
                     <h2 className={styles.sectionTitle}>運営・沿革</h2>
                     <p className={styles.body}>
-                        HINODEは、特定の主宰者を前面に出さず、「誰がやっているか」よりも「何を続けているか」を大切にする方針で運営しています。代表・参加者ともに顔出しは行わず、個人のブランディングではなく、朝に走るという習慣そのものに焦点を置いています。日々の開催・告知・運営は有志のメンバーが担っています。
+                        HINODEは、特定の主宰者を前面に出さず、「誰がやっているか」よりも「何を続けているか」を大切にする方針で運営しています。普段のSNSでは参加者の顔出しを前提とせず、個人のブランディングではなく、朝に走るという習慣そのものに焦点を置いています。取材時の撮影・出演については、内容に応じて個別に相談できます。日々の開催・告知・運営は有志のメンバーが担っています。
                     </p>
                     <ol className={styles.timeline}>
                         {TIMELINE.map(item => (
@@ -168,7 +168,7 @@ export default function PressContent() {
                         ))}
                     </ol>
                     <p className={styles.body}>
-                        現在の規模感(Stravaクラブ {MEMBER_COUNT}名、累計延べ参加人数 約350名)は、上記「基本情報」に記載のとおりです。
+                        現在の規模感(Stravaクラブ {displayedMemberCount}名、累計延べ参加人数 約800名)は、上記「基本情報」に記載のとおりです。
                     </p>
                 </div>
 
@@ -181,8 +181,8 @@ export default function PressContent() {
                             <tr><th>窓口</th><td><Link className={styles.link} href="/work-contact">お仕事・取材のご相談フォーム</Link></td></tr>
                             <tr><th>対応可能時間</th><td>随時(早朝含む)</td></tr>
                             <tr><th>ラン帯同取材</th><td>歓迎。事前にご連絡いただき、開催地の集合場所までお越しください</td></tr>
-                            <tr><th>顔出し</th><td><strong>NG</strong>(代表・参加者ともに)</td></tr>
-                            <tr><th>後ろ姿・シルエット・足元</th><td><strong>OK</strong></td></tr>
+                            <tr><th>顔出し・撮影</th><td>取材内容に応じて相談可。参加者の撮影は本人の同意を前提に個別に調整します</td></tr>
+                            <tr><th>後ろ姿・シルエット・足元</th><td>撮影可</td></tr>
                             <tr><th>音声のみ出演・匿名インタビュー</th><td>相談可</td></tr>
                         </tbody>
                     </table>
