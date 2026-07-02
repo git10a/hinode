@@ -17,20 +17,25 @@ export const metadata = {
     title: siteTitle,
     description: siteDescription,
     metadataBase: new URL('https://hinode-run.com'),
+    // './' はmetadataBase + 現在のルートパスに解決されるため、
+    // 個別に指定しないページにもページ自身のcanonical / og:urlが付く
+    alternates: {
+        canonical: './',
+    },
     openGraph: {
         title: siteTitle,
         description: siteDescription,
-        url: 'https://hinode-run.com',
+        url: './',
         siteName: 'HINODE',
         locale: 'ja_JP',
         type: 'website',
-        images: ['/assets/ogp-home.png'],
+        images: ['/assets/ogp-home.jpg'],
     },
     twitter: {
         card: 'summary_large_image',
         title: siteTitle,
         description: siteDescription,
-        images: ['/assets/ogp-home.png'],
+        images: ['/assets/ogp-home.jpg'],
     },
     icons: {
         icon: '/favicon.png',

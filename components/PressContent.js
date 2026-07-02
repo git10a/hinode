@@ -6,50 +6,10 @@ import useFadeInOnScroll from '../lib/useFadeInOnScroll';
 import { getRunCount, MEMBER_COUNT } from '../lib/stats';
 import styles from '../app/press/press.module.css';
 
-const MEDIA_HOOKS = [
-    {
-        title: '① 会話を前提としないサードプレイス',
-        body: '職場でも家でもない第三の場所を、飲食や交流ではなく「4kmを黙って走る」で設計している事例。会話強制ゼロの都市型サードプレイスという切り口。'
-    },
-    {
-        title: '② 非競争型ランニングコミュニティの台頭',
-        body: '速さ・距離をSNSで誇るランナー像とは逆方向の潮流。数字で比べない走り方を選ぶ層が、20〜30代都市部に一定数存在することの可視化。'
-    },
-    {
-        title: '③ 「静かな退職」世代の自己投資',
-        body: '仕事の成果最大化から距離を置く世代が、朝という「誰にも要求されていない時間」に健康と規律を積む、という選択の形。'
-    },
-    {
-        title: '④ 孤独のインフラ化',
-        body: '一人参加歓迎、会話不要、黒いHINODE Tシャツを着たメンバーが必ずいる。孤立は避けたいが社交は要らない、という層に向けた最低限の接点設計。'
-    },
-    {
-        title: '⑤ Z世代のウェルビーイングと朝時間',
-        body: '夜の飲み会ではなく朝のランで生活を組み立てる20代のライフスタイル。HINODE参加者の中心層がこの価値観と重なる。'
-    },
-    {
-        title: '⑥ AGI時代への「身体性」ヘッジ',
-        body: 'ホワイトカラー労働の自動化が現実味を帯びる中、知的作業から意識的に距離を取り、早朝に肉体を動かす選択をする個人が現れている。HINODE主宰の発起動機にも「AGI時代を見据えた基礎体力づくり」「動物性を取り戻す」という問題意識が含まれる。'
-    }
-];
-
-const TIMELINE = [
-    { date: '2025年7月21日', event: 'ロードバイク購入。夕方に10km漕ぐ程度の運動習慣からスタート' },
-    { date: '2025年8月24日', event: '朝5時発で自転車スカイツリー往復。初の「早朝運動」体験' },
-    { date: '2025年9月1日', event: 'ランニングシューズ購入、翌朝から皇居ランを開始' },
-    { date: '2025年11月', event: '日の出ランの素晴らしさを共有したいという動機でHINODE発足' },
-    { date: '2026年2月', event: '人生初のハーフマラソン完走' },
-    { date: '2026年3月', event: '人生初のフルマラソン完走' },
-];
-
 const FAQ = [
     {
         q: 'なぜ顔出しをしないのか',
         a: 'HINODEは「誰が主宰か」「誰が参加しているか」よりも「何を続けているか」を優先しています。顔を出さないことで、特定の個人のブランディングではなく、習慣としてのランニングそのものに焦点を置くためです。'
-    },
-    {
-        q: 'なぜ参加費を無料にしているのか',
-        a: '金銭が発生すると関係が「取引」になります。HINODEが扱いたいのは取引ではなく「自分との約束」です。無料にすることで、参加する理由を外部の対価ではなく参加者自身に置いています。'
     },
     {
         q: '初心者でも参加できるか',
@@ -58,10 +18,6 @@ const FAQ = [
     {
         q: 'なぜ朝にこだわるのか',
         a: '朝は誰からも要求されていない時間であり、走ることが「自分のための選択」以外になり得ない時間帯だからです。'
-    },
-    {
-        q: '競技志向のランナーは参加できるか',
-        a: '参加自体は自由です。ただしHINODEはランキング・コーチング・練習メニューを提供しません。速くなるための場所ではなく、続けるための場所です。'
     }
 ];
 
@@ -141,7 +97,7 @@ export default function PressContent() {
                     <h2 className={styles.sectionTitle}>HINODEを定義する3つの特徴</h2>
 
                     <h3 className={styles.subTitle}>競争しない</h3>
-                    <p className={styles.body}>順位・ペース・距離で他者と比べない。ランキングもコーチングも練習メニューもない。</p>
+                    <p className={styles.body}>速さや経験を参加条件にせず、それぞれのペースで走る。</p>
 
                     <h3 className={styles.subTitle}>朝にこだわる</h3>
                     <p className={styles.body}>日の出の時刻を基準に集合時間を固定。太陽は待ってくれないので、参加者のほうが時間に合わせる。</p>
@@ -150,56 +106,9 @@ export default function PressContent() {
                     <p className={styles.body}>「今日走ったかどうか」だけを問う。他人との勝ち負けではなく、昨日の自分との約束の履行を中心に据える。</p>
                 </div>
 
-                {/* 3. メディアフック */}
+                {/* 3. 取材対応 */}
                 <div className={styles.fadeIn}>
                     <p className={styles.sectionNum}>03</p>
-                    <h2 className={styles.sectionTitle}>メディアフック(取材の切り口)</h2>
-                    {MEDIA_HOOKS.map(h => (
-                        <div key={h.title} className={styles.hook}>
-                            <p className={styles.hookTitle}>{h.title}</p>
-                            <p className={styles.hookBody}>{h.body}</p>
-                        </div>
-                    ))}
-                </div>
-
-                {/* 4. 代表者プロフィール */}
-                <div className={styles.fadeIn}>
-                    <p className={styles.sectionNum}>04</p>
-                    <h2 className={styles.sectionTitle}>代表者プロフィール</h2>
-
-                    <h3 className={styles.subTitle}>運動開始までの経緯</h3>
-                    <p className={styles.body}>
-                        HINODE発足前は運動歴ゼロ。健康診断で運動不足の判定が出たことをきっかけに走り始めた。「仕事でパソコンに向かうより先に、まず体として動きたい」「自分の意志で1日を始めたい」という感覚と、AIが仕事を代替していく時代に身体を動かすことの手応えを持ちたいという気持ちが重なって、朝ランにたどり着いた。
-                    </p>
-
-                    <h3 className={styles.subTitle}>タイムライン</h3>
-                    <table className={styles.table}>
-                        <tbody>
-                            {TIMELINE.map(t => (
-                                <tr key={t.date}><th>{t.date}</th><td>{t.event}</td></tr>
-                            ))}
-                        </tbody>
-                    </table>
-                    <p className={styles.body}>運動開始から約2ヶ月で6kg減。開始1ヶ月で10km以上ノンストップで走れるようになった。</p>
-
-                    <h3 className={styles.subTitle}>日の出ランを選ぶ合理的理由(本人の実感)</h3>
-                    <ul className={styles.list}>
-                        <li>糖質が枯渇している状態から走るため脂質代謝が早く進む(2ヶ月で6kg減)</li>
-                        <li>セロトニン・エンドルフィンが1日の始まりに分泌され、日中の生産性に接続する</li>
-                        <li>体が適度に疲労するため夜の入眠が早まり、睡眠の質・時間ともに改善</li>
-                        <li>朝の時間帯は予定が入らないため、習慣として最も保護しやすい</li>
-                        <li>人が少なく、マイペースで走れる</li>
-                    </ul>
-
-                    <h3 className={styles.subTitle}>HINODEを始めた理由</h3>
-                    <blockquote className={styles.quote}>
-                        この素晴らしさを知ってほしい、という思いのみでHINODEというランニングクラブも作りました。
-                    </blockquote>
-                </div>
-
-                {/* 5. 取材対応 */}
-                <div className={styles.fadeIn}>
-                    <p className={styles.sectionNum}>05</p>
                     <h2 className={styles.sectionTitle}>取材対応について</h2>
                     <table className={styles.table}>
                         <tbody>
@@ -213,9 +122,9 @@ export default function PressContent() {
                     </table>
                 </div>
 
-                {/* 6. 利用可能な素材 */}
+                {/* 4. 利用可能な素材 */}
                 <div className={styles.fadeIn}>
-                    <p className={styles.sectionNum}>06</p>
+                    <p className={styles.sectionNum}>04</p>
                     <h2 className={styles.sectionTitle}>利用可能な素材</h2>
 
                     <h3 className={styles.subTitle}>写真</h3>
@@ -241,16 +150,16 @@ export default function PressContent() {
                     </ul>
                 </div>
 
-                {/* 7. 過去の掲載実績 */}
+                {/* 5. 過去の掲載実績 */}
                 <div className={styles.fadeIn}>
-                    <p className={styles.sectionNum}>07</p>
+                    <p className={styles.sectionNum}>05</p>
                     <h2 className={styles.sectionTitle}>過去の掲載実績</h2>
                     <p className={styles.body}>現時点でメディア掲載実績はありません。取材一号枠を歓迎します。</p>
                 </div>
 
-                {/* 8. FAQ */}
+                {/* 6. FAQ */}
                 <div className={styles.fadeIn}>
-                    <p className={styles.sectionNum}>08</p>
+                    <p className={styles.sectionNum}>06</p>
                     <h2 className={styles.sectionTitle}>よくある質問</h2>
                     {FAQ.map(item => (
                         <div key={item.q} className={styles.faqItem}>

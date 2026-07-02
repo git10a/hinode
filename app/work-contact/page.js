@@ -17,13 +17,13 @@ export const metadata = {
         siteName: 'HINODE',
         locale: 'ja_JP',
         type: 'website',
-        images: ['/assets/ogp-home.png'],
+        images: ['/assets/ogp-home.jpg'],
     },
     twitter: {
         card: 'summary_large_image',
         title: 'お仕事・取材のご相談｜HINODE',
         description: 'HINODEへのお仕事依頼、取材、掲載、イベント出演などのご相談フォームです。',
-        images: ['/assets/ogp-home.png'],
+        images: ['/assets/ogp-home.jpg'],
     },
 };
 

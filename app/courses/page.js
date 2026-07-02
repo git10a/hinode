@@ -19,6 +19,7 @@ export const metadata = {
         siteName: 'HINODE',
         locale: 'ja_JP',
         type: 'website',
+        images: ['/assets/ogp-home.jpg'],
     },
 };
 

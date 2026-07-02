@@ -12,7 +12,11 @@ import TableOfContents from '../../../components/TableOfContents';
 import styles from './post.module.css';
 
 export const revalidate = 900;
-export const dynamic = 'force-dynamic';
+
+export async function generateStaticParams() {
+    const posts = await getAllBlogPosts();
+    return posts.map((post) => ({ slug: post.id }));
+}
 
 export async function generateMetadata({ params }) {
     const post = await getBlogPostById(params.slug);
@@ -25,27 +29,33 @@ export async function generateMetadata({ params }) {
     }
 
     const url = `https://hinode-run.com/blog/${params.slug}`;
+    const ogpImages = post.thumbnail
+        ? [{
+            url: post.thumbnail.url,
+            width: post.thumbnail.width,
+            height: post.thumbnail.height,
+        }]
+        : ['/assets/ogp-home.jpg'];
 
     return {
         title: `${post.title} | HINODE BLOG`,
         description: post.description || `${post.title}の記事です。`,
+        alternates: {
+            canonical: url,
+        },
         openGraph: {
             title: post.title,
             description: post.description || `${post.title}の記事です。`,
             url,
             siteName: 'HINODE',
             type: 'article',
-            images: post.thumbnail ? [{
-                url: post.thumbnail.url,
-                width: post.thumbnail.width,
-                height: post.thumbnail.height,
-            }] : [],
+            images: ogpImages,
         },
         twitter: {
             card: 'summary_large_image',
             title: post.title,
             description: post.description || `${post.title}の記事です。`,
-            images: post.thumbnail ? [post.thumbnail.url] : [],
+            images: post.thumbnail ? [post.thumbnail.url] : ['/assets/ogp-home.jpg'],
         },
     };
 }

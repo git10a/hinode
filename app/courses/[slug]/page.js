@@ -27,6 +27,7 @@ export function generateMetadata({ params }) {
             siteName: 'HINODE',
             locale: 'ja_JP',
             type: 'article',
+            images: [course.image || '/assets/ogp-home.jpg'],
         },
     };
 }

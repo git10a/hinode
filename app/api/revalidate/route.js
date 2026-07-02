@@ -52,7 +52,7 @@ export async function POST(request) {
     }
 
     const contentId = getContentId(payload);
-    const paths = ['/', '/blog'];
+    const paths = ['/', '/blog', '/sitemap.xml'];
     if (contentId) paths.push(`/blog/${contentId}`);
 
     for (const path of paths) {

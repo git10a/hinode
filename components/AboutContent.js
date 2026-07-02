@@ -13,7 +13,7 @@ const SECTIONS = [
         body: (
             <>
                 <p className={styles.text}>皇居・目黒川・代々木公園などでのグループランを基本に、土曜日は不定期の企画ランも開催しています。上野公園や駒沢公園へ行ったり、おいしいパン屋を目指したり、山手線一周ランをしたりする日もあります。ペースも距離も自由で、苦しくなったら歩いても問題ありません。速さではなく、走り続ける規律そのものを大事にしています。</p>
-                <p className={styles.text}>競技志向のクラブではありません。ランキングやコーチング、練習メニューはなく、朝ランを継続したい人のためのコミュニティです。中学生から50代まで、老若男女が参加しています。</p>
+                <p className={styles.text}>競技経験や走力を問わず、朝ランを続けたい人が参加できるコミュニティです。中学生から50代まで、老若男女が参加しています。</p>
             </>
         ),
     },
@@ -120,7 +120,7 @@ export default function AboutContent() {
 
             <div className={`${styles.heroImageWrap} ${styles.fadeIn}`}>
                 <Image
-                    src="/assets/about-hero-yokohama-sunrise.png"
+                    src="/assets/about-hero-yokohama-sunrise.jpg"
                     alt="日の出前の横浜の水辺と橋の風景"
                     width={2282}
                     height={1030}

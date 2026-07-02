@@ -27,8 +27,6 @@ dist-ssr
 .next/
 out/
 
-# Generated SEO files
-public/sitemap*.xml
-public/robots.txt
 .vercel
+.claude/
 .superdesign/

@@ -623,3 +623,12 @@ export const cities = [
     { name: "平和祈念公園", desc: "沖縄戦の慰霊地として知られる公園。太平洋を一望する芝生の丘から朝日が昇る。糸満バスターミナルから約8km" },
   ]},
 ];
+
+// 検索indexを許可する /sunrise/[city] のホワイトリスト。
+// ページのrobots(noindex判定)とsitemapの両方で参照する
+export const INDEX_SUNRISE_CITY_SLUGS = [
+  'tokyo-chiyoda', // 千代田区（皇居 = HINODE水曜コース）
+  'tokyo-meguro',  // 目黒区（目黒川 = HINODE木曜コース）
+  'tokyo-shibuya', // 渋谷区（代々木公園 = HINODE日曜コース）
+  'osaka', 'kyoto', 'sapporo', 'fukuoka', 'nagoya', 'yokohama', 'sendai',
+];

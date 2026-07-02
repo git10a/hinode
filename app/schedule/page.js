@@ -121,7 +121,7 @@ function createEventsJsonLd(now = new Date()) {
             "url": `${SITE_URL}/schedule#meguro`,
             "image": [
                 assetUrl('/assets/meguro-run-map.png'),
-                assetUrl('/assets/Meguro.png'),
+                assetUrl('/assets/Meguro.jpg'),
             ],
             "description": "毎週木曜6:00から中目黒で開催する日の出ラン。約4km、目黒川沿いを1周。参加無料・予約不要。",
             ...eventDateFields(4, '06:00', now),
@@ -140,7 +140,7 @@ function createEventsJsonLd(now = new Date()) {
             "url": `${SITE_URL}/schedule#yoyogi`,
             "image": [
                 assetUrl('/assets/yoyogi-run-map.png'),
-                assetUrl('/assets/Yoyogi.png'),
+                assetUrl('/assets/Yoyogi.jpg'),
             ],
             "description": "毎週日曜7:15から代々木公園で開催する日の出ラン。約2〜4km、左回りで1、2周。参加無料・予約不要。",
             ...eventDateFields(0, '07:15', now),

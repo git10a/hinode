@@ -28,7 +28,7 @@ const WEEKLY_ITEMS = [
         time: '06:00',
         place: '目黒川',
         location: 'スタバ蔦屋書店前（中目黒）',
-        image: '/assets/Meguro.png',
+        image: '/assets/Meguro.jpg',
         anchor: '/schedule#meguro',
     },
     {
@@ -38,7 +38,7 @@ const WEEKLY_ITEMS = [
         time: '07:15',
         place: '代々木公園',
         location: '原宿時計塔前',
-        image: '/assets/Yoyogi.png',
+        image: '/assets/Yoyogi.jpg',
         anchor: '/schedule#yoyogi',
         recommendedForFirstRun: true,
     },

@@ -25,7 +25,7 @@ const FIRST_CHOICE_RUN = {
     timeRaw: '07:15',
     place: '代々木公園',
     location: '原宿時計塔前',
-    image: '/assets/Yoyogi.png',
+    image: '/assets/Yoyogi.jpg',
     href: '/schedule#yoyogi',
 };
 

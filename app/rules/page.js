@@ -13,13 +13,13 @@ export const metadata = {
         siteName: 'HINODE',
         locale: 'ja_JP',
         type: 'article',
-        images: ['/assets/ogp-home.png'],
+        images: ['/assets/ogp-home.jpg'],
     },
     twitter: {
         card: 'summary_large_image',
         title: '参加ルール｜HINODE',
         description: 'HINODEで安心して朝ランに参加するためのルールです。',
-        images: ['/assets/ogp-home.png'],
+        images: ['/assets/ogp-home.jpg'],
     },
 };
 

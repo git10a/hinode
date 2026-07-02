@@ -1,17 +1,12 @@
 import { notFound } from 'next/navigation';
 import Link from '@/components/SiteLink';
-import { cities } from '../../../data/cities';
+import { cities, INDEX_SUNRISE_CITY_SLUGS } from '../../../data/cities';
 import { getSunTimes, getSunTimesRange, getMonthlySunrise } from '../../../lib/sun';
 
 export const revalidate = 43200; // 12時間ISR
 
 // index対象の都市スラッグ（ホワイトリスト）
-const INDEX_CITIES = new Set([
-  'tokyo-chiyoda', // 千代田区（皇居 = HINODE水曜コース）
-  'tokyo-meguro',  // 目黒区（目黒川 = HINODE木曜コース）
-  'tokyo-shibuya', // 渋谷区（代々木公園 = HINODE日曜コース）
-  'osaka', 'kyoto', 'sapporo', 'fukuoka', 'nagoya', 'yokohama', 'sendai',
-]);
+const INDEX_CITIES = new Set(INDEX_SUNRISE_CITY_SLUGS);
 
 // HINODEが実際に走るコースの情報（3コアページ専用）
 const HINODE_RUN_INFO = {
