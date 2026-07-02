@@ -39,10 +39,9 @@ const TIMELINE = [
 
 // ダウンロード可能な写真素材（クレジット表記: Photo: HINODE）
 const PRESS_PHOTOS = [
-    { src: '/assets/about-hero-yokohama-sunrise.jpg', download: 'hinode-sunrise.jpg', label: '日の出(サンライズラン)', size: '2000×902' },
-    { src: '/assets/PXL_20260108_221045036.jpg', download: 'hinode-runners.jpg', label: '朝の光の中を走るメンバー(後ろ姿)', size: '1294×1726' },
+    { src: '/assets/about-hero-yokohama-sunrise.jpg', download: 'hinode-sunrise.jpg', label: '横浜の日の出', size: '2000×902' },
     { src: '/assets/Kokyo.jpg', download: 'hinode-kokyo.jpg', label: '皇居', size: '1296×1728' },
-    { src: '/assets/Meguro.jpg', download: 'hinode-meguro.jpg', label: '目黒川', size: '1536×1024' },
+    { src: '/assets/Meguro.jpg', download: 'hinode-meguro.jpg', label: '目黒川', size: '1298×1730' },
     { src: '/assets/Yoyogi.jpg', download: 'hinode-yoyogi.jpg', label: '代々木公園', size: '1672×941' },
     { src: '/assets/hinodet.jpeg', download: 'hinode-tshirt.jpg', label: '目印の黒いTシャツ(背中)', size: '1448×1086' }
 ];
