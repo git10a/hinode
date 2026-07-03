@@ -76,7 +76,7 @@ export default function PressContent({ memberCount = null }) {
                 </p>
 
                 <div className={`${styles.lead} ${styles.fadeIn}`}>
-                    HINODEは、日の出前に集まり日の出とともに走る、東京の朝ランコミュニティ。週3回、皇居・目黒川・代々木公園で無料開催。予約不要、背中に「HINODE」と書かれた黒いTシャツが目印。「競争しない」「自分との約束を守り続ける」ことを中心に据えた、非競争型ランニングコミュニティ。
+                    HINODEは、日の出前に集まり日の出とともに走る、東京の朝ランコミュニティ。週3回、皇居・目黒川・代々木公園で予約不要・参加無料で開催しています。背中に「HINODE」と書かれた黒いTシャツが目印です。速さや経験を問わず、「人と競争するのではなく、自分との約束を守り続ける」ことを中心に据えたランニングコミュニティです。
                 </div>
 
                 {/* 取材サマリー */}
@@ -117,7 +117,7 @@ export default function PressContent({ memberCount = null }) {
                         <tbody>
                             <tr><td>水</td><td>6:00〜</td><td>皇居</td><td>桔梗門前派出所</td><td>約5km</td></tr>
                             <tr><td>木</td><td>6:00〜</td><td>目黒川</td><td>中目黒駅 スターバックス蔦屋書店前</td><td>約4km</td></tr>
-                            <tr><td>日</td><td>7:15〜</td><td>代々木公園</td><td>原宿時計塔</td><td>約3〜6km</td></tr>
+                            <tr><td>日</td><td>7:15〜</td><td>代々木公園</td><td>原宿時計塔</td><td>約2〜4km</td></tr>
                         </tbody>
                     </table>
                     <p className={styles.body}>
@@ -142,13 +142,13 @@ export default function PressContent({ memberCount = null }) {
                     <h2 className={styles.sectionTitle}>HINODEを定義する3つの特徴</h2>
 
                     <h3 className={styles.subTitle}>競争しない</h3>
-                    <p className={styles.body}>速さや経験を参加条件にせず、それぞれのペースで走る。</p>
+                    <p className={styles.body}>速さや経験を参加条件にせず、誰でも走りやすいゆったりしたペースで、長くない距離を走る。</p>
 
                     <h3 className={styles.subTitle}>朝にこだわる</h3>
-                    <p className={styles.body}>日の出の時刻を基準に集合時間を固定。太陽は待ってくれないので、参加者のほうが時間に合わせる。</p>
+                    <p className={styles.body}>誰にも何にも邪魔されることのない早朝にこそ、走ることを選ぶ。</p>
 
-                    <h3 className={styles.subTitle}>自己との約束を守る</h3>
-                    <p className={styles.body}>「今日走ったかどうか」だけを問う。他人との勝ち負けではなく、昨日の自分との約束の履行を中心に据える。</p>
+                    <h3 className={styles.subTitle}>自分との約束を守る場所</h3>
+                    <p className={styles.body}>他人との勝ち負けではなく、走ると決めた自分との約束を守り続けるための場所。</p>
                 </div>
 
                 {/* 3. 運営・沿革 */}
