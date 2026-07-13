@@ -64,11 +64,11 @@
 .hero {
     position: relative;
     width: 100%;
-    min-height: 100vh;
+    min-height: 85vh;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     overflow: hidden;
-    padding: 0 2rem 4rem;
+    padding: 7.5rem 2rem 4rem;
 }
 
 .heroImageWrapper {
@@ -87,10 +87,9 @@
     inset: 0;
     background:
         linear-gradient(to bottom,
-            rgba(255, 255, 255, 0.7) 0%,
-            rgba(255, 255, 255, 0.15) 10%,
-            rgba(0, 0, 0, 0) 40%,
-            rgba(0, 0, 0, 0.55) 100%);
+            rgba(0, 0, 0, 0.2) 0%,
+            rgba(0, 0, 0, 0.04) 42%,
+            rgba(0, 0, 0, 0.58) 100%);
 }
 
 .heroInner {
@@ -99,32 +98,38 @@
     max-width: 1180px;
     margin: 0 auto;
     width: 100%;
-    padding-top: 10rem;
+}
+
+.heroLayout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(340px, 420px);
+    align-items: center;
+    gap: clamp(3rem, 7vw, 6rem);
 }
 
 .heroCopy {
     color: #fff;
-    max-width: 640px;
+    max-width: 580px;
     text-shadow: 0 2px 24px rgba(0, 0, 0, 0.3);
 }
 
 .heroBrand {
     font-family: var(--font-en);
-    font-size: 4.6rem;
+    font-size: clamp(3.2rem, 5vw, 4rem);
     font-weight: 300;
     letter-spacing: 0.22em;
     color: #fff;
     line-height: 1;
-    margin: 0 0 1.75rem;
+    margin: 0 0 1.5rem;
     text-transform: none;
 }
 
 .heroHeadline {
-    font-size: 2rem;
+    font-size: clamp(1.8rem, 3vw, 2.2rem);
     font-weight: 400;
     line-height: 1.55;
     letter-spacing: 0.08em;
-    margin: 0 0 1.5rem;
+    margin: 0 0 1.4rem;
     color: #fff;
     text-transform: none;
     word-break: keep-all;
@@ -133,98 +138,12 @@
 
 .heroSub {
     font-size: 1rem;
-    line-height: 2;
+    line-height: 1.9;
     letter-spacing: 0.06em;
-    margin: 0 0 2.25rem;
+    margin: 0 0 1.7rem;
     color: rgba(255, 255, 255, 0.95);
     font-weight: 400;
-    max-width: none;
-}
-
-.heroChips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem 0.7rem;
-    margin-bottom: 2.5rem;
-}
-
-.chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.5rem 0.95rem;
-    background: rgba(255, 255, 255, 0.14);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    border-radius: 999px;
-    font-size: 0.78rem;
-    letter-spacing: 0.08em;
-    color: #fff;
-    line-height: 1;
-}
-
-.chipDot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: #FFC436;
-}
-
-.heroCta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem 1.25rem;
-    align-items: center;
-    margin-bottom: 1.75rem;
-}
-
-.ctaPrimary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1rem 1.75rem;
-    background: #C5A14C;
-    color: #fff;
-    border-radius: 2px;
-    font-size: 0.95rem;
-    letter-spacing: 0.1em;
-    font-weight: 500;
-    text-decoration: none;
-    transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.ctaPrimary:hover {
-    background: #B58E3C;
-    transform: translateY(-2px);
-}
-
-.ctaArrow {
-    display: inline-block;
-    transition: transform 0.3s ease;
-}
-
-.ctaPrimary:hover .ctaArrow {
-    transform: translateX(4px);
-}
-
-.ctaSecondary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1rem 1.6rem;
-    background: rgba(255, 255, 255, 0.92);
-    color: #111;
-    border-radius: 2px;
-    font-size: 0.9rem;
-    letter-spacing: 0.08em;
-    font-weight: 500;
-    text-decoration: none;
-    transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.ctaSecondary:hover {
-    background: #fff;
-    transform: translateY(-2px);
+    max-width: 540px;
 }
 
 .heroMeta {
@@ -245,13 +164,177 @@
     stroke-width: 1.5;
 }
 
+.heroStravaLink {
+    display: inline-block;
+    margin-top: 0.7rem;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.84rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 255, 255, 0.38);
+    text-underline-offset: 0.3rem;
+    transition: color 0.2s, text-decoration-color 0.2s;
+}
+
+.heroStravaLink:hover {
+    color: #fff;
+    text-decoration-color: #fff;
+}
+
+.heroNextCard {
+    width: 100%;
+    padding: 1.8rem;
+    color: #111;
+    background: rgba(255, 255, 255, 0.97);
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    border-radius: 8px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
+}
+
+.heroNextLabel {
+    margin-bottom: 0.75rem;
+    color: #9b4a24;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.heroNextDateRow {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    margin-bottom: 0.35rem;
+}
+
+.heroNextDate {
+    font-family: var(--font-en);
+    font-size: 1.9rem;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+}
+
+.heroNextTime {
+    font-family: var(--font-en);
+    font-size: 1.05rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+}
+
+.heroNextPlace {
+    margin-bottom: 0.25rem;
+    font-size: 1.12rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+}
+
+.page .heroNextLocation {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: #666;
+    font-size: 0.82rem;
+    letter-spacing: 0.03em;
+}
+
+.heroNextLocation svg {
+    width: 14px;
+    height: 14px;
+    color: #C5A14C;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+}
+
+.heroFacts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem 1rem;
+    margin: 1.25rem 0;
+    padding: 1.15rem 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.heroFacts span {
+    position: relative;
+    padding-left: 1.1rem;
+    color: #555;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    letter-spacing: 0.03em;
+}
+
+.heroFacts span::before {
+    content: '';
+    position: absolute;
+    top: 0.48em;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #C5A14C;
+}
+
+.heroParticipants {
+    margin: -0.25rem 0 1rem;
+    --participant-avatar-size: 24px;
+    --participant-avatar-overlap: -0.45rem;
+}
+
+.heroNextCta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    width: 100%;
+    min-height: 3.25rem;
+    padding: 0.85rem 1.2rem;
+    color: #fff;
+    background: #111;
+    border-radius: 6px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.heroNextCta:hover {
+    background: #2f2f2f;
+    transform: translateY(-1px);
+}
+
+.heroNextStrava {
+    display: block;
+    margin-top: 0.8rem;
+    color: #777;
+    font-size: 0.76rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-align: center;
+    text-decoration: none;
+}
+
+.heroNextStrava:hover {
+    color: #111;
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+}
+
 /* =========================
    Weekly schedule
 ========================= */
 .weekly {
+    padding: 5rem 2rem;
+    background: #fafafa;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.weeklyInner {
     max-width: 1180px;
     margin: 0 auto;
-    padding: 6.5rem 2rem 2rem;
 }
 
 .weeklyGrid {
@@ -304,13 +387,13 @@
     flex-direction: column;
     color: inherit;
     background: #fff;
-    border: 1px solid transparent;
+    border: 1px solid #e5e5e5;
     border-radius: 8px;
     overflow: hidden;
     transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
         border-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
         box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.035);
 }
 
 .weeklyCardMain {
@@ -1171,6 +1254,24 @@
    Tablet
 ========================= */
 @media (max-width: 960px) {
+    .hero {
+        min-height: auto;
+        padding-top: 8.5rem;
+    }
+
+    .heroLayout {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .heroCopy {
+        max-width: 620px;
+    }
+
+    .heroNextCard {
+        max-width: 520px;
+    }
+
     .weeklyGrid,
     .valuesGrid,
     .stepsGrid,
@@ -1199,12 +1300,16 @@
 ========================= */
 @media (max-width: 640px) {
     .hero {
-        min-height: 88vh;
-        padding: 0 1.25rem 3rem;
+        min-height: auto;
+        padding: 7.5rem 1.25rem 2rem;
     }
 
     .heroInner {
-        padding-top: 7.5rem;
+        padding-top: 0;
+    }
+
+    .heroLayout {
+        gap: 1.75rem;
     }
 
     .heroHeadline {
@@ -1219,29 +1324,38 @@
 
     .heroSub {
         font-size: 0.92rem;
-        line-height: 1.95;
+        line-height: 1.85;
+        margin-bottom: 1.25rem;
     }
 
-    .heroChips {
-        gap: 0.5rem 0.55rem;
-        margin-bottom: 2rem;
+    .heroMeta {
+        font-size: 0.76rem;
     }
 
-    .chip {
-        padding: 0.45rem 0.8rem;
-        font-size: 0.72rem;
+    .heroStravaLink {
+        font-size: 0.78rem;
     }
 
-    .heroCta {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.75rem;
+    .heroNextCard {
+        padding: 1.35rem;
     }
 
-    .ctaPrimary,
-    .ctaSecondary {
-        justify-content: center;
-        padding: 1rem 1.5rem;
+    .heroNextDate {
+        font-size: 1.65rem;
+    }
+
+    .heroNextPlace {
+        font-size: 1rem;
+    }
+
+    .heroFacts {
+        gap: 0.6rem 0.75rem;
+        margin: 1rem 0;
+        padding: 1rem 0;
+    }
+
+    .heroFacts span {
+        font-size: 0.76rem;
     }
 
     .sectionHeader {

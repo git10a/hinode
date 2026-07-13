@@ -5,8 +5,6 @@ import { formatPostDate, getPostDisplayDate } from '../lib/blogPosts';
 import ParticipantPreview from './ParticipantPreview';
 import styles from './HomeContent.module.css';
 
-const CHIPS = ['参加無料', '予約不要', '1人参加多め', '写真なし', '4km前後ゆっくり'];
-
 const STRAVA_CLUB_ID = '1772485';
 const FIRST_RUN_GUIDE_URL = '/first-run';
 
@@ -185,6 +183,7 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
     const adhocEvents = upcomingEvents
         .filter((e) => !regularDays.has(e.dayOfWeek))
         .slice(0, 2);
+    const nextRun = regularCards[0];
 
     return (
         <div className={styles.page}>
@@ -203,54 +202,82 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                 </div>
 
                 <div className={styles.heroInner}>
-                    <div className={styles.heroCopy}>
-                        <p className={styles.heroBrand}>HINODE</p>
-                        <h1 className={styles.heroHeadline}>
-                            東京の朝ランコミュニティ
-                        </h1>
-                        <p className={styles.heroSub}>
-                            東京のランニングコミュニティとして、皇居や代々木公園を中心に、毎朝だれかと気軽に走り続けられる場所をつくっています。
-                        </p>
+                    <div className={styles.heroLayout}>
+                        <div className={styles.heroCopy}>
+                            <p className={styles.heroBrand}>HINODE</p>
+                            <h1 className={styles.heroHeadline}>
+                                東京の朝ランコミュニティ
+                            </h1>
+                            <p className={styles.heroSub}>
+                                皇居や代々木公園を中心に、毎朝だれかと気軽に走り続けられる場所をつくっています。
+                            </p>
 
-                        <div className={styles.heroChips}>
-                            {CHIPS.map((label) => (
-                                <span key={label} className={styles.chip}>
-                                    <span className={styles.chipDot} aria-hidden="true" />
-                                    {label}
-                                </span>
-                            ))}
-                        </div>
-
-                        <div className={styles.heroCta}>
-                            <Link href="/schedule" className={styles.ctaPrimary}>
-                                開催日程・参加方法を見る
-                                <span className={styles.ctaArrow} aria-hidden="true">→</span>
-                            </Link>
+                            <div className={styles.heroMeta}>
+                                <svg viewBox="0 0 24 24" className={styles.heroMetaIcon} aria-hidden="true">
+                                    <circle cx="9" cy="9" r="3.2" />
+                                    <circle cx="16" cy="10" r="2.5" />
+                                    <path d="M3 19c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5" />
+                                    <path d="M13 19c0-2.8 2.2-4.5 5-4.5s3.5 1.7 3.5 4.5" />
+                                </svg>
+                                <span>{displayedMemberCount} クラブメンバー</span>
+                            </div>
                             <a
                                 href="https://www.strava.com/clubs/hinode"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className={styles.ctaSecondary}
+                                className={styles.heroStravaLink}
                             >
-                                Stravaクラブを見る
+                                Stravaでコミュニティを見る ↗
                             </a>
                         </div>
 
-                        <div className={styles.heroMeta}>
-                            <svg viewBox="0 0 24 24" className={styles.heroMetaIcon} aria-hidden="true">
-                                <circle cx="9" cy="9" r="3.2" />
-                                <circle cx="16" cy="10" r="2.5" />
-                                <path d="M3 19c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5" />
-                                <path d="M13 19c0-2.8 2.2-4.5 5-4.5s3.5 1.7 3.5 4.5" />
-                            </svg>
-                            <span>{displayedMemberCount} クラブメンバー</span>
-                        </div>
+                        <aside className={styles.heroNextCard} aria-labelledby="next-run-title">
+                            <p id="next-run-title" className={styles.heroNextLabel}>次の開催</p>
+                            <div className={styles.heroNextDateRow}>
+                                <span className={styles.heroNextDate}>{nextRun.nextDate}</span>
+                                <span className={styles.heroNextTime}>{nextRun.time}</span>
+                            </div>
+                            <p className={styles.heroNextPlace}>{nextRun.place}</p>
+                            <p className={styles.heroNextLocation}>
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" />
+                                    <circle cx="12" cy="9" r="2.5" />
+                                </svg>
+                                {nextRun.location}
+                            </p>
+                            <div className={styles.heroFacts} aria-label="参加条件">
+                                <span>参加無料</span>
+                                <span>予約不要</span>
+                                <span>1人参加多め</span>
+                                <span>4km前後ゆっくり</span>
+                            </div>
+                            <ParticipantPreview
+                                count={nextRun.participantCount}
+                                participants={nextRun.participants}
+                                className={styles.heroParticipants}
+                            />
+                            <Link href={nextRun.detailsHref} className={styles.heroNextCta}>
+                                参加方法を確認する
+                                <span aria-hidden="true">→</span>
+                            </Link>
+                            {nextRun.stravaHref && (
+                                <a
+                                    href={nextRun.stravaHref}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={styles.heroNextStrava}
+                                >
+                                    この開催をStravaで見る
+                                </a>
+                            )}
+                        </aside>
                     </div>
                 </div>
             </section>
 
             {/* Weekly schedule */}
-            <section className={styles.weekly}>
+            <section id="schedule" className={styles.weekly}>
+                <div className={styles.weeklyInner}>
                 <div className={styles.sectionHeader}>
                     <h2 className={styles.sectionTitle}>今週の開催</h2>
                     <Link href="/schedule" className={styles.sectionMore}>
@@ -388,6 +415,7 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                         </Link>
                     </div>
                 )}
+                </div>
             </section>
 
             {/* Values */}
