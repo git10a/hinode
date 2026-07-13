@@ -128,6 +128,21 @@ const VALUES = [
     },
 ];
 
+const RUNNING_SERVICES = [
+    {
+        name: 'シューズマッチ',
+        description: '質問に答えて、自分に合うランニングシューズを探せるサービス。',
+        href: 'https://shoes-match.com/',
+        label: 'シューズ選び',
+    },
+    {
+        name: 'どこラン',
+        description: '旅先でも、出張先でも、知らない土地で走れるコースが地図つきで見つかるサービス。',
+        href: 'https://dokorun.com/',
+        label: 'コース探し',
+    },
+];
+
 const STEPS = [
     {
         num: '1',
@@ -398,6 +413,35 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                             <h3 className={styles.valueTitle}>{v.title}</h3>
                             <p className={styles.valueDesc}>{v.desc}</p>
                         </div>
+                    ))}
+                </div>
+            </section>
+
+            {/* Running services */}
+            <section id="services" className={styles.services}>
+                <div className={styles.servicesIntro}>
+                    <p className={styles.servicesEyebrow}>RUNNING SERVICES</p>
+                    <h2 className={styles.servicesTitle}>HINODEがつくっているもの</h2>
+                    <p className={styles.servicesLead}>
+                        HINODEは、朝ランの開催だけでなく、走る人の毎日を少し楽しくするサービスもつくっています。
+                    </p>
+                </div>
+                <div className={styles.servicesGrid}>
+                    {RUNNING_SERVICES.map((service) => (
+                        <a
+                            key={service.name}
+                            href={service.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={styles.serviceCard}
+                        >
+                            <span className={styles.serviceLabel}>{service.label}</span>
+                            <h3 className={styles.serviceName}>{service.name}</h3>
+                            <p className={styles.serviceDescription}>{service.description}</p>
+                            <span className={styles.serviceLink}>
+                                サービスを見る <span aria-hidden="true">↗</span>
+                            </span>
+                        </a>
                     ))}
                 </div>
             </section>

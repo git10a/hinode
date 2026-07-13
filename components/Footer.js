@@ -50,12 +50,16 @@ export default function Footer() {
                     <Link href="/work-contact">お仕事・取材</Link>
                     <Link href="/privacy">プライバシーポリシー</Link>
                 </div>
+                <div className="footer-services">
+                    <span>HINODEがつくっているもの</span>
+                    <a href="https://shoes-match.com/" target="_blank" rel="noopener noreferrer">シューズマッチ ↗</a>
+                    <a href="https://dokorun.com/" target="_blank" rel="noopener noreferrer">どこラン ↗</a>
+                </div>
                 <div className="footer-sub-links">
                     <Link href="/event-runs">企画ラン</Link>
                     <Link href="/courses">朝ランコースガイド</Link>
                     <Link href="/">東京のランニングコミュニティ</Link>
                     <Link href="/sunrise">日の出時刻</Link>
-                    <a href="https://www.shoes-match.com/" target="_blank" rel="noopener noreferrer">ランシュー診断</a>
                 </div>
                 <div className="social-links">
                     {SOCIAL_LINKS.map(link => (

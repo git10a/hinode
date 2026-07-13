@@ -779,6 +779,106 @@
 }
 
 /* =========================
+   Running services
+========================= */
+.services {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 6.5rem 2rem 2rem;
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 5rem;
+    align-items: start;
+}
+
+.servicesIntro {
+    max-width: 30rem;
+}
+
+.servicesEyebrow {
+    margin: 0 0 1rem;
+    color: #9b4a24;
+    font-family: var(--font-en);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+}
+
+.servicesTitle {
+    margin: 0 0 1.25rem;
+    color: #111;
+    font-size: 1.65rem;
+    font-weight: 500;
+    line-height: 1.55;
+    letter-spacing: 0.06em;
+}
+
+.servicesLead {
+    margin: 0;
+    color: #555;
+    font-size: 0.92rem;
+    line-height: 2;
+    letter-spacing: 0.04em;
+}
+
+.servicesGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid #dedbd2;
+}
+
+.serviceCard {
+    position: relative;
+    min-height: 17rem;
+    padding: 2rem 1.75rem 1.75rem;
+    color: #111;
+    text-decoration: none;
+    border-bottom: 1px solid #dedbd2;
+    transition: background-color 0.25s ease;
+}
+
+.serviceCard:first-child {
+    border-right: 1px solid #dedbd2;
+}
+
+.serviceCard:hover {
+    background: #faf8f3;
+}
+
+.serviceLabel {
+    display: inline-block;
+    margin-bottom: 2.25rem;
+    color: #777;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+}
+
+.serviceName {
+    margin: 0 0 0.8rem;
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+}
+
+.serviceDescription {
+    margin: 0 0 2rem;
+    color: #555;
+    font-size: 0.86rem;
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+}
+
+.serviceLink {
+    position: absolute;
+    right: 1.75rem;
+    bottom: 1.5rem;
+    color: #9b4a24;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+/* =========================
    First-timer steps
 ========================= */
 .firstTime {
@@ -1087,6 +1187,11 @@
         padding: 3.5rem 2.5rem;
     }
 
+    .services {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
 }
 
 /* =========================
@@ -1149,6 +1254,7 @@
 
     .weekly,
     .values,
+    .services,
     .firstTime,
     .posts {
         padding: 4.5rem 1.25rem 0.5rem;
@@ -1220,6 +1326,28 @@
 
     .valuesGrid {
         gap: 2.5rem;
+    }
+
+    .servicesGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .serviceCard {
+        min-height: 14.5rem;
+        padding: 1.6rem 1.25rem 1.4rem;
+    }
+
+    .serviceCard:first-child {
+        border-right: 0;
+    }
+
+    .serviceLabel {
+        margin-bottom: 1.5rem;
+    }
+
+    .serviceLink {
+        right: 1.25rem;
+        bottom: 1.2rem;
     }
 
     .stepCard {
