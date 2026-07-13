@@ -59,7 +59,6 @@ export default function Footer() {
                     <Link href="/event-runs">企画ラン</Link>
                     <Link href="/courses">朝ランコースガイド</Link>
                     <Link href="/">東京のランニングコミュニティ</Link>
-                    <Link href="/sunrise">日の出時刻</Link>
                 </div>
                 <div className="social-links">
                     {SOCIAL_LINKS.map(link => (

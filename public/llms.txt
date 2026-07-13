@@ -29,7 +29,6 @@
 - [よくある質問](https://hinode-run.com/faq): 予約・参加費・服装・雨天時などのFAQ
 - [朝ランコースガイド](https://hinode-run.com/courses): 皇居・代々木公園・目黒川など東京の朝ランコース解説
 - [企画ラン](https://hinode-run.com/event-runs): 定期開催以外のイベント
-- [日の出時刻](https://hinode-run.com/sunrise): 全国の日の出時刻と朝ランスポット
 - [ブログ](https://hinode-run.com/blog): コミュニティの記録と朝ランの読み物
 - [マニフェスト](https://hinode-run.com/manifesto): HINODEの価値観
 - [プレスキット](https://hinode-run.com/press): メディア向け資料

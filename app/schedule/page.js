@@ -6,6 +6,7 @@ import PostBottomStrip from '../../components/PostBottomStrip';
 import ParticipantPreview from '../../components/ParticipantPreview';
 import ShareScheduleButton from '../../components/ShareScheduleButton';
 import { getUpcomingGroupEvents } from '../../lib/strava';
+import { getRegularRun } from '../../lib/regularRuns';
 
 export const metadata = {
     title: 'HINODEのグループラン日程｜皇居・目黒川・代々木公園',
@@ -21,6 +22,9 @@ const SITE_URL = 'https://hinode-run.com';
 const EVENT_PERFORMER = { "@type": "PerformingGroup", "name": "HINODE" };
 const FIRST_RUN_GUIDE_URL = '/first-run';
 const DAY_LABEL_JP = ['日', '月', '火', '水', '木', '金', '土'];
+const KOKYO_RUN = getRegularRun('kokyo');
+const MEGURO_RUN = getRegularRun('meguro');
+const YOYOGI_RUN = getRegularRun('yoyogi');
 
 function stravaEventUrl(eventId) {
     return `https://www.strava.com/clubs/${STRAVA_CLUB_ID}/group_events/${eventId}`;
@@ -104,15 +108,15 @@ function createEventsJsonLd(now = new Date()) {
                 assetUrl('/assets/kokyo-run-map.png'),
                 assetUrl('/assets/Kokyo.jpg'),
             ],
-            "description": "毎週水曜6:00から皇居で開催する日の出ラン。約5km、左回りで1周。参加無料・予約不要。",
-            ...eventDateFields(3, '06:00', now),
-            "eventSchedule": { "@type": "Schedule", "repeatFrequency": "P1W", "byDay": "https://schema.org/Wednesday", "startTime": "06:00", "scheduleTimezone": "Asia/Tokyo" },
+            "description": `${KOKYO_RUN.dayShort}${KOKYO_RUN.timeRaw}から皇居で開催する日の出ラン。約5km、左回りで1周。参加無料・予約不要。`,
+            ...eventDateFields(KOKYO_RUN.dayOfWeek, KOKYO_RUN.timeRaw, now),
+            "eventSchedule": { "@type": "Schedule", "repeatFrequency": "P1W", "byDay": "https://schema.org/Wednesday", "startTime": KOKYO_RUN.timeRaw, "scheduleTimezone": "Asia/Tokyo" },
             "location": { "@type": "Place", "name": "桔梗門前派出所", "address": { "@type": "PostalAddress", "addressLocality": "東京都千代田区", "addressCountry": "JP" } },
             "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
             "eventStatus": "https://schema.org/EventScheduled",
             "organizer": { "@type": "SportsClub", "name": "HINODE", "url": "https://hinode-run.com/" },
             "performer": EVENT_PERFORMER,
-            "offers": createFreeOffer(3, '06:00', now, 'kokyo')
+            "offers": createFreeOffer(KOKYO_RUN.dayOfWeek, KOKYO_RUN.timeRaw, now, KOKYO_RUN.id)
         },
         {
             "@context": "https://schema.org",
@@ -123,15 +127,15 @@ function createEventsJsonLd(now = new Date()) {
                 assetUrl('/assets/meguro-run-map.png'),
                 assetUrl('/assets/Meguro.jpg'),
             ],
-            "description": "毎週木曜6:00から中目黒で開催する日の出ラン。約4km、目黒川沿いを1周。参加無料・予約不要。",
-            ...eventDateFields(4, '06:00', now),
-            "eventSchedule": { "@type": "Schedule", "repeatFrequency": "P1W", "byDay": "https://schema.org/Thursday", "startTime": "06:00", "scheduleTimezone": "Asia/Tokyo" },
+            "description": `${MEGURO_RUN.dayShort}${MEGURO_RUN.timeRaw}から中目黒で開催する日の出ラン。約4km、目黒川沿いを1周。参加無料・予約不要。`,
+            ...eventDateFields(MEGURO_RUN.dayOfWeek, MEGURO_RUN.timeRaw, now),
+            "eventSchedule": { "@type": "Schedule", "repeatFrequency": "P1W", "byDay": "https://schema.org/Thursday", "startTime": MEGURO_RUN.timeRaw, "scheduleTimezone": "Asia/Tokyo" },
             "location": { "@type": "Place", "name": "スターバックス 中目黒蔦屋書店前", "address": { "@type": "PostalAddress", "addressLocality": "東京都目黒区", "addressCountry": "JP" } },
             "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
             "eventStatus": "https://schema.org/EventScheduled",
             "organizer": { "@type": "SportsClub", "name": "HINODE", "url": "https://hinode-run.com/" },
             "performer": EVENT_PERFORMER,
-            "offers": createFreeOffer(4, '06:00', now, 'meguro')
+            "offers": createFreeOffer(MEGURO_RUN.dayOfWeek, MEGURO_RUN.timeRaw, now, MEGURO_RUN.id)
         },
         {
             "@context": "https://schema.org",
@@ -142,15 +146,15 @@ function createEventsJsonLd(now = new Date()) {
                 assetUrl('/assets/yoyogi-run-map.png'),
                 assetUrl('/assets/Yoyogi.jpg'),
             ],
-            "description": "毎週日曜7:15から代々木公園で開催する日の出ラン。約2〜4km、左回りで1、2周。参加無料・予約不要。",
-            ...eventDateFields(0, '07:15', now),
-            "eventSchedule": { "@type": "Schedule", "repeatFrequency": "P1W", "byDay": "https://schema.org/Sunday", "startTime": "07:15", "scheduleTimezone": "Asia/Tokyo" },
+            "description": `${YOYOGI_RUN.dayShort}${YOYOGI_RUN.timeRaw}から代々木公園で開催する日の出ラン。約2〜4km、左回りで1、2周。参加無料・予約不要。`,
+            ...eventDateFields(YOYOGI_RUN.dayOfWeek, YOYOGI_RUN.timeRaw, now),
+            "eventSchedule": { "@type": "Schedule", "repeatFrequency": "P1W", "byDay": "https://schema.org/Sunday", "startTime": YOYOGI_RUN.timeRaw, "scheduleTimezone": "Asia/Tokyo" },
             "location": { "@type": "Place", "name": "原宿時計塔前", "address": { "@type": "PostalAddress", "addressLocality": "東京都渋谷区", "addressCountry": "JP" } },
             "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
             "eventStatus": "https://schema.org/EventScheduled",
             "organizer": { "@type": "SportsClub", "name": "HINODE", "url": "https://hinode-run.com/" },
             "performer": EVENT_PERFORMER,
-            "offers": createFreeOffer(0, '07:15', now, 'yoyogi')
+            "offers": createFreeOffer(YOYOGI_RUN.dayOfWeek, YOYOGI_RUN.timeRaw, now, YOYOGI_RUN.id)
         }
     ];
 }
@@ -196,59 +200,30 @@ const faqItems = [
 
 const RUNS = [
     {
-        id: 'kokyo',
-        name: '皇居ラン',
-        place: '皇居',
-        meetingPlace: '桔梗門前派出所',
-        meetingShort: '桔梗門派出所前',
-        day: '毎週水曜',
-        time: '06:00〜',
-        distance: '約5km',
+        ...KOKYO_RUN,
         mapUrl: 'https://maps.app.goo.gl/E9HkSojyPZw6zo1b9',
         routeImage: '/assets/strava-route-kokyo.png',
         routeUrl: 'https://www.strava.com/routes/3425111489577090166',
-        dayOfWeek: 3,
-        timeRaw: '06:00',
         description: (
             <>桔梗門前派出所に集合。<br />皇居を左回りで1周。<br />和田倉噴水公園内にはSTARBUCKSも。</>
         ),
         forWhom: '皇居ランしたい方・仕事前に短時間でミディアムな刺激を得たい方',
     },
     {
-        id: 'meguro',
-        name: '目黒川ラン',
-        place: '目黒川',
-        meetingPlace: 'スターバックス 中目黒蔦屋書店前',
-        meetingShort: '中目黒駅スタバ前',
-        day: '毎週木曜',
-        time: '06:00〜',
-        distance: '約4km',
+        ...MEGURO_RUN,
         mapUrl: 'https://maps.app.goo.gl/SKixyw53vfJnp1p36',
         routeImage: '/assets/strava-route-meguro.png',
         routeUrl: 'https://www.strava.com/routes/3471979912283975976',
-        dayOfWeek: 4,
-        timeRaw: '06:00',
         description: (
             <>中目黒駅のスターバックス蔦屋書店前に集合。<br />目黒川をぐるっと回るコース。</>
         ),
         forWhom: '中目黒周辺にお住まいで朝ラン仲間を探している方、短くても朝ランは継続したい方',
     },
     {
-        id: 'yoyogi',
-        name: '代々木公園ラン',
-        place: '代々木公園',
-        meetingPlace: '原宿時計塔前',
-        meetingShort: '原宿時計塔前',
-        day: '毎週日曜',
-        time: '07:15〜',
-        distance: '約2〜4km',
-        recommendationLabel: '初参加におすすめ',
-        isFirstChoice: true,
+        ...YOYOGI_RUN,
         mapUrl: 'https://maps.app.goo.gl/dB3L15dHByAoC4jw9',
         routeImage: '/assets/strava-route-yoyogi.png',
         routeUrl: 'https://www.strava.com/routes/3471970663805426564',
-        dayOfWeek: 0,
-        timeRaw: '07:15',
         description: (
             <>原宿時計塔に集合。<br />代々木公園を左回りで1、2周。<br />公園近くにはドトールやVERVE COFFEEがあります。</>
         ),
@@ -339,7 +314,7 @@ export default async function EventPage() {
                             </a>
                         </div>
                         <p className={styles.scheduleQuickViewLead}>
-                            6月1日からサマータイムをお試ししています。対象は、水曜・木曜・日曜のグループランです。
+                            水曜・木曜は6:00、日曜は7:15にスタートします。各回とも開始5分前を目安にお集まりください。
                         </p>
                     </div>
                     <div className={styles.scheduleTableWrap}>
@@ -370,7 +345,7 @@ export default async function EventPage() {
                     </div>
                     <p className={styles.scheduleQuickViewNote}>
                         日曜は7:00ではなく7:15集合です。Runtrip BASEが7:00にオープンするため、この時間にしています。
-                        まずは1か月ほど運用し、参加状況や気温を見ながら継続するか判断します。
+                        時間通りに出発するため、余裕をもって集合してください。
                     </p>
                 </div>
                 <div className={styles.firstRunCallout}>

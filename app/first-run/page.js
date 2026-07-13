@@ -4,6 +4,7 @@ import ParticipantPreview from '../../components/ParticipantPreview';
 import PostBottomStrip from '../../components/PostBottomStrip';
 import ShareScheduleButton from '../../components/ShareScheduleButton';
 import { getUpcomingGroupEvents } from '../../lib/strava';
+import { FIRST_CHOICE_RUN } from '../../lib/regularRuns';
 import styles from './first-run.module.css';
 
 export const metadata = {
@@ -13,21 +14,8 @@ export const metadata = {
 
 const STRAVA_CLUB_URL = 'https://www.strava.com/clubs/1772485';
 const STRAVA_CLUB_ID = '1772485';
-const NOTEBOOK_LM_URL = 'https://notebooklm.google.com/notebook/40deb023-33ff-4bf9-985a-08cbfe6df7aa';
-const INSTAGRAM_URL = 'https://www.instagram.com/hinode_run/';
 
 export const revalidate = 900;
-
-const FIRST_CHOICE_RUN = {
-    day: '日曜',
-    dayOfWeek: 0,
-    time: '07:15〜',
-    timeRaw: '07:15',
-    place: '代々木公園',
-    location: '原宿時計塔前',
-    image: '/assets/Yoyogi.jpg',
-    href: '/schedule#yoyogi',
-};
 
 const DAY_LABEL_JP = ['日', '月', '火', '水', '木', '金', '土'];
 const EVENT_DURATION_MINUTES = 60;
@@ -313,7 +301,7 @@ export default async function FirstRunPage() {
                                     <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" />
                                     <circle cx="12" cy="9" r="2.5" />
                                 </svg>
-                                {FIRST_CHOICE_RUN.location}
+                                {FIRST_CHOICE_RUN.meetingShort}
                             </p>
                             <ParticipantPreview
                                 count={firstChoiceEvent?.participantCount}
@@ -321,7 +309,7 @@ export default async function FirstRunPage() {
                                 className={styles.firstChoiceParticipants}
                             />
                             <div className={styles.firstChoiceActions}>
-                                <Link href={FIRST_CHOICE_RUN.href} className={styles.firstChoicePrimaryButton}>
+                                <Link href={FIRST_CHOICE_RUN.scheduleHref} className={styles.firstChoicePrimaryButton}>
                                     集合場所と参加方法を見る
                                 </Link>
                                 {firstChoiceStravaHref && (
@@ -335,7 +323,7 @@ export default async function FirstRunPage() {
                                     </a>
                                 )}
                                 <ShareScheduleButton
-                                    path={FIRST_CHOICE_RUN.href}
+                                    path={FIRST_CHOICE_RUN.scheduleHref}
                                     className={styles.firstChoiceShareButton}
                                 />
                             </div>
@@ -379,34 +367,6 @@ export default async function FirstRunPage() {
                             </details>
                         ))}
                     </div>
-                    <aside className={styles.aiGuideCard} aria-labelledby="ai-guide-title">
-                        <div className={styles.aiGuideText}>
-                            <p className={styles.aiGuideKicker}>HINODE案内所</p>
-                            <h3 id="ai-guide-title" className={styles.aiGuideTitle}>まだ不安なことがあれば</h3>
-                            <p className={styles.aiGuideLead}>
-                                初参加・持ち物・集合場所など、HINODEのことをAIに質問できます。
-                                回答にないことはInstagram DMでも遠慮なく聞いてください。
-                            </p>
-                        </div>
-                        <div className={styles.aiGuideActions}>
-                            <a
-                                href={NOTEBOOK_LM_URL}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={styles.aiGuidePrimary}
-                            >
-                                HINODE案内所で質問する
-                            </a>
-                            <a
-                                href={INSTAGRAM_URL}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={styles.aiGuideSecondary}
-                            >
-                                Instagramで聞く
-                            </a>
-                        </div>
-                    </aside>
                 </div>
             </section>
 

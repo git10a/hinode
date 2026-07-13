@@ -1,6 +1,6 @@
 import { getAllBlogPosts } from '../lib/microcms';
 import COURSE_GUIDES from '../lib/courseGuides';
-import { INDEX_SUNRISE_CITY_SLUGS } from '../data/cities';
+import { BLOG_TOPICS } from '../lib/blogTopics';
 
 const SITE_URL = 'https://hinode-run.com';
 
@@ -9,26 +9,23 @@ const SITE_URL = 'https://hinode-run.com';
 export const revalidate = 3600;
 
 const STATIC_PATHS = [
-    '/',
-    '/about',
-    '/blog',
-    '/courses',
-    '/event-runs',
-    '/faq',
-    '/first-run',
-    '/press',
-    '/privacy',
-    '/rules',
-    '/schedule',
-    '/sunrise',
-    '/work-contact',
+    { path: '/', lastModified: '2026-07-13' },
+    { path: '/about', lastModified: '2026-07-13' },
+    { path: '/blog', lastModified: '2026-07-13' },
+    { path: '/courses' },
+    { path: '/event-runs' },
+    { path: '/faq' },
+    { path: '/first-run', lastModified: '2026-07-13' },
+    { path: '/press', lastModified: '2026-07-13' },
+    { path: '/privacy' },
+    { path: '/rules' },
+    { path: '/schedule', lastModified: '2026-07-13' },
+    { path: '/work-contact' },
 ];
 
 function entry(path, lastModified) {
     return {
         url: `${SITE_URL}${path === '/' ? '' : path}`,
-        changeFrequency: 'daily',
-        priority: 0.7,
         ...(lastModified ? { lastModified } : {}),
     };
 }
@@ -37,11 +34,11 @@ export default async function sitemap() {
     const posts = await getAllBlogPosts();
 
     return [
-        ...STATIC_PATHS.map((path) => entry(path)),
+        ...STATIC_PATHS.map(({ path, lastModified }) => entry(path, lastModified)),
         ...COURSE_GUIDES.map((course) => entry(`/courses/${course.slug}`)),
-        ...INDEX_SUNRISE_CITY_SLUGS.map((slug) => entry(`/sunrise/${slug}`)),
+        ...BLOG_TOPICS.map((topic) => entry(`/blog/topics/${topic.slug}`, '2026-07-13')),
         ...posts
             .filter((post) => post.id && post.publishedAt)
-            .map((post) => entry(`/blog/${post.id}`, post.updatedAt || post.publishedAt)),
+            .map((post) => entry(`/blog/${post.id}`, post.publicUpdatedAt || post.updatedAt || post.publishedAt)),
     ];
 }

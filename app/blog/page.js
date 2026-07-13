@@ -3,32 +3,15 @@ import Image from 'next/image';
 import { getAllBlogPosts } from '../../lib/microcms';
 import { getPopularBlogPostIds } from '../../lib/googleAnalytics';
 import { formatPostDate, getPostDisplayDate, sortBlogPosts } from '../../lib/blogPosts';
+import { BLOG_TOPICS } from '../../lib/blogTopics';
 import styles from './blog.module.css';
 
 export const revalidate = 900;
 
 export const metadata = {
-    title: 'BLOG | HINODE',
-    description: '朝のランニングの良さを、日々伝えるHINODEのブログ。活動ログや朝ランにまつわる考えを発信。',
+    title: '東京の朝ラン・ランニングガイド | HINODE BLOG',
+    description: '皇居・代々木公園・目黒川のコース、初心者の不安、ロッカーやシャワーなど、東京の朝ランに役立つ実体験ベースの記事をまとめています。',
 };
-
-const BLOG_CATEGORIES = [
-    {
-        id: 'course',
-        label: 'コース紹介',
-        keywords: ['コース', '皇居', '目黒川', '代々木', '公園', 'ルート', 'スポット', '日の出'],
-    },
-    {
-        id: 'beginner',
-        label: '初心者向け',
-        keywords: ['初参加', '初心者', '初めて', 'はじめて', '1人', '一人', '不安', '参加方法'],
-    },
-    {
-        id: 'gear',
-        label: '装備・施設',
-        keywords: ['装備', '持ち物', '荷物', 'ウェア', 'シューズ', 'シャワー', 'ロッカー', '銭湯', '施設'],
-    },
-];
 
 const BLOG_RESULTS_ID = 'blog-results';
 
@@ -45,22 +28,6 @@ function normalizeText(value = '') {
 
 function getPostSearchText(post) {
     return normalizeText(`${post.title || ''} ${post.description || ''}`);
-}
-
-function getPostCategoryIds(post) {
-    const text = getPostSearchText(post);
-    return BLOG_CATEGORIES
-        .filter((category) => category.keywords.some((keyword) => text.includes(normalizeText(keyword))))
-        .map((category) => category.id);
-}
-
-function buildBlogHref({ category = 'all', q = '' }) {
-    const params = new URLSearchParams();
-    if (category !== 'all') params.set('category', category);
-    if (q) params.set('q', q);
-    const query = params.toString();
-    const href = query ? `/blog?${query}` : '/blog';
-    return `${href}#${BLOG_RESULTS_ID}`;
 }
 
 function getFeaturedPost(posts, popularPostIds = []) {
@@ -83,20 +50,9 @@ export default async function BlogPage({ searchParams = {} }) {
     ]);
     const posts = sortBlogPosts(rawPosts);
     const featured = getFeaturedPost(posts, popularPostIds);
-    const requestedCategory = typeof searchParams.category === 'string' ? searchParams.category : 'all';
-    const activeCategory = BLOG_CATEGORIES.some((category) => category.id === requestedCategory)
-        ? requestedCategory
-        : 'all';
     const rawSearchQuery = typeof searchParams.q === 'string' ? searchParams.q.trim() : '';
     const searchQuery = normalizeText(rawSearchQuery);
-    const filteredPosts = posts.filter((post) => {
-        const matchesCategory = activeCategory === 'all' || getPostCategoryIds(post).includes(activeCategory);
-        const matchesSearch = !searchQuery || getPostSearchText(post).includes(searchQuery);
-        return matchesCategory && matchesSearch;
-    });
-    const activeCategoryLabel = activeCategory === 'all'
-        ? 'すべて'
-        : BLOG_CATEGORIES.find((category) => category.id === activeCategory)?.label;
+    const filteredPosts = posts.filter((post) => !searchQuery || getPostSearchText(post).includes(searchQuery));
 
     return (
         <div className={styles.page}>
@@ -153,9 +109,6 @@ export default async function BlogPage({ searchParams = {} }) {
                         <h2 id="blog-browse-title" className={styles.browseTitle}>読みたい記事を探す</h2>
                     </div>
                     <form action={`/blog#${BLOG_RESULTS_ID}`} method="get" className={styles.searchForm}>
-                        {activeCategory !== 'all' && (
-                            <input type="hidden" name="category" value={activeCategory} />
-                        )}
                         <label htmlFor="blog-search" className={styles.searchLabel}>
                             キーワード
                         </label>
@@ -177,25 +130,24 @@ export default async function BlogPage({ searchParams = {} }) {
                     </form>
                     <div className={styles.categoryList} aria-label="記事カテゴリ">
                         <Link
-                            href={buildBlogHref({ category: 'all', q: rawSearchQuery })}
-                            className={`${styles.categoryChip} ${activeCategory === 'all' ? styles.categoryChipActive : ''}`}
+                            href="/blog"
+                            className={`${styles.categoryChip} ${styles.categoryChipActive}`}
                         >
                             すべて
                         </Link>
-                        {BLOG_CATEGORIES.map((category) => (
+                        {BLOG_TOPICS.map((topic) => (
                             <Link
-                                key={category.id}
-                                href={buildBlogHref({ category: category.id, q: rawSearchQuery })}
-                                className={`${styles.categoryChip} ${activeCategory === category.id ? styles.categoryChipActive : ''}`}
+                                key={topic.slug}
+                                href={`/blog/topics/${topic.slug}`}
+                                className={styles.categoryChip}
                             >
-                                {category.label}
+                                {topic.label}
                             </Link>
                         ))}
                     </div>
-                    {(activeCategory !== 'all' || rawSearchQuery) && (
+                    {rawSearchQuery && (
                         <div className={styles.activeFilter}>
-                            <span>{activeCategoryLabel}</span>
-                            {rawSearchQuery && <span>「{rawSearchQuery}」</span>}
+                            <span>「{rawSearchQuery}」</span>
                             <Link href={`/blog#${BLOG_RESULTS_ID}`} className={styles.clearFilter}>条件をクリア</Link>
                         </div>
                     )}

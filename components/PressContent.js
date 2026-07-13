@@ -122,7 +122,7 @@ export default function PressContent({ memberCount = null }) {
                     </table>
                     <p className={styles.body}>
                         雨天のみ中止。開催可否は当日Instagram / Stravaで告知。
-                        3拠点ともサマータイム制を採用しており、上記は夏季の開始時刻(通常期より30分早い)です。日の出の時刻に合わせて走るための運用で、集合は開始5分前です。
+                        集合は開始5分前です。時間通りに出発します。
                     </p>
 
                     <h3 className={styles.subTitle}>規模感(本日時点)</h3>

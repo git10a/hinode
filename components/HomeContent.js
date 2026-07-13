@@ -2,45 +2,24 @@ import Link from '@/components/SiteLink';
 import Image from 'next/image';
 import { MEMBER_COUNT } from '../lib/stats';
 import { formatPostDate, getPostDisplayDate } from '../lib/blogPosts';
+import { REGULAR_RUNS } from '../lib/regularRuns';
 import ParticipantPreview from './ParticipantPreview';
 import styles from './HomeContent.module.css';
 
 const STRAVA_CLUB_ID = '1772485';
 const FIRST_RUN_GUIDE_URL = '/first-run';
 
-const WEEKLY_ITEMS = [
-    {
-        id: 'kokyo',
-        day: '水曜',
-        dayIndex: 3,
-        time: '06:00',
-        place: '皇居',
-        location: '桔梗門派出所前',
-        image: '/assets/Kokyo.jpg',
-        anchor: '/schedule#kokyo',
-    },
-    {
-        id: 'meguro',
-        day: '木曜',
-        dayIndex: 4,
-        time: '06:00',
-        place: '目黒川',
-        location: 'スタバ蔦屋書店前（中目黒）',
-        image: '/assets/Meguro.jpg',
-        anchor: '/schedule#meguro',
-    },
-    {
-        id: 'yoyogi',
-        day: '日曜',
-        dayIndex: 0,
-        time: '07:15',
-        place: '代々木公園',
-        location: '原宿時計塔前',
-        image: '/assets/Yoyogi.jpg',
-        anchor: '/schedule#yoyogi',
-        recommendedForFirstRun: true,
-    },
-];
+const WEEKLY_ITEMS = REGULAR_RUNS.map((run) => ({
+    id: run.id,
+    day: run.dayShort,
+    dayIndex: run.dayOfWeek,
+    time: run.timeRaw,
+    place: run.place,
+    location: run.meetingShort,
+    image: run.image,
+    anchor: run.scheduleHref,
+    recommendedForFirstRun: run.isFirstChoice,
+}));
 
 const DAY_LABEL_JP = ['日', '月', '火', '水', '木', '金', '土'];
 const EVENT_DURATION_MINUTES = 60;
@@ -283,14 +262,6 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                     <Link href="/schedule" className={styles.sectionMore}>
                         すべての開催日程を見る →
                     </Link>
-                </div>
-                <div className={styles.summerNotice}>
-                    <p className={styles.summerNoticeLabel}>6月1日からサマータイムをお試しします</p>
-                    <p>
-                        まずは1か月ほど、水曜・木曜は6:00集合、日曜は7:15集合で運用します。
-                        参加状況や気温を見ながら、継続するか判断します。
-                    </p>
-                    <p>日曜は7:00ではなく7:15集合です。Runtrip BASEが7:00オープンのため、この時間にしています。</p>
                 </div>
                 <div className={styles.weeklyGrid}>
                     {regularCards.map((item) => {

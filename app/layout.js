@@ -47,6 +47,7 @@ export default function RootLayout({ children }) {
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "SportsClub",
+        "@id": "https://hinode-run.com/#organization",
         "name": "HINODE",
         "alternateName": ["日の出ラン", "HINODE Running Club", "HINODE Tokyo"],
         "description": siteDescription,

@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { getBlogPostById, getAllBlogPosts } from '../../../lib/microcms';
 import { getUpcomingGroupEvents } from '../../../lib/strava';
 import { formatPostDate, getPostDisplayDate, sortBlogPosts, buildBlogContent } from '../../../lib/blogPosts';
+import { getRelatedBlogPosts } from '../../../lib/blogTopics';
 import { getBlogRunContext, getUpcomingEventForRunContext } from '../../../lib/blogRunContext';
 import PostSidebar from '../../../components/PostSidebar';
 import RelatedPosts from '../../../components/RelatedPosts';
@@ -71,7 +72,7 @@ export default async function BlogPost({ params }) {
         notFound();
     }
 
-    const relatedPosts = sortBlogPosts(allPosts).filter((p) => p.id !== post.id).slice(0, 3);
+    const relatedPosts = getRelatedBlogPosts(sortBlogPosts(allPosts), post);
     const nextEvent = upcomingEvents[0] || null;
     const runContext = getBlogRunContext(post);
     const contextEvent = getUpcomingEventForRunContext(upcomingEvents, runContext);
@@ -79,23 +80,38 @@ export default async function BlogPost({ params }) {
     const createdDate = post.publishedAt || post.createdAt || '';
     const editedDate = getPostDisplayDate(post) || createdDate;
 
-    const jsonLd = {
-        '@context': 'https://schema.org',
-        '@type': 'BlogPosting',
-        headline: post.title,
-        description: post.description || `${post.title}の記事です。`,
-        image: post.thumbnail ? [post.thumbnail.url] : [],
-        datePublished: post.publishedAt,
-        dateModified: getPostDisplayDate(post),
-        author: { '@type': 'Organization', name: 'HINODE' },
-    };
+    const articleUrl = `https://hinode-run.com/blog/${post.id}`;
+    const jsonLd = [
+        {
+            '@context': 'https://schema.org',
+            '@type': 'BlogPosting',
+            '@id': `${articleUrl}#article`,
+            url: articleUrl,
+            mainEntityOfPage: { '@type': 'WebPage', '@id': articleUrl },
+            headline: post.title,
+            description: post.description || `${post.title}の記事です。`,
+            image: post.thumbnail ? [post.thumbnail.url] : ['https://hinode-run.com/assets/ogp-home.jpg'],
+            datePublished: post.publishedAt,
+            dateModified: getPostDisplayDate(post),
+            author: { '@id': 'https://hinode-run.com/#organization' },
+            publisher: { '@id': 'https://hinode-run.com/#organization' },
+        },
+        {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+                { '@type': 'ListItem', position: 1, name: 'ホーム', item: 'https://hinode-run.com' },
+                { '@type': 'ListItem', position: 2, name: 'BLOG', item: 'https://hinode-run.com/blog' },
+                { '@type': 'ListItem', position: 3, name: post.title, item: articleUrl },
+            ],
+        },
+    ];
 
     return (
         <div className={styles.page}>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            />
+            {jsonLd.map((entry, index) => (
+                <script key={index} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(entry) }} />
+            ))}
 
             <div className={styles.layout}>
                 <article className={styles.article}>
