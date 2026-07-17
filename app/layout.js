@@ -61,7 +61,7 @@ export default function RootLayout({ children }) {
         "sport": "Running",
         "sameAs": [
             "https://www.instagram.com/hinode_run/",
-            "https://www.strava.com/clubs/hinode"
+            "https://www.strava.com/clubs/1772485"
         ]
     };
 

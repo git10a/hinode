@@ -201,7 +201,7 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                                 <span>{displayedMemberCount} クラブメンバー</span>
                             </div>
                             <a
-                                href="https://www.strava.com/clubs/hinode"
+                                href="https://www.strava.com/clubs/1772485"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className={styles.heroStravaLink}
@@ -537,7 +537,7 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                             Instagram
                         </a>
                         <a
-                            href="https://www.strava.com/clubs/hinode"
+                            href="https://www.strava.com/clubs/1772485"
                             target="_blank"
                             rel="noopener noreferrer"
                             className={`${styles.closingBtn} ${styles.closingBtnSecondary}`}

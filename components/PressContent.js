@@ -96,6 +96,7 @@ export default function PressContent({ memberCount = null }) {
                     <table className={styles.table}>
                         <tbody>
                             <tr><th>設立</th><td>2025年11月</td></tr>
+                            <tr><th>運営主体</th><td>HINODE運営チーム(有志メンバー)。窓口は<Link className={styles.link} href="/work-contact">取材・協業のご相談フォーム</Link></td></tr>
                             <tr><th>参加費</th><td>無料</td></tr>
                             <tr><th>参加方法</th><td>予約不要。集合時間の5分前に集合場所へ来るだけ</td></tr>
                             <tr><th>目印</th><td>背中に「HINODE」と書かれた黒いTシャツ</td></tr>
