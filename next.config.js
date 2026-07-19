@@ -73,6 +73,16 @@ const nextConfig = {
                 destination: '/blog/kkzy8gvj1',
                 permanent: true,
             },
+            {
+                source: '/work-contact',
+                destination: '/contact',
+                permanent: true,
+            },
+            {
+                source: '/work-contact/thanks',
+                destination: '/contact/thanks',
+                permanent: true,
+            },
         ];
     },
 };
