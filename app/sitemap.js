@@ -20,7 +20,7 @@ const STATIC_PATHS = [
     { path: '/privacy' },
     { path: '/rules' },
     { path: '/schedule', lastModified: '2026-07-13' },
-    { path: '/work-contact' },
+    { path: '/contact', lastModified: '2026-07-19' },
 ];
 
 function entry(path, lastModified) {

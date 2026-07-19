@@ -38,7 +38,7 @@
     border-left: 3px solid #111;
 }
 
-.notice {
+.examples {
     padding: 1.4rem 1.5rem;
     border: 1px solid #e5e5e5;
     border-radius: 6px;
@@ -46,33 +46,22 @@
     background: #fffdf8;
 }
 
-.notice h2 {
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    border-left: 0;
-    padding-left: 0;
-    margin-bottom: 0.6rem;
-}
-
-.notice p {
+.examples p {
     max-width: 100%;
-    font-size: 0.94rem;
+    margin: 0;
+    font-size: 0.9rem;
     line-height: 1.85;
-    color: #444;
-    margin-bottom: 0;
+    color: #555;
 }
 
-.notice a {
+.examples p + p {
+    margin-top: 0.55rem;
+}
+
+.examples strong {
     color: #111;
-    text-decoration: underline;
-    text-decoration-color: rgba(0, 0, 0, 0.25);
-    text-underline-offset: 3px;
-    margin: 0 0.18rem;
-}
-
-.notice a:hover {
-    text-decoration-color: #111;
+    font-weight: 600;
+    margin-right: 0.65rem;
 }
 
 .form {
@@ -85,6 +74,74 @@
     background: #fff;
 }
 
+.typeFieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.typeFieldset legend,
+.field span {
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #111;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.45rem;
+}
+
+.typeOptions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.typeOption {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 4.2rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    color: #777;
+    cursor: pointer;
+    text-align: center;
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.typeOption:hover {
+    background: #fafafa;
+    color: #333;
+}
+
+.typeOption:focus-within {
+    box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.08);
+}
+
+.typeOptionActive {
+    border-color: #111;
+    background: #fafafa;
+    color: #111;
+}
+
+.typeOption input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.typeOption span {
+    font-size: 0.88rem;
+    font-weight: 500;
+    line-height: 1.6;
+}
+
 .fieldGrid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -94,14 +151,6 @@
 .field {
     display: flex;
     flex-direction: column;
-    gap: 0.45rem;
-}
-
-.field span {
-    font-size: 0.88rem;
-    font-weight: 600;
-    color: #111;
-    letter-spacing: 0.04em;
 }
 
 .field input,
@@ -244,11 +293,17 @@
     }
 
     .lead,
-    .notice,
+    .examples,
     .form {
         padding: 1.2rem;
     }
 
+    .examples strong {
+        display: block;
+        margin: 0 0 0.15rem;
+    }
+
+    .typeOptions,
     .fieldGrid {
         grid-template-columns: 1fr;
     }

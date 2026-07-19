@@ -85,7 +85,7 @@ export default function PressContent({ memberCount = null }) {
                     <ul className={styles.atGlanceList}>
                         <li><strong>ラン帯同取材 歓迎</strong><span>週3回開催(水・木・日)。早朝の撮影・同行に対応できます</span></li>
                         <li><strong>写真・ロゴ 即日使用可</strong><span>このページから直接ダウンロードできます</span></li>
-                        <li><strong>連絡窓口</strong><span><Link className={styles.link} href="/work-contact">取材のご相談フォーム</Link>で随時受付(早朝含む)</span></li>
+                        <li><strong>連絡窓口</strong><span><Link className={styles.link} href="/contact">取材のご相談フォーム</Link>で随時受付(早朝含む)</span></li>
                     </ul>
                 </div>
 
@@ -177,7 +177,7 @@ export default function PressContent({ memberCount = null }) {
                     <h2 className={styles.sectionTitle}>取材対応について</h2>
                     <table className={styles.table}>
                         <tbody>
-                            <tr><th>窓口</th><td><Link className={styles.link} href="/work-contact">お仕事・取材のご相談フォーム</Link></td></tr>
+                            <tr><th>窓口</th><td><Link className={styles.link} href="/contact">お問い合わせフォーム</Link></td></tr>
                             <tr><th>対応可能時間</th><td>随時(早朝含む)</td></tr>
                             <tr><th>ラン帯同取材</th><td>歓迎。事前にご連絡いただき、開催地の集合場所までお越しください</td></tr>
                             <tr><th>顔出し・撮影</th><td>取材内容に応じて相談可。参加者の撮影は本人の同意を前提に個別に調整します</td></tr>
@@ -274,7 +274,7 @@ export default function PressContent({ memberCount = null }) {
                 {/* Contact block */}
                 <div className={`${styles.contactBlock} ${styles.fadeIn}`}>
                     <h3>お仕事・取材のご相談</h3>
-                    <p><Link href="/work-contact">専用フォームからご連絡ください</Link></p>
+                    <p><Link href="/contact">お問い合わせフォームからご連絡ください</Link></p>
                     <p>早朝取材・ラン帯同歓迎</p>
                 </div>
             </div>

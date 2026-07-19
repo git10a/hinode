@@ -63,7 +63,7 @@ HINODEは、日の出前に集まり日の出とともに走る、東京の朝�
 
 | 項目 | 内容 |
 |---|---|
-| 窓口(フォーム) | https://hinode-run.com/work-contact |
+| 窓口(フォーム) | https://hinode-run.com/contact |
 | 窓口(メール) | hinode.infomation@gmail.com |
 | 窓口(SNS) | Instagram DM @hinode_run |
 | 対応可能時間 | 随時(早朝含む) |
