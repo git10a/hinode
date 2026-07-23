@@ -1,18 +1,11 @@
-'use client';
-
 import Link from '@/components/SiteLink';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
 import SOCIAL_LINKS from '../lib/socialLinks';
-import { getRunCount } from '../lib/stats';
+import { getRunCount } from '../lib/runCount';
 
-export default function Footer() {
+export default async function Footer() {
     const currentYear = new Date().getFullYear();
-    const [runCount, setRunCount] = useState(null);
-
-    useEffect(() => {
-        setRunCount(getRunCount());
-    }, []);
+    const runCount = await getRunCount();
 
     const socialIconByKey = {
         instagram: (
@@ -39,7 +32,7 @@ export default function Footer() {
                     {runCount !== null && (
                         <>
                             {' '}
-                            <span className="footer-streak-count">連続開催：{runCount}回</span>
+                            <span className="footer-streak-count">累計開催：{runCount}回</span>
                         </>
                     )}
                 </p>

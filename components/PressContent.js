@@ -1,9 +1,8 @@
 'use client';
 
 import Link from '@/components/SiteLink';
-import { useEffect, useState } from 'react';
 import useFadeInOnScroll from '../lib/useFadeInOnScroll';
-import { getRunCount, MEMBER_COUNT } from '../lib/stats';
+import { MEMBER_COUNT } from '../lib/stats';
 import styles from '../app/press/press.module.css';
 
 const FAQ = [
@@ -52,13 +51,8 @@ const PRESS_LOGOS = [
     { src: '/assets/logo-white.png', download: 'hinode-logo-white.png', label: '白ロゴ(暗い背景用)', dark: true }
 ];
 
-export default function PressContent({ memberCount = null }) {
-    const [runCount, setRunCount] = useState(null);
+export default function PressContent({ memberCount = null, runCount = null }) {
     const displayedMemberCount = memberCount ?? MEMBER_COUNT;
-
-    useEffect(() => {
-        setRunCount(getRunCount());
-    }, []);
 
     useFadeInOnScroll({
         selector: `.${styles.fadeIn}`,

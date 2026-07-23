@@ -1,15 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { getRunCount, MEMBER_COUNT } from '../lib/stats';
+import { MEMBER_COUNT } from '../lib/stats';
 
-export default function StatsDisplay() {
-    const [runCount, setRunCount] = useState(null);
-
-    useEffect(() => {
-        setRunCount(getRunCount());
-    }, []);
-
+export default function StatsDisplay({ runCount = null }) {
     return (
         <div className="stats-container fade-in">
             <div className="stat-item">

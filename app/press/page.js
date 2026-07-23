@@ -1,5 +1,6 @@
 import PressContent from '../../components/PressContent';
 import { getClubMemberCount } from '../../lib/strava';
+import { getRunCount } from '../../lib/runCount';
 
 export const revalidate = 900;
 
@@ -24,6 +25,9 @@ export const metadata = {
 };
 
 export default async function PressPage() {
-    const memberCount = await getClubMemberCount();
-    return <PressContent memberCount={memberCount} />;
+    const [memberCount, runCount] = await Promise.all([
+        getClubMemberCount(),
+        getRunCount(),
+    ]);
+    return <PressContent memberCount={memberCount} runCount={runCount} />;
 }
