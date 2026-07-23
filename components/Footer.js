@@ -50,6 +50,9 @@ export default function Footer() {
                     <Link href="/contact">お問い合わせ</Link>
                     <Link href="/privacy">プライバシーポリシー</Link>
                 </div>
+                <div className="footer-organizers">
+                    <Link href="/for-organizers">大会・自治体・企業の方へ</Link>
+                </div>
                 <div className="footer-services">
                     <span>HINODEがつくっているもの</span>
                     <a href="https://shoes-match.com/" target="_blank" rel="noopener noreferrer">シューズマッチ ↗</a>

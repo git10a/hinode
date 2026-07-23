@@ -1,0 +1,275 @@
+.page {
+    background: var(--color-bg);
+    color: var(--color-text);
+    padding: 8rem 0 5rem;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.hero {
+    max-width: 780px;
+    padding-bottom: 4rem;
+}
+
+.eyebrow,
+.sectionLabel {
+    font-family: var(--font-en);
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    color: #888;
+    margin: 0 0 0.65rem;
+}
+
+.title {
+    font-family: var(--font-jp);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1.6;
+    margin-bottom: 2.4rem;
+}
+
+.catch {
+    max-width: 780px;
+    margin-bottom: 1.7rem;
+    color: #111;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+}
+
+.mobileBreak {
+    display: none;
+}
+
+.lead {
+    max-width: 720px;
+    margin: 0;
+    color: #444;
+    font-size: 1rem;
+    line-height: 2;
+}
+
+.intro {
+    margin-bottom: 5rem;
+    padding: 2.2rem 2.4rem;
+    border-left: 3px solid #111;
+    background: #fafafa;
+}
+
+.intro h2 {
+    margin: 0 0 1.2rem;
+    padding: 0;
+    border: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.intro p {
+    max-width: 100%;
+    margin: 0;
+    color: #444;
+    font-size: 0.95rem;
+    line-height: 2;
+}
+
+.intro p + p {
+    margin-top: 0.8rem;
+}
+
+.section {
+    margin-bottom: 5rem;
+}
+
+.sectionTitle {
+    margin: 0 0 2rem;
+    padding: 0;
+    border: 0;
+    font-size: 1.65rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.supportList {
+    border-top: 1px solid #e5e5e5;
+}
+
+.supportItem {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr;
+    gap: 1.5rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.number {
+    padding-top: 0.15rem;
+    color: #888;
+    font-family: var(--font-en);
+    font-size: 0.82rem;
+    letter-spacing: 0.16em;
+}
+
+.supportItem h3 {
+    margin-bottom: 0.55rem;
+    font-size: 1.08rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.7;
+}
+
+.supportItem p {
+    max-width: 100%;
+    margin: 0;
+    color: #555;
+    font-size: 0.92rem;
+    line-height: 1.9;
+}
+
+.consultationList {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid #e5e5e5;
+}
+
+.consultationList li {
+    position: relative;
+    padding: 1.35rem 1.2rem 1.35rem 2rem;
+    border-bottom: 1px solid #e5e5e5;
+    color: #333;
+    font-size: 0.92rem;
+    line-height: 1.8;
+}
+
+.consultationList li:nth-child(odd) {
+    border-right: 1px solid #e5e5e5;
+}
+
+.consultationList li::before {
+    content: '';
+    position: absolute;
+    top: 2.05rem;
+    left: 0.65rem;
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 50%;
+    background: #111;
+}
+
+.cta {
+    padding: 2.5rem;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    background: #fffdf8;
+}
+
+.cta h2 {
+    margin: 0 0 1rem;
+    padding: 0;
+    border: 0;
+    font-size: 1.45rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.cta p:not(.sectionLabel) {
+    max-width: 650px;
+    margin: 0 0 1.8rem;
+    color: #555;
+    font-size: 0.92rem;
+    line-height: 1.9;
+}
+
+.ctaButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3.2rem;
+    padding: 0.8rem 2rem;
+    border: 1px solid #111;
+    border-radius: 999px;
+    background: #111;
+    color: #fff;
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.ctaButton:hover {
+    border-color: #333;
+    background: #333;
+}
+
+@media (max-width: 768px) {
+    .page {
+        padding: 6rem 0 4rem;
+    }
+
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .hero {
+        padding-bottom: 3rem;
+    }
+
+    .title {
+        margin-bottom: 1.8rem;
+    }
+
+    .catch {
+        font-size: 2rem;
+        line-height: 1.55;
+    }
+
+    .mobileBreak {
+        display: block;
+    }
+
+    .intro {
+        margin-bottom: 4rem;
+        padding: 1.5rem;
+    }
+
+    .section {
+        margin-bottom: 4rem;
+    }
+
+    .sectionTitle {
+        font-size: 1.4rem;
+    }
+
+    .supportItem {
+        grid-template-columns: 2.5rem 1fr;
+        gap: 0.7rem;
+        padding: 1.6rem 0;
+    }
+
+    .consultationList {
+        grid-template-columns: 1fr;
+    }
+
+    .consultationList li:nth-child(odd) {
+        border-right: 0;
+    }
+
+    .cta {
+        padding: 1.5rem;
+    }
+
+    .cta h2 {
+        font-size: 1.25rem;
+        line-height: 1.7;
+    }
+
+    .ctaButton {
+        width: 100%;
+    }
+}

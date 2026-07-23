@@ -10,6 +10,7 @@ const COMMUNITY_CATEGORIES = new Set([
     'その他',
 ]);
 const WORK_CATEGORIES = new Set([
+    '大会・ランニングイベントのWeb制作',
     '仕事依頼',
     '取材・掲載',
     '講演・イベント出演',

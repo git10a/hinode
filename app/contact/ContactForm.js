@@ -13,6 +13,7 @@ const CATEGORIES = {
         'その他',
     ],
     work: [
+        '大会・ランニングイベントのWeb制作',
         '仕事依頼',
         '取材・掲載',
         '講演・イベント出演',
@@ -21,8 +22,14 @@ const CATEGORIES = {
     ],
 };
 
-export default function ContactForm() {
-    const [inquiryType, setInquiryType] = useState('community');
+export default function ContactForm({
+    initialInquiryType = 'community',
+    initialCategory = '',
+}) {
+    const [inquiryType, setInquiryType] = useState(initialInquiryType);
+    const [category, setCategory] = useState(
+        CATEGORIES[initialInquiryType]?.includes(initialCategory) ? initialCategory : ''
+    );
     const [status, setStatus] = useState(INITIAL_STATUS);
     const isWork = inquiryType === 'work';
     const isSubmitting = status.type === 'submitting';
@@ -76,7 +83,10 @@ export default function ContactForm() {
                             name="inquiryType"
                             value="community"
                             checked={!isWork}
-                            onChange={(event) => setInquiryType(event.target.value)}
+                            onChange={(event) => {
+                                setInquiryType(event.target.value);
+                                setCategory('');
+                            }}
                         />
                         <span>企画ラン・コース・参加について</span>
                     </label>
@@ -86,7 +96,10 @@ export default function ContactForm() {
                             name="inquiryType"
                             value="work"
                             checked={isWork}
-                            onChange={(event) => setInquiryType(event.target.value)}
+                            onChange={(event) => {
+                                setInquiryType(event.target.value);
+                                setCategory('');
+                            }}
                         />
                         <span>お仕事・取材について</span>
                     </label>
@@ -95,7 +108,12 @@ export default function ContactForm() {
 
             <label className={styles.field}>
                 <span>具体的な内容</span>
-                <select key={inquiryType} name="category" defaultValue="" required>
+                <select
+                    name="category"
+                    value={category}
+                    onChange={(event) => setCategory(event.target.value)}
+                    required
+                >
                     <option value="" disabled>選択してください</option>
                     {CATEGORIES[inquiryType].map((category) => (
                         <option key={category} value={category}>{category}</option>

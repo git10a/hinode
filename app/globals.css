@@ -1319,6 +1319,31 @@ footer p {
     color: var(--color-text);
 }
 
+.footer-organizers {
+    margin: 1.5rem 0;
+}
+
+.footer-organizers a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: #111;
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.footer-organizers a::after {
+    content: '→';
+    font-family: var(--font-en);
+    font-weight: 400;
+    transition: transform 0.2s ease;
+}
+
+.footer-organizers a:hover::after {
+    transform: translateX(3px);
+}
+
 .footer-services {
     margin: 0.35rem 0 1.35rem;
     padding: 0.7rem 1rem;

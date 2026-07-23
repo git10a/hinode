@@ -26,7 +26,10 @@ export const metadata = {
     },
 };
 
-export default function ContactPage() {
+export default function ContactPage({ searchParams }) {
+    const initialInquiryType = searchParams?.type === 'work' ? 'work' : 'community';
+    const initialCategory = typeof searchParams?.category === 'string' ? searchParams.category : '';
+
     return (
         <section className={styles.page}>
             <div className={styles.container}>
@@ -48,7 +51,10 @@ export default function ContactPage() {
                     </p>
                 </div>
 
-                <ContactForm />
+                <ContactForm
+                    initialInquiryType={initialInquiryType}
+                    initialCategory={initialCategory}
+                />
             </div>
         </section>
     );

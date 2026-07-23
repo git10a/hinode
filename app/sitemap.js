@@ -15,6 +15,7 @@ const STATIC_PATHS = [
     { path: '/courses' },
     { path: '/event-runs' },
     { path: '/faq' },
+    { path: '/for-organizers', lastModified: '2026-07-23' },
     { path: '/first-run', lastModified: '2026-07-13' },
     { path: '/press', lastModified: '2026-07-13' },
     { path: '/privacy' },
