@@ -250,7 +250,14 @@ export default function PressContent({ memberCount = null, runCount = null }) {
                 <div className={styles.fadeIn}>
                     <p className={styles.sectionNum}>06</p>
                     <h2 className={styles.sectionTitle}>過去の掲載実績</h2>
-                    <p className={styles.body}>現時点でメディア掲載実績はありません。取材一号枠を歓迎します。</p>
+                    <p className={styles.body}>
+                        2026年8月2日、BSテレ東「<a
+                            className={styles.link}
+                            href="https://www.bs-tvtokyo.co.jp/runners_salon/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >ランナーズサロン</a>」第2回で、気軽に参加できる早朝ランニングコミュニティとして紹介されました。
+                    </p>
                 </div>
 
                 {/* 7. FAQ */}

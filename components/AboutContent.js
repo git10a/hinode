@@ -103,6 +103,15 @@ export default function AboutContent() {
                 <p className={styles.lead}>
                     HINODEは、日の出前に集まり、日の出とともに走る東京の朝ランコミュニティです。初心者でももちろん参加でき、参加は無料です。皇居・目黒川・代々木公園を中心に、1人参加でも来やすい場を目指しています。
                 </p>
+                <p className={styles.mediaMention}>
+                    <a
+                        href="https://www.bs-tvtokyo.co.jp/runners_salon/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        BSテレ東「ランナーズサロン」で紹介されました <span aria-hidden="true">↗</span>
+                    </a>
+                </p>
                 <div className={styles.heroActions}>
                     <Link href="/schedule" className={styles.primaryCta}>
                         開催日程を見る <span aria-hidden="true">→</span>

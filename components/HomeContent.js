@@ -191,6 +191,15 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                                 皇居や代々木公園を中心に、毎朝だれかと気軽に走り続けられる場所をつくっています。
                             </p>
 
+                            <a
+                                href="https://www.bs-tvtokyo.co.jp/runners_salon/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={styles.heroMediaMention}
+                            >
+                                BSテレ東「ランナーズサロン」で紹介されました ↗
+                            </a>
+
                             <div className={styles.heroMeta}>
                                 <svg viewBox="0 0 24 24" className={styles.heroMetaIcon} aria-hidden="true">
                                     <circle cx="9" cy="9" r="3.2" />
