@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { formatPostDate, getPostDisplayDate } from '../lib/blogPosts';
 import { REGULAR_RUNS } from '../lib/regularRuns';
 import { CITIES, getCityRuns } from '../lib/cities';
-import { COMMUNITY_PROMISES, COMMUNITY_SINCE, PHOTOGRAPHY_POLICY } from '../lib/communityPolicy';
+import { COMMUNITY_PROMISES, COMMUNITY_SINCE } from '../lib/communityPolicy';
 import ParticipantPreview from './ParticipantPreview';
 import styles from './HomeContent.module.css';
 
@@ -185,10 +185,10 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                         <div className={styles.heroCopy}>
                             <p className={styles.heroBrand}>HINODE</p>
                             <h1 className={styles.heroHeadline}>
-                                日の出とともに、<br />競争しない朝をつづける
+                                東京の朝ランコミュニティ
                             </h1>
                             <p className={styles.heroSub}>
-                                誰かに見せるためではなく、自分との約束を守るために。東京と京都で、朝に走り続けられる場所をつくっています。
+                                皇居や代々木公園を中心に、毎朝だれかと気軽に走り続けられる場所をつくっています。
                             </p>
 
                             <a
@@ -232,7 +232,6 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                             <div className={styles.heroFacts} aria-label="参加条件">
                                 {COMMUNITY_PROMISES.map((promise) => <span key={promise}>{promise}</span>)}
                             </div>
-                            <p className={styles.heroPhotoReason}>{PHOTOGRAPHY_POLICY.reason}</p>
                             <ParticipantPreview
                                 count={nextRun.participantCount}
                                 participants={nextRun.participants}
