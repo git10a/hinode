@@ -2,7 +2,6 @@ import Link from '@/components/SiteLink';
 import Image from 'next/image';
 import { formatPostDate, getPostDisplayDate } from '../lib/blogPosts';
 import { REGULAR_RUNS } from '../lib/regularRuns';
-import { CITIES, getCityRuns } from '../lib/cities';
 import { COMMUNITY_PROMISES, COMMUNITY_SINCE } from '../lib/communityPolicy';
 import ParticipantPreview from './ParticipantPreview';
 import styles from './HomeContent.module.css';
@@ -33,6 +32,16 @@ function formatEventDate(iso) {
     const d = jst.getUTCDate();
     const w = DAY_LABEL_JP[jst.getUTCDay()];
     return `${m}/${d}(${w})`;
+}
+
+function formatEventTime(iso) {
+    if (!iso) return null;
+    return new Intl.DateTimeFormat('ja-JP', {
+        timeZone: 'Asia/Tokyo',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+    }).format(new Date(iso));
 }
 
 function formatWallClockDate(date) {
@@ -146,6 +155,7 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
         const fallback = getNextRegularEvent(item);
         return {
             ...item,
+            type: 'regular',
             nextDate: next ? formatEventDate(next.startAt) : fallback.nextDate,
             nextTimestamp: next ? new Date(next.startAt).getTime() : fallback.nextTimestamp,
             detailsHref: item.anchor,
@@ -153,15 +163,24 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
             participantCount: next?.participantCount,
             participants: next?.participants || [],
         };
-    })
+    }).sort((a, b) => a.nextTimestamp - b.nextTimestamp);
+    const adhocEvents = upcomingEvents
+        .filter((e) => !regularDays.has(e.dayOfWeek))
+        .slice(0, 2)
+        .map((event) => ({
+            ...event,
+            type: 'event',
+            nextDate: formatEventDate(event.startAt),
+            time: formatEventTime(event.startAt),
+            nextTimestamp: new Date(event.startAt).getTime(),
+            stravaHref: stravaEventUrl(event.eventId),
+        }));
+    const scheduleCards = [...regularCards, ...adhocEvents]
         .sort((a, b) => a.nextTimestamp - b.nextTimestamp)
         .map((item, index) => ({
             ...item,
             isNext: index === 0,
         }));
-    const adhocEvents = upcomingEvents
-        .filter((e) => !regularDays.has(e.dayOfWeek))
-        .slice(0, 2);
     const nextRun = regularCards[0];
 
     return (
@@ -202,7 +221,6 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
 
                             <div className={styles.heroMeta}>
                                 <span>{runCount !== null ? `累計 ${runCount}回開催` : '雨天を除き毎週開催'}</span>
-                                <span>{CITIES.length}都市</span>
                                 <span>{COMMUNITY_SINCE}から継続</span>
                             </div>
                             <a
@@ -256,54 +274,6 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                 </div>
             </section>
 
-            <section className={styles.cities} aria-labelledby="cities-title">
-                <div className={styles.citiesInner}>
-                    <div className={styles.sectionHeader}>
-                        <div>
-                            <p className={styles.citiesEyebrow}>ACTIVE CITIES</p>
-                            <h2 id="cities-title" className={styles.sectionTitle}>HINODEの開催都市</h2>
-                        </div>
-                        <Link href="/cities" className={styles.sectionMore}>都市一覧を見る →</Link>
-                    </div>
-                    <div className={styles.cityGrid}>
-                        {CITIES.map((city) => {
-                            const cityRuns = getCityRuns(city.slug);
-                            return (
-                                <article key={city.slug} className={styles.cityCard}>
-                                    <div className={styles.cityCardHead}>
-                                        <h3>{city.label}</h3>
-                                        <span>{city.status}</span>
-                                    </div>
-                                    <p>{city.description}</p>
-                                    {cityRuns.length > 0 && (
-                                        <ul className={styles.cityLocations}>
-                                            {cityRuns.map((run) => (
-                                                <li key={run.id}>
-                                                    <Link href={run.detailHref}>
-                                                        <span>{run.dayShort} {run.timeRaw}</span>
-                                                        <strong>{run.place}</strong>
-                                                        <small>{run.distance}・撮影なし</small>
-                                                    </Link>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    )}
-                                    <Link href={`/cities/${city.slug}`} className={styles.cityMore}>{city.name}を見る →</Link>
-                                </article>
-                            );
-                        })}
-                    </div>
-                    <div className={styles.startCityCta}>
-                        <div>
-                            <p className={styles.startCityLabel}>START IN YOUR CITY</p>
-                            <h3>自分の街でHINODEを始める</h3>
-                            <p>参加したい方も、ホストしたい方も。エリアと希望曜日から知らせてください。</p>
-                        </div>
-                        <Link href="/start" className={styles.startCityLink}>募集ページを見る →</Link>
-                    </div>
-                </div>
-            </section>
-
             {/* Weekly schedule */}
             <section id="schedule" className={styles.weekly}>
                 <div className={styles.weeklyInner}>
@@ -314,10 +284,63 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                     </Link>
                 </div>
                 <div className={styles.weeklyGrid}>
-                    {regularCards.map((item) => {
+                    {scheduleCards.map((item) => {
+                        if (item.type === 'event') {
+                            return (
+                                <article
+                                    key={`event-${item.eventId}-${item.startAt}`}
+                                    className={`${styles.weeklyCard} ${item.isNext ? styles.weeklyCardNext : ''}`}
+                                >
+                                    <a
+                                        href={item.stravaHref}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={styles.weeklyCardMain}
+                                    >
+                                        <div className={`${styles.weeklyBody} ${styles.weeklyEventBody}`}>
+                                            <div className={styles.weeklyDay}>
+                                                <span className={styles.weeklyDate}>{item.nextDate}</span>
+                                                <span className={styles.weeklyTime}>{item.time}</span>
+                                            </div>
+                                            <h3 className={styles.weeklyEventTitle}>{item.title}</h3>
+                                            {item.address && (
+                                                <p className={styles.weeklyLocation}>
+                                                    <svg viewBox="0 0 24 24" className={styles.weeklyLocationIcon} aria-hidden="true">
+                                                        <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" />
+                                                        <circle cx="12" cy="9" r="2.5" />
+                                                    </svg>
+                                                    {item.address}
+                                                </p>
+                                            )}
+                                            <ParticipantPreview
+                                                count={item.participantCount}
+                                                participants={item.participants}
+                                                className={styles.weeklyParticipants}
+                                            />
+                                        </div>
+                                    </a>
+                                    <div className={styles.weeklyCardActions}>
+                                        <div className={styles.weeklySecondaryActions}>
+                                            <a
+                                                href={item.stravaHref}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className={styles.weeklyStravaButton}
+                                            >
+                                                Stravaで詳細を見る
+                                            </a>
+                                            <Link href={FIRST_RUN_GUIDE_URL} className={styles.weeklyGuideButton}>
+                                                初参加ガイドを見る
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </article>
+                            );
+                        }
+
                         return (
                             <article
-                                key={item.place}
+                                key={`regular-${item.id}`}
                                 className={`${styles.weeklyCard} ${item.isNext ? styles.weeklyCardNext : ''}`}
                             >
                                 <Link href={item.detailsHref} className={styles.weeklyCardMain}>
@@ -385,57 +408,14 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                         );
                     })}
                 </div>
-
-                {adhocEvents.length > 0 && (
-                    <div className={styles.adhocBlock}>
-                        <div className={styles.adhocHeader}>
-                            <div>
-                                <h3 className={styles.adhocLabel}>土曜の企画ラン</h3>
-                                <p className={styles.adhocLead}>
-                                    土曜日は不定期で、目的地を決めたり、少し長めに走ったりする日があります。
-                                </p>
-                            </div>
-                            <Link href="/schedule#monthly-calendar" className={styles.adhocHeaderLink}>
-                                今月の日程を見る →
-                            </Link>
+                    <div className={styles.startCityCta}>
+                        <div>
+                            <p className={styles.startCityLabel}>START IN YOUR CITY</p>
+                            <h3>自分の街でHINODEを始める</h3>
+                            <p>参加したい方も、ホストしたい方も。エリアと希望曜日から知らせてください。</p>
                         </div>
-                        <ul className={styles.adhocList}>
-                            {adhocEvents.map((e) => (
-                                <li key={e.eventId} className={styles.adhocItem}>
-                                    <a
-                                        href={stravaEventUrl(e.eventId)}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className={styles.adhocLink}
-                                    >
-                                        <span className={styles.adhocDate}>{formatEventDate(e.startAt)}</span>
-                                        <span className={styles.adhocTitle}>{e.title}</span>
-                                        {e.address && (
-                                            <span className={styles.adhocAddress}>{e.address}</span>
-                                        )}
-                                        <ParticipantPreview
-                                            count={e.participantCount}
-                                            participants={e.participants}
-                                            className={styles.adhocParticipants}
-                                        />
-                                        <span className={styles.adhocArrow} aria-hidden="true">→</span>
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
+                        <Link href="/start" className={styles.startCityLink}>募集ページを見る →</Link>
                     </div>
-                )}
-
-                {adhocEvents.length === 0 && (
-                    <div className={styles.occasionalTeaser}>
-                        <p>
-                            土曜日は不定期で、上野公園・木場公園・勝どきへ行ったり、横浜の日の出や東京マラソンEXPOを目的地にするランも開催しています。
-                        </p>
-                        <Link href="/schedule#monthly-calendar" className={styles.occasionalTeaserLink}>
-                            今月の日程を見る →
-                        </Link>
-                    </div>
-                )}
                 </div>
             </section>
 

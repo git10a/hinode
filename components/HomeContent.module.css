@@ -348,21 +348,6 @@
     text-underline-offset: 0.25rem;
 }
 
-/* =========================
-   Cities
-========================= */
-.cities {
-    padding: 5.5rem 2rem;
-    background: #fff;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-.citiesInner {
-    max-width: 1180px;
-    margin: 0 auto;
-}
-
-.citiesEyebrow,
 .startCityLabel {
     margin: 0 0 0.45rem;
     color: #888;
@@ -372,94 +357,12 @@
     letter-spacing: 0.18em;
 }
 
-.cityGrid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.4rem;
-}
-
-.cityCard {
-    padding: 1.8rem;
-    border: 1px solid #e5e5e5;
-    border-radius: 8px;
-    background: #fff;
-}
-
-.cityCardHead {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 0.9rem;
-}
-
-.cityCardHead h3 {
-    margin: 0;
-    font-family: var(--font-en);
-    font-size: 1.65rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-}
-
-.cityCardHead span {
-    color: #9b4a24;
-    font-size: 0.72rem;
-    font-weight: 700;
-}
-
-.cityCard > p {
-    margin: 0 0 1.2rem;
-    color: #666;
-    font-size: 0.86rem;
-    line-height: 1.85;
-}
-
-.cityLocations {
-    margin: 0 0 1.2rem;
-    padding: 0;
-    border-top: 1px solid #eee;
-    list-style: none;
-}
-
-.cityLocations li {
-    margin: 0;
-    border-bottom: 1px solid #eee;
-}
-
-.cityLocations a {
-    display: grid;
-    grid-template-columns: 7.5rem minmax(0, 1fr) auto;
-    gap: 0.8rem;
-    align-items: center;
-    padding: 0.85rem 0;
-    color: #111;
-    text-decoration: none;
-}
-
-.cityLocations span,
-.cityLocations small {
-    color: #777;
-    font-size: 0.72rem;
-}
-
-.cityLocations strong {
-    font-size: 0.88rem;
-}
-
-.cityMore {
-    color: #111;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-decoration: none;
-    border-bottom: 1px solid #bbb;
-}
-
 .startCityCta {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 2rem;
-    margin-top: 1.4rem;
+    margin-top: 2.25rem;
     padding: 1.8rem;
     border-radius: 8px;
     background: #111;
@@ -593,6 +496,18 @@
     padding: 0.05rem 0 0;
 }
 
+.weeklyEventBody {
+    width: 100%;
+}
+
+.weeklyEventTitle {
+    margin: 0 0 0.45rem;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.6;
+    letter-spacing: 0.04em;
+}
+
 .weeklyDay {
     display: flex;
     align-items: baseline;
@@ -719,162 +634,6 @@
     color: #A37F2D;
     background: #FDF6E7;
     border-radius: 999px;
-}
-
-.adhocBlock {
-    margin-top: 2.25rem;
-    padding: 1.35rem;
-    border: 1px solid #eee3d2;
-    border-radius: 10px;
-    background: #fffaf4;
-}
-
-.adhocHeader {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 1.2rem;
-    margin-bottom: 1rem;
-}
-
-.adhocBlock .adhocLabel {
-    font-family: var(--font-jp);
-    font-size: 1.18rem;
-    font-weight: 800;
-    line-height: 1.5;
-    letter-spacing: 0.04em;
-    color: #222;
-    margin: 0 0 0.25rem;
-    text-transform: none;
-}
-
-.adhocLead {
-    margin: 0;
-    max-width: 34rem;
-    color: #777;
-    font-size: 0.84rem;
-    line-height: 1.8;
-    letter-spacing: 0.03em;
-}
-
-.adhocHeaderLink {
-    flex-shrink: 0;
-    color: #9b4a24;
-    font-size: 0.82rem;
-    font-weight: 700;
-    line-height: 1.5;
-    letter-spacing: 0.04em;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(155, 74, 36, 0.24);
-}
-
-.adhocHeaderLink:hover {
-    color: #111;
-    border-bottom-color: rgba(17, 17, 17, 0.38);
-}
-
-.adhocList {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.8rem;
-}
-
-.adhocItem {
-    margin: 0;
-}
-
-.adhocLink {
-    display: flex;
-    align-items: center;
-    align-content: flex-start;
-    flex-wrap: wrap;
-    gap: 0.85rem;
-    min-height: 9.6rem;
-    padding: 1rem 1.05rem;
-    border: 1px solid #ece6d6;
-    border-radius: 8px;
-    background: #fff;
-    text-decoration: none;
-    color: #222;
-    transition: background 0.2s ease, border-color 0.2s ease;
-}
-
-.adhocLink:hover {
-    background: #FDF8EC;
-    border-color: #d8c994;
-}
-
-.adhocDate {
-    font-family: var(--font-en);
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: #C5A14C;
-    letter-spacing: 0.04em;
-    flex-shrink: 0;
-}
-
-.adhocTitle {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: #222;
-    flex: 1 1 12rem;
-    min-width: 0;
-    line-height: 1.65;
-}
-
-.adhocAddress {
-    font-size: 0.78rem;
-    color: #888;
-    flex-basis: 100%;
-    margin-left: 0;
-}
-
-.adhocParticipants {
-    flex-basis: 100%;
-    margin-top: -0.1rem;
-}
-
-.adhocArrow {
-    color: #aaa;
-    font-size: 1rem;
-    margin-left: auto;
-    align-self: flex-end;
-}
-
-.occasionalTeaser {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-top: 2rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid #f0ede5;
-    color: #666;
-}
-
-.occasionalTeaser p {
-    font-size: 0.86rem;
-    line-height: 1.9;
-    letter-spacing: 0.04em;
-}
-
-.occasionalTeaserLink {
-    flex-shrink: 0;
-    font-size: 0.82rem;
-    font-weight: 600;
-    line-height: 1.5;
-    letter-spacing: 0.04em;
-    color: #9b4a24;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(155, 74, 36, 0.24);
-}
-
-.occasionalTeaserLink:hover {
-    color: #111;
-    border-bottom-color: rgba(17, 17, 17, 0.38);
 }
 
 /* =========================
@@ -1384,7 +1143,6 @@
     }
 
     .weeklyGrid,
-    .cityGrid,
     .valuesGrid,
     .stepsGrid,
     .postsGrid {
@@ -1483,7 +1241,6 @@
     }
 
     .weekly,
-    .cities,
     .values,
     .services,
     .firstTime,
@@ -1491,45 +1248,12 @@
         padding: 4.5rem 1.25rem 0.5rem;
     }
 
-    .occasionalTeaser {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.45rem;
-    }
-
-    .adhocBlock {
-        padding: 1.15rem;
-    }
-
-    .adhocHeader {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.55rem;
-    }
-
-    .adhocList {
-        grid-template-columns: 1fr;
-    }
-
     .weeklyGrid,
-    .cityGrid,
     .valuesGrid,
     .stepsGrid,
     .postsGrid {
         grid-template-columns: 1fr;
         gap: 1rem;
-    }
-
-    .cityCard {
-        padding: 1.25rem;
-    }
-
-    .cityLocations a {
-        grid-template-columns: 1fr auto;
-    }
-
-    .cityLocations small {
-        grid-column: 1 / -1;
     }
 
     .startCityCta {
