@@ -1,5 +1,6 @@
 import Link from '@/components/SiteLink';
 import styles from './rules.module.css';
+import { PHOTOGRAPHY_POLICY, COMMUNITY_PRINCIPLES } from '../../lib/communityPolicy';
 
 const CONTACT_EMAIL = 'hinode.run@gmail.com';
 
@@ -105,6 +106,7 @@ export default function RulesPage() {
                     <a href="#care">大切にしてほしいこと</a>
                     <a href="#prohibited">禁止していること</a>
                     <a href="#photos">写真・動画について</a>
+                    <a href="#sales">営業・勧誘について</a>
                     <a href="#contact">困ったことがあった場合</a>
                     <a href="#restriction">参加制限について</a>
                     <a href="#accidents">事故・怪我について</a>
@@ -135,14 +137,23 @@ export default function RulesPage() {
                     <section id="photos" className={styles.section}>
                         <h2>写真・動画について</h2>
                         <p>
-                            HINODEでは、参加者の安心を優先します。
+                            {PHOTOGRAPHY_POLICY.standard}
                         </p>
                         <p>
-                            参加者の顔が写る写真や動画を撮影・投稿する場合は、必ず本人の了承を得てください。
+                            {PHOTOGRAPHY_POLICY.reason}
                         </p>
                         <p>
-                            本人の了承がない撮影・投稿、無断でのSNS掲載、個人が特定される形での投稿は禁止します。
+                            {PHOTOGRAPHY_POLICY.participant} 景色のみを撮影する場合も、参加者が写り込まないよう配慮してください。
                         </p>
+                        <p>
+                            取材・特別企画で撮影を行う日は、通常開催と区別して事前に案内します。同意しない方が撮影されることはありません。
+                        </p>
+                    </section>
+
+                    <section id="sales" className={styles.section}>
+                        <h2>営業・勧誘について</h2>
+                        <p>{COMMUNITY_PRINCIPLES.noSales}</p>
+                        <p>協賛や地域連携を行う場合も、通常開催への参加を営業・購入・登録の条件にはしません。</p>
                     </section>
 
                     <section id="contact" className={styles.section}>
@@ -226,7 +237,7 @@ export default function RulesPage() {
 
                 <div className={styles.ruleDates}>
                     <p>制定日 2026年6月17日</p>
-                    <p>最終更新日 2026年6月17日</p>
+                    <p>最終更新日 2026年8月14日</p>
                 </div>
             </div>
         </article>

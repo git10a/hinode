@@ -134,7 +134,7 @@ export default function CourseDetailPage({ params }) {
                             <p className={styles.hinodeBoxMeeting}>{course.hinode.meeting}</p>
                             <p className={styles.hinodeBoxNote}>
                                 {course.hinode.note}
-                                予約不要・参加無料・1人参加歓迎です。背中に「HINODE」と書かれた黒いTシャツを着ているメンバーが目印です。
+                                予約不要・参加無料・1人参加歓迎です。背中に「HINODE」と書かれた黒いTシャツを着た運営メンバーが目印です。
                             </p>
                             <div className={styles.hinodeBoxLinks}>
                                 <Link href="/first-run" className={styles.primaryButton}>初めての方へ</Link>

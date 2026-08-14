@@ -1,8 +1,9 @@
 import Link from '@/components/SiteLink';
 import Image from 'next/image';
-import { MEMBER_COUNT } from '../lib/stats';
 import { formatPostDate, getPostDisplayDate } from '../lib/blogPosts';
 import { REGULAR_RUNS } from '../lib/regularRuns';
+import { CITIES, getCityRuns } from '../lib/cities';
+import { COMMUNITY_PROMISES, COMMUNITY_SINCE, PHOTOGRAPHY_POLICY } from '../lib/communityPolicy';
 import ParticipantPreview from './ParticipantPreview';
 import styles from './HomeContent.module.css';
 
@@ -98,10 +99,10 @@ const VALUES = [
         alt: '代々木公園で走るHINODEメンバー',
     },
     {
-        title: '走った後も心地いい',
-        desc: '走った後はコーヒーを飲んで帰る人も。急がず、朝の時間をそのまま楽しみます。',
-        image: '/assets/hinodecoffee.jpg',
-        alt: '走った後のコーヒー',
+        title: '撮影しない',
+        desc: '通常開催では参加者を撮影しません。誰かに見せるためではなく、朝の時間そのものを大切にします。',
+        image: '/assets/about-hero-yokohama-sunrise.jpg',
+        alt: '日の出前の朝の風景',
     },
 ];
 
@@ -129,7 +130,7 @@ const STEPS = [
     {
         num: '2',
         head: '黒いHINODE Tシャツが目印',
-        desc: '背中に「HINODE」と書かれた黒いTシャツを着ているメンバーが目印です。「初めてです」と一声でも、無言で合流でも大丈夫です。',
+        desc: '背中に「HINODE」と書かれた黒いTシャツを着た運営メンバーが目印です。「初めてです」と一声でも、無言で合流でも大丈夫です。',
     },
     {
         num: '3',
@@ -138,8 +139,7 @@ const STEPS = [
     },
 ];
 
-export default async function HomeContent({ latestPosts = [], upcomingEvents = [], memberCount = null }) {
-    const displayedMemberCount = memberCount ?? MEMBER_COUNT;
+export default async function HomeContent({ latestPosts = [], upcomingEvents = [], runCount = null }) {
     const regularDays = new Set(WEEKLY_ITEMS.map((i) => i.dayIndex));
     const regularCards = WEEKLY_ITEMS.map((item) => {
         const next = upcomingEvents.find((e) => e.dayOfWeek === item.dayIndex);
@@ -185,10 +185,10 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                         <div className={styles.heroCopy}>
                             <p className={styles.heroBrand}>HINODE</p>
                             <h1 className={styles.heroHeadline}>
-                                東京の朝ランコミュニティ
+                                日の出とともに、<br />競争しない朝をつづける
                             </h1>
                             <p className={styles.heroSub}>
-                                皇居や代々木公園を中心に、毎朝だれかと気軽に走り続けられる場所をつくっています。
+                                誰かに見せるためではなく、自分との約束を守るために。東京と京都で、朝に走り続けられる場所をつくっています。
                             </p>
 
                             <a
@@ -201,13 +201,9 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                             </a>
 
                             <div className={styles.heroMeta}>
-                                <svg viewBox="0 0 24 24" className={styles.heroMetaIcon} aria-hidden="true">
-                                    <circle cx="9" cy="9" r="3.2" />
-                                    <circle cx="16" cy="10" r="2.5" />
-                                    <path d="M3 19c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5" />
-                                    <path d="M13 19c0-2.8 2.2-4.5 5-4.5s3.5 1.7 3.5 4.5" />
-                                </svg>
-                                <span>{displayedMemberCount} クラブメンバー</span>
+                                <span>{runCount !== null ? `累計 ${runCount}回開催` : '雨天を除き毎週開催'}</span>
+                                <span>{CITIES.length}都市</span>
+                                <span>{COMMUNITY_SINCE}から継続</span>
                             </div>
                             <a
                                 href="https://www.strava.com/clubs/hinode"
@@ -234,11 +230,9 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                                 {nextRun.location}
                             </p>
                             <div className={styles.heroFacts} aria-label="参加条件">
-                                <span>参加無料</span>
-                                <span>予約不要</span>
-                                <span>1人参加多め</span>
-                                <span>4km前後ゆっくり</span>
+                                {COMMUNITY_PROMISES.map((promise) => <span key={promise}>{promise}</span>)}
                             </div>
+                            <p className={styles.heroPhotoReason}>{PHOTOGRAPHY_POLICY.reason}</p>
                             <ParticipantPreview
                                 count={nextRun.participantCount}
                                 participants={nextRun.participants}
@@ -259,6 +253,54 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                                 </a>
                             )}
                         </aside>
+                    </div>
+                </div>
+            </section>
+
+            <section className={styles.cities} aria-labelledby="cities-title">
+                <div className={styles.citiesInner}>
+                    <div className={styles.sectionHeader}>
+                        <div>
+                            <p className={styles.citiesEyebrow}>ACTIVE CITIES</p>
+                            <h2 id="cities-title" className={styles.sectionTitle}>HINODEの開催都市</h2>
+                        </div>
+                        <Link href="/cities" className={styles.sectionMore}>都市一覧を見る →</Link>
+                    </div>
+                    <div className={styles.cityGrid}>
+                        {CITIES.map((city) => {
+                            const cityRuns = getCityRuns(city.slug);
+                            return (
+                                <article key={city.slug} className={styles.cityCard}>
+                                    <div className={styles.cityCardHead}>
+                                        <h3>{city.label}</h3>
+                                        <span>{city.status}</span>
+                                    </div>
+                                    <p>{city.description}</p>
+                                    {cityRuns.length > 0 && (
+                                        <ul className={styles.cityLocations}>
+                                            {cityRuns.map((run) => (
+                                                <li key={run.id}>
+                                                    <Link href={run.detailHref}>
+                                                        <span>{run.dayShort} {run.timeRaw}</span>
+                                                        <strong>{run.place}</strong>
+                                                        <small>{run.distance}・撮影なし</small>
+                                                    </Link>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                    <Link href={`/cities/${city.slug}`} className={styles.cityMore}>{city.name}を見る →</Link>
+                                </article>
+                            );
+                        })}
+                    </div>
+                    <div className={styles.startCityCta}>
+                        <div>
+                            <p className={styles.startCityLabel}>START IN YOUR CITY</p>
+                            <h3>自分の街でHINODEを始める</h3>
+                            <p>参加したい方も、ホストしたい方も。エリアと希望曜日から知らせてください。</p>
+                        </div>
+                        <Link href="/start" className={styles.startCityLink}>募集ページを見る →</Link>
                     </div>
                 </div>
             </section>
@@ -404,7 +446,7 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                     <h2 className={styles.sectionTitle}>HINODEとは</h2>
                 </div>
                 <p className={styles.valuesLead}>
-                    HINODEは、東京で朝ラン仲間を探している人のためのランニングコミュニティです。皇居・目黒川・代々木公園で毎週開催し、速さや経験よりも、朝の時間を誰かと気持ちよく走ることを大切にしています。
+                    HINODEは、速さや人数を競うためではなく、朝に走る習慣を続けるためのコミュニティです。東京と京都で、それぞれの街に合った形で活動しています。
                 </p>
                 <div className={styles.valuesGrid}>
                     {VALUES.map((v) => (
@@ -421,35 +463,6 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                             <h3 className={styles.valueTitle}>{v.title}</h3>
                             <p className={styles.valueDesc}>{v.desc}</p>
                         </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Running services */}
-            <section id="services" className={styles.services}>
-                <div className={styles.servicesIntro}>
-                    <p className={styles.servicesEyebrow}>RUNNING SERVICES</p>
-                    <h2 className={styles.servicesTitle}>HINODEがつくっているもの</h2>
-                    <p className={styles.servicesLead}>
-                        HINODEは、朝ランの開催だけでなく、走る人の毎日を少し楽しくするサービスもつくっています。
-                    </p>
-                </div>
-                <div className={styles.servicesGrid}>
-                    {RUNNING_SERVICES.map((service) => (
-                        <a
-                            key={service.name}
-                            href={service.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={styles.serviceCard}
-                        >
-                            <span className={styles.serviceLabel}>{service.label}</span>
-                            <h3 className={styles.serviceName}>{service.name}</h3>
-                            <p className={styles.serviceDescription}>{service.description}</p>
-                            <span className={styles.serviceLink}>
-                                サービスを見る <span aria-hidden="true">↗</span>
-                            </span>
-                        </a>
                     ))}
                 </div>
             </section>
@@ -487,6 +500,25 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                     <Link href="/schedule" className={styles.firstTimeSubLink}>
                         次回の開催日程を見る
                     </Link>
+                </div>
+            </section>
+
+            {/* Running services */}
+            <section id="services" className={styles.services}>
+                <div className={styles.servicesIntro}>
+                    <p className={styles.servicesEyebrow}>OTHER PROJECTS</p>
+                    <h2 className={styles.servicesTitle}>ランニングに関する取り組み</h2>
+                    <p className={styles.servicesLead}>HINODE Communityとは別に運営しているサービスです。</p>
+                </div>
+                <div className={styles.servicesGrid}>
+                    {RUNNING_SERVICES.map((service) => (
+                        <a key={service.name} href={service.href} target="_blank" rel="noopener noreferrer" className={styles.serviceCard}>
+                            <span className={styles.serviceLabel}>{service.label}</span>
+                            <h3 className={styles.serviceName}>{service.name}</h3>
+                            <p className={styles.serviceDescription}>{service.description}</p>
+                            <span className={styles.serviceLink}>サービスを見る <span aria-hidden="true">↗</span></span>
+                        </a>
+                    ))}
                 </div>
             </section>
 

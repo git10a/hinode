@@ -1,7 +1,8 @@
 import HomeContent from '../components/HomeContent';
 import { getAllBlogPosts } from '../lib/microcms';
 import { sortBlogPosts } from '../lib/blogPosts';
-import { getUpcomingGroupEvents, getClubMemberCount } from '../lib/strava';
+import { getUpcomingGroupEvents } from '../lib/strava';
+import { getRunCount } from '../lib/runCount';
 
 export const revalidate = 900;
 
@@ -15,16 +16,16 @@ async function getLatestPosts() {
 }
 
 export default async function Home() {
-    const [latestPosts, upcomingEvents, memberCount] = await Promise.all([
+    const [latestPosts, upcomingEvents, runCount] = await Promise.all([
         getLatestPosts(),
         getUpcomingGroupEvents(),
-        getClubMemberCount(),
+        getRunCount(),
     ]);
     return (
         <HomeContent
             latestPosts={latestPosts}
             upcomingEvents={upcomingEvents}
-            memberCount={memberCount}
+            runCount={runCount}
         />
     );
 }

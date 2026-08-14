@@ -10,8 +10,8 @@ const outfit = Outfit({
     display: 'swap',
 });
 
-const siteTitle = 'HINODE｜東京の朝ランコミュニティ｜初心者・ひとり参加歓迎';
-const siteDescription = 'HINODEは東京の朝ラン・ランニングコミュニティ。皇居・目黒川・代々木公園で毎週、日の出の時間にゆっくり走ります。予約不要・参加無料・1人参加OK。朝活として誰かと気軽に走りたい方へ。';
+const siteTitle = 'HINODE｜日の出とともに、競争しない朝をつづける';
+const siteDescription = 'HINODEは東京・京都で活動する朝ランコミュニティ。参加無料・予約不要・競争なし。通常開催では参加者を撮影しません。';
 
 export const metadata = {
     title: siteTitle,

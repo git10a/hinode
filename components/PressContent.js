@@ -2,7 +2,7 @@
 
 import Link from '@/components/SiteLink';
 import useFadeInOnScroll from '../lib/useFadeInOnScroll';
-import { MEMBER_COUNT } from '../lib/stats';
+import { MEMBER_COUNT, COMMUNITY_STATS } from '../lib/stats';
 import styles from '../app/press/press.module.css';
 
 const FAQ = [
@@ -12,7 +12,7 @@ const FAQ = [
     },
     {
         q: '初心者でも参加できるか',
-        a: '毎回、参加者の4割前後が初参加・ソロ参加です。歩いても、途中離脱しても、途中参加しても問題ありません。'
+        a: `毎回、参加者の${COMMUNITY_STATS.firstOrSoloRatio}が初参加・ソロ参加です。歩いても、途中離脱しても、途中参加しても問題ありません。`
     },
     {
         q: 'なぜ朝にこだわるのか',
@@ -32,7 +32,7 @@ const TIMELINE = [
     },
     {
         date: '2026年',
-        text: 'HINODE KYOTO(京都)が始動。Runtrip BASE(代々木)と提携し、参加者向けのタオル特典を開始。'
+        text: 'HINODE KYOTO（京都）が始動。Runtrip BASE（代々木）と提携し、参加者向けのタオル特典を開始。'
     }
 ];
 
@@ -93,7 +93,7 @@ export default function PressContent({ memberCount = null, runCount = null }) {
                             <tr><th>参加費</th><td>無料</td></tr>
                             <tr><th>参加方法</th><td>予約不要。集合時間の5分前に集合場所へ来るだけ</td></tr>
                             <tr><th>目印</th><td>背中に「HINODE」と書かれた黒いTシャツ</td></tr>
-                            <tr><th>姉妹コミュニティ</th><td>HINODE KYOTO(京都)</td></tr>
+                            <tr><th>姉妹コミュニティ</th><td>HINODE KYOTO（京都）</td></tr>
                         </tbody>
                     </table>
 
@@ -123,10 +123,10 @@ export default function PressContent({ memberCount = null, runCount = null }) {
                     <ul className={styles.list}>
                         <li>Stravaクラブメンバー: <strong>{displayedMemberCount}名</strong></li>
                         <li>グループラン累計開催回数: <strong>{runCount !== null ? `${runCount}回` : '---'}</strong></li>
-                        <li>累計延べ参加人数: <strong>約800名</strong>(2026年7月時点・概数)</li>
-                        <li>平均参加人数: 平日5名前後 / 日曜15名前後</li>
-                        <li>参加者層: 中学生から60代まで。学生・会社員・経営者、海外の方など多様</li>
-                        <li>初参加・ソロ参加比率: 毎回4割前後</li>
+                        <li>累計延べ参加人数: <strong>{COMMUNITY_STATS.totalParticipants}</strong>（{COMMUNITY_STATS.totalParticipantsAsOf}）</li>
+                        <li>平均参加人数: 平日{COMMUNITY_STATS.weekdayAverage} / 日曜{COMMUNITY_STATS.sundayAverage}</li>
+                        <li>参加者層: {COMMUNITY_STATS.ageRange}。学生・会社員・経営者、海外の方など多様</li>
+                        <li>初参加・ソロ参加比率: 毎回{COMMUNITY_STATS.firstOrSoloRatio}</li>
                     </ul>
                 </div>
 
@@ -161,7 +161,7 @@ export default function PressContent({ memberCount = null, runCount = null }) {
                         ))}
                     </ol>
                     <p className={styles.body}>
-                        現在の規模感(Stravaクラブ {displayedMemberCount}名、累計延べ参加人数 約800名)は、上記「基本情報」に記載のとおりです。
+                        現在の規模感（Stravaクラブ {displayedMemberCount}名、累計延べ参加人数 {COMMUNITY_STATS.totalParticipants}）は、上記「基本情報」に記載のとおりです。
                     </p>
                 </div>
 

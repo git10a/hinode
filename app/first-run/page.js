@@ -5,6 +5,7 @@ import PostBottomStrip from '../../components/PostBottomStrip';
 import ShareScheduleButton from '../../components/ShareScheduleButton';
 import { getUpcomingGroupEvents } from '../../lib/strava';
 import { FIRST_CHOICE_RUN } from '../../lib/regularRuns';
+import { PHOTOGRAPHY_POLICY } from '../../lib/communityPolicy';
 import styles from './first-run.module.css';
 
 export const metadata = {
@@ -19,6 +20,17 @@ export const revalidate = 900;
 
 const DAY_LABEL_JP = ['日', '月', '火', '水', '木', '金', '土'];
 const EVENT_DURATION_MINUTES = 60;
+
+const QUICK_FACTS = [
+    '予約不要',
+    '参加無料',
+    '1人参加歓迎',
+    '撮影なし',
+    '誰とも話さなくてOK',
+    '途中離脱OK',
+    '歩いてOK',
+    '服装自由',
+];
 
 function formatEventDate(iso) {
     if (!iso) return null;
@@ -76,7 +88,7 @@ const FLOW_STEPS = [
     },
     {
         title: '黒いHINODE Tシャツが目印',
-        text: '背中に「HINODE」と書かれた黒いTシャツを着ているメンバーが目印です。気さくなメンバーばかりなので、遠慮なくお声がけください。',
+        text: '背中に「HINODE」と書かれた黒いTシャツを着た運営メンバーが目印です。声をかけても、無言で合流しても大丈夫です。',
         image: '/assets/hinodet.jpeg',
     },
     {
@@ -118,7 +130,7 @@ const GUIDE_CARDS = [
     },
     {
         title: '初心者でも本当に参加できる？',
-        body: 'できます。代々木公園と目黒川は3km走れれば参加しやすいです。皇居は5kmでアップダウンもあるので、体力にまだ自信がない方は皇居以外からがおすすめです。',
+        body: 'できます。代々木公園は約2〜4km、目黒川は約4kmです。皇居は5kmでアップダウンもあるので、体力にまだ自信がない方は皇居以外からがおすすめです。',
     },
     {
         title: 'ひとり参加で浮かない？',
@@ -126,7 +138,7 @@ const GUIDE_CARDS = [
     },
     {
         title: '集合場所ではどう合流する？',
-        body: '集合場所に着いたら、背中に「HINODE」と書かれた黒いTシャツを着ているメンバーを目印にしてください。',
+        body: '集合場所に着いたら、背中に「HINODE」と書かれた黒いTシャツを着た運営メンバーを目印にしてください。',
     },
     {
         title: 'どんなペース？',
@@ -150,11 +162,11 @@ const GUIDE_CARDS = [
     },
     {
         title: '写真や動画に写る？',
-        body: 'HINODEでは、運営側が写真や動画を基本的に撮らず、顔出し前提の場ではありません。景色の写真を撮ることはあります。',
+        body: PHOTOGRAPHY_POLICY.standard,
     },
     {
         title: 'Stravaは必須？',
-        body: '必須ではありませんが、使っている方は、参加表明やラン記録、ほかの参加者とのつながりに使えます。',
+        body: '任意です。参加表明をしなくても、集合場所へ来れば参加できます。使っている方は、開催確認やラン記録に利用できます。',
     },
     {
         title: '荷物・ランステ・服装はどうする？',
@@ -217,14 +229,17 @@ export default async function FirstRunPage() {
                         </h1>
                         <p className={styles.lead}>
                             HINODEは、予約不要・参加無料・1人参加歓迎の朝ランコミュニティです。
-                            初参加前に気になる、当日の流れ、集合場所での合流、服装、荷物、写真方針、Stravaの使い方をまとめました。
+                            誰とも話さず走って、そのまま帰っても大丈夫です。
                         </p>
+                        <div className={styles.quickFacts} aria-label="初参加で知っておきたいこと">
+                            {QUICK_FACTS.map((fact) => <span key={fact}>{fact}</span>)}
+                        </div>
                         <div className={styles.heroActions}>
                             <Link href="/schedule" className={styles.primaryCta}>
                                 開催スケジュールを見る →
                             </Link>
                             <a href={STRAVA_CLUB_URL} target="_blank" rel="noopener noreferrer" className={styles.secondaryCta}>
-                                Stravaクラブを見る
+                                Strava（参加表明は任意）
                             </a>
                         </div>
                     </div>

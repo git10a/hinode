@@ -37,6 +37,8 @@ export default async function Footer() {
                     )}
                 </p>
                 <div className="footer-links">
+                    <Link href="/cities">開催都市</Link>
+                    <Link href="/start">自分の街で始める</Link>
                     <Link href="/faq">よくある質問</Link>
                     <Link href="/rules">参加ルール</Link>
                     <Link href="/press">プレスキット</Link>
@@ -54,7 +56,8 @@ export default async function Footer() {
                 <div className="footer-sub-links">
                     <Link href="/event-runs">企画ラン</Link>
                     <Link href="/courses">朝ランコースガイド</Link>
-                    <Link href="/">東京のランニングコミュニティ</Link>
+                    <Link href="/cities/tokyo">HINODE TOKYO</Link>
+                    <Link href="/cities/kyoto">HINODE KYOTO</Link>
                 </div>
                 <div className="social-links">
                     {SOCIAL_LINKS.map(link => (

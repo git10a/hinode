@@ -4,6 +4,8 @@ import Image from 'next/image';
 import Link from '@/components/SiteLink';
 import useFadeInOnScroll from '../lib/useFadeInOnScroll';
 import PostBottomStrip from './PostBottomStrip';
+import { PHOTOGRAPHY_POLICY } from '../lib/communityPolicy';
+import { COMMUNITY_STATS } from '../lib/stats';
 import styles from '../app/about/about.module.css';
 
 const SECTIONS = [
@@ -13,7 +15,7 @@ const SECTIONS = [
         body: (
             <>
                 <p className={styles.text}>皇居・目黒川・代々木公園などでのグループランを基本に、土曜日は不定期の企画ランも開催しています。上野公園や駒沢公園へ行ったり、おいしいパン屋を目指したり、山手線一周ランをしたりする日もあります。ペースも距離も自由で、苦しくなったら歩いても問題ありません。速さではなく、走り続ける規律そのものを大事にしています。</p>
-                <p className={styles.text}>競技経験や走力を問わず、朝ランを続けたい人が参加できるコミュニティです。中学生から50代まで、老若男女が参加しています。</p>
+                <p className={styles.text}>競技経験や走力を問わず、朝ランを続けたい人が参加できるコミュニティです。{COMMUNITY_STATS.ageRange}まで、幅広い方が参加しています。</p>
             </>
         ),
     },
@@ -40,11 +42,11 @@ const FIRST_JOIN_STEPS = [
     },
     {
         title: '集合場所へ行く',
-        text: 'Stravaで参加表明しておくと安心です。開始数分前に、走れる服装で来てください。',
+        text: 'Stravaでの参加表明は任意です。開始数分前に、走れる服装で来てください。',
     },
     {
         title: '目印を探す',
-        text: '背中に「HINODE」と書かれた黒いTシャツを着ているメンバーを探してください。',
+        text: '背中に「HINODE」と書かれた黒いTシャツを着た運営メンバーを探してください。',
     },
     {
         title: '無理なく走る',
@@ -56,12 +58,12 @@ const FAQ = [
     {
         q: '集合場所で誰もいなかったら？',
         a: (
-            <>中止の告知がないかぎり、必ず誰かがいます。背中に「HINODE」と書かれた黒いTシャツを着ているメンバーにお声がけください。雨の日など開催できない場合は <a href="https://strava.app.link/pQ0uMuWWj2b" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a> / <a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a> で前もって告知します。不安なことがあればいつでもご連絡ください。</>
+            <>中止の告知がないかぎり、必ず誰かがいます。背中に「HINODE」と書かれた黒いTシャツを着た運営メンバーにお声がけください。雨の日など開催できない場合は <a href="https://strava.app.link/pQ0uMuWWj2b" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a> / <a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a> で前もって告知します。不安なことがあればいつでもご連絡ください。</>
         ),
     },
     {
         q: 'どんな人が参加していますか？',
-        a: '25歳から35歳くらいのメンバーが5割ほどいらっしゃいますが、中学生から50代まで老若男女問わず参加しています。',
+        a: `25歳から35歳くらいの参加者が中心ですが、${COMMUNITY_STATS.ageRange}まで幅広い方が参加しています。`,
     },
     {
         q: '開始時間はいつですか？',
@@ -83,7 +85,7 @@ const FAQ = [
     },
     {
         q: '写真に写らなくても大丈夫ですか？',
-        a: '大丈夫です。HINODEでは、基本的に集合写真は撮りません。日の出や街の景色がきれいなタイミングで、景色の写真を撮るために立ち止まることはありますが、参加者の顔出しやSNS掲載を前提にした場ではありません。',
+        a: `${PHOTOGRAPHY_POLICY.standard}${PHOTOGRAPHY_POLICY.reason}`,
     },
 ];
 
@@ -97,11 +99,11 @@ export default function AboutContent() {
         <div className={styles.page}>
             <div className={`${styles.hero} ${styles.fadeIn}`}>
                 <h1 className={styles.title}>
-                    東京で日の出とともに走る、<br />
-                    朝ランコミュニティ
+                    日の出とともに、<br />
+                    競争しない朝をつづける
                 </h1>
                 <p className={styles.lead}>
-                    HINODEは、日の出前に集まり、日の出とともに走る東京の朝ランコミュニティです。初心者でももちろん参加でき、参加は無料です。皇居・目黒川・代々木公園を中心に、1人参加でも来やすい場を目指しています。
+                    HINODEは、日の出前後の朝に集まり、会話できるペースで走るコミュニティです。東京と京都で活動し、参加無料・予約不要。速さや経験を問わず、1人でも来やすい場を目指しています。
                 </p>
                 <p className={styles.mediaMention}>
                     <a
@@ -186,10 +188,10 @@ export default function AboutContent() {
                     </div>
                     <div className={styles.sectionBody}>
                         <ul className={styles.list}>
-                            <li>初参加歓迎 — 毎回、参加者の4割前後が初参加・ソロ参加です</li>
-                            <li>参加費無料 — Stravaで参加表明しておくと、当日の人数感が分かって安心です</li>
+                            <li>初参加歓迎 — 毎回、参加者の{COMMUNITY_STATS.firstOrSoloRatio}が初参加・ソロ参加です</li>
+                            <li>参加費無料・予約不要 — Stravaでの参加表明は任意です</li>
                             <li>ペース・距離は自由 — 歩いても途中離脱・途中参加も問題なし</li>
-                            <li>走ること自体にフォーカス — 写真や動画の撮影は基本なし</li>
+                            <li>走ること自体にフォーカス — 通常開催では運営による参加者の撮影なし</li>
                         </ul>
                     </div>
                 </section>

@@ -10,6 +10,9 @@ const COMMUNITY_CATEGORIES = new Set([
     'その他',
 ]);
 const WORK_CATEGORIES = new Set([
+    'HINODE拠点導入',
+    '地域ラン企画',
+    'ランニングイベント',
     '大会・ランニングイベントのWeb制作',
     '仕事依頼',
     '取材・掲載',
@@ -61,16 +64,29 @@ export async function POST(request) {
     const category = cleanText(body.category, 40);
     const timing = cleanText(body.timing, 120);
     const details = cleanText(body.details, 2500);
+    const area = cleanText(body.area, 100);
+    const nearestStation = cleanText(body.nearestStation, 100);
+    const preferredDay = cleanText(body.preferredDay, 100);
+    const involvement = cleanText(body.involvement, 20);
     const isWork = inquiryType === 'work';
     const isCommunity = inquiryType === 'community';
+    const isStart = inquiryType === 'start';
     const allowedCategories = isWork ? WORK_CATEGORIES : COMMUNITY_CATEGORIES;
 
     if (
-        (!isWork && !isCommunity)
-        || !allowedCategories.has(category)
-        || !details
+        (!isWork && !isCommunity && !isStart)
+        || (!isStart && !allowedCategories.has(category))
+        || (!isStart && !details)
         || (email && !isValidEmail(email))
         || (isWork && (!name || !email))
+        || (isStart && (
+            !area
+            || !nearestStation
+            || !preferredDay
+            || !['参加したい', 'ホストしたい'].includes(involvement)
+            || !email
+            || !isValidEmail(email)
+        ))
     ) {
         return NextResponse.json({ ok: false }, { status: 400 });
     }
@@ -84,9 +100,19 @@ export async function POST(request) {
     }
 
     const safeName = (name || '匿名').replace(/[\r\n]+/g, ' ');
-    const typeLabel = isWork ? 'お仕事・取材' : '企画・参加';
-    const subject = `【HINODE ${typeLabel}】${category}｜${safeName}`;
-    const text = [
+    const typeLabel = isStart ? '新しい街' : isWork ? 'お仕事・取材' : '企画・参加';
+    const subject = isStart
+        ? `【HINODE 新しい街】${area}｜${involvement}`
+        : `【HINODE ${typeLabel}】${category}｜${safeName}`;
+    const text = isStart ? [
+        'HINODEを自分の街で始めるフォームから連絡がありました。',
+        '',
+        `エリア: ${area}`,
+        `最寄駅: ${nearestStation}`,
+        `希望曜日: ${preferredDay}`,
+        `関わり方: ${involvement}`,
+        `メールアドレス: ${email}`,
+    ].join('\n') : [
         `HINODEのお問い合わせフォームから${typeLabel}について連絡がありました。`,
         '',
         `お問い合わせ種別: ${typeLabel}`,
