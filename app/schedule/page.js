@@ -1,9 +1,6 @@
 import Link from '@/components/SiteLink';
-import Image from 'next/image';
 import styles from './schedule.module.css';
-import NextRunDate from '../../components/NextRunDate';
 import PostBottomStrip from '../../components/PostBottomStrip';
-import ShareScheduleButton from '../../components/ShareScheduleButton';
 import { getUpcomingGroupEvents } from '../../lib/strava';
 import { getRegularRun } from '../../lib/regularRuns';
 
@@ -33,7 +30,7 @@ function getJstWallClockDate(date) {
     return new Date(date.toLocaleString('en-US', { timeZone: 'Asia/Tokyo' }));
 }
 
-function getMonthCalendar(specialEvents, now = new Date()) {
+function getMonthCalendar(specialEvents, regularEventsByDay, now = new Date()) {
     const jstNow = getJstWallClockDate(now);
     const year = jstNow.getFullYear();
     const monthIndex = jstNow.getMonth();
@@ -59,7 +56,15 @@ function getMonthCalendar(specialEvents, now = new Date()) {
         cells.push({
             day,
             isToday: day === jstNow.getDate(),
-            regularRuns: RUNS.filter((run) => run.dayOfWeek === dayOfWeek),
+            regularRuns: RUNS
+                .filter((run) => run.dayOfWeek === dayOfWeek)
+                .map((run) => {
+                    const stravaEvent = regularEventsByDay.get(run.dayOfWeek);
+                    return {
+                        ...run,
+                        stravaHref: stravaEvent ? stravaEventUrl(stravaEvent.eventId) : STRAVA_CLUB_URL,
+                    };
+                }),
             specialEvents: specialEventsByDay.get(day) || [],
         });
     }
@@ -117,7 +122,7 @@ function eventDateFields(dayOfWeek, time, now) {
     };
 }
 
-function createFreeOffer(dayOfWeek, time, now, sectionId) {
+function createFreeOffer(dayOfWeek, time, now, path) {
     const validFrom = getNextEventStart(dayOfWeek, time, now);
     validFrom.setDate(validFrom.getDate() - 7);
 
@@ -126,7 +131,7 @@ function createFreeOffer(dayOfWeek, time, now, sectionId) {
         "price": "0",
         "priceCurrency": "JPY",
         "availability": "https://schema.org/InStock",
-        "url": `${SITE_URL}/schedule#${sectionId}`,
+        "url": `${SITE_URL}${path}`,
         "validFrom": formatJstDateTime(validFrom),
     };
 }
@@ -141,7 +146,7 @@ function createEventsJsonLd(now = new Date()) {
             "@context": "https://schema.org",
             "@type": "Event",
             "name": "皇居の日の出ラン｜HINODE",
-            "url": `${SITE_URL}/schedule#kokyo`,
+            "url": `${SITE_URL}${KOKYO_RUN.detailHref}`,
             "image": [
                 assetUrl('/assets/kokyo-run-map.png'),
                 assetUrl('/assets/Kokyo.jpg'),
@@ -154,13 +159,13 @@ function createEventsJsonLd(now = new Date()) {
             "eventStatus": "https://schema.org/EventScheduled",
             "organizer": { "@type": "SportsClub", "name": "HINODE", "url": "https://hinode-run.com/" },
             "performer": EVENT_PERFORMER,
-            "offers": createFreeOffer(KOKYO_RUN.dayOfWeek, KOKYO_RUN.timeRaw, now, KOKYO_RUN.id)
+            "offers": createFreeOffer(KOKYO_RUN.dayOfWeek, KOKYO_RUN.timeRaw, now, KOKYO_RUN.detailHref)
         },
         {
             "@context": "https://schema.org",
             "@type": "Event",
             "name": "目黒川の日の出ラン｜HINODE",
-            "url": `${SITE_URL}/schedule#meguro`,
+            "url": `${SITE_URL}${MEGURO_RUN.detailHref}`,
             "image": [
                 assetUrl('/assets/meguro-run-map.png'),
                 assetUrl('/assets/Meguro.jpg'),
@@ -173,13 +178,13 @@ function createEventsJsonLd(now = new Date()) {
             "eventStatus": "https://schema.org/EventScheduled",
             "organizer": { "@type": "SportsClub", "name": "HINODE", "url": "https://hinode-run.com/" },
             "performer": EVENT_PERFORMER,
-            "offers": createFreeOffer(MEGURO_RUN.dayOfWeek, MEGURO_RUN.timeRaw, now, MEGURO_RUN.id)
+            "offers": createFreeOffer(MEGURO_RUN.dayOfWeek, MEGURO_RUN.timeRaw, now, MEGURO_RUN.detailHref)
         },
         {
             "@context": "https://schema.org",
             "@type": "Event",
             "name": "代々木公園の日の出ラン｜HINODE",
-            "url": `${SITE_URL}/schedule#yoyogi`,
+            "url": `${SITE_URL}${YOYOGI_RUN.detailHref}`,
             "image": [
                 assetUrl('/assets/yoyogi-run-map.png'),
                 assetUrl('/assets/Yoyogi.jpg'),
@@ -192,7 +197,7 @@ function createEventsJsonLd(now = new Date()) {
             "eventStatus": "https://schema.org/EventScheduled",
             "organizer": { "@type": "SportsClub", "name": "HINODE", "url": "https://hinode-run.com/" },
             "performer": EVENT_PERFORMER,
-            "offers": createFreeOffer(YOYOGI_RUN.dayOfWeek, YOYOGI_RUN.timeRaw, now, YOYOGI_RUN.id)
+            "offers": createFreeOffer(YOYOGI_RUN.dayOfWeek, YOYOGI_RUN.timeRaw, now, YOYOGI_RUN.detailHref)
         }
     ];
 }
@@ -216,38 +221,7 @@ const faqItems = [
     },
 ];
 
-const RUNS = [
-    {
-        ...KOKYO_RUN,
-        mapUrl: 'https://maps.app.goo.gl/E9HkSojyPZw6zo1b9',
-        routeImage: '/assets/strava-route-kokyo.png',
-        routeUrl: 'https://www.strava.com/routes/3425111489577090166',
-        description: (
-            <>桔梗門前派出所に集合。<br />皇居を左回りで1周。<br />和田倉噴水公園内にはSTARBUCKSも。</>
-        ),
-        forWhom: '皇居ランしたい方・仕事前に短時間でミディアムな刺激を得たい方',
-    },
-    {
-        ...MEGURO_RUN,
-        mapUrl: 'https://maps.app.goo.gl/SKixyw53vfJnp1p36',
-        routeImage: '/assets/strava-route-meguro.png',
-        routeUrl: 'https://www.strava.com/routes/3471979912283975976',
-        description: (
-            <>中目黒駅のスターバックス蔦屋書店前に集合。<br />目黒川をぐるっと回るコース。</>
-        ),
-        forWhom: '中目黒周辺にお住まいで朝ラン仲間を探している方、短くても朝ランは継続したい方',
-    },
-    {
-        ...YOYOGI_RUN,
-        mapUrl: 'https://maps.app.goo.gl/dB3L15dHByAoC4jw9',
-        routeImage: '/assets/strava-route-yoyogi.png',
-        routeUrl: 'https://www.strava.com/routes/3471970663805426564',
-        description: (
-            <>原宿時計塔に集合。<br />代々木公園を左回りで1、2周。<br />公園近くにはドトールやVERVE COFFEEがあります。</>
-        ),
-        forWhom: 'いきなり6時スタートは難しいから体を慣らしたい方、週末も朝から活動したい方',
-    },
-];
+const RUNS = [KOKYO_RUN, MEGURO_RUN, YOYOGI_RUN];
 
 export default async function EventPage() {
     const eventsJsonLd = createEventsJsonLd();
@@ -262,7 +236,7 @@ export default async function EventPage() {
     const specialEvents = upcomingEvents
         .filter((event) => !regularDayIndexes.has(event.dayOfWeek))
         .slice(0, 12);
-    const monthCalendar = getMonthCalendar(specialEvents);
+    const monthCalendar = getMonthCalendar(specialEvents, regularEventsByDay);
 
     return (
         <div className={styles.page}>
@@ -302,7 +276,7 @@ export default async function EventPage() {
                     </div>
                     <div className={styles.scheduleQuickCards}>
                         {RUNS.map((run) => (
-                            <a key={run.id} href={`#${run.id}`} className={styles.scheduleQuickCard}>
+                            <Link key={run.id} href={run.detailHref} className={styles.scheduleQuickCard}>
                                 <div className={styles.scheduleQuickCardPrimary}>
                                     <span className={styles.scheduleQuickDay}>{run.dayShort.replace('曜', '')}</span>
                                     <span className={styles.scheduleQuickTime}>{run.timeRaw}</span>
@@ -312,7 +286,7 @@ export default async function EventPage() {
                                     <span>{run.meetingShort} 集合</span>
                                 </div>
                                 <span className={styles.scheduleQuickDistance}>{run.distance}</span>
-                            </a>
+                            </Link>
                         ))}
                     </div>
                     <p className={styles.scheduleQuickViewNote}>
@@ -352,7 +326,9 @@ export default async function EventPage() {
                                             {cell.regularRuns.map((run) => (
                                                 <a
                                                     key={run.id}
-                                                    href={`#${run.id}`}
+                                                    href={run.stravaHref}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
                                                     className={styles.calendarEvent}
                                                     aria-label={`${monthCalendar.month}月${cell.day}日 ${run.place} ${run.timeRaw}`}
                                                 >
@@ -406,105 +382,8 @@ export default async function EventPage() {
                 </div>
             </div>
 
-            <section id="regular-runs" className={styles.runsSection} aria-labelledby="regular-runs-title">
-                <div className={styles.runsInner}>
-                    <div className={styles.runsHeader}>
-                        <h2 id="regular-runs-title" className={styles.runsTitle}>開催場所ごとの日程・集合場所</h2>
-                        <p className={styles.runsLead}>
-                            皇居・目黒川・代々木公園それぞれの曜日、距離、集合場所をまとめています。
-                        </p>
-                    </div>
-
-                    <div className={styles.runs}>
-                        {RUNS.map((run) => {
-                            const stravaEvent = regularEventsByDay.get(run.dayOfWeek);
-
-                            return (
-                                <article key={run.id} id={run.id} className={styles.runCard}>
-                                    <div className={styles.runHead}>
-                                        <div className={styles.runHeadText}>
-                                            <div className={styles.runTitleRow}>
-                                                <h3 className={styles.runName}>{run.name}</h3>
-                                                {run.recommendationLabel && (
-                                                    <span className={`${styles.runRecommendationBadge} ${run.isFirstChoice ? styles.runRecommendationBadgePrimary : ''}`}>
-                                                        {run.recommendationLabel}
-                                                    </span>
-                                                )}
-                                            </div>
-                                            <p className={styles.runMeta}>
-                                                <span className={styles.runDay}>{run.day}</span>
-                                                <span className={styles.runDot} aria-hidden="true">·</span>
-                                                <span className={styles.runTime}>{run.time}</span>
-                                                <span className={styles.runDot} aria-hidden="true">·</span>
-                                                <span className={styles.runDistance}>{run.distance}</span>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div className={styles.runBody}>
-                                        <div className={styles.runRouteCol}>
-                                            <div className={styles.runRouteFrame}>
-                                                <a
-                                                    href={run.routeUrl}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className={styles.routeImageLink}
-                                                    aria-label={`${run.name}のStravaルートを見る`}
-                                                >
-                                                    <Image
-                                                        src={run.routeImage}
-                                                        alt={`${run.name}のStravaルートマップ`}
-                                                        fill
-                                                        sizes="(max-width: 768px) calc(100vw - 5rem), (max-width: 900px) calc(100vw - 7rem), 420px"
-                                                        className={styles.routeImage}
-                                                    />
-                                                </a>
-                                            </div>
-                                            <a
-                                                href={run.mapUrl}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className={styles.googleMapLink}
-                                            >
-                                                Google mapで集合場所を見る →
-                                            </a>
-                                        </div>
-
-                                        <div className={styles.runDescCol}>
-                                            <NextRunDate dayOfWeek={run.dayOfWeek} time={run.timeRaw} className={styles.nextDate} />
-                                            <p className={styles.runDescription}>{run.description}</p>
-                                            <div className={styles.runForWhom}>
-                                                <span className={styles.runForWhomLabel}>こんな方に</span>
-                                                <span className={styles.runForWhomText}>{run.forWhom}</span>
-                                            </div>
-                                            <div className={styles.runActions}>
-                                                {stravaEvent && (
-                                                    <a
-                                                        href={stravaEventUrl(stravaEvent.eventId)}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className={styles.stravaRunLink}
-                                                    >
-                                                        Stravaページを見る
-                                                    </a>
-                                                )}
-                                                <ShareScheduleButton
-                                                    path={`/schedule#${run.id}`}
-                                                    className={styles.shareRunButton}
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </article>
-                            );
-                        })}
-                    </div>
-                </div>
-            </section>
-
             <section className={styles.faqSection} aria-labelledby="first-time-faq-title">
                 <div className={styles.sectionHead}>
-                    <span className={styles.sectionNum}>02</span>
                     <h2 id="first-time-faq-title" className={styles.sectionTitle}>よくある質問</h2>
                 </div>
                 <div className={styles.faqGrid}>
