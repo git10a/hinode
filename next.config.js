@@ -83,6 +83,11 @@ const nextConfig = {
                 destination: '/contact/thanks',
                 permanent: true,
             },
+            {
+                source: '/event-runs',
+                destination: '/schedule#monthly-calendar',
+                permanent: true,
+            },
         ];
     },
 };

@@ -25,10 +25,9 @@
 
 - [HINODEとは](https://hinode-run.com/about): コミュニティの紹介
 - [初参加ガイド](https://hinode-run.com/first-run): 初めて参加する人向けの当日の流れ・不安への回答
-- [開催日程](https://hinode-run.com/schedule): 曜日・時間・集合場所・直近イベント
+- [開催日程](https://hinode-run.com/schedule): 定例ランの曜日・時間・集合場所と、企画ランを含む今月のカレンダー
 - [よくある質問](https://hinode-run.com/faq): 予約・参加費・服装・雨天時などのFAQ
 - [朝ランコースガイド](https://hinode-run.com/courses): 皇居・代々木公園・目黒川など東京の朝ランコース解説
-- [企画ラン](https://hinode-run.com/event-runs): 定期開催以外のイベント
 - [ブログ](https://hinode-run.com/blog): コミュニティの記録と朝ランの読み物
 - [マニフェスト](https://hinode-run.com/manifesto): HINODEの価値観
 - [プレスキット](https://hinode-run.com/press): メディア向け資料

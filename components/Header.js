@@ -12,7 +12,6 @@ const PRIMARY_NAV_LINKS = [
     { href: '/first-run/', label: '初めての人へ' },
     { href: '/schedule/', label: 'グループラン日程' },
     { href: '/start/', label: '自分の街で始める' },
-    { href: '/event-runs/', label: '企画ラン' },
     { href: '/blog/', label: 'BLOG', priority: 'low' },
 ];
 

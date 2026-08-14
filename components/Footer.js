@@ -54,7 +54,6 @@ export default async function Footer() {
                     <a href="https://dokorun.com/" target="_blank" rel="noopener noreferrer">どこラン ↗</a>
                 </div>
                 <div className="footer-sub-links">
-                    <Link href="/event-runs">企画ラン</Link>
                     <Link href="/courses">朝ランコースガイド</Link>
                     <Link href="/cities/tokyo">HINODE TOKYO</Link>
                     <Link href="/cities/kyoto">HINODE KYOTO</Link>
