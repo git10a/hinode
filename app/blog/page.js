@@ -57,21 +57,10 @@ export default async function BlogPage({ searchParams = {} }) {
     return (
         <div className={styles.page}>
             <section className={styles.hero}>
-                <div className={styles.heroImageWrapper}>
-                    <Image
-                        src="/assets/Toyosu.jpg"
-                        alt=""
-                        fill
-                        priority
-                        sizes="100vw"
-                        className={styles.heroImage}
-                    />
-                    <div className={styles.heroOverlay} aria-hidden="true" />
-                </div>
-
                 <div className={styles.heroInner}>
                     <div className={styles.heroText}>
-                        <h1 className={styles.pageTitle}>BLOG</h1>
+                        <p className={styles.eyebrow}>JOURNAL</p>
+                        <h1 className={styles.pageTitle}>朝の読みもの。</h1>
                         <p className={styles.subtitle}>朝のランニングの良さを、日々伝えるHINODEのブログ</p>
                     </div>
 
@@ -83,7 +72,7 @@ export default async function BlogPage({ searchParams = {} }) {
                                         src={featured.thumbnail.url}
                                         alt={featured.title}
                                         fill
-                                        sizes="(max-width: 768px) 100vw, 220px"
+                                        sizes="(max-width: 768px) 100vw, 60vw"
                                         className={styles.featuredImage}
                                     />
                                 </div>

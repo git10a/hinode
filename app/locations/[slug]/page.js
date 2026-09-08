@@ -23,7 +23,7 @@ export default function LocationPage({ params }) {
         ['ペース', run.pace], ['ホスト', run.host], ['撮影', run.photography], ['初参加方法', run.firstJoin],
     ];
     return (
-        <main className={styles.page}>
+        <div className={styles.page}>
             <div className={styles.container}>
                 <p className={styles.eyebrow}>HINODE TOKYO / LOCATION</p>
                 <h1>{run.name}</h1>
@@ -42,6 +42,6 @@ export default function LocationPage({ params }) {
                     <Link href="/first-run" className={styles.secondaryButton}>初参加ガイドを見る</Link>
                 </div>
             </div>
-        </main>
+        </div>
     );
 }

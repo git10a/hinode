@@ -21,7 +21,7 @@
 
 .meta {
     font-size: 0.85rem;
-    color: #888;
+    color: var(--hn-muted);
     margin-bottom: 3rem;
     letter-spacing: 0.08em;
 }
@@ -29,18 +29,18 @@
 .lead {
     font-size: 1rem;
     line-height: 2;
-    color: #333;
+    color: var(--hn-ink);
     margin-bottom: 2rem;
     padding: 1.5rem;
-    background: #fafafa;
-    border-left: 3px solid #111;
+    background: var(--hn-surface);
+    border-left: 3px solid var(--hn-ink);
 }
 
 .sectionNum {
     font-family: var(--font-en);
     font-size: 0.8rem;
     letter-spacing: 0.24em;
-    color: #999;
+    color: var(--hn-muted);
     margin-top: 3.5rem;
     margin-bottom: 0.5rem;
 }
@@ -52,7 +52,7 @@
     letter-spacing: 0.03em;
     margin-bottom: 1.5rem;
     padding-bottom: 0.6rem;
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid var(--hn-line);
 }
 
 .subTitle {
@@ -62,13 +62,13 @@
     letter-spacing: 0.03em;
     margin-top: 2rem;
     margin-bottom: 0.8rem;
-    color: #111;
+    color: var(--hn-ink);
 }
 
 .body {
     font-size: 0.97rem;
     line-height: 1.95;
-    color: #333;
+    color: var(--hn-ink);
     margin-bottom: 1rem;
 }
 
@@ -81,7 +81,7 @@
 .list li {
     font-size: 0.96rem;
     line-height: 1.85;
-    color: #333;
+    color: var(--hn-ink);
     padding: 0.35rem 0 0.35rem 1.2rem;
     position: relative;
 }
@@ -93,7 +93,7 @@
     top: 0.95rem;
     width: 5px;
     height: 5px;
-    background: #333;
+    background: var(--hn-ink);
     border-radius: 50%;
 }
 
@@ -108,22 +108,22 @@
 .table td {
     padding: 0.8rem 1rem;
     text-align: left;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--hn-line);
     line-height: 1.7;
     vertical-align: top;
 }
 
 .table th {
-    background: #fafafa;
+    background: var(--hn-surface);
     font-weight: 600;
     white-space: nowrap;
-    color: #111;
+    color: var(--hn-ink);
     letter-spacing: 0.04em;
 }
 
 .hook {
     padding: 1.2rem 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--hn-line);
 }
 
 .hook:last-child {
@@ -135,23 +135,23 @@
     font-size: 1rem;
     font-weight: 600;
     margin-bottom: 0.4rem;
-    color: #111;
+    color: var(--hn-ink);
 }
 
 .hookBody {
     font-size: 0.94rem;
     line-height: 1.85;
-    color: #444;
+    color: var(--hn-muted);
 }
 
 .quote {
     margin: 1.5rem 0;
     padding: 1rem 1.5rem;
-    background: #fafafa;
-    border-left: 3px solid #111;
+    background: var(--hn-surface);
+    border-left: 3px solid var(--hn-ink);
     font-size: 0.98rem;
     line-height: 1.9;
-    color: #222;
+    color: var(--hn-ink);
 }
 
 .faqItem {
@@ -163,21 +163,21 @@
     font-size: 1rem;
     font-weight: 600;
     margin-bottom: 0.4rem;
-    color: #111;
+    color: var(--hn-ink);
 }
 
 .faqA {
     font-size: 0.94rem;
     line-height: 1.9;
-    color: #444;
+    color: var(--hn-muted);
 }
 
 .contactBlock {
     margin-top: 4rem;
     padding: 2rem;
-    background: #111;
+    background: var(--hn-ink);
     color: #fff;
-    border-radius: 4px;
+    border-radius: 0;
     text-align: center;
 }
 
@@ -222,9 +222,9 @@
 .atGlance {
     margin: 0 0 2.5rem;
     padding: 1.4rem 1.6rem 1.6rem;
-    border: 1px solid #111;
-    border-radius: 6px;
-    background: #fff;
+    border: 1px solid var(--hn-ink);
+    border-radius: 0;
+    background: var(--hn-paper);
 }
 
 .atGlanceTitle {
@@ -233,7 +233,7 @@
     font-weight: 600;
     letter-spacing: 0.05em;
     margin-bottom: 1rem;
-    color: #111;
+    color: var(--hn-ink);
 }
 
 .atGlanceList {
@@ -254,12 +254,12 @@
 }
 
 .atGlanceList li strong {
-    color: #111;
+    color: var(--hn-ink);
     font-weight: 600;
 }
 
 .atGlanceList li span {
-    color: #555;
+    color: var(--hn-muted);
     font-size: 0.88rem;
 }
 
@@ -274,7 +274,7 @@
     list-style: none;
     padding: 0;
     margin: 1.5rem 0 1.5rem;
-    border-left: 2px solid #e5e5e5;
+    border-left: 2px solid var(--hn-line);
 }
 
 .timelineItem {
@@ -293,7 +293,7 @@
     top: 0.3rem;
     width: 12px;
     height: 12px;
-    background: #111;
+    background: var(--hn-ink);
     border-radius: 50%;
 }
 
@@ -303,14 +303,14 @@
     font-size: 0.82rem;
     font-weight: 600;
     letter-spacing: 0.06em;
-    color: #111;
+    color: var(--hn-ink);
     margin-bottom: 0.3rem;
 }
 
 .timelineText {
     font-size: 0.94rem;
     line-height: 1.85;
-    color: #444;
+    color: var(--hn-muted);
     margin: 0;
 }
 
@@ -325,18 +325,18 @@
 .assetCard {
     display: flex;
     flex-direction: column;
-    border: 1px solid #e5e5e5;
-    border-radius: 6px;
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
     overflow: hidden;
     text-decoration: none;
     color: inherit;
-    background: #fff;
+    background: var(--hn-paper);
     transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .assetCard:hover {
-    border-color: #111;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    border-color: var(--hn-ink);
+    box-shadow: none;
     transform: translateY(-2px);
 }
 
@@ -344,7 +344,7 @@
     display: block;
     aspect-ratio: 4 / 3;
     overflow: hidden;
-    background: #f2f2f2;
+    background: var(--hn-surface);
 }
 
 .assetThumb img {
@@ -358,7 +358,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #fafafa;
+    background: var(--hn-surface);
 }
 
 .assetThumbLogo img {
@@ -370,7 +370,7 @@
 }
 
 .assetThumbDark {
-    background: #111;
+    background: var(--hn-ink);
 }
 
 .assetMeta {
@@ -383,18 +383,18 @@
 .assetLabel {
     font-size: 0.9rem;
     font-weight: 600;
-    color: #111;
+    color: var(--hn-ink);
     line-height: 1.5;
 }
 
 .assetSub {
     font-size: 0.78rem;
-    color: #999;
+    color: var(--hn-muted);
     letter-spacing: 0.02em;
 }
 
 .assetDownload {
-    color: #111;
+    color: var(--hn-ink);
     font-weight: 600;
     margin-left: 0.3rem;
 }
@@ -448,3 +448,19 @@
         padding: 1.5rem;
     }
 }
+
+/* Shared editorial direction: page-specific composition. */
+
+.pressPage { padding-top: 170px; }
+.container { max-width: 980px; }
+.title { font-size: clamp(34px, 4vw, 52px); font-weight: 400; }
+.lead { padding: 0; border: 0; background: transparent; margin-bottom: 40px; }
+.atGlance { background: var(--hn-surface); border: 0; }
+.sectionNum { color: var(--hn-sun); margin-top: 70px; }
+.sectionTitle { font-size: 29px; font-weight: 400; padding-left: 0; border-left: 0; }
+.assetCard { background: transparent; border: 0; border-bottom: 1px solid var(--hn-line); }
+.assetMeta { padding-left: 0; padding-right: 0; }
+.contactBlock { background: var(--hn-surface); border: 0; }
+@media(max-width:640px) { .pressPage { padding-top: 125px; } .container { padding: 0 24px; } .title { font-size: 30px; } .sectionTitle { font-size: 24px; } }
+
+.contactBlock { background: var(--hn-ink); color: #fff; } .contactBlock h2, .contactBlock p { color: #fff; }

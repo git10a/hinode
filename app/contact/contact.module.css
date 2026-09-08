@@ -14,7 +14,7 @@
     font-family: var(--font-en);
     font-size: 0.78rem;
     letter-spacing: 0.22em;
-    color: #888;
+    color: var(--hn-muted);
     margin-bottom: 0.65rem;
 }
 
@@ -30,20 +30,20 @@
 .lead {
     font-size: 1rem;
     line-height: 2;
-    color: #333;
+    color: var(--hn-ink);
     max-width: 100%;
     margin-bottom: 2.4rem;
     padding: 1.5rem;
-    background: #fafafa;
-    border-left: 3px solid #111;
+    background: var(--hn-surface);
+    border-left: 3px solid var(--hn-ink);
 }
 
 .examples {
     padding: 1.4rem 1.5rem;
-    border: 1px solid #e5e5e5;
-    border-radius: 6px;
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
     margin-bottom: 2.2rem;
-    background: #fffdf8;
+    background: var(--hn-surface);
 }
 
 .examples p {
@@ -51,7 +51,7 @@
     margin: 0;
     font-size: 0.9rem;
     line-height: 1.85;
-    color: #555;
+    color: var(--hn-muted);
 }
 
 .examples p + p {
@@ -59,7 +59,7 @@
 }
 
 .examples strong {
-    color: #111;
+    color: var(--hn-ink);
     font-weight: 600;
     margin-right: 0.65rem;
 }
@@ -69,9 +69,9 @@
     flex-direction: column;
     gap: 1.25rem;
     padding: 2rem;
-    border: 1px solid #e5e5e5;
-    border-radius: 8px;
-    background: #fff;
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
+    background: var(--hn-paper);
 }
 
 .typeFieldset {
@@ -85,7 +85,7 @@
     display: block;
     font-size: 0.88rem;
     font-weight: 600;
-    color: #111;
+    color: var(--hn-ink);
     letter-spacing: 0.04em;
     margin-bottom: 0.45rem;
 }
@@ -103,17 +103,17 @@
     justify-content: center;
     min-height: 4.2rem;
     padding: 0.8rem 1rem;
-    border: 1px solid #e5e5e5;
-    border-radius: 8px;
-    color: #777;
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
+    color: var(--hn-muted);
     cursor: pointer;
     text-align: center;
     transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .typeOption:hover {
-    background: #fafafa;
-    color: #333;
+    background: var(--hn-surface);
+    color: var(--hn-ink);
 }
 
 .typeOption:focus-within {
@@ -121,9 +121,9 @@
 }
 
 .typeOptionActive {
-    border-color: #111;
-    background: #fafafa;
-    color: #111;
+    border-color: var(--hn-ink);
+    background: var(--hn-surface);
+    color: var(--hn-ink);
 }
 
 .typeOption input {
@@ -157,10 +157,10 @@
 .field select,
 .field textarea {
     width: 100%;
-    border: 1px solid #d9d9d9;
-    border-radius: 6px;
-    background: #fff;
-    color: #111;
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
+    background: var(--hn-paper);
+    color: var(--hn-ink);
     font-family: var(--font-jp);
     font-size: 1rem;
     letter-spacing: 0.02em;
@@ -172,8 +172,8 @@
 .field select {
     appearance: none;
     background-image:
-        linear-gradient(45deg, transparent 50%, #333 50%),
-        linear-gradient(135deg, #333 50%, transparent 50%);
+        linear-gradient(45deg, transparent 50%, var(--hn-ink) 50%),
+        linear-gradient(135deg, var(--hn-ink) 50%, transparent 50%);
     background-position:
         calc(100% - 18px) 50%,
         calc(100% - 12px) 50%;
@@ -191,19 +191,19 @@
 .field select:focus,
 .field textarea:focus {
     outline: none;
-    border-color: #111;
+    border-color: var(--hn-ink);
     box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.08);
 }
 
 .field input::placeholder,
 .field textarea::placeholder {
-    color: #999;
+    color: var(--hn-muted);
 }
 
 .privacyNote {
     font-size: 0.82rem;
     line-height: 1.8;
-    color: #777;
+    color: var(--hn-muted);
     max-width: 100%;
     margin: 0.4rem 0 0;
 }
@@ -214,7 +214,7 @@
     align-items: center;
     justify-content: center;
     min-height: 3.2rem;
-    border-radius: 999px;
+    border-radius: 0;
     font-family: var(--font-jp);
     font-size: 0.95rem;
     font-weight: 600;
@@ -225,15 +225,15 @@
 
 .submitButton {
     width: fit-content;
-    border: 1px solid #111;
-    background: #111;
+    border: 1px solid var(--hn-ink);
+    background: var(--hn-ink);
     color: #fff;
     padding: 0.8rem 2.5rem;
 }
 
 .submitButton:hover {
-    background: #333;
-    border-color: #333;
+    background: var(--hn-ink);
+    border-color: var(--hn-ink);
 }
 
 .submitButton:disabled {
@@ -253,14 +253,14 @@
 }
 
 .secondaryButton {
-    border: 1px solid #111;
-    color: #111;
-    background: #fff;
+    border: 1px solid var(--hn-ink);
+    color: var(--hn-ink);
+    background: var(--hn-paper);
     padding: 0.75rem 1.5rem;
 }
 
 .secondaryButton:hover {
-    background: #111;
+    background: var(--hn-ink);
     color: #fff;
 }
 
@@ -313,3 +313,31 @@
         width: 100%;
     }
 }
+
+/* Shared editorial direction: page-specific composition. */
+
+.page { padding-top: 170px; padding-bottom: 100px; color: var(--hn-ink); }
+.title { font-size: clamp(32px, 4vw, 52px); font-weight: 400; line-height: 1.55; letter-spacing: .045em; }
+.eyebrow { color: var(--hn-sun); font-size: 11px; letter-spacing: .16em; margin-bottom: 24px; }
+@media (max-width: 640px) {
+    .page { padding-top: 125px; padding-bottom: 64px; }
+    .title { font-size: 30px; line-height: 1.6; }
+}
+
+
+/* Shared editorial direction: page-specific composition. */
+
+.container { max-width: 880px; }
+.page h1 { font-size: clamp(30px, 3.8vw, 48px); font-weight: 400; line-height: 1.6; }
+.lead { background: transparent; border: 0; padding: 0; font-size: 16px; line-height: 2.1; margin-bottom: 35px; }
+.form { border: 0; border-top: 1px solid var(--hn-line); padding: 36px 0; background: transparent; gap: 28px; }
+.field input, .field select, .field textarea { background: #fbfaf7; border-color: #a9b1a2; padding: 14px; font-size: 16px; }
+.field span { font-weight: 500; }
+.explanation, .examples { border: 0; background: var(--hn-surface); padding: 28px; }
+.principles span { border: 0; padding: 0 16px 0 0; font-weight: 400; }
+.principles span::before { content: '✓'; color: var(--hn-sun); margin-right: 7px; }
+.typeOption { background: transparent; border-color: var(--hn-line); }
+.typeOptionActive { background: var(--hn-ink); border-color: var(--hn-ink); color: #fff; }
+.typeOptionActive:hover { background: var(--hn-ink); color: #fff; }
+.submit, .submitButton { min-height: 54px; padding-left: 36px; padding-right: 36px; font-weight: 500; }
+@media(max-width:640px) { .page { padding-top: 125px; } .container { padding-left: 24px; padding-right: 24px; width: 100%; } .form { padding: 28px 0; } .explanation, .examples { padding: 22px; } }

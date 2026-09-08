@@ -20,7 +20,7 @@
     font-family: var(--font-en);
     font-size: 0.78rem;
     letter-spacing: 0.22em;
-    color: #888;
+    color: var(--hn-muted);
     margin: 0 0 0.65rem;
 }
 
@@ -36,7 +36,7 @@
 .catch {
     max-width: 780px;
     margin-bottom: 1.7rem;
-    color: #111;
+    color: var(--hn-ink);
     font-size: clamp(2rem, 5vw, 3.4rem);
     font-weight: 500;
     letter-spacing: 0.04em;
@@ -50,7 +50,7 @@
 .lead {
     max-width: 720px;
     margin: 0;
-    color: #444;
+    color: var(--hn-muted);
     font-size: 1rem;
     line-height: 2;
 }
@@ -58,8 +58,8 @@
 .intro {
     margin-bottom: 5rem;
     padding: 2.2rem 2.4rem;
-    border-left: 3px solid #111;
-    background: #fafafa;
+    border-left: 3px solid var(--hn-ink);
+    background: var(--hn-surface);
 }
 
 .intro h2 {
@@ -74,7 +74,7 @@
 .intro p {
     max-width: 100%;
     margin: 0;
-    color: #444;
+    color: var(--hn-muted);
     font-size: 0.95rem;
     line-height: 2;
 }
@@ -97,7 +97,7 @@
 }
 
 .supportList {
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid var(--hn-line);
 }
 
 .supportItem {
@@ -105,12 +105,12 @@
     grid-template-columns: 4.5rem 1fr;
     gap: 1.5rem;
     padding: 2rem 0;
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid var(--hn-line);
 }
 
 .number {
     padding-top: 0.15rem;
-    color: #888;
+    color: var(--hn-muted);
     font-family: var(--font-en);
     font-size: 0.82rem;
     letter-spacing: 0.16em;
@@ -127,7 +127,7 @@
 .supportItem p {
     max-width: 100%;
     margin: 0;
-    color: #555;
+    color: var(--hn-muted);
     font-size: 0.92rem;
     line-height: 1.9;
 }
@@ -135,20 +135,20 @@
 .consultationList {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid var(--hn-line);
 }
 
 .consultationList li {
     position: relative;
     padding: 1.35rem 1.2rem 1.35rem 2rem;
-    border-bottom: 1px solid #e5e5e5;
-    color: #333;
+    border-bottom: 1px solid var(--hn-line);
+    color: var(--hn-ink);
     font-size: 0.92rem;
     line-height: 1.8;
 }
 
 .consultationList li:nth-child(odd) {
-    border-right: 1px solid #e5e5e5;
+    border-right: 1px solid var(--hn-line);
 }
 
 .consultationList li::before {
@@ -159,14 +159,14 @@
     width: 0.35rem;
     height: 0.35rem;
     border-radius: 50%;
-    background: #111;
+    background: var(--hn-ink);
 }
 
 .cta {
     padding: 2.5rem;
-    border: 1px solid #e5e5e5;
-    border-radius: 8px;
-    background: #fffdf8;
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
+    background: var(--hn-surface);
 }
 
 .cta h2 {
@@ -181,7 +181,7 @@
 .cta p:not(.sectionLabel) {
     max-width: 650px;
     margin: 0 0 1.8rem;
-    color: #555;
+    color: var(--hn-muted);
     font-size: 0.92rem;
     line-height: 1.9;
 }
@@ -192,9 +192,9 @@
     justify-content: center;
     min-height: 3.2rem;
     padding: 0.8rem 2rem;
-    border: 1px solid #111;
-    border-radius: 999px;
-    background: #111;
+    border: 1px solid var(--hn-ink);
+    border-radius: 0;
+    background: var(--hn-ink);
     color: #fff;
     font-size: 0.92rem;
     font-weight: 600;
@@ -203,8 +203,8 @@
 }
 
 .ctaButton:hover {
-    border-color: #333;
-    background: #333;
+    border-color: var(--hn-ink);
+    background: var(--hn-ink);
 }
 
 @media (max-width: 768px) {
@@ -273,3 +273,22 @@
         width: 100%;
     }
 }
+
+/* Shared editorial direction: page-specific composition. */
+
+.page { padding-top: 170px; }
+.container { max-width: 1100px; }
+.eyebrow, .sectionLabel, .number { color: var(--hn-sun); font-size: 11px; }
+.catch { font-weight: 400; font-size: clamp(32px, 4vw, 52px); }
+.intro { background: var(--hn-surface); border: 0; }
+.sectionTitle { font-weight: 400; }
+.cta { background: var(--hn-ink); color: #fff; padding: 45px; }
+.cta .sectionLabel { color: #dfb091; }
+.cta p { color: #e3e9dd; }
+.ctaButton { background: var(--hn-paper); color: var(--hn-ink); }
+@media(max-width:640px) { .page { padding-top: 125px; } .container { padding: 0 24px; } .cta { padding: 28px; } }
+
+.cta h2 { color: #fff; } .ctaButton:hover { background: #dfb091; color: var(--hn-ink); }
+
+.catch { text-wrap: balance; }
+@media(max-width:640px) { .catch { font-size: 28px; } .mobileBreak { display: none; } }

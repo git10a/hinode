@@ -224,6 +224,7 @@ export default async function FirstRunPage() {
             <div className={styles.pageInner}>
                 <section className={styles.hero}>
                     <div className={styles.heroCopy}>
+                    <p className="editorial-eyebrow">YOUR FIRST MORNING</p>
                         <h1 className={styles.title}>
                             初めてHINODEに参加する方へ
                         </h1>

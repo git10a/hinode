@@ -62,6 +62,7 @@ export default function PressContent({ memberCount = null, runCount = null }) {
     return (
         <section className={styles.pressPage}>
             <div className={styles.container}>
+                    <p className="editorial-eyebrow">PRESS & MEDIA</p>
                 <h1 className={`${styles.title} ${styles.fadeIn}`}>
                     HINODE プレスキット
                 </h1>

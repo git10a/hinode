@@ -13,7 +13,7 @@
     font-size: 0.82rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: #e08a4e;
+    color: var(--hn-sun);
     margin-bottom: 1rem;
 }
 
@@ -37,21 +37,21 @@
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
-    background: linear-gradient(90deg, #F37E4A, #FFC436);
-    border-radius: 2px;
+    background: var(--hn-sun);
+    border-radius: 0;
 }
 
 .introText {
     font-size: 1.05rem;
     line-height: 2;
-    color: #444;
+    color: var(--hn-muted);
     max-width: 660px;
     margin: 1.5rem auto 0;
 }
 
 .section {
     padding: 3rem 0 4rem;
-    background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
+    background: var(--hn-surface);
 }
 
 .narrowContainer {
@@ -78,8 +78,8 @@
     left: 0;
     width: 40px;
     height: 3px;
-    background: linear-gradient(90deg, #F37E4A, #FFC436);
-    border-radius: 2px;
+    background: var(--hn-sun);
+    border-radius: 0;
 }
 
 .faqItem {
@@ -101,7 +101,7 @@
     flex-shrink: 0;
     font-family: var(--font-en);
     font-weight: 700;
-    background: linear-gradient(135deg, #F37E4A, #FFC436);
+    background: var(--hn-sun);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -114,7 +114,7 @@
 .faqAnswer {
     font-size: 0.95rem;
     line-height: 2;
-    color: #555;
+    color: var(--hn-muted);
 }
 
 .faqAnswer a {
@@ -132,7 +132,7 @@
 .ctaText {
     font-size: 1.05rem;
     line-height: 2.2;
-    color: #444;
+    color: var(--hn-muted);
     margin-bottom: 1.5rem;
 }
 
@@ -148,7 +148,7 @@
     background: var(--color-text);
     color: #fff;
     padding: 0.6rem 1.6rem;
-    border-radius: 30px;
+    border-radius: 0;
     font-size: 0.9rem;
     text-decoration: none;
     transition: opacity var(--transition-speed);
@@ -163,7 +163,7 @@
     border: 1px solid var(--color-text);
     color: var(--color-text);
     padding: 0.6rem 1.6rem;
-    border-radius: 30px;
+    border-radius: 0;
     font-size: 0.9rem;
     text-decoration: none;
     transition: background var(--transition-speed), color var(--transition-speed);
@@ -187,3 +187,28 @@
         padding: 0 1.5rem;
     }
 }
+
+/* Shared editorial direction: page-specific composition. */
+
+.hero { align-items: stretch; text-align: left; padding: 170px 0 65px; }
+.hero > :global(.container) { width: min(1180px, 100%); padding: 0 32px; }
+.eyebrow { color: var(--hn-sun); font-size: 11px; letter-spacing: .16em; }
+.title { font-size: clamp(32px, 4vw, 52px); font-weight: 400; line-height: 1.6; }
+.title::after, .sectionTitle::after, .groupTitle::after { display: none; }
+.introText { margin: 20px 0 0; }
+.section { background: transparent; padding: 48px 0 64px; }
+.sectionAlt { background: var(--hn-surface); }
+.sectionTitle, .groupTitle { font-weight: 400; font-size: 28px; }
+.faqQuestion::before { background: none; color: var(--hn-sun); }
+.narrowContainer { max-width: 900px; }
+.contentContainer { max-width: 1180px; }
+.courseCard { background: transparent; border: 0; border-top: 1px solid var(--hn-line); border-bottom: 1px solid var(--hn-line); padding: 28px 0; }
+.courseCard:hover { transform: none; background: var(--hn-surface); }
+.courseCardTitle { font-weight: 500; }
+.statsCard { background: transparent; border: 0; }
+.hinodeBox { background: var(--hn-surface); box-shadow: none; border: 0; }
+.ctaSection { background: var(--hn-ink); color: var(--hn-paper); margin: 0 24px 24px; padding: 60px 24px; text-align: left; }
+.ctaText { color: var(--hn-paper); font-weight: 400; }
+.ctaSection .primaryButton { background: var(--hn-paper); color: var(--hn-ink); }
+.ctaSection .secondaryButton { color: var(--hn-paper); border-color: #aab5a5; }
+@media(max-width:640px) { .hero { padding: 125px 0 40px; } .hero > :global(.container) { padding: 0 24px; } .title { font-size: 30px; } .narrowContainer, .contentContainer { padding: 0 24px; } .sectionTitle, .groupTitle { font-size: 24px; } .ctaSection { margin: 0 12px 12px; padding: 38px 24px; } }

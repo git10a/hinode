@@ -13,7 +13,7 @@
     display: flex;
     gap: 0.65rem;
     margin-bottom: 2.5rem;
-    color: #777;
+    color: var(--hn-muted);
     font-family: var(--font-en);
     font-size: 0.75rem;
     letter-spacing: 0.12em;
@@ -25,7 +25,7 @@
 
 .eyebrow {
     margin-bottom: 1rem;
-    color: #777;
+    color: var(--hn-muted);
     font-family: var(--font-en);
     font-size: 0.75rem;
     letter-spacing: 0.18em;
@@ -41,7 +41,7 @@
 .description {
     max-width: 720px;
     margin-bottom: 0;
-    color: #444;
+    color: var(--hn-muted);
     line-height: 2;
 }
 
@@ -54,7 +54,7 @@
     margin: 4rem auto 0;
     padding-bottom: 0.2rem;
     border-bottom: 1px solid var(--color-border);
-    color: #666;
+    color: var(--hn-muted);
     font-size: 0.82rem;
     letter-spacing: 0.08em;
 }
@@ -72,3 +72,12 @@
         padding: 3.5rem 1.25rem 6rem;
     }
 }
+
+/* Shared editorial direction: page-specific composition. */
+
+.topicHeader { padding: 170px 32px 60px; }
+.topicInner, .topicMain { width: min(1180px, 100%); }
+.eyebrow { color: var(--hn-sun); font-size: 11px; }
+.title { font-weight: 400; line-height: 1.6; }
+.topicMain { padding: 60px 32px 100px; }
+@media(max-width:640px) { .topicHeader { padding: 125px 24px 40px; } .topicMain { padding: 40px 24px 64px; } .title { font-size: 30px; } }

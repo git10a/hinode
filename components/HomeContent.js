@@ -98,14 +98,14 @@ const VALUES = [
     {
         title: '競争しない',
         desc: '速さではなく、朝の習慣を続けることを大切に。自分のペースでゆっくり走ります。',
-        image: '/assets/hinodekyoto1.jpg',
-        alt: '京都での朝ラン',
+        image: '/assets/Yoyogi.jpg',
+        alt: '朝の代々木公園の並木道',
     },
     {
         title: '1人でも来やすい',
         desc: '初参加やソロ参加の方も毎回いらっしゃいますので、お気軽にお越しください。',
-        image: '/assets/hinodeyoyogi.jpg',
-        alt: '代々木公園で走るHINODEメンバー',
+        image: '/assets/hinodecoffee.jpg',
+        alt: '朝の光が差すテーブルとコーヒー',
     },
     {
         title: '撮影しない',
@@ -185,100 +185,42 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
 
     return (
         <div className={styles.page}>
-            {/* Hero */}
-            <section className={styles.hero}>
-                <div className={styles.heroImageWrapper}>
-                    <Image
-                        src="/assets/komazawa.jpg"
-                        alt=""
-                        fill
-                        priority
-                        sizes="100vw"
-                        className={styles.heroImage}
-                    />
-                    <div className={styles.heroOverlay} aria-hidden="true" />
+            <section aria-labelledby="home-title">
+                <div className={styles.heroIntro}>
+                    <div>
+                        <p className={styles.eyebrow}><span className={styles.sunDot} /> MORNING RUNNING COMMUNITY</p>
+                        <h1 id="home-title" className={styles.heroHeadline}>東京の<br />朝ランコミュニティ<br />HINODE</h1>
+                    </div>
+                    <div className={styles.heroDescription}>
+                        <p className={styles.heroSub}>いつもより早く起きて、だれかと走る。<br />それだけで、今日がずっと充実した日になる。</p>
+                        <p className={styles.heroDetail}>皇居や代々木公園を中心に活動する、<br />東京の朝ランコミュニティ、HINODE。</p>
+                        <Link href="/first-run" className={styles.textLink}>初めての方へ <span aria-hidden="true">↗</span></Link>
+                    </div>
                 </div>
-
-                <div className={styles.heroInner}>
-                    <div className={styles.heroLayout}>
-                        <div className={styles.heroCopy}>
-                            <p className={styles.heroBrand}>HINODE</p>
-                            <h1 className={styles.heroHeadline}>
-                                東京の朝ランコミュニティ
-                            </h1>
-                            <p className={styles.heroSub}>
-                                皇居や代々木公園を中心に、毎朝だれかと気軽に走り続けられる場所をつくっています。
-                            </p>
-
-                            <a
-                                href="https://www.bs-tvtokyo.co.jp/runners_salon/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={styles.heroMediaMention}
-                            >
-                                BSテレ東「ランナーズサロン」で紹介されました ↗
-                            </a>
-
-                            <div className={styles.heroMeta}>
-                                <span>{runCount !== null ? `累計 ${runCount}回開催` : '雨天を除き毎週開催'}</span>
-                                <span>{COMMUNITY_SINCE}から継続</span>
-                            </div>
-                            <a
-                                href="https://www.strava.com/clubs/hinode"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={styles.heroStravaLink}
-                            >
-                                Stravaでコミュニティを見る ↗
-                            </a>
-                        </div>
-
-                        <aside className={styles.heroNextCard} aria-labelledby="next-run-title">
-                            <p id="next-run-title" className={styles.heroNextLabel}>次の開催</p>
-                            <div className={styles.heroNextDateRow}>
-                                <span className={styles.heroNextDate}>{nextRun.nextDate}</span>
-                                <span className={styles.heroNextTime}>{nextRun.time}</span>
-                            </div>
-                            <p className={styles.heroNextPlace}>{nextRun.place}</p>
-                            <p className={styles.heroNextLocation}>
-                                <svg viewBox="0 0 24 24" aria-hidden="true">
-                                    <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" />
-                                    <circle cx="12" cy="9" r="2.5" />
-                                </svg>
-                                {nextRun.location}
-                            </p>
-                            <div className={styles.heroFacts} aria-label="参加条件">
-                                {COMMUNITY_PROMISES.map((promise) => <span key={promise}>{promise}</span>)}
-                            </div>
-                            <ParticipantPreview
-                                count={nextRun.participantCount}
-                                participants={nextRun.participants}
-                                className={styles.heroParticipants}
-                            />
-                            <Link href={nextRun.detailsHref} className={styles.heroNextCta}>
-                                参加方法を確認する
-                                <span aria-hidden="true">→</span>
-                            </Link>
-                            {nextRun.stravaHref && (
-                                <a
-                                    href={nextRun.stravaHref}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={styles.heroNextStrava}
-                                >
-                                    この開催をStravaで見る
-                                </a>
-                            )}
-                        </aside>
+                <div className={styles.heroLandscape}>
+                    <Image src="/assets/komazawa.jpg" alt="静かな朝の公園に広がる朝焼け" fill priority sizes="100vw" className={styles.heroImage} />
+                    <div className={styles.heroPhotoNote}><span>A NEW DAY, TOGETHER.</span></div>
+                </div>
+                <div className={styles.heroBottom}>
+                    <aside className={styles.nextRun} aria-labelledby="next-run-title">
+                        <p id="next-run-title" className={styles.nextLabel}><span className={styles.sunDot} /> NEXT RUN<span>次の定例ラン</span></p>
+                        <div className={styles.nextDate}><span>{nextRun.nextDate}</span><span>{nextRun.time}</span></div>
+                        <div className={styles.nextPlace}><strong>{nextRun.place}</strong><span>{nextRun.location}</span></div>
+                        <ParticipantPreview count={nextRun.participantCount} participants={nextRun.participants} />
+                        <Link href={nextRun.detailsHref} className={styles.nextLink}>参加方法を見る <span aria-hidden="true">↗</span></Link>
+                    </aside>
+                    <div className={styles.promiseStrip}>
+                        <div>{COMMUNITY_PROMISES.map((promise) => <span key={promise}>{promise}</span>)}</div>
+                        <span>SINCE {COMMUNITY_SINCE}</span>
                     </div>
                 </div>
             </section>
 
             {/* Weekly schedule */}
             <section id="schedule" className={styles.weekly}>
-                <div className={styles.weeklyInner}>
+                <div>
                 <div className={styles.sectionHeader}>
-                    <h2 className={styles.sectionTitle}>今週の開催</h2>
+                    <div><p className={styles.eyebrow}>01 / RUN WITH US</p><h2 className={styles.sectionTitle}>今週、どこで走ろう。</h2></div>
                     <Link href="/schedule" className={styles.sectionMore}>
                         すべての開催日程を見る →
                     </Link>
@@ -289,7 +231,7 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                             return (
                                 <article
                                     key={`event-${item.eventId}-${item.startAt}`}
-                                    className={`${styles.weeklyCard} ${item.isNext ? styles.weeklyCardNext : ''}`}
+                                    className={styles.weeklyCard}
                                 >
                                     <a
                                         href={item.stravaHref}
@@ -297,7 +239,7 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                                         rel="noopener noreferrer"
                                         className={styles.weeklyCardMain}
                                     >
-                                        <div className={`${styles.weeklyBody} ${styles.weeklyEventBody}`}>
+                                        <div className={styles.weeklyEventBody}>
                                             <div className={styles.weeklyDay}>
                                                 <span className={styles.weeklyDate}>{item.nextDate}</span>
                                                 <span className={styles.weeklyTime}>{item.time}</span>
@@ -341,7 +283,7 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                         return (
                             <article
                                 key={`regular-${item.id}`}
-                                className={`${styles.weeklyCard} ${item.isNext ? styles.weeklyCardNext : ''}`}
+                                className={styles.weeklyCard}
                             >
                                 <Link href={item.detailsHref} className={styles.weeklyCardMain}>
                                     <div className={styles.weeklyMedia}>
@@ -350,7 +292,7 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                                                 src={item.image}
                                                 alt={item.place}
                                                 fill
-                                                sizes="96px"
+                                                sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 33vw"
                                             />
                                         </div>
                                         {(item.isNext || item.recommendedForFirstRun) && (
@@ -364,7 +306,7 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                                             </div>
                                         )}
                                     </div>
-                                    <div className={styles.weeklyBody}>
+                                    <div>
                                         <div className={styles.weeklyDay}>
                                             {item.nextDate && (
                                                 <span className={styles.weeklyDate}>{item.nextDate}</span>
@@ -419,16 +361,21 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                 </div>
             </section>
 
+            <div className={styles.communityNote}>
+                <span>{runCount !== null ? `これまでに ${runCount} 回、朝をともに。` : '雨天を除き、毎週開催しています。'}</span>
+                <a href="https://www.bs-tvtokyo.co.jp/runners_salon/" target="_blank" rel="noopener noreferrer">BSテレ東「ランナーズサロン」で紹介されました ↗</a>
+            </div>
+
             {/* Values */}
             <section className={styles.values}>
                 <div className={styles.sectionHeader}>
-                    <h2 className={styles.sectionTitle}>HINODEとは</h2>
+                    <div><p className={styles.eyebrow}>02 / OUR PHILOSOPHY</p><h2 className={styles.sectionTitle}>いい朝を、続けよう。</h2></div><Link href="/about" className={styles.sectionMore}>HINODEとは ↗</Link>
                 </div>
                 <p className={styles.valuesLead}>
                     HINODEは、速さや人数を競うためではなく、朝に走る習慣を続けるためのコミュニティです。東京と京都で、それぞれの街に合った形で活動しています。
                 </p>
                 <div className={styles.valuesGrid}>
-                    {VALUES.map((v) => (
+                    {VALUES.map((v, index) => (
                         <div key={v.title} className={styles.valueItem}>
                             <div className={styles.valueImageWrap}>
                                 <Image
@@ -439,7 +386,7 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                                     className={styles.valueImage}
                                 />
                             </div>
-                            <h3 className={styles.valueTitle}>{v.title}</h3>
+                            <span className={styles.valueNumber}>0{index + 1}</span><h3 className={styles.valueTitle}>{v.title}</h3>
                             <p className={styles.valueDesc}>{v.desc}</p>
                         </div>
                     ))}
@@ -449,12 +396,12 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
             {/* First-timer steps */}
             <section className={styles.firstTime}>
                 <div className={styles.sectionHeader}>
-                    <h2 className={styles.sectionTitle}>初めて参加する方へ</h2>
+                    <div><p className={styles.eyebrow}>03 / YOUR FIRST MORNING</p><h2 className={styles.sectionTitle}>いつもの靴で、<br />いつもと違う朝へ。</h2></div>
                 </div>
                 <div className={styles.stepsGrid}>
                     {STEPS.map((s, idx) => (
                         <div key={s.num} className={styles.stepCard}>
-                            <span className={styles.stepNum}>{s.num}</span>
+                            <span className={styles.stepNum}>0{s.num}</span>
                             <h3 className={styles.stepHead}>{s.head}</h3>
                             <p className={styles.stepDesc}>{s.desc}</p>
                             {idx < STEPS.length - 1 && (
@@ -474,7 +421,7 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                 <div className={styles.firstTimeCta}>
                     <Link href={FIRST_RUN_GUIDE_URL} className={styles.firstTimeCtaLink}>
                         初参加ガイドを見る
-                        <span className={styles.firstTimeCtaArrow} aria-hidden="true">→</span>
+                        <span aria-hidden="true">→</span>
                     </Link>
                     <Link href="/schedule" className={styles.firstTimeSubLink}>
                         次回の開催日程を見る
@@ -484,7 +431,7 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
 
             {/* Running services */}
             <section id="services" className={styles.services}>
-                <div className={styles.servicesIntro}>
+                <div>
                     <p className={styles.servicesEyebrow}>OTHER PROJECTS</p>
                     <h2 className={styles.servicesTitle}>ランニングに関する取り組み</h2>
                     <p className={styles.servicesLead}>HINODE Communityとは別に運営しているサービスです。</p>
@@ -505,7 +452,7 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
             {latestPosts.length > 0 && (
                 <section className={styles.posts}>
                     <div className={styles.sectionHeader}>
-                        <h2 className={styles.sectionTitle}>朝の読みもの</h2>
+                        <div><p className={styles.eyebrow}>JOURNAL</p><h2 className={styles.sectionTitle}>朝の読みもの。</h2></div>
                         <Link href="/blog" className={styles.sectionMore}>
                             すべてのブログを見る →
                         </Link>
@@ -536,12 +483,12 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
             {/* Closing CTA */}
             <section className={styles.closing}>
                 <div className={styles.closingInner}>
-                    <div className={styles.closingText}>
-                        <p className={styles.closingHeadline}>
-                            まずは一度、朝の空気を見に来てください。
+                    <div>
+                        <p className={styles.eyebrow}>SEE YOU IN THE MORNING</p><p className={styles.closingHeadline}>
+                            次の朝、<br />お会いしましょう。
                         </p>
                         <p className={styles.closingSub}>
-                            予約不要・参加無料。手ぶらで大丈夫です。
+                            予約不要・参加無料。いつものランニングの準備で。
                         </p>
                     </div>
                     <div className={styles.closingCta}>

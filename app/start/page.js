@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function StartPage() {
     return (
-        <main className={styles.page}>
+        <div className={styles.page}>
             <div className={styles.container}>
                 <p className={styles.eyebrow}>START IN YOUR CITY</p>
                 <h1>自分の街でHINODEを始める</h1>
@@ -24,6 +24,6 @@ export default function StartPage() {
                 </section>
                 <StartForm />
             </div>
-        </main>
+        </div>
     );
 }

@@ -15,7 +15,7 @@
     font-size: 0.82rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: #e08a4e;
+    color: var(--hn-sun);
     margin-bottom: 1rem;
 }
 
@@ -39,14 +39,14 @@
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
-    background: linear-gradient(90deg, #F37E4A, #FFC436);
-    border-radius: 2px;
+    background: var(--hn-sun);
+    border-radius: 0;
 }
 
 .introText {
     font-size: 1.05rem;
     line-height: 2;
-    color: #444;
+    color: var(--hn-muted);
     max-width: 700px;
     margin: 1.5rem auto 0;
     text-align: left;
@@ -58,7 +58,7 @@
 }
 
 .sectionAlt {
-    background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
+    background: var(--hn-surface);
 }
 
 .contentContainer {
@@ -92,14 +92,14 @@
     left: 0;
     width: 40px;
     height: 3px;
-    background: linear-gradient(90deg, #F37E4A, #FFC436);
-    border-radius: 2px;
+    background: var(--hn-sun);
+    border-radius: 0;
 }
 
 .text {
     font-size: 1rem;
     line-height: 2;
-    color: #555;
+    color: var(--hn-muted);
     margin-bottom: 1.2rem;
 }
 
@@ -116,11 +116,11 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    background: #ffffff;
-    border-radius: 16px;
+    background: var(--hn-paper);
+    border-radius: 0;
     padding: 1.8rem 1.6rem 1.6rem;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-    border: 1px solid #f0f0f0;
+    box-shadow: none;
+    border: 1px solid var(--hn-line);
     text-decoration: none;
     color: inherit;
     overflow: hidden;
@@ -134,18 +134,18 @@
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, #F37E4A, #FFC436);
+    background: var(--hn-sun);
     opacity: 0.85;
 }
 
 .courseCard:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    box-shadow: none;
 }
 
 .courseCardArea {
     font-size: 0.8rem;
-    color: #999;
+    color: var(--hn-muted);
     letter-spacing: 0.1em;
     margin-bottom: 0.3rem;
 }
@@ -160,7 +160,7 @@
 .courseCardCatch {
     font-size: 0.92rem;
     line-height: 1.9;
-    color: #555;
+    color: var(--hn-muted);
     flex-grow: 1;
 }
 
@@ -168,19 +168,19 @@
     margin-top: 1.2rem;
     align-self: flex-start;
     font-size: 0.8rem;
-    color: #777;
+    color: var(--hn-muted);
     border: 1px solid var(--color-border);
-    border-radius: 20px;
+    border-radius: 0;
     padding: 0.15rem 0.9rem;
     line-height: 1.8;
 }
 
 .hinodeBadge {
     display: inline-block;
-    background: linear-gradient(135deg, #F37E4A, #FFC436);
+    background: var(--hn-surface);
     color: #fff;
     padding: 0.2rem 0.8rem;
-    border-radius: 20px;
+    border-radius: 0;
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -193,12 +193,12 @@
 .breadcrumb {
     display: block;
     font-size: 0.85rem;
-    color: #999;
+    color: var(--hn-muted);
     margin-bottom: 2rem;
 }
 
 .breadcrumb a {
-    color: #999;
+    color: var(--hn-muted);
     text-decoration: none;
 }
 
@@ -211,9 +211,9 @@
     width: fit-content;
     font-size: 0.85rem;
     letter-spacing: 0.1em;
-    color: #777;
+    color: var(--hn-muted);
     border: 1px solid var(--color-border);
-    border-radius: 20px;
+    border-radius: 0;
     padding: 0.2rem 1rem;
     margin: 0 auto 1.2rem;
 }
@@ -221,16 +221,16 @@
 .catchText {
     font-size: 1.1rem;
     line-height: 2;
-    color: #444;
+    color: var(--hn-muted);
     max-width: 640px;
     margin: 1.2rem auto 0;
 }
 
 .statsCard {
-    background: #ffffff;
-    border: 1px solid #f0f0f0;
-    border-radius: 16px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    background: var(--hn-paper);
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
+    box-shadow: none;
     padding: 0.6rem 1.8rem;
     margin-top: 1.5rem;
 }
@@ -245,7 +245,7 @@
 .statsTable td {
     text-align: left;
     padding: 0.9rem 0.5rem;
-    border-bottom: 1px solid #f4f4f4;
+    border-bottom: 1px solid var(--hn-line);
     line-height: 1.8;
 }
 
@@ -256,16 +256,16 @@
 
 .statsTable th {
     width: 7.5em;
-    color: #888;
+    color: var(--hn-muted);
     font-weight: 500;
     white-space: nowrap;
     vertical-align: top;
 }
 
 .hinodeBox {
-    background: linear-gradient(135deg, #fff7f0 0%, #fffbef 100%);
-    border: 1px solid #f8dcc8;
-    border-radius: 16px;
+    background: var(--hn-surface);
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
     padding: 2rem;
     margin-top: 1rem;
 }
@@ -287,14 +287,14 @@
 
 .hinodeBoxMeeting {
     font-size: 0.95rem;
-    color: #555;
+    color: var(--hn-muted);
     margin-bottom: 0.8rem;
 }
 
 .hinodeBoxNote {
     font-size: 0.92rem;
     line-height: 1.9;
-    color: #666;
+    color: var(--hn-muted);
     margin-bottom: 1.2rem;
 }
 
@@ -309,7 +309,7 @@
     background: var(--color-text);
     color: #fff;
     padding: 0.6rem 1.6rem;
-    border-radius: 30px;
+    border-radius: 0;
     font-size: 0.9rem;
     text-decoration: none;
     transition: opacity var(--transition-speed);
@@ -324,7 +324,7 @@
     border: 1px solid var(--color-text);
     color: var(--color-text);
     padding: 0.6rem 1.6rem;
-    border-radius: 30px;
+    border-radius: 0;
     font-size: 0.9rem;
     text-decoration: none;
     transition: background var(--transition-speed), color var(--transition-speed);
@@ -339,7 +339,7 @@
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 10;
-    border-radius: 16px;
+    border-radius: 0;
     overflow: hidden;
     margin-top: 1.5rem;
     border: 1px solid var(--color-border);
@@ -372,7 +372,7 @@
     flex-shrink: 0;
     font-family: var(--font-en);
     font-weight: 700;
-    background: linear-gradient(135deg, #F37E4A, #FFC436);
+    background: var(--hn-sun);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -381,7 +381,7 @@
 .faqAnswer {
     font-size: 0.95rem;
     line-height: 2;
-    color: #555;
+    color: var(--hn-muted);
     padding-left: 1.9em;
 }
 
@@ -400,7 +400,7 @@
 .ctaText {
     font-size: 1.05rem;
     line-height: 2.2;
-    color: #444;
+    color: var(--hn-muted);
     margin-bottom: 1.5rem;
 }
 
@@ -440,3 +440,30 @@
         width: 6em;
     }
 }
+
+/* Shared editorial direction: page-specific composition. */
+
+.hero { align-items: stretch; text-align: left; padding: 170px 0 65px; }
+.hero > :global(.container) { width: min(1180px, 100%); padding: 0 32px; }
+.eyebrow { color: var(--hn-sun); font-size: 11px; letter-spacing: .16em; }
+.title { font-size: clamp(32px, 4vw, 52px); font-weight: 400; line-height: 1.6; }
+.title::after, .sectionTitle::after, .groupTitle::after { display: none; }
+.introText { margin: 20px 0 0; }
+.section { background: transparent; padding: 48px 0 64px; }
+.sectionAlt { background: var(--hn-surface); }
+.sectionTitle, .groupTitle { font-weight: 400; font-size: 28px; }
+.faqQuestion::before { background: none; color: var(--hn-sun); }
+.narrowContainer { max-width: 900px; }
+.contentContainer { max-width: 1180px; }
+.courseCard { background: transparent; border: 0; border-top: 1px solid var(--hn-line); border-bottom: 1px solid var(--hn-line); padding: 28px 0; }
+.courseCard:hover { transform: none; background: var(--hn-surface); }
+.courseCardTitle { font-weight: 500; }
+.statsCard { background: transparent; border: 0; }
+.hinodeBox { background: var(--hn-surface); box-shadow: none; border: 0; }
+.ctaSection { background: var(--hn-ink); color: var(--hn-paper); margin: 0 24px 24px; padding: 60px 24px; text-align: left; }
+.ctaText { color: var(--hn-paper); font-weight: 400; }
+.ctaSection .primaryButton { background: var(--hn-paper); color: var(--hn-ink); }
+.ctaSection .secondaryButton { color: var(--hn-paper); border-color: #aab5a5; }
+@media(max-width:640px) { .hero { padding: 125px 0 40px; } .hero > :global(.container) { padding: 0 24px; } .title { font-size: 30px; } .narrowContainer, .contentContainer { padding: 0 24px; } .sectionTitle, .groupTitle { font-size: 24px; } .ctaSection { margin: 0 12px 12px; padding: 38px 24px; } }
+
+.hinodeBadge { background: var(--hn-ink); color: #fff; }

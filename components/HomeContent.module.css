@@ -1,1374 +1,220 @@
-/* =========================
-   Page
-========================= */
 .page {
-    background: #ffffff;
-    color: #111;
-}
-
-.page p {
-    max-width: none;
-    margin: 0;
-    font-size: inherit;
-    color: inherit;
-}
-
-.page h1,
-.page h2,
-.page h3 {
-    font-weight: inherit;
-    line-height: inherit;
-    border: none;
-    padding: 0;
-    margin: 0;
-    text-transform: none;
-    letter-spacing: inherit;
-}
-
-.sectionHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 1.5rem;
-    margin-bottom: 2.75rem;
-}
-
-.sectionTitle {
-    font-size: 1.6rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    margin: 0;
-    color: #111;
-    border: none;
-    padding: 0;
-    text-transform: none;
-}
-
-.sectionMore {
-    font-family: var(--font-en);
-    font-size: 0.85rem;
-    letter-spacing: 0.1em;
-    color: #888;
-    text-decoration: none;
-    transition: color 0.3s ease;
-    white-space: nowrap;
-}
-
-.sectionMore:hover {
-    color: #F37E4A;
-}
-
-/* =========================
-   Hero
-========================= */
-.hero {
-    position: relative;
-    width: 100%;
-    min-height: 85vh;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    padding: 7.5rem 2rem 4rem;
-}
-
-.heroImageWrapper {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-}
-
-.heroImage {
-    object-fit: cover;
-    object-position: center 70%;
-}
-
-.heroOverlay {
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(to bottom,
-            rgba(0, 0, 0, 0.2) 0%,
-            rgba(0, 0, 0, 0.04) 42%,
-            rgba(0, 0, 0, 0.58) 100%);
-}
-
-.heroInner {
-    position: relative;
-    z-index: 1;
-    max-width: 1180px;
-    margin: 0 auto;
-    width: 100%;
-}
-
-.heroLayout {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(340px, 420px);
-    align-items: center;
-    gap: clamp(3rem, 7vw, 6rem);
-}
-
-.heroCopy {
-    color: #fff;
-    max-width: 580px;
-    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.3);
-}
-
-.heroBrand {
-    font-family: var(--font-en);
-    font-size: clamp(3.2rem, 5vw, 4rem);
-    font-weight: 300;
-    letter-spacing: 0.22em;
-    color: #fff;
-    line-height: 1;
-    margin: 0 0 1.5rem;
-    text-transform: none;
-}
-
-.heroHeadline {
-    font-size: clamp(1.8rem, 3vw, 2.2rem);
-    font-weight: 400;
-    line-height: 1.55;
-    letter-spacing: 0.08em;
-    margin: 0 0 1.4rem;
-    color: #fff;
-    text-transform: none;
-    word-break: keep-all;
-    overflow-wrap: break-word;
-}
-
-.heroSub {
-    font-size: 1rem;
-    line-height: 1.9;
-    letter-spacing: 0.06em;
-    margin: 0 0 1.7rem;
-    color: rgba(255, 255, 255, 0.95);
-    font-weight: 400;
-    max-width: 540px;
-}
-
-.heroMediaMention {
-    display: inline-block;
-    margin: 0 0 1.15rem;
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    text-decoration: underline;
-    text-decoration-color: rgba(255, 255, 255, 0.38);
-    text-underline-offset: 0.28rem;
-    transition: color 0.2s, text-decoration-color 0.2s;
-}
-
-.heroMediaMention:hover {
-    color: #fff;
-    text-decoration-color: #fff;
-}
-
-.heroMeta {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.4rem 1rem;
-    color: #fff;
-    font-size: 0.82rem;
-    letter-spacing: 0.1em;
-    opacity: 0.95;
-}
-
-.heroMeta span:not(:last-child)::after {
-    content: '·';
-    margin-left: 1rem;
-    opacity: 0.6;
-}
-
-.heroMetaIcon {
-    width: 16px;
-    height: 16px;
-    stroke: currentColor;
-    fill: none;
-    stroke-width: 1.5;
-}
-
-.heroStravaLink {
-    display: inline-block;
-    margin-top: 0.7rem;
-    color: rgba(255, 255, 255, 0.82);
-    font-size: 0.84rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    text-decoration: underline;
-    text-decoration-color: rgba(255, 255, 255, 0.38);
-    text-underline-offset: 0.3rem;
-    transition: color 0.2s, text-decoration-color 0.2s;
-}
-
-.heroStravaLink:hover {
-    color: #fff;
-    text-decoration-color: #fff;
-}
-
-.heroNextCard {
-    width: 100%;
-    padding: 1.8rem;
-    color: #111;
-    background: rgba(255, 255, 255, 0.97);
-    border: 1px solid rgba(255, 255, 255, 0.72);
-    border-radius: 8px;
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
-}
-
-.heroNextLabel {
-    margin-bottom: 0.75rem;
-    color: #9b4a24;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-}
-
-.heroNextDateRow {
-    display: flex;
-    align-items: baseline;
-    gap: 0.8rem;
-    margin-bottom: 0.35rem;
-}
-
-.heroNextDate {
-    font-family: var(--font-en);
-    font-size: 1.9rem;
-    font-weight: 600;
-    line-height: 1.1;
-    letter-spacing: 0.02em;
-}
-
-.heroNextTime {
-    font-family: var(--font-en);
-    font-size: 1.05rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-}
-
-.heroNextPlace {
-    margin-bottom: 0.25rem;
-    font-size: 1.12rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-}
-
-.page .heroNextLocation {
-    display: flex;
-    align-items: center;
-    gap: 0.45rem;
-    color: #666;
-    font-size: 0.82rem;
-    letter-spacing: 0.03em;
-}
-
-.heroNextLocation svg {
-    width: 14px;
-    height: 14px;
-    color: #C5A14C;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.6;
-}
-
-.heroFacts {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.65rem 1rem;
-    margin: 1.25rem 0;
-    padding: 1.15rem 0;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-}
-
-.heroFacts span {
-    position: relative;
-    padding-left: 1.1rem;
-    color: #555;
-    font-size: 0.82rem;
-    line-height: 1.5;
-    letter-spacing: 0.03em;
-}
-
-.heroFacts span::before {
-    content: '';
-    position: absolute;
-    top: 0.48em;
-    left: 0;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #C5A14C;
-}
-
-.heroParticipants {
-    margin: -0.25rem 0 1rem;
-    --participant-avatar-size: 24px;
-    --participant-avatar-overlap: -0.45rem;
-}
-
-.heroNextCta {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.7rem;
-    width: 100%;
-    min-height: 3.25rem;
-    padding: 0.85rem 1.2rem;
-    color: #fff;
-    background: #111;
-    border-radius: 6px;
-    font-size: 0.92rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.2s;
-}
-
-.heroNextCta:hover {
-    background: #2f2f2f;
-    transform: translateY(-1px);
-}
-
-.heroNextStrava {
-    display: block;
-    margin-top: 0.8rem;
-    color: #777;
-    font-size: 0.76rem;
-    font-weight: 500;
-    letter-spacing: 0.03em;
-    text-align: center;
-    text-decoration: none;
-}
-
-.heroNextStrava:hover {
-    color: #111;
-    text-decoration: underline;
-    text-underline-offset: 0.25rem;
-}
-
-.startCityLabel {
-    margin: 0 0 0.45rem;
-    color: #888;
-    font-family: var(--font-en);
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-}
-
-.startCityCta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    margin-top: 2.25rem;
-    padding: 1.8rem;
-    border-radius: 8px;
-    background: #111;
-    color: #fff;
-}
-
-.startCityLabel { color: #aaa; }
-.startCityCta h3 { margin: 0 0 0.3rem; font-size: 1.2rem; }
-.startCityCta p:not(.startCityLabel) { margin: 0; color: #ccc; font-size: 0.82rem; line-height: 1.8; }
-.startCityLink { flex-shrink: 0; padding: 0.75rem 1rem; border-radius: 6px; background: #fff; color: #111; font-size: 0.8rem; font-weight: 700; text-decoration: none; }
-
-/* =========================
-   Weekly schedule
-========================= */
-.weekly {
-    padding: 5rem 2rem;
-    background: #fafafa;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-.weeklyInner {
-    max-width: 1180px;
-    margin: 0 auto;
-}
-
-.weeklyGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-items: start;
-    gap: 2rem;
-}
-
-.weeklyCard {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    color: inherit;
-    background: #fff;
-    border: 1px solid #e5e5e5;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        border-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.035);
-}
-
-.weeklyCardMain {
-    display: flex;
-    flex: 1;
-    align-items: flex-start;
-    gap: 0.9rem;
-    padding: 1rem 1rem 0.85rem;
-    color: inherit;
-    text-decoration: none;
-}
-
-.weeklyCard:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
-}
-
-.weeklyCardNext {
-    border-color: #C5A14C;
-    box-shadow: 0 10px 30px rgba(197, 161, 76, 0.18), 0 2px 12px rgba(0, 0, 0, 0.05);
-}
-
-.weeklyCardNext:hover {
-    box-shadow: 0 16px 34px rgba(197, 161, 76, 0.22), 0 12px 28px rgba(0, 0, 0, 0.08);
-}
-
-.weeklyBadges {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    align-items: flex-start;
-    margin-top: 0.65rem;
-}
-
-.weeklyNextBadge,
-.weeklyRecommendBadge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 1.45rem;
-    padding: 0.18rem 0.55rem;
-    font-size: 0.66rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    color: #fff;
-    background: #111;
-    border-radius: 999px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
-    white-space: nowrap;
-}
-
-.weeklyRecommendBadge {
-    color: #3f3110;
-    background: #f6df9b;
-    box-shadow: 0 6px 16px rgba(197, 161, 76, 0.18);
-}
-
-.weeklyMedia {
-    flex: 0 0 104px;
-    width: 104px;
-}
-
-.weeklyThumb {
-    position: relative;
-    width: 96px;
-    aspect-ratio: 1;
-    border-radius: 6px;
-    overflow: hidden;
-    background: #f2f2f2;
-}
-
-.weeklyThumb img {
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.weeklyCard:hover .weeklyThumb img {
-    transform: scale(1.04);
-}
-
-.weeklyBody {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    min-width: 0;
-    padding: 0.05rem 0 0;
-}
-
-.weeklyEventBody {
-    width: 100%;
-}
-
-.weeklyEventTitle {
-    margin: 0 0 0.45rem;
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 1.6;
-    letter-spacing: 0.04em;
-}
-
-.weeklyDay {
-    display: flex;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 0.35rem 0.6rem;
-    margin-bottom: 0.35rem;
-    line-height: 1.45;
-}
-
-.weeklyDate {
-    display: inline-block;
-    padding: 0.16rem 0.48rem;
-    font-family: var(--font-en);
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    color: #fff;
-    background: #C5A14C;
-    border-radius: 4px;
-    line-height: 1.3;
-}
-
-.weeklyTime {
-    font-size: 0.98rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    color: #111;
-}
-
-.weeklyDivider {
-    color: #ccc;
-}
-
-.weeklyPlace {
-    font-size: 0.98rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    color: #111;
-}
-
-.page .weeklyLocation {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.32rem;
-    font-size: 0.72rem;
-    color: #858585;
-    margin-bottom: 0;
-    line-height: 1.45;
-    letter-spacing: 0.03em;
-}
-
-.weeklyLocationIcon {
-    width: 11px;
-    height: 11px;
-    stroke: currentColor;
-    fill: none;
-    stroke-width: 1.6;
-    flex-shrink: 0;
-    margin-top: 0.22rem;
-}
-
-.weeklyParticipants {
-    margin-top: 0.65rem;
-    max-width: 100%;
-    flex-wrap: wrap;
-    gap: 0.35rem 0.5rem;
-    --participant-avatar-size: 24px;
-    --participant-avatar-overlap: -0.5rem;
-}
-
-.weeklyCardActions {
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
-    padding: 0 1rem 1rem;
-}
-
-.weeklySecondaryActions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.55rem;
-}
-
-.weeklyStravaButton,
-.weeklyGuideButton {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 2.15rem;
-    padding: 0.48rem 0.65rem;
-    border-radius: 6px;
-    font-family: inherit;
-    font-size: 0.74rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    line-height: 1.35;
-    text-align: center;
-    text-decoration: none;
-    overflow-wrap: anywhere;
-    white-space: nowrap;
-    transition: background 0.2s, border-color 0.2s, color 0.2s;
-}
-
-.weeklyStravaButton,
-.weeklyGuideButton {
-    flex: 1 1 7rem;
-    border: 1px solid #e8dcc9;
-    background: #fffaf1;
-    color: #795d2d;
-}
-
-.weeklyStravaButton:hover,
-.weeklyGuideButton:hover {
-    border-color: #d3bd86;
-    background: #fff6df;
-    color: #111;
-}
-
-.weeklyTag {
-    display: inline-block;
-    padding: 0.3rem 0.75rem;
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    color: #A37F2D;
-    background: #FDF6E7;
-    border-radius: 999px;
-}
-
-/* =========================
-   Values (HINODEとは)
-========================= */
-.values {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 6.5rem 2rem 2rem;
-}
-
-.valuesLead {
-    max-width: 48rem;
-    margin: -1rem 0 2.75rem;
-    color: #444;
-    font-size: 0.96rem;
-    line-height: 2;
-    letter-spacing: 0.04em;
-}
-
-.inlineTextLink {
-    color: #9b4a24;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(155, 74, 36, 0.28);
-    transition: color 0.2s, border-color 0.2s;
-}
-
-.inlineTextLink:hover {
-    color: #111;
-    border-bottom-color: rgba(17, 17, 17, 0.38);
-}
-
-.valuesGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
-    margin-top: 0.5rem;
-}
-
-.valueItem {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-}
-
-.valueImageWrap {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    border-radius: 6px;
-    overflow: hidden;
-    background: #f3f3f3;
-    margin-bottom: 0.3rem;
-}
-
-.valueImage {
-    object-fit: cover;
-}
-
-.valueIconWrap {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: #FDF6E7;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #C5A14C;
-}
-
-.valueIcon {
-    width: 26px;
-    height: 26px;
-    stroke: currentColor;
-    fill: none;
-    stroke-width: 1.5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
-.valueTitle {
-    font-size: 1.1rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    color: #111;
-    margin: 0;
-}
-
-.valueDesc {
-    font-size: 0.9rem;
-    line-height: 1.95;
-    color: #555;
-    margin: 0;
-    letter-spacing: 0.04em;
-}
-
-/* =========================
-   Running services
-========================= */
-.services {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 4rem 2rem 1rem;
-    display: grid;
-    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-    gap: 3rem;
-    align-items: start;
-}
-
-.servicesIntro {
-    max-width: 30rem;
-}
-
-.servicesEyebrow {
-    margin: 0 0 1rem;
-    color: #9b4a24;
-    font-family: var(--font-en);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-}
-
-.servicesTitle {
-    margin: 0 0 1.25rem;
-    color: #111;
-    font-size: 1.65rem;
-    font-weight: 500;
-    line-height: 1.55;
-    letter-spacing: 0.06em;
-}
-
-.servicesLead {
-    margin: 0;
-    color: #555;
-    font-size: 0.92rem;
-    line-height: 2;
-    letter-spacing: 0.04em;
-}
-
-.servicesGrid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    border-top: 1px solid #dedbd2;
-}
-
-.serviceCard {
-    position: relative;
-    min-height: 12rem;
-    padding: 1.5rem 1.35rem 1.3rem;
-    color: #111;
-    text-decoration: none;
-    border-bottom: 1px solid #dedbd2;
-    transition: background-color 0.25s ease;
-}
-
-.serviceCard:first-child {
-    border-right: 1px solid #dedbd2;
-}
-
-.serviceCard:hover {
-    background: #faf8f3;
-}
-
-.serviceLabel {
-    display: inline-block;
-    margin-bottom: 1rem;
-    color: #777;
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
-}
-
-.serviceName {
-    margin: 0 0 0.8rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-}
-
-.serviceDescription {
-    margin: 0 0 2rem;
-    color: #555;
-    font-size: 0.86rem;
-    line-height: 1.9;
-    letter-spacing: 0.04em;
-}
-
-.serviceLink {
-    position: absolute;
-    right: 1.75rem;
-    bottom: 1.5rem;
-    color: #9b4a24;
-    font-size: 0.76rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-}
-
-/* =========================
-   First-timer steps
-========================= */
-.firstTime {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 6.5rem 2rem 2rem;
-}
-
-.stepsGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-top: 0.5rem;
-    position: relative;
-}
-
-.stepCard {
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 10px;
-    padding: 1.75rem 1.5rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    position: relative;
-}
-
-.stepNum {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: #C5A14C;
-    color: #fff;
-    font-family: var(--font-en);
-    font-size: 0.85rem;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    letter-spacing: 0;
-}
-
-.stepHead {
-    font-size: 1.02rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    color: #111;
-    margin: 0;
-    line-height: 1.6;
-}
-
-.stepDesc {
-    font-size: 0.85rem;
-    line-height: 1.9;
-    color: #555;
-    margin: 0;
-    letter-spacing: 0.03em;
-}
-
-.stepChevron {
-    position: absolute;
-    top: 50%;
-    right: -1.35rem;
-    transform: translateY(-50%);
-    color: #ddd;
-    pointer-events: none;
-}
-
-.firstTimeCta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.9rem 1.1rem;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2.35rem;
-}
-
-.firstTimeCtaLink {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.65rem;
-    min-height: 2.75rem;
-    padding: 0.78rem 1.25rem;
-    border-radius: 6px;
-    background: #222;
-    color: #fff;
-    font-size: 0.88rem;
-    font-weight: 600;
-    line-height: 1.5;
-    letter-spacing: 0.04em;
-    text-align: center;
-    text-decoration: none;
-    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
-}
-
-.firstTimeCtaLink:hover {
-    background: #000;
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
-    transform: translateY(-1px);
-}
-
-.firstTimeCtaArrow {
-    display: inline-block;
-    transition: transform 0.2s;
-}
-
-.firstTimeCtaLink:hover .firstTimeCtaArrow {
-    transform: translateX(3px);
-}
-
-.firstTimeSubLink {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 2.75rem;
-    color: #6b5f55;
-    font-size: 0.84rem;
-    font-weight: 600;
-    line-height: 1.5;
-    letter-spacing: 0.04em;
-    text-align: center;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(107, 95, 85, 0.28);
-    transition: color 0.2s, border-color 0.2s;
-}
-
-.firstTimeSubLink:hover {
-    color: #111;
-    border-bottom-color: rgba(17, 17, 17, 0.4);
-}
-
-/* =========================
-   Latest posts
-========================= */
-.posts {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 6.5rem 2rem 2rem;
-}
-
-.postsGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
-}
-
-.postCard {
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    color: inherit;
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.postCard:hover {
-    transform: translateY(-4px);
-}
-
-.postThumb {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    border-radius: 10px;
-    background: #faf7f0;
-    margin-bottom: 1.25rem;
-}
-
-.postThumb img {
-    object-fit: contain;
-    object-position: center;
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.postCard:hover .postThumb img {
-    transform: none;
-}
-
-.postDate {
-    font-family: var(--font-en);
-    font-size: 0.78rem;
-    letter-spacing: 0.12em;
-    color: #999;
-    margin-bottom: 0.5rem;
-}
-
-.postTitle {
-    font-size: 1.05rem;
-    font-weight: 600;
-    line-height: 1.65;
-    color: #111;
-    letter-spacing: 0.04em;
-    margin: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    transition: color 0.3s ease;
-}
-
-.postCard:hover .postTitle {
-    color: #F37E4A;
-}
-
-/* =========================
-   Closing CTA
-========================= */
-.closing {
-    margin: 7rem auto 0;
-    max-width: 1180px;
-    padding: 0 2rem 6rem;
-}
-
-.closingInner {
-    position: relative;
-    overflow: hidden;
-    border-radius: 14px;
-    padding: 4.5rem 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    background: linear-gradient(120deg, #F9EBC7 0%, #F5D38E 45%, #EFB568 100%);
-}
-
-.closingText {
-    max-width: 40em;
-}
-
-.closingHeadline {
-    font-size: clamp(1.3rem, 2vw, 1.65rem);
-    font-weight: 500;
-    line-height: 1.85;
-    letter-spacing: 0.08em;
-    color: #3a2a10;
-    margin: 0 0 0.5rem;
-}
-
-.closingSub {
-    font-size: 0.9rem;
-    color: #5a451e;
-    letter-spacing: 0.05em;
-    line-height: 1.85;
-    margin: 0;
-}
-
-.closingCta {
-    display: flex;
-    gap: 1rem;
-    flex-shrink: 0;
-    flex-wrap: wrap;
-}
-
-.closingBtn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.65rem;
-    padding: 0.95rem 1.6rem;
-    border-radius: 2px;
-    font-size: 0.9rem;
-    letter-spacing: 0.08em;
-    font-weight: 500;
-    text-decoration: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.closingBtnPrimary {
-    background: #111;
-    color: #fff;
-}
-
-.closingBtnPrimary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
-}
-
-.closingBtnSecondary {
-    background: rgba(255, 255, 255, 0.85);
-    color: #111;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.closingBtnSecondary:hover {
-    background: #fff;
-    transform: translateY(-2px);
-}
-
-/* =========================
-   Tablet
-========================= */
+    --paper: #f6f4ef;
+    --ink: #28342e;
+    --muted: #626a61;
+    --line: #d7d9cf;
+    --sun: #b24b2a;
+    background: var(--paper);
+    color: var(--ink);
+    letter-spacing: .04em;
+    padding-top: 110px;
+}
+.page p { max-width: none; margin: 0; color: inherit; }
+.page h1, .page h2, .page h3 { border: 0; padding: 0; margin: 0; text-transform: none; }
+.page a:focus-visible { outline: 2px solid var(--sun); outline-offset: 6px; }
+.page .eyebrow { display: flex; align-items: center; gap: 12px; font-family: var(--font-en); font-size: 11px; font-weight: 500; letter-spacing: .16em; line-height: 1.5; margin-bottom: 24px; color: var(--sun); }
+.sunDot { display: inline-block; flex-shrink: 0; width: 9px; height: 9px; background: var(--sun); border-radius: 50%; }
+.heroIntro { max-width: 1440px; margin: auto; padding: 62px 5.5% 64px; display: grid; grid-template-columns: 1.45fr 1fr; align-items: flex-end; gap: 50px; }
+.page .heroHeadline { font-size: clamp(38px, 4.3vw, 66px); font-weight: 400; letter-spacing: .055em; line-height: 1.38; }
+.heroDescription { padding-bottom: 9px; }
+.page .heroSub { font-size: clamp(15px, 1.3vw, 19px); line-height: 2.05; margin-bottom: 22px; }
+.page .heroDetail { font-size: 12px; line-height: 2; color: var(--muted); margin-bottom: 22px; }
+.textLink { display: inline-flex; align-items: center; gap: 50px; padding-bottom: 10px; border-bottom: 1px solid var(--ink); font-size: 12px; }
+.textLink:hover { color: var(--sun); }
+.heroLandscape { position: relative; height: clamp(350px, 37vw, 580px); margin: 0 24px; overflow: hidden; background: #b4b8b1; }
+.heroImage { object-fit: cover; object-position: center 72%; }
+.heroLandscape::after { content: ''; position: absolute; inset: 65% 0 0; background: linear-gradient(transparent, #16211d70); pointer-events: none; }
+.heroPhotoNote { position: absolute; bottom: 27px; left: 4%; right: 4%; display: flex; justify-content: space-between; gap: 20px; color: white; z-index: 1; font-family: var(--font-en); font-size: 10px; letter-spacing: .18em; }
+.heroBottom { max-width: 1280px; width: 89%; margin: auto; }
+.nextRun { display: flex; flex-wrap: wrap; gap: 25px 40px; align-items: center; padding: 30px 0; border-bottom: 1px solid var(--line); }
+.page .nextLabel { display: grid; grid-template-columns: 9px 1fr; align-items: center; column-gap: 10px; font-family: var(--font-en); font-size: 11px; letter-spacing: .12em; }
+.nextLabel > span:last-child { grid-column: 2; font-family: var(--font-jp); font-size: 10px; letter-spacing: .04em; color: var(--muted); }
+.nextDate { display: flex; align-items: baseline; gap: 18px; font-family: var(--font-en); }
+.nextDate > span:first-child { font-size: 29px; font-weight: 400; letter-spacing: -.02em; }
+.nextDate > span:last-child { font-size: 18px; }
+.nextPlace { display: flex; flex-direction: column; border-left: 1px solid var(--line); padding-left: 30px; font-size: 11px; }
+.nextPlace strong { font-size: 15px; font-weight: 500; }
+.nextPlace > span { color: var(--muted); }
+.nextLink { display: inline-flex; margin-left: auto; justify-content: space-between; gap: 36px; align-items: center; min-height: 50px; padding: 8px 22px; font-size: 12px; background: var(--ink); color: var(--paper); }
+.nextLink:hover { background: var(--sun); }
+.promiseStrip { display: flex; flex-wrap: wrap; gap: 15px; justify-content: space-between; align-items: center; padding: 20px 0; font-size: 10px; color: var(--muted); }
+.promiseStrip > div { display: flex; flex-wrap: wrap; gap: 24px; }
+.promiseStrip > div span::before { content: '✓'; color: var(--sun); margin-right: 8px; }
+.promiseStrip > span { font-family: var(--font-en); letter-spacing: .12em; }
+.weekly, .values, .firstTime, .posts, .services, .communityNote { max-width: 1280px; width: 89%; margin: 0 auto; }
+.weekly { padding-top: 100px; scroll-margin-top: 110px; }
+.sectionHeader { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 44px; }
+.page .sectionTitle { font-size: clamp(27px, 3vw, 43px); font-weight: 400; letter-spacing: .06em; line-height: 1.65; }
+.sectionHeader .eyebrow { margin-bottom: 15px; }
+.sectionMore { flex-shrink: 0; color: var(--muted); font-size: 11px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+.sectionMore:hover { color: var(--sun); border-color: var(--sun); }
+.weeklyGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px; }
+.weeklyCard { min-width: 0; display: flex; flex-direction: column; border-bottom: 1px solid var(--line); padding-bottom: 18px; }
+.weeklyCardMain { display: block; }
+.weeklyMedia { position: relative; margin-bottom: 20px; }
+.weeklyThumb { position: relative; aspect-ratio: 1.6; overflow: hidden; background: #e3e3d9; }
+.weeklyThumb img { object-fit: cover; transition: transform .6s ease; }
+.weeklyCardMain:hover .weeklyThumb img { transform: scale(1.035); }
+.weeklyBadges { position: absolute; bottom: 12px; left: 12px; display: flex; gap: 6px; flex-wrap: wrap; }
+.weeklyNextBadge, .weeklyRecommendBadge { background: var(--paper); color: var(--ink); font-size: 9px; padding: 3px 9px; }
+.weeklyNextBadge { background: var(--ink); color: white; }
+.weeklyDay { display: flex; flex-wrap: wrap; align-items: baseline; gap: 5px 12px; }
+.weeklyDate { font-size: 29px; font-family: var(--font-en); letter-spacing: -.03em; }
+.weeklyTime { font-size: 16px; font-family: var(--font-en); }
+.weeklyDivider { display: none; }
+.weeklyPlace { flex-basis: 100%; font-size: 18px; margin-top: 6px; }
+.page .weeklyLocation { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); margin-top: 6px; }
+.weeklyLocationIcon { width: 13px; height: 13px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.5; }
+.weeklyParticipants { margin-top: 12px; }
+.weeklyCardActions { margin-top: auto; padding-top: 18px; }
+.weeklySecondaryActions { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.weeklyStravaButton, .weeklyGuideButton { display: inline-flex; align-items: center; min-height: 44px; font-size: 10px; color: var(--muted); }
+.weeklyStravaButton::after, .weeklyGuideButton::after { content: '↗'; padding-left: 10px; color: var(--sun); }
+.weeklyStravaButton:hover, .weeklyGuideButton:hover { color: var(--sun); }
+.weeklyEventBody { padding: 26px; background: #e9ece2; min-height: 240px; }
+.page .weeklyEventTitle { font-size: 20px; line-height: 1.6; margin: 18px 0; }
+.startCityCta { margin-top: 48px; padding: 28px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+.page .startCityLabel { font-family: var(--font-en); color: var(--sun); font-size: 10px; letter-spacing: .15em; margin-bottom: 7px; }
+.page .startCityCta h3 { font-size: 19px; font-weight: 400; margin-bottom: 6px; }
+.page .startCityCta p:last-child { font-size: 11px; color: var(--muted); }
+.startCityLink { flex-shrink: 0; font-size: 12px; border-bottom: 1px solid var(--ink); padding: 8px 0; }
+.communityNote { display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between; padding-top: 24px; font-size: 10px; color: var(--muted); }
+.communityNote a:hover { color: var(--sun); }
+.values { padding: 140px 0 110px; }
+.page .valuesLead { margin: 0 0 54px auto; max-width: 610px; font-size: 14px; line-height: 2.3; color: var(--muted); }
+.valuesGrid { display: grid; grid-template-columns: 1.05fr .85fr 1fr; gap: 6%; align-items: flex-start; }
+.valueItem:nth-child(2) { padding-top: 100px; }
+.valueItem:nth-child(3) { padding-top: 35px; }
+.valueImageWrap { position: relative; aspect-ratio: 4 / 5; overflow: hidden; margin-bottom: 26px; }
+.valueItem:nth-child(2) .valueImageWrap { aspect-ratio: 1; }
+.valueImage { object-fit: cover; }
+.valueNumber { display: block; font-family: var(--font-en); font-size: 11px; letter-spacing: .1em; color: var(--sun); margin-bottom: 12px; }
+.page .valueTitle { font-size: 24px; line-height: 1.5; margin-bottom: 15px; font-weight: 400; }
+.page .valueDesc { color: var(--muted); font-size: 12px; line-height: 2.1; }
+.firstTime { padding: 68px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1.2fr; gap: 30px 9%; }
+.firstTime .sectionHeader { align-self: start; }
+.stepsGrid { display: flex; flex-direction: column; }
+.stepCard { display: grid; grid-template-columns: 40px 1fr; column-gap: 20px; row-gap: 12px; padding: 30px 0; border-top: 1px solid var(--line); }
+.stepCard:first-child { border: 0; padding-top: 0; }
+.stepNum { grid-row: span 2; font-family: var(--font-en); color: var(--sun); font-size: 19px; }
+.page .stepHead { font-size: 16px; font-weight: 500; line-height: 1.7; }
+.page .stepDesc { grid-column: 2; font-size: 12px; color: var(--muted); line-height: 2; }
+.stepChevron { display: none; }
+.firstTimeCta { grid-column: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 24px; }
+.firstTimeCtaLink { display: inline-flex; align-items: center; justify-content: space-between; gap: 35px; padding: 15px 24px; background: var(--ink); color: var(--paper); font-size: 12px; }
+.firstTimeCtaLink:hover { background: var(--sun); }
+.firstTimeSubLink { font-size: 11px; border-bottom: 1px solid var(--line); padding: 10px 0; }
+.services { display: grid; grid-template-columns: 1fr 1.2fr; gap: 9%; padding: 85px 0 0; }
+.page .servicesEyebrow { font-family: var(--font-en); font-size: 10px; letter-spacing: .16em; color: var(--sun); margin-bottom: 16px; }
+.page .servicesTitle { font-size: 23px; line-height: 1.7; margin-bottom: 16px; font-weight: 400; }
+.page .servicesLead { font-size: 11px; color: var(--muted); }
+.servicesGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.serviceCard { border-top: 1px solid var(--line); padding: 17px 0; }
+.serviceLabel { font-size: 10px; color: var(--muted); }
+.page .serviceName { font-size: 18px; margin: 12px 0; font-weight: 500; }
+.page .serviceDescription { font-size: 11px; color: var(--muted); line-height: 2; }
+.serviceLink { display: block; font-size: 10px; margin-top: 22px; color: var(--sun); }
+.posts { padding: 100px 0 110px; }
+.postsGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px; }
+.postThumb { position: relative; aspect-ratio: 1.6; overflow: hidden; background: #eeece5; margin-bottom: 20px; }
+.postThumb img { object-fit: contain; transition: transform .6s ease; }
+.postCard:hover .postThumb img { transform: scale(1.025); }
+.postDate { display: block; font-family: var(--font-en); font-size: 10px; color: var(--muted); margin-bottom: 12px; letter-spacing: .1em; }
+.page .postTitle { font-size: 15px; line-height: 1.9; font-weight: 400; }
+.postCard:hover .postTitle { color: var(--sun); }
+.closing { padding: 0 24px 24px; margin-top: 40px; }
+.closingInner { background: var(--ink); color: var(--paper); padding: 90px max(4%, calc((100vw - 1280px) / 2)); display: flex; justify-content: space-between; align-items: flex-end; gap: 50px; }
+.closing .eyebrow { color: #dfb091; }
+.page .closingHeadline { font-size: clamp(34px, 4.6vw, 65px); line-height: 1.6; font-weight: 300; margin-bottom: 26px; }
+.page .closingSub { color: #c6cec3; font-size: 12px; }
+.closingCta { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; min-width: 260px; }
+.closingBtn { display: flex; align-items: center; justify-content: center; min-height: 48px; font-size: 11px; }
+.closingBtnPrimary { grid-column: span 2; background: var(--paper); color: var(--ink); padding: 18px 25px; }
+.closingBtnPrimary:hover { background: #dfb091; }
+.closingBtnSecondary { border-bottom: 1px solid #647268; color: #d7dfd2; }
+.closingBtnSecondary:hover { color: white; border-color: white; }
 @media (max-width: 960px) {
-    .hero {
-        min-height: auto;
-        padding-top: 8.5rem;
-    }
-
-    .heroLayout {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
-
-    .heroCopy {
-        max-width: 620px;
-    }
-
-    .heroNextCard {
-        max-width: 520px;
-    }
-
-    .weeklyGrid,
-    .valuesGrid,
-    .stepsGrid,
-    .postsGrid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
-    }
-
-    .stepChevron {
-        display: none;
-    }
-
-    .closingInner {
-        padding: 3.5rem 2.5rem;
-    }
-
-    .services {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
-
+    .page { padding-top: 90px; }
+    .heroIntro { padding-top: 42px; gap: 25px; }
+    .heroHeadline { font-size: 58px; }
+    .nextRun { gap: 20px; }
+    .nextPlace { padding-left: 20px; }
+    .weeklyGrid { gap: 20px; }
+    .weeklyDate { font-size: 25px; }
+    .firstTime, .services { gap: 30px 5%; }
+    .valuesGrid { gap: 4%; }
 }
-
-/* =========================
-   Mobile
-========================= */
 @media (max-width: 640px) {
-    .hero {
-        min-height: auto;
-        padding: 7.5rem 1.25rem 2rem;
-    }
-
-    .heroInner {
-        padding-top: 0;
-    }
-
-    .heroLayout {
-        gap: 1.75rem;
-    }
-
-    .heroHeadline {
-        font-size: 1.45rem;
-        line-height: 1.6;
-        letter-spacing: 0.05em;
-    }
-
-    .heroBrand {
-        font-size: 3.2rem;
-    }
-
-    .heroSub {
-        font-size: 0.92rem;
-        line-height: 1.85;
-        margin-bottom: 1.25rem;
-    }
-
-    .heroMeta {
-        font-size: 0.76rem;
-    }
-
-    .heroMeta span:not(:last-child)::after {
-        display: none;
-    }
-
-    .heroStravaLink {
-        font-size: 0.78rem;
-    }
-
-    .heroNextCard {
-        padding: 1.35rem;
-    }
-
-    .heroNextDate {
-        font-size: 1.65rem;
-    }
-
-    .heroNextPlace {
-        font-size: 1rem;
-    }
-
-    .heroFacts {
-        gap: 0.6rem 0.75rem;
-        margin: 1rem 0;
-        padding: 1rem 0;
-    }
-
-    .heroFacts span {
-        font-size: 0.76rem;
-    }
-
-    .sectionHeader {
-        margin-bottom: 2rem;
-    }
-
-    .sectionTitle {
-        font-size: 1.35rem;
-    }
-
-    .weekly,
-    .values,
-    .services,
-    .firstTime,
-    .posts {
-        padding: 4.5rem 1.25rem 0.5rem;
-    }
-
-    .weeklyGrid,
-    .valuesGrid,
-    .stepsGrid,
-    .postsGrid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    .startCityCta {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 1.4rem;
-    }
-
-    .startCityLink {
-        width: 100%;
-        text-align: center;
-    }
-
-    .weeklyCardMain {
-        gap: 0.8rem;
-        padding: 0.9rem 0.9rem 0.8rem;
-    }
-
-    .weeklyMedia {
-        flex-basis: 84px;
-        width: 84px;
-    }
-
-    .weeklyThumb {
-        width: 84px;
-    }
-
-    .weeklyBody {
-        padding: 0;
-    }
-
-    .weeklyCardActions {
-        padding: 0 0.9rem 0.9rem;
-    }
-
-    .weeklyStravaButton,
-    .weeklyGuideButton {
-        flex-basis: 0;
-    }
-
-    .weeklyRecommendBadge {
-        max-width: 100%;
-        padding: 0.18rem 0.28rem;
-        font-size: 0.55rem;
-        line-height: 1.2;
-        letter-spacing: 0;
-        white-space: nowrap;
-    }
-
-    .valuesGrid {
-        gap: 2.5rem;
-    }
-
-    .servicesGrid {
-        grid-template-columns: 1fr;
-    }
-
-    .serviceCard {
-        min-height: 14.5rem;
-        padding: 1.6rem 1.25rem 1.4rem;
-    }
-
-    .serviceCard:first-child {
-        border-right: 0;
-    }
-
-    .serviceLabel {
-        margin-bottom: 1.5rem;
-    }
-
-    .serviceLink {
-        right: 1.25rem;
-        bottom: 1.2rem;
-    }
-
-    .stepCard {
-        padding: 1.5rem 1.25rem 1.25rem;
-    }
-
-    .firstTimeCta {
-        margin-top: 1.8rem;
-        flex-direction: column;
-    }
-
-    .firstTimeCtaLink {
-        width: 100%;
-    }
-
-    .firstTimeSubLink {
-        min-height: auto;
-    }
-
-    .closing {
-        margin-top: 5rem;
-        padding: 0 1.25rem 4rem;
-    }
-
-    .closingInner {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 3rem 2rem;
-        border-radius: 10px;
-    }
-
-    .closingHeadline {
-        font-size: 1.2rem;
-        line-height: 1.75;
-    }
-
-    .closingCta {
-        width: 100%;
-    }
-
-    .closingBtn {
-        flex: 1 1 100%;
-        justify-content: center;
-    }
+    .page { padding-top: 82px; }
+    .heroIntro { grid-template-columns: 1fr; padding: 30px 24px 35px; gap: 25px; }
+    .page .eyebrow { font-size: 9px; margin-bottom: 21px; }
+    .page .heroHeadline { font-size: clamp(29px, 8vw, 48px); line-height: 1.5; letter-spacing: .03em; }
+    .heroDescription { padding-bottom: 0; }
+    .page .heroSub { font-size: 14px; margin-bottom: 13px; }
+    .page .heroDetail { font-size: 12px; margin-bottom: 15px; }
+    .textLink { font-size: 12px; gap: 50px; padding-bottom: 7px; }
+    .heroLandscape { height: 290px; margin: 0 12px; }
+    .heroImage { object-position: center 72%; }
+    .heroPhotoNote { font-size: 8px; bottom: 18px; left: 18px; right: 18px; letter-spacing: .09em; }
+    .heroBottom, .weekly, .values, .firstTime, .posts, .services, .communityNote { width: calc(100% - 48px); }
+    .nextRun { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 10px; padding: 24px 0; }
+    .page .nextLabel { grid-column: span 2; display: flex; font-size: 10px; }
+    .nextLabel > span:last-child { margin-left: 8px; }
+    .nextDate { gap: 10px; }
+    .nextDate > span:first-child { font-size: 24px; }
+    .nextDate > span:last-child { font-size: 14px; }
+    .nextPlace { border: 0; padding-left: 10px; }
+    .nextPlace strong { font-size: 13px; }
+    .nextPlace > span { font-size: 9px; }
+    .nextLink { grid-column: span 2; width: 100%; margin: 0; min-height: 48px; }
+    .promiseStrip { gap: 8px; padding: 18px 0; font-size: 9px; }
+    .promiseStrip > div { gap: 12px; }
+    .promiseStrip > span { display: none; }
+    .promiseStrip > div span::before { margin-right: 4px; }
+    .weekly { padding-top: 60px; }
+    .sectionHeader { flex-wrap: wrap; gap: 15px; margin-bottom: 28px; }
+    .page .sectionTitle { font-size: 28px; }
+    .sectionHeader .eyebrow { margin-bottom: 12px; }
+    .sectionMore { font-size: 10px; }
+    .weeklyGrid { grid-template-columns: 1fr; gap: 32px; }
+    .weeklyMedia { margin-bottom: 16px; }
+    .weeklyThumb { aspect-ratio: 1.8; }
+    .weeklyDay { column-gap: 14px; }
+    .weeklyDate { font-size: 30px; }
+    .weeklyPlace { flex-basis: auto; margin: 0 0 0 auto; font-size: 16px; }
+    .weeklyCard { padding-bottom: 8px; }
+    .weeklyCardActions { padding-top: 8px; }
+    .weeklyEventBody { min-height: auto; padding: 24px; }
+    .startCityCta { flex-direction: column; align-items: flex-start; gap: 18px; margin-top: 38px; }
+    .page .startCityCta h3 { font-size: 18px; }
+    .communityNote { font-size: 9px; gap: 10px; }
+    .values { padding: 85px 0 65px; }
+    .page .valuesLead { font-size: 12px; margin-bottom: 32px; }
+    .valuesGrid { grid-template-columns: 1fr; gap: 40px; }
+    .valueItem:nth-child(2), .valueItem:nth-child(3) { padding-top: 0; }
+    .valueImageWrap { aspect-ratio: 1.2; margin-bottom: 20px; }
+    .valueItem:nth-child(2) { width: 85%; margin-left: auto; }
+    .valueItem:nth-child(2) .valueImageWrap { aspect-ratio: 1.2; }
+    .valueNumber { margin-bottom: 7px; }
+    .page .valueTitle { font-size: 23px; margin-bottom: 12px; }
+    .firstTime { grid-template-columns: 1fr; padding: 48px 0; gap: 25px; }
+    .firstTime .sectionHeader { margin-bottom: 8px; }
+    .stepCard { column-gap: 15px; padding: 25px 0; }
+    .firstTimeCta { grid-column: 1; gap: 16px; }
+    .firstTimeCtaLink { width: 100%; }
+    .services { grid-template-columns: 1fr; gap: 28px; padding-top: 60px; }
+    .servicesGrid { gap: 20px; }
+    .page .servicesTitle { font-size: 21px; }
+    .posts { padding: 65px 0 50px; }
+    .postsGrid { grid-template-columns: 1fr; gap: 32px; }
+    .postThumb { margin-bottom: 13px; }
+    .page .postTitle { font-size: 14px; }
+    .closing { padding: 0 12px 12px; margin-top: 20px; }
+    .closingInner { flex-direction: column; align-items: stretch; padding: 46px 24px; gap: 35px; }
+    .page .closingHeadline { font-size: 36px; margin-bottom: 20px; }
+    .page .closingSub { font-size: 11px; }
+    .closingCta { min-width: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .page *, .page *::before, .page *::after { transition: none !important; animation: none !important; }
 }

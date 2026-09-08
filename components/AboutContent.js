@@ -98,6 +98,7 @@ export default function AboutContent() {
     return (
         <div className={styles.page}>
             <div className={`${styles.hero} ${styles.fadeIn}`}>
+                <p className="editorial-eyebrow">ABOUT HINODE</p>
                 <h1 className={styles.title}>
                     日の出とともに、<br />
                     競争しない朝をつづける

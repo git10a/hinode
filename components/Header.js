@@ -115,7 +115,9 @@ export default function Header() {
 
                     <button
                         className={`hamburger ${isMenuOpen ? 'active' : ''}`}
-                        aria-label="Menu"
+                        aria-label={isMenuOpen ? 'メニューを閉じる' : 'メニューを開く'}
+                        aria-expanded={isMenuOpen}
+                        aria-controls="site-mobile-menu"
                         onClick={toggleMenu}
                     >
                         <span className="bar"></span>
@@ -123,7 +125,7 @@ export default function Header() {
                         <span className="bar"></span>
                     </button>
 
-                    <div className={`mobile-menu ${isMenuOpen ? 'active' : ''}`}>
+                    <div id="site-mobile-menu" className={`mobile-menu ${isMenuOpen ? 'active' : ''}`}>
                         <ul className="mobile-nav-links">
                             {MENU_LINKS.map(link => (
                                 <li key={link.href} className={itemClassName(link)}>

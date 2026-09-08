@@ -2,9 +2,8 @@
     width: 100%;
     padding: 8.5rem 0 5rem;
     background:
-        linear-gradient(180deg, rgba(255, 248, 242, 0.96) 0%, #ffffff 28rem),
-        #ffffff;
-    color: #222;
+        var(--hn-surface);
+    color: var(--hn-ink);
 }
 
 .container {
@@ -15,7 +14,7 @@
 
 .eyebrow {
     margin: 0 0 0.8rem;
-    color: #c2532a;
+    color: var(--hn-sun);
     font-family: var(--font-en);
     font-size: 0.78rem;
     font-weight: 700;
@@ -28,7 +27,7 @@
     margin: 0 0 1.2rem;
     padding: 0;
     border: none;
-    color: #111;
+    color: var(--hn-ink);
     font-family: var(--font-jp);
     font-size: 2.2rem;
     font-weight: 700;
@@ -39,7 +38,7 @@
 .lead {
     max-width: 760px;
     margin: 0 0 2rem;
-    color: #333;
+    color: var(--hn-ink);
     font-size: 1.08rem;
     line-height: 2;
 }
@@ -47,16 +46,16 @@
 .intro {
     margin: 0 0 2.4rem;
     padding: 1.5rem 1.7rem;
-    border-left: 4px solid #111;
+    border-left: 4px solid var(--hn-ink);
     background: rgba(255, 255, 255, 0.78);
-    box-shadow: 0 16px 36px rgba(53, 39, 29, 0.06);
+    box-shadow: none;
 }
 
 .intro p,
 .section p,
 .cta p {
     max-width: none;
-    color: #3d3a37;
+    color: var(--hn-ink);
     font-size: 0.98rem;
     line-height: 2;
 }
@@ -79,7 +78,7 @@
     gap: 0.6rem;
     margin: 0 0 1.8rem;
     padding: 0 0 1.8rem;
-    border-bottom: 1px solid #eaded3;
+    border-bottom: 1px solid var(--hn-line);
 }
 
 .toc a {
@@ -87,10 +86,10 @@
     align-items: center;
     min-height: 2.35rem;
     padding: 0.45rem 0.8rem;
-    border: 1px solid #eaded3;
-    border-radius: 999px;
-    background: #fff;
-    color: #4f4a45;
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
+    background: var(--hn-paper);
+    color: var(--hn-ink);
     font-size: 0.82rem;
     font-weight: 600;
     letter-spacing: 0.03em;
@@ -99,18 +98,18 @@
 }
 
 .toc a:hover {
-    border-color: #c2532a;
-    color: #111;
-    background: #fff8f2;
+    border-color: var(--hn-sun);
+    color: var(--hn-ink);
+    background: var(--hn-surface);
 }
 
 .content {
-    background: #fff;
+    background: var(--hn-paper);
 }
 
 .section {
     padding: 2.5rem 0;
-    border-bottom: 1px solid #ece7e2;
+    border-bottom: 1px solid var(--hn-line);
     scroll-margin-top: 7rem;
 }
 
@@ -122,7 +121,7 @@
     margin: 0 0 1rem;
     padding: 0;
     border: none;
-    color: #111;
+    color: var(--hn-ink);
     font-family: var(--font-jp);
     font-size: 1.35rem;
     font-weight: 700;
@@ -148,7 +147,7 @@
 .list li {
     position: relative;
     padding-left: 1.25rem;
-    color: #333;
+    color: var(--hn-ink);
     font-size: 0.96rem;
     line-height: 1.85;
 }
@@ -161,7 +160,7 @@
     width: 0.38rem;
     height: 0.38rem;
     border-radius: 50%;
-    background: #c2532a;
+    background: var(--hn-sun);
 }
 
 .contactBox {
@@ -171,20 +170,20 @@
     gap: 0.45rem 0.8rem;
     margin-top: 1.4rem;
     padding: 1rem 1.1rem;
-    border: 1px solid #eaded3;
-    border-radius: 8px;
-    background: #fffdf9;
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
+    background: var(--hn-surface);
 }
 
 .contactBox span {
-    color: #5f5851;
+    color: var(--hn-muted);
     font-size: 0.9rem;
     font-weight: 600;
     line-height: 1.6;
 }
 
 .contactBox a {
-    color: #111;
+    color: var(--hn-ink);
     font-family: var(--font-en);
     font-size: 0.95rem;
     font-weight: 700;
@@ -195,14 +194,14 @@
 }
 
 .contactBox a:hover {
-    text-decoration-color: #c2532a;
+    text-decoration-color: var(--hn-sun);
 }
 
 .cta {
     margin-top: 2.6rem;
     padding: 1.6rem;
-    border-radius: 8px;
-    background: #111;
+    border-radius: 0;
+    background: var(--hn-ink);
     color: #fff;
     text-align: center;
 }
@@ -226,7 +225,7 @@
     justify-content: center;
     min-height: 2.55rem;
     padding: 0.7rem 1.1rem;
-    border-radius: 6px;
+    border-radius: 0;
     font-size: 0.88rem;
     font-weight: 700;
     letter-spacing: 0.03em;
@@ -235,12 +234,12 @@
 }
 
 .primaryLink {
-    background: #fff;
-    color: #111;
+    background: var(--hn-paper);
+    color: var(--hn-ink);
 }
 
 .primaryLink:hover {
-    background: #f4e5da;
+    background: var(--hn-surface);
 }
 
 .secondaryLink {
@@ -255,7 +254,7 @@
 
 .ruleDates {
     margin-top: 1.4rem;
-    color: #888;
+    color: var(--hn-muted);
     font-size: 0.78rem;
     line-height: 1.8;
     text-align: right;
@@ -327,3 +326,24 @@
         width: 100%;
     }
 }
+
+/* Shared editorial direction: page-specific composition. */
+
+.page { padding-top: 170px; padding-bottom: 100px; color: var(--hn-ink); }
+.title { font-size: clamp(32px, 4vw, 52px); font-weight: 400; line-height: 1.55; letter-spacing: .045em; }
+.eyebrow { color: var(--hn-sun); font-size: 11px; letter-spacing: .16em; margin-bottom: 24px; }
+@media (max-width: 640px) {
+    .page { padding-top: 125px; padding-bottom: 64px; }
+    .title { font-size: 30px; line-height: 1.6; }
+}
+
+
+/* Shared editorial direction: page-specific composition. */
+
+.intro { box-shadow: none; background: var(--hn-surface); border: 0; }
+.toc a { background: transparent; border-width: 0 0 1px; padding: 10px 6px; }
+.section { padding: 34px 0; border-top: 1px solid var(--hn-line); }
+.section h2 { font-weight: 500; }
+.cta { background: var(--hn-surface); box-shadow: none; }
+
+.cta { background: var(--hn-ink); color: #fff; } .cta p { color: #e3e9dd; }

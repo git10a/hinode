@@ -249,6 +249,7 @@ export default async function EventPage() {
             ))}
 
             <div className={styles.hero}>
+                    <p className="editorial-eyebrow">SCHEDULE</p>
                 <h1 className={styles.title}>
                     HINODEのグループラン日程<br />
                     <span className={styles.titleSub}>皇居・目黒川・代々木公園</span>

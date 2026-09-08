@@ -2,7 +2,7 @@
     max-width: 960px;
     margin: 0 auto;
     padding: 9rem 1.5rem 4rem;
-    color: #222;
+    color: var(--hn-ink);
     overflow-wrap: anywhere;
 }
 
@@ -24,7 +24,7 @@
     font-size: 2rem;
     font-weight: 700;
     line-height: 1.55;
-    color: #111;
+    color: var(--hn-ink);
     letter-spacing: 0.03em;
     margin: 0 0 1.4rem;
     text-transform: none;
@@ -34,7 +34,7 @@
     display: inline-block;
     font-size: 1.1rem;
     font-weight: 500;
-    color: #777;
+    color: var(--hn-muted);
     letter-spacing: 0.04em;
     margin-top: 0.4rem;
 }
@@ -42,7 +42,7 @@
 .lead {
     font-size: 1rem;
     line-height: 2;
-    color: #555;
+    color: var(--hn-muted);
     margin: 0;
     max-width: 720px;
 }
@@ -52,10 +52,10 @@
     max-width: 760px;
     margin-top: 1.35rem;
     padding: 1.2rem 1.25rem 1.25rem;
-    border: 1px solid #f0d8c8;
-    border-radius: 6px;
-    background: #fffaf4;
-    color: #4f4a45;
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
+    background: var(--hn-surface);
+    color: var(--hn-ink);
 }
 
 .scheduleQuickViewHead {
@@ -72,7 +72,7 @@
 
 .scheduleQuickViewLabel {
     margin: 0;
-    color: #c2532a;
+    color: var(--hn-sun);
     font-size: 0.78rem;
     font-weight: 700;
     line-height: 1.6;
@@ -86,10 +86,10 @@
     flex-shrink: 0;
     min-height: 2rem;
     padding: 0.34rem 0.78rem;
-    border: 1px solid #ead8cd;
-    border-radius: 999px;
-    background: #fff;
-    color: #9b4a24;
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
+    background: var(--hn-paper);
+    color: var(--hn-sun);
     font-size: 0.82rem;
     font-weight: 700;
     line-height: 1.4;
@@ -99,15 +99,15 @@
 }
 
 .scheduleQuickViewStrava:hover {
-    background: #fff6df;
-    border-color: #d9bea6;
-    color: #111;
+    background: var(--hn-surface);
+    border-color: var(--hn-line);
+    color: var(--hn-ink);
 }
 
 .scheduleQuickViewLead {
     font-size: 0.9rem;
     line-height: 1.75;
-    color: #4f4a45;
+    color: var(--hn-ink);
     margin: 0;
     max-width: none;
 }
@@ -124,17 +124,17 @@
     gap: 0.2rem 0.75rem;
     min-width: 0;
     padding: 0.9rem;
-    border: 1px solid #f0e2d6;
-    border-radius: 6px;
-    background: #fff;
-    color: #222;
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
+    background: var(--hn-paper);
+    color: var(--hn-ink);
     text-decoration: none;
     transition: border-color 0.2s, transform 0.2s, background 0.2s;
 }
 
 .scheduleQuickCard:hover {
-    border-color: #d9bea6;
-    background: #fffdf9;
+    border-color: var(--hn-line);
+    background: var(--hn-surface);
     transform: translateY(-1px);
 }
 
@@ -152,7 +152,7 @@
     width: 1.7rem;
     height: 1.7rem;
     border-radius: 50%;
-    background: #c2532a;
+    background: var(--hn-sun);
     color: #fff;
     font-size: 0.78rem;
     font-weight: 700;
@@ -160,7 +160,7 @@
 }
 
 .scheduleQuickTime {
-    color: #111;
+    color: var(--hn-ink);
     font-family: var(--font-en);
     font-size: 1.15rem;
     font-weight: 700;
@@ -176,14 +176,14 @@
 }
 
 .scheduleQuickCardBody strong {
-    color: #222;
+    color: var(--hn-ink);
     font-size: 0.95rem;
     line-height: 1.5;
 }
 
 .scheduleQuickCardBody span,
 .scheduleQuickDistance {
-    color: #777;
+    color: var(--hn-muted);
     font-size: 0.72rem;
     line-height: 1.6;
 }
@@ -195,9 +195,9 @@
 .scheduleTableWrap {
     width: 100%;
     overflow-x: auto;
-    border: 1px solid #f0e2d6;
-    border-radius: 6px;
-    background: #fff;
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
+    background: var(--hn-paper);
 }
 
 .scheduleTable {
@@ -210,7 +210,7 @@
 .scheduleTable th,
 .scheduleTable td {
     padding: 0.78rem 0.9rem;
-    border-bottom: 1px solid #f3ece3;
+    border-bottom: 1px solid var(--hn-line);
     text-align: left;
     vertical-align: middle;
     font-size: 0.86rem;
@@ -218,15 +218,15 @@
 }
 
 .scheduleTable th {
-    color: #9b4a24;
-    background: #fff8ef;
+    color: var(--hn-sun);
+    background: var(--hn-surface);
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.08em;
 }
 
 .scheduleTable td {
-    color: #333;
+    color: var(--hn-ink);
 }
 
 .scheduleTable tr:last-child td {
@@ -234,7 +234,7 @@
 }
 
 .scheduleTable a {
-    color: #222;
+    color: var(--hn-ink);
     font-weight: 700;
     text-decoration: none;
     border-bottom: none;
@@ -242,12 +242,12 @@
 }
 
 .scheduleTable a:hover {
-    color: #c2532a;
+    color: var(--hn-sun);
 }
 
 .scheduleQuickViewNote {
     margin: 0.85rem 0 0;
-    color: #5f5851;
+    color: var(--hn-muted);
     font-size: 0.84rem;
     line-height: 1.8;
     max-width: none;
@@ -269,7 +269,7 @@
 
 .monthlyCalendarLabel {
     margin: 0 0 0.18rem;
-    color: #c2532a;
+    color: var(--hn-sun);
     font-family: var(--font-en);
     font-size: 0.68rem;
     font-weight: 700;
@@ -279,7 +279,7 @@
 
 .monthlyCalendar h2 {
     margin: 0;
-    color: #111;
+    color: var(--hn-ink);
     font-size: 1.25rem;
     font-weight: 700;
     line-height: 1.4;
@@ -291,14 +291,14 @@
     align-items: baseline;
     gap: 0.25rem;
     margin: 0;
-    color: #777;
+    color: var(--hn-muted);
     font-size: 0.75rem;
     line-height: 1.4;
     letter-spacing: 0.02em;
 }
 
 .monthlyCalendarMonth strong {
-    color: #222;
+    color: var(--hn-ink);
     font-family: var(--font-en);
     font-size: 1.45rem;
     letter-spacing: 0;
@@ -306,7 +306,7 @@
 
 .monthlyCalendarLead {
     margin: 0 0 1rem;
-    color: #666;
+    color: var(--hn-muted);
     font-size: 0.84rem;
     line-height: 1.75;
     max-width: none;
@@ -314,9 +314,9 @@
 
 .calendarFrame {
     overflow: hidden;
-    border: 1px solid #eaded4;
-    border-radius: 8px;
-    background: #fff;
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
+    background: var(--hn-paper);
 }
 
 .calendarWeekdays,
@@ -326,13 +326,13 @@
 }
 
 .calendarWeekdays {
-    background: #fff8ef;
-    border-bottom: 1px solid #eaded4;
+    background: var(--hn-surface);
+    border-bottom: 1px solid var(--hn-line);
 }
 
 .calendarWeekdays span {
     padding: 0.55rem 0.25rem;
-    color: #8b6a56;
+    color: var(--hn-muted);
     font-size: 0.7rem;
     font-weight: 700;
     line-height: 1;
@@ -341,15 +341,15 @@
 
 .calendarWeekdays span:first-child,
 .calendarWeekdays span:last-child {
-    color: #c2532a;
+    color: var(--hn-sun);
 }
 
 .calendarCell {
     min-height: 6.35rem;
     padding: 0.45rem;
-    border-right: 1px solid #f1e9e2;
-    border-bottom: 1px solid #f1e9e2;
-    background: #fff;
+    border-right: 1px solid var(--hn-line);
+    border-bottom: 1px solid var(--hn-line);
+    background: var(--hn-paper);
 }
 
 .calendarCell:nth-child(7n) {
@@ -361,11 +361,11 @@
 }
 
 .calendarCellEmpty {
-    background: #fdfbf9;
+    background: var(--hn-surface);
 }
 
 .calendarCellToday {
-    background: #fffaf4;
+    background: var(--hn-surface);
     box-shadow: inset 0 0 0 1px #e4b697;
 }
 
@@ -377,7 +377,7 @@
     height: 1.55rem;
     margin-bottom: 0.3rem;
     border-radius: 50%;
-    color: #555;
+    color: var(--hn-muted);
     font-family: var(--font-en);
     font-size: 0.78rem;
     font-weight: 600;
@@ -385,7 +385,7 @@
 }
 
 .calendarCellToday .calendarDate {
-    background: #222;
+    background: var(--hn-ink);
     color: #fff;
 }
 
@@ -401,15 +401,15 @@
     gap: 0.05rem;
     min-width: 0;
     padding: 0.28rem 0.35rem;
-    border-left: 2px solid #c2532a;
-    border-radius: 2px;
-    background: #fff6ee;
+    border-left: 2px solid var(--hn-sun);
+    border-radius: 0;
+    background: var(--hn-surface);
     color: #733718;
     text-decoration: none;
 }
 
 .calendarEvent:hover {
-    background: #fce9dc;
+    background: var(--hn-surface);
 }
 
 .calendarEvent span {
@@ -430,17 +430,17 @@
 }
 
 .calendarEventSpecial {
-    border-left-color: #222;
-    background: #f0f0f0;
-    color: #222;
+    border-left-color: var(--hn-ink);
+    background: var(--hn-surface);
+    color: var(--hn-ink);
 }
 
 .calendarEventSpecial:hover {
-    background: #e7e7e7;
+    background: var(--hn-surface);
 }
 
 .calendarEventSpecial small {
-    color: #666;
+    color: var(--hn-muted);
 }
 
 .calendarLegend {
@@ -454,7 +454,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
-    color: #666;
+    color: var(--hn-muted);
     font-size: 0.68rem;
     line-height: 1.5;
 }
@@ -464,25 +464,25 @@
     width: 0.45rem;
     height: 0.45rem;
     border-radius: 50%;
-    background: #c2532a;
+    background: var(--hn-sun);
 }
 
 .calendarLegendSpecial i {
-    background: #222;
+    background: var(--hn-ink);
 }
 
 .calendarNote {
     margin: 0.85rem 0 0;
-    color: #777;
+    color: var(--hn-muted);
     font-size: 0.76rem;
     line-height: 1.7;
     max-width: none;
 }
 
 .calendarNote a {
-    color: #9b4a24;
+    color: var(--hn-sun);
     font-weight: 700;
-    border-bottom: 1px solid #d7b9a8;
+    border-bottom: 1px solid var(--hn-line);
 }
 
 .firstRunCallout {
@@ -490,9 +490,9 @@
     max-width: 760px;
     margin-top: 1.6rem;
     padding: 1.35rem 1.5rem;
-    border: 1px solid #f0d8c8;
-    border-radius: 6px;
-    background: #fbf7f3;
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
+    background: var(--hn-surface);
 }
 
 .firstRunCallout h2 {
@@ -501,14 +501,14 @@
     font-weight: 700;
     line-height: 1.5;
     letter-spacing: 0.03em;
-    color: #c2532a;
+    color: var(--hn-sun);
     margin: 0 0 0.45rem;
 }
 
 .firstRunCallout p {
     font-size: 0.92rem;
     line-height: 1.85;
-    color: #4f4a45;
+    color: var(--hn-ink);
     margin: 0;
     max-width: none;
 }
@@ -520,8 +520,8 @@
     min-height: 2.45rem;
     margin-top: 1rem;
     padding: 0.62rem 0.95rem;
-    border-radius: 6px;
-    background: #222;
+    border-radius: 0;
+    background: var(--hn-ink);
     color: #fff;
     font-size: 0.86rem;
     font-weight: 600;
@@ -532,8 +532,8 @@
 }
 
 .firstRunCalloutLink:hover {
-    background: #000;
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+    background: var(--hn-ink);
+    box-shadow: none;
     transform: translateY(-1px);
 }
 
@@ -550,7 +550,7 @@
     font-family: var(--font-jp);
     font-size: 1.35rem;
     font-weight: 700;
-    color: #111;
+    color: var(--hn-ink);
     letter-spacing: 0.03em;
     line-height: 1.5;
     margin: 0 0 0.45rem;
@@ -563,11 +563,11 @@
 }
 
 .nextRunCard {
-    border: 1px solid #f0e2d6;
-    border-radius: 6px;
-    background: linear-gradient(180deg, #fff 0%, #fffaf4 100%);
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
+    background: var(--hn-surface);
     padding: 1.35rem 1.3rem 1.45rem;
-    box-shadow: 0 12px 30px rgba(118, 78, 46, 0.06);
+    box-shadow: none;
 }
 
 .nextRunTop {
@@ -583,7 +583,7 @@
     align-items: center;
     min-height: 1.55rem;
     padding: 0.22rem 0.55rem;
-    border-radius: 3px;
+    border-radius: 0;
     font-size: 0.7rem;
     font-weight: 700;
     line-height: 1.4;
@@ -592,13 +592,13 @@
 
 .nextRunBadge {
     color: #fff;
-    background: #222;
+    background: var(--hn-ink);
 }
 
 .nextRunGuideBadge {
-    color: #c2532a;
-    background: #fbf7f3;
-    border: 1px solid #f0d8c8;
+    color: var(--hn-sun);
+    background: var(--hn-surface);
+    border: 1px solid var(--hn-line);
 }
 
 .nextRunDate {
@@ -607,7 +607,7 @@
     gap: 0.55rem;
     margin: 0 0 0.25rem;
     font-family: var(--font-en);
-    color: #c2532a;
+    color: var(--hn-sun);
 }
 
 .nextRunDate span:first-child {
@@ -628,7 +628,7 @@
     font-weight: 700;
     line-height: 1.55;
     letter-spacing: 0.03em;
-    color: #111;
+    color: var(--hn-ink);
     margin: 0 0 0.55rem;
 }
 
@@ -637,7 +637,7 @@
     flex-wrap: wrap;
     gap: 0.4rem 0.75rem;
     margin: -0.25rem 0 0.55rem;
-    color: #777;
+    color: var(--hn-muted);
     font-size: 0.8rem;
     line-height: 1.6;
 }
@@ -653,7 +653,7 @@
     height: 3px;
     margin-right: 0.75rem;
     border-radius: 50%;
-    background: #d5c8bd;
+    background: var(--hn-surface);
 }
 
 .nextRunLocation {
@@ -661,7 +661,7 @@
     align-items: center;
     gap: 0.35rem;
     margin: 0;
-    color: #666;
+    color: var(--hn-muted);
     font-size: 0.84rem;
     line-height: 1.6;
 }
@@ -691,7 +691,7 @@
     display: inline-flex;
     align-items: center;
     min-height: 1.7rem;
-    color: #9b4a24;
+    color: var(--hn-sun);
     border-bottom: 1px solid rgba(155, 74, 36, 0.24);
     font-size: 0.82rem;
     font-weight: 600;
@@ -702,7 +702,7 @@
 }
 
 .nextRunDetailsLink:hover {
-    color: #111;
+    color: var(--hn-ink);
     border-bottom-color: rgba(17, 17, 17, 0.38);
 }
 
@@ -720,10 +720,10 @@
     width: 100%;
     min-height: 2.45rem;
     padding: 0.65rem 0.9rem;
-    border-radius: 6px;
-    border: 1px solid #e8dcc9;
-    background: #fffaf1;
-    color: #795d2d;
+    border-radius: 0;
+    border: 1px solid var(--hn-line);
+    background: var(--hn-surface);
+    color: var(--hn-muted);
     font-family: inherit;
     font-size: 0.82rem;
     font-weight: 600;
@@ -741,17 +741,17 @@
 
 .nextRunSubAction:hover,
 .nextRunShare:hover {
-    background: #fff6df;
+    background: var(--hn-surface);
     border-color: #d3bd86;
-    color: #111;
+    color: var(--hn-ink);
 }
 
 /* ---------- special runs ---------- */
 .specialRunsSection {
     margin: 0 0 3.6rem;
     padding: 2.3rem 0 2.4rem;
-    border-top: 1px solid #ececec;
-    border-bottom: 1px solid #ececec;
+    border-top: 1px solid var(--hn-line);
+    border-bottom: 1px solid var(--hn-line);
 }
 
 .specialRunsHeader {
@@ -763,7 +763,7 @@
     font-family: var(--font-jp);
     font-size: 1.45rem;
     font-weight: 800;
-    color: #111;
+    color: var(--hn-ink);
     letter-spacing: 0.03em;
     line-height: 1.5;
     margin: 0 0 0.55rem;
@@ -772,15 +772,15 @@
 .specialRunsLead {
     font-size: 0.94rem;
     line-height: 1.9;
-    color: #5f5851;
+    color: var(--hn-muted);
     margin: 0;
     max-width: none;
 }
 
 .specialExamplesBox {
     padding: 1.15rem 1.25rem 1.2rem;
-    border: 1px dashed #ead8cd;
-    border-radius: 8px;
+    border: 1px dashed var(--hn-line);
+    border-radius: 0;
     background: rgba(255, 250, 244, 0.42);
 }
 
@@ -788,7 +788,7 @@
     display: flex;
     align-items: center;
     margin: 0 0 0.9rem;
-    color: #c2532a;
+    color: var(--hn-sun);
 }
 
 .specialExamplesIntro span {
@@ -818,7 +818,7 @@
     font-weight: 700;
     line-height: 1.6;
     letter-spacing: 0.03em;
-    color: #222;
+    color: var(--hn-ink);
     margin: 0 0 0.25rem;
 }
 
@@ -826,7 +826,7 @@
     font-size: 0.86rem;
     line-height: 1.85;
     letter-spacing: 0.02em;
-    color: #666;
+    color: var(--hn-muted);
     margin: 0;
     max-width: none;
 }
@@ -838,10 +838,10 @@
     min-height: 2.5rem;
     margin-top: 1rem;
     padding: 0.55rem 1rem;
-    border: 1px solid #111;
-    border-radius: 999px;
-    color: #111;
-    background: #fff;
+    border: 1px solid var(--hn-ink);
+    border-radius: 0;
+    color: var(--hn-ink);
+    background: var(--hn-paper);
     font-size: 0.84rem;
     font-weight: 700;
     line-height: 1.4;
@@ -851,14 +851,14 @@
 }
 
 .specialRunsAction:hover {
-    background: #111;
+    background: var(--hn-ink);
     color: #fff;
 }
 
 .specialUpcoming {
     margin-top: 1.6rem;
     padding-top: 1.2rem;
-    border-top: 1px dashed #e9ded2;
+    border-top: 1px dashed var(--hn-line);
 }
 
 .specialUpcomingTitle {
@@ -867,7 +867,7 @@
     font-weight: 700;
     line-height: 1.6;
     letter-spacing: 0.03em;
-    color: #222;
+    color: var(--hn-ink);
     margin: 0 0 0.75rem;
 }
 
@@ -890,17 +890,17 @@
     flex-wrap: wrap;
     gap: 0.6rem 0.85rem;
     padding: 0.85rem 1rem;
-    border: 1px solid #eee3d9;
-    border-radius: 6px;
-    background: #fff;
-    color: #222;
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
+    background: var(--hn-paper);
+    color: var(--hn-ink);
     text-decoration: none;
     transition: border-color 0.2s, background 0.2s;
 }
 
 .specialUpcomingLink:hover {
-    border-color: #e3c6b6;
-    background: #fbf7f3;
+    border-color: var(--hn-line);
+    background: var(--hn-surface);
 }
 
 .specialUpcomingDate {
@@ -909,7 +909,7 @@
     font-size: 0.9rem;
     font-weight: 600;
     letter-spacing: 0.04em;
-    color: #c2532a;
+    color: var(--hn-sun);
 }
 
 .specialUpcomingName {
@@ -925,7 +925,7 @@
     flex-basis: 100%;
     font-size: 0.78rem;
     line-height: 1.6;
-    color: #888;
+    color: var(--hn-muted);
 }
 
 .specialUpcomingParticipants {
@@ -937,18 +937,18 @@
     font-size: 0.84rem;
     line-height: 1.9;
     letter-spacing: 0.03em;
-    color: #777;
+    color: var(--hn-muted);
 }
 
 .specialRunsNote a {
-    color: #c2532a;
+    color: var(--hn-sun);
     text-decoration: none;
-    border-bottom: 1px solid #ead8cd;
+    border-bottom: 1px solid var(--hn-line);
 }
 
 .specialRunsNote a:hover {
     color: #a23f1c;
-    border-bottom-color: #c2532a;
+    border-bottom-color: var(--hn-sun);
 }
 
 /* ---------- runs ---------- */
@@ -956,7 +956,7 @@
     margin: 0 calc(50% - 50vw) 4.5rem;
     padding: 4.4rem 1.5rem 3.8rem;
     background:
-        linear-gradient(180deg, #fff8ef 0%, #fffaf4 34%, #f8fbff 62%, #fbfbf6 100%);
+        var(--hn-surface);
 }
 
 .runsInner {
@@ -973,7 +973,7 @@
     font-family: var(--font-jp);
     font-size: 1.45rem;
     font-weight: 700;
-    color: #111;
+    color: var(--hn-ink);
     letter-spacing: 0.03em;
     line-height: 1.5;
     margin: 0 0 0.6rem;
@@ -982,7 +982,7 @@
 .runsLead {
     font-size: 0.94rem;
     line-height: 1.9;
-    color: #5f5851;
+    color: var(--hn-muted);
     margin: 0;
     max-width: none;
 }
@@ -995,24 +995,24 @@
 }
 
 .runCard {
-    background: #fff;
-    border: 1px solid #f0e2d6;
-    border-radius: 6px;
+    background: var(--hn-paper);
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
     padding: 1.35rem 1.45rem 1.45rem;
     transition: border-color 0.2s, box-shadow 0.2s;
-    box-shadow: 0 8px 22px rgba(118, 78, 46, 0.04);
+    box-shadow: none;
 }
 
 .runCard:hover {
-    border-color: #e7cdb9;
-    box-shadow: 0 12px 26px rgba(118, 78, 46, 0.08);
+    border-color: var(--hn-line);
+    box-shadow: none;
 }
 
 .runHead {
     display: flex;
     padding-bottom: 0.85rem;
     margin-bottom: 1rem;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--hn-line);
 }
 
 .runHeadText {
@@ -1033,7 +1033,7 @@
     font-family: var(--font-jp);
     font-size: 1.16rem;
     font-weight: 700;
-    color: #111;
+    color: var(--hn-ink);
     letter-spacing: 0.03em;
     margin: 0;
     line-height: 1.5;
@@ -1045,22 +1045,22 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    color: #c2532a;
+    color: var(--hn-sun);
     font-size: 0.7rem;
     font-weight: 700;
     line-height: 1.4;
     letter-spacing: 0.08em;
     padding: 0.18rem 0.5rem;
-    border: 1px solid #f0d8c8;
-    border-radius: 3px;
-    background: #fbf7f3;
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
+    background: var(--hn-surface);
     white-space: nowrap;
 }
 
 .runRecommendationBadgePrimary {
     color: #fff;
-    border-color: #F37E4A;
-    background: #F37E4A;
+    border-color: var(--hn-sun);
+    background: var(--hn-sun);
 }
 
 .runMeta {
@@ -1070,12 +1070,12 @@
     flex-wrap: wrap;
     margin: 0;
     font-size: 0.82rem;
-    color: #777;
+    color: var(--hn-muted);
 }
 
 .runDay {
     font-weight: 500;
-    color: #333;
+    color: var(--hn-ink);
 }
 
 .runDot {
@@ -1084,19 +1084,19 @@
 
 .runTime {
     font-family: var(--font-en);
-    color: #555;
+    color: var(--hn-muted);
     letter-spacing: 0.04em;
 }
 
 .runDistance {
-    color: #888;
+    color: var(--hn-muted);
 }
 
 .runBody {
     display: grid;
     grid-template-columns: minmax(240px, 0.62fr) minmax(0, 1fr);
     gap: 1.35rem;
-    align-items: start;
+    align-items: flex-start;
 }
 
 .runRouteCol {
@@ -1110,9 +1110,9 @@
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 7;
-    background: #fff8ef;
-    border: 1px solid #f0e2d6;
-    border-radius: 6px;
+    background: var(--hn-surface);
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
     overflow: hidden;
 }
 
@@ -1120,7 +1120,7 @@
     position: absolute;
     inset: 0;
     display: block;
-    background: #f6f1ec;
+    background: var(--hn-surface);
 }
 
 .routeImage {
@@ -1135,7 +1135,7 @@
 
 .googleMapLink {
     font-size: 0.78rem;
-    color: #555;
+    color: var(--hn-muted);
     text-decoration: none;
     letter-spacing: 0.02em;
     border-bottom: 1px solid transparent;
@@ -1144,8 +1144,8 @@
 }
 
 .googleMapLink:hover {
-    color: #c2532a;
-    border-bottom-color: #c2532a;
+    color: var(--hn-sun);
+    border-bottom-color: var(--hn-sun);
 }
 
 .runDescCol {
@@ -1162,17 +1162,17 @@
     font-family: var(--font-jp);
     font-size: 0.78rem;
     font-weight: 600;
-    color: #c2532a;
-    background: #fbf7f3;
+    color: var(--hn-sun);
+    background: var(--hn-surface);
     padding: 0.32rem 0.7rem;
-    border-radius: 4px;
+    border-radius: 0;
     letter-spacing: 0.02em;
 }
 
 .runDescription {
     font-size: 0.9rem;
     line-height: 1.75;
-    color: #333;
+    color: var(--hn-ink);
     margin: 0;
 }
 
@@ -1181,7 +1181,7 @@
     align-items: baseline;
     gap: 0.65rem;
     padding-top: 0.75rem;
-    border-top: 1px solid #f0f0f0;
+    border-top: 1px solid var(--hn-line);
     font-size: 0.82rem;
     line-height: 1.75;
 }
@@ -1190,16 +1190,16 @@
     flex-shrink: 0;
     font-size: 0.68rem;
     font-weight: 600;
-    color: #F37E4A;
+    color: var(--hn-sun);
     letter-spacing: 0.1em;
     padding: 0.15rem 0.5rem;
-    border: 1px solid #f0d8c8;
-    border-radius: 3px;
-    background: #fbf7f3;
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
+    background: var(--hn-surface);
 }
 
 .runForWhomText {
-    color: #666;
+    color: var(--hn-muted);
     flex: 1;
 }
 
@@ -1216,8 +1216,8 @@
     justify-content: center;
     min-height: 2.15rem;
     padding: 0.5rem 0.85rem;
-    border-radius: 6px;
-    background: #222;
+    border-radius: 0;
+    background: var(--hn-ink);
     color: #fff;
     font-size: 0.8rem;
     font-weight: 600;
@@ -1227,8 +1227,8 @@
 }
 
 .stravaRunLink:hover {
-    background: #000;
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+    background: var(--hn-ink);
+    box-shadow: none;
     transform: translateY(-1px);
 }
 
@@ -1236,24 +1236,24 @@
     align-self: flex-start;
     min-height: 2.15rem;
     padding: 0.5rem 0.85rem;
-    border: 1px solid #ead8cd;
-    border-radius: 6px;
-    background: #fff;
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
+    background: var(--hn-paper);
     cursor: pointer;
     font-family: inherit;
     font-size: 0.8rem;
     font-weight: 600;
     line-height: 1.5;
-    color: #c2532a;
+    color: var(--hn-sun);
     text-decoration: none;
     transition: color 0.2s, border-color 0.2s, background 0.2s;
 }
 
 .shareRunButton:hover {
-    background: #fbf7f3;
+    background: var(--hn-surface);
     color: #9f3f1c;
     border-bottom-color: #9f3f1c;
-    border-color: #e3c6b6;
+    border-color: var(--hn-line);
 }
 
 /* ---------- FAQ ---------- */
@@ -1267,14 +1267,14 @@
     gap: 1rem;
     margin-bottom: 1.4rem;
     padding-bottom: 0.9rem;
-    border-bottom: 1px solid #ececec;
+    border-bottom: 1px solid var(--hn-line);
 }
 
 .sectionNum {
     font-family: var(--font-en);
     font-size: 0.85rem;
     font-weight: 500;
-    color: #F37E4A;
+    color: var(--hn-sun);
     letter-spacing: 0.08em;
     flex-shrink: 0;
 }
@@ -1283,7 +1283,7 @@
     font-family: var(--font-jp);
     font-size: 1.25rem;
     font-weight: 700;
-    color: #111;
+    color: var(--hn-ink);
     letter-spacing: 0.03em;
     margin: 0;
     line-height: 1.5;
@@ -1298,9 +1298,9 @@
 
 .faqItem {
     padding: 1.25rem 1.3rem;
-    border: 1px solid #eee3d9;
-    border-radius: 6px;
-    background: #fff;
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
+    background: var(--hn-paper);
 }
 
 .faqItem h3 {
@@ -1309,7 +1309,7 @@
     font-weight: 700;
     line-height: 1.6;
     letter-spacing: 0.03em;
-    color: #222;
+    color: var(--hn-ink);
     margin: 0 0 0.6rem;
 }
 
@@ -1331,10 +1331,10 @@
     justify-content: center;
     min-height: 2.4rem;
     padding: 0.62rem 0.95rem;
-    border: 1px solid #ead8cd;
-    border-radius: 6px;
-    background: #fff;
-    color: #c2532a;
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
+    background: var(--hn-paper);
+    color: var(--hn-sun);
     font-size: 0.84rem;
     font-weight: 600;
     line-height: 1.5;
@@ -1344,23 +1344,23 @@
 }
 
 .faqGuideLink:hover {
-    background: #fbf7f3;
+    background: var(--hn-surface);
     color: #9f3f1c;
-    border-color: #e3c6b6;
+    border-color: var(--hn-line);
 }
 
 .callout {
     display: flex;
     align-items: flex-start;
     gap: 0.8rem;
-    background: #fbf7f3;
-    border-radius: 6px;
+    background: var(--hn-surface);
+    border-radius: 0;
     padding: 1.4rem 1.5rem;
 }
 
 .calloutIcon {
     font-size: 1.3rem;
-    color: #F37E4A;
+    color: var(--hn-sun);
     line-height: 1.6;
     flex-shrink: 0;
 }
@@ -1373,19 +1373,19 @@
 .calloutTitle {
     font-size: 0.98rem;
     font-weight: 600;
-    color: #222;
+    color: var(--hn-ink);
     margin: 0 0 0.3rem;
     line-height: 1.6;
 }
 
 .calloutTitle strong {
-    color: #c2532a;
+    color: var(--hn-sun);
     font-weight: 700;
 }
 
 .calloutSub {
     font-size: 0.86rem;
-    color: #777;
+    color: var(--hn-muted);
     margin: 0;
     line-height: 1.7;
 }
@@ -1405,15 +1405,15 @@
     font-size: 0.88rem;
     font-weight: 500;
     color: #fff;
-    background: #222;
-    border-radius: 50px;
+    background: var(--hn-ink);
+    border-radius: 0;
     text-decoration: none;
     letter-spacing: 0.03em;
     transition: background 0.2s;
 }
 
 .linkBtnPrimary:hover {
-    background: #000;
+    background: var(--hn-ink);
 }
 
 .linkBtnSecondary {
@@ -1421,18 +1421,18 @@
     padding: 0.95rem 1.8rem;
     font-size: 0.88rem;
     font-weight: 500;
-    color: #333;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 50px;
+    color: var(--hn-ink);
+    background: var(--hn-paper);
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
     text-decoration: none;
     letter-spacing: 0.03em;
     transition: border-color 0.2s, color 0.2s;
 }
 
 .linkBtnSecondary:hover {
-    border-color: #999;
-    color: #000;
+    border-color: var(--hn-muted);
+    color: var(--hn-ink);
 }
 
 /* ---------- responsive ---------- */
@@ -1563,7 +1563,7 @@
 
     .scheduleTable tr {
         padding: 0.9rem 0.95rem;
-        border-bottom: 1px solid #f3ece3;
+        border-bottom: 1px solid var(--hn-line);
     }
 
     .scheduleTable tr:last-child {
@@ -1585,7 +1585,7 @@
     .scheduleTable td::before {
         content: attr(data-label);
         flex: 0 0 auto;
-        color: #9b4a24;
+        color: var(--hn-sun);
         font-size: 0.68rem;
         font-weight: 700;
         letter-spacing: 0.08em;
@@ -1602,7 +1602,7 @@
     }
 
     .scheduleTable td[data-label="集合"] {
-        color: #444;
+        color: var(--hn-muted);
         font-weight: 600;
     }
 
@@ -1730,4 +1730,61 @@
     .linkBtnSecondary {
         text-align: center;
     }
+}
+
+/* Shared editorial direction: page-specific composition. */
+
+.page { padding-top: 170px; padding-bottom: 100px; color: var(--hn-ink); }
+.title { font-size: clamp(32px, 4vw, 52px); font-weight: 400; line-height: 1.55; letter-spacing: .045em; }
+.eyebrow { color: var(--hn-sun); font-size: 11px; letter-spacing: .16em; margin-bottom: 24px; }
+@media (max-width: 640px) {
+    .page { padding-top: 125px; padding-bottom: 64px; }
+    .title { font-size: 30px; line-height: 1.6; }
+}
+
+
+/* Shared editorial direction: page-specific composition. */
+
+.page { max-width: 1120px; padding-left: 32px; padding-right: 32px; }
+.titleSub { font-size: 15px; margin-top: 18px; }
+.scheduleQuickView { max-width: none; padding: 36px 0; margin-top: 44px; background: transparent; border-width: 1px 0; border-color: var(--hn-line); }
+.scheduleQuickViewHead { margin-bottom: 24px; }
+.scheduleQuickCards { gap: 30px; }
+.scheduleQuickCard { background: transparent; border: 0; border-top: 1px solid var(--hn-line); padding: 24px 0 12px; }
+.scheduleQuickCard:hover { background: var(--hn-surface); transform: none; }
+.scheduleQuickCardPrimary { gap: 14px; margin-bottom: 14px; }
+.scheduleQuickTime { font-size: 32px; font-weight: 400; }
+.scheduleQuickCardBody strong { font-size: 20px; font-weight: 500; margin-bottom: 8px; }
+.scheduleQuickDay { color: var(--hn-sun); background: transparent; font-size: 17px; }
+.scheduleQuickViewNote { margin-top: 20px; }
+.monthlyCalendar { max-width: none; margin-top: 60px; }
+.monthlyCalendarHeader { margin-bottom: 20px; }
+.monthlyCalendar h2 { font-size: 29px; font-weight: 400; }
+.monthlyCalendarMonth strong { font-size: 36px; font-weight: 400; }
+.calendarFrame { border-color: var(--hn-line); background: transparent; }
+.calendarCell { min-height: 122px; background: transparent; border-color: var(--hn-line); }
+.calendarCellEmpty { background: var(--hn-surface); }
+.calendarCellToday { background: #ecefe2; box-shadow: inset 0 0 0 1px var(--hn-ink); }
+.calendarEvent { background: #e4e9dd; border-color: var(--hn-ink); color: var(--hn-ink); }
+.calendarEventSpecial { background: #f1e2d7; border-color: var(--hn-sun); color: #853d26; }
+.firstRunCallout { border: 0; border-top: 1px solid var(--hn-line); background: transparent; padding: 28px 0; margin-top: 30px; }
+.faqSection { margin-top: 64px; padding: 40px 0; border-top: 1px solid var(--hn-line); }
+.faqGrid { gap: 25px; }
+.faqItem { background: transparent; border: 0; border-top: 1px solid var(--hn-line); padding: 22px 0; }
+@media(max-width:640px) {
+ .page { padding-left: 20px; padding-right: 20px; }
+ .scheduleQuickCards { grid-template-columns: 1fr; gap: 0; }
+ .scheduleQuickCard { grid-template-columns: 110px 1fr auto; align-items: center; padding: 20px 0; gap: 8px; }
+ .scheduleQuickCardPrimary, .scheduleQuickCardBody, .scheduleQuickDistance { grid-column: auto; }
+ .scheduleQuickTime { font-size: 25px; }
+ .scheduleQuickCardPrimary { margin: 0; gap: 8px; }
+ .scheduleQuickCardBody strong { font-size: 16px; margin: 0; }
+ .scheduleQuickDistance { font-size: 11px; }
+ .scheduleQuickView { margin-top: 30px; padding: 24px 0; }
+ .monthlyCalendar { margin-top: 38px; }
+ .monthlyCalendar h2 { font-size: 23px; }
+ .calendarCell { min-height: 86px; padding: 4px 2px; }
+ .calendarEvent { padding: 4px 2px; }
+ .calendarEvent span { font-size: 9px; }
+ .calendarEvent small { font-size: 8px; }
 }

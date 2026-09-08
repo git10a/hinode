@@ -27,6 +27,9 @@ export default async function Footer() {
     return (
         <footer>
             <div className="container">
+                <Link href="/" className="footer-brand" aria-label="HINODE ホーム">
+                    <Image src="/assets/logo-black.png" alt="HINODE" width={100} height={40} />
+                </Link>
                 <p className="footer-streak">
                     HINODEは2025年11月から、雨天を除き毎週開催しています。
                     {runCount !== null && (
