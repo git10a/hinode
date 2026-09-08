@@ -135,7 +135,7 @@
 .closingBtnSecondary:hover { color: white; border-color: white; }
 @media (max-width: 960px) {
     .page { padding-top: 90px; }
-    .heroIntro { padding-top: 42px; gap: 25px; }
+    .heroIntro { grid-template-columns: 1fr; padding-top: 42px; gap: 25px; }
     .heroHeadline { font-size: 58px; }
     .nextRun { gap: 20px; }
     .nextPlace { padding-left: 20px; }
