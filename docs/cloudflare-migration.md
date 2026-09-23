@@ -13,8 +13,9 @@
 ## DNS の引き継ぎ
 
 - Cloudflare ゾーンには 15 件のレコードが取り込まれている。`corp` の CNAME (`hinode-corporate.pages.dev`)、`send` の MX/TXT、`resend._domainkey` の DKIM、Google サイト所有権 TXT、3 件の CAA は Vercel DNS と照合済み。
-- Cloudflare 側にある `hinode-run.com`、`www`、ワイルドカードの A レコードは旧ホスティング先を指している。Worker のカスタムドメインと `www` 転送が用意できたら、切り替え時に旧 Web レコードを整理する。
+- Cloudflare 側にある `hinode-run.com`、`www`、ワイルドカードの A レコードは旧ホスティング先を指している。Worker のカスタムドメイン登録は apex の既存 A レコードと衝突して拒否された。切り替え前に旧 Web レコードを整理し、apex を Worker に接続する。`www` の転送も別途設定する。
 - `corp.hinode-run.com` は別の Cloudflare Pages サイトなので、その CNAME を維持する。メール送信用の MX/TXT/DKIM も維持する。
+- 親ゾーンに DNSSEC の DS レコードは見つからなかった。切り替え直前に再確認する。
 
 ## 作業の順序
 
