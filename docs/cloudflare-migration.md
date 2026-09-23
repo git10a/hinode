@@ -5,7 +5,8 @@
 - Next.js 16 / React 19 / vinext を使う Workers 版を用意した。既存の Next.js ビルドも通る。
 - Workers のローカル実行で `/`、`/blog`、`/schedule`、`/contact`、`/sitemap.xml`、`/robots.txt` が 200。問い合わせの不正入力は 400、microCMS の不正署名は 401。公開プレビューでも正しい署名の検証用 Webhook が 200 と `skipped` を返した。
 - プレビュー Worker: `https://hinode-migration-preview.tomtom211997.workers.dev`。microCMS と Strava の 7 項目は登録済み。公開サイトのサイトマップにある 54 ルートについて、Vercel 本番とプレビューの HTTP 200、タイトル、主見出しが一致した。日程ページに表示される Strava イベントの日時とリンクも一致した。
-- 問い合わせ送信とブログの GA4 人気記事用の 5 項目は未登録。Vercel の `Sensitive` 設定から値を読み戻せないため、元の値または新しい認証情報が必要。現時点で問い合わせの実送信は未確認。ブログの「おすすめ記事」は GA4 が使えず本番と別の記事を表示している。
+- 問い合わせ送信とブログの GA4 人気記事用の 5 項目のうち、`GOOGLE_ANALYTICS_PROPERTY_ID` は `538284541` と確認してプレビュー Worker に登録済み。残る 4 項目は未登録。Vercel の `Sensitive` 設定から値を読み戻せないため、元の値または新しい認証情報が必要。現時点で問い合わせの実送信は未確認。ブログの「おすすめ記事」は GA4 が使えず本番と別の記事を表示している。
+- GA4 プロパティには `hinode-ga-reader@iron-core-457208-b6.iam.gserviceaccount.com` が閲覧者として登録されている。Google Cloud プロジェクトは `iron-core-457208-b6`。既存鍵の ID は確認できるが秘密鍵を再表示できず、ローカルにも JSON ファイルは見つかっていない。新しい鍵の作成・登録はユーザーの回答待ち。
 - `hinode-run.com` の Cloudflare ゾーンは `pending`。ドメインは Vercel から購入・管理されている（登録事業者は Name.com）。現在の NS は `ns1.vercel-dns.com` と `ns2.vercel-dns.com`。Cloudflare の割り当て NS は `marek.ns.cloudflare.com` と `may.ns.cloudflare.com`。NS の変更は Vercel のドメイン管理画面から行える。
 - 公開サイトは Vercel から 200 を返している。移行の検証が終わるまで維持する。
 - Cloudflare には旧 `hinode-web` Worker がある。現在の移行プレビューとは別で、公開ドメインへの割り当てはない。切り替え前に整理するが、検証が終わるまで消さない。
