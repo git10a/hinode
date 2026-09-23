@@ -30,3 +30,7 @@ out/
 .vercel
 .claude/
 .superdesign/
+.vinext/
+.wrangler/
+dist/
+.dev.vars*
