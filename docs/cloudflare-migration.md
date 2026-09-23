@@ -1,31 +1,32 @@
 # HINODE Cloudflare 移行
 
-## 現在の状態（2026-09-23）
+## 本番構成（2026-09-23）
 
-- Next.js 16 / React 19 / vinext を使う Workers 版を用意した。既存の Next.js ビルドも通る。
-- Workers のローカル実行で `/`、`/blog`、`/schedule`、`/contact`、`/sitemap.xml`、`/robots.txt` が 200。問い合わせの不正入力は 400、microCMS の不正署名は 401。公開プレビューでも正しい署名の検証用 Webhook が 200 と `skipped` を返した。
-- プレビュー Worker: `https://hinode-migration-preview.tomtom211997.workers.dev`。microCMS と Strava の 7 項目は登録済み。公開サイトのサイトマップにある 54 ルートについて、Vercel 本番とプレビューの HTTP 200、タイトル、主見出しが一致した。日程ページに表示される Strava イベントの日時とリンクも一致した。
-- 問い合わせ送信とブログの GA4 人気記事用の 5 項目のうち、`GOOGLE_ANALYTICS_PROPERTY_ID`、`GOOGLE_ANALYTICS_SERVICE_ACCOUNT_JSON`、`CONTACT_TO_EMAIL`、`CONTACT_FROM_EMAIL` はプレビュー Worker に登録済み。GA4 プロパティ ID は `538284541`。ブログの「おすすめ記事」は本番と同じ記事を表示することを確認した。`RESEND_API_KEY` も登録済み。プレビューの問い合わせ API は 200 を返し、Resend の新キー「HINODE Cloudflare Contact Form」の送信ログは 200、宛先 `hinode.run@gmail.com` のメールイベントは `Delivered` を示した。`CONTACT_TO_EMAIL` は普段の受信先である `hinode.run@gmail.com`。Vercel の `Sensitive` 設定から値を読み戻せないため、Resend 側で再発行・確認する。`hinode.run@gmail.com` の Resend アカウントには送信ドメインも API キーもない。`tomtom211997@gmail.com` の Resend アカウントに認証済みの `hinode-run.com` と既存の「HINODE Contact Form」送信専用キーがある。送信ログで送信元 `HINODE <contact@hinode-run.com>`、宛先 `hinode.run@gmail.com` を確認した。既存キーの値は再表示できないため、承認を受けて `hinode-run.com` の送信権限だけを持つ新しいキーを発行した。既存キーは残した。
-- GA4 プロパティには `hinode-ga-reader@iron-core-457208-b6.iam.gserviceaccount.com` が閲覧者として登録されている。Google Cloud プロジェクトは `iron-core-457208-b6`。既存鍵の ID は確認できるが秘密鍵を再表示できず、ローカルにも JSON ファイルは見つからなかった。承認を受けて新しい鍵を作成し、プレビュー Worker に登録した。既存鍵は残した。新しい鍵のローカルファイルは Downloads にあり、所有者のみ読み取り可能にした。
-- `hinode-run.com` の Cloudflare ゾーンは `pending`。ドメインは Vercel から購入・管理されている（登録事業者は Name.com）。現在の NS は `ns1.vercel-dns.com` と `ns2.vercel-dns.com`。Cloudflare の割り当て NS は `marek.ns.cloudflare.com` と `may.ns.cloudflare.com`。NS の変更は Vercel のドメイン管理画面から行える。
-- 公開サイトは Vercel から 200 を返している。移行の検証が終わるまで維持する。
-- Cloudflare には旧 `hinode-web` Worker がある。現在の移行プレビューとは別で、公開ドメインへの割り当てはない。切り替え前に整理するが、検証が終わるまで消さない。
+- `hinode-run.com` の権威 DNS は Cloudflare（`marek.ns.cloudflare.com`、`may.ns.cloudflare.com`）。ゾーンは Active。
+- 本番サイトは Cloudflare Worker `hinode-migration-preview` に `hinode-run.com/*` の Route で割り当てた。Worker 名は移行時の名前のまま。`www.hinode-run.com` は Cloudflare の Redirect Rule で apex へ 308 転送し、パスとクエリを維持する。
+- apex と `www` の Proxied A レコードは Cloudflare が originless 構成向けに案内する予約アドレス `192.0.2.0` / `192.0.2.1` を使用する。Worker とリダイレクトが本番リクエストを処理する。ワイルドカード A も旧 Vercel IP から同じ予約アドレスに変更したが、ワイルドカードは DNS only で公開サービスには使わない。
+- `corp.hinode-run.com` の Cloudflare Pages 用 CNAME、Resend の `send` MX/TXT と `resend._domainkey` TXT、Google 所有権 TXT、CAA は維持した。Vercel 経由で購入したドメインの登録・更新は引き続き Vercel/Name.com にある。Cloudflare Registrar への移管は追加の更新料が発生するため未実施。
+- 旧 Vercel `hinode` プロジェクトと `hinode-run.com` / `www.hinode-run.com` の接続は、古い DNS キャッシュを使う利用者のため一時的に残す。GitHub リポジトリとの接続は解除済みで、新しいコミットは Vercel に自動デプロイされない。DNS キャッシュの切り替わりを確認後に、Vercel プロジェクトからドメインを外す。
 
-## DNS の引き継ぎ
+## デプロイと秘密値
 
-- Cloudflare ゾーンには 15 件のレコードが取り込まれている。`corp` の CNAME (`hinode-corporate.pages.dev`)、`send` の MX/TXT、`resend._domainkey` の DKIM、Google サイト所有権 TXT、3 件の CAA は Vercel DNS と照合済み。
-- Cloudflare 側にある `hinode-run.com`、`www`、ワイルドカードの A レコードは旧ホスティング先を指している。Worker のカスタムドメイン登録は apex の既存 A レコードと衝突して拒否された。そこで `hinode-run.com/*` の Worker Route を `hinode-migration-preview` に割り当て、apex と `www` の A レコード各 2 件を Proxied にした。`www` から apex への 308 Redirect Rule はクエリを維持して登録済み。権威 NS が Vercel のため公開トラフィックにはまだ影響しない。ワイルドカード A と旧 Web レコードの最終整理は切り替え後に行う。
-- `corp.hinode-run.com` は別の Cloudflare Pages サイトなので、その CNAME を維持する。メール送信用の MX/TXT/DKIM も維持する。
-- 親ゾーンに DNSSEC の DS レコードは見つからなかった。切り替え直前に再確認する。
+- `main` への push と手動実行で GitHub Actions `Deploy HINODE to Cloudflare Workers` が Node.js 24、`npm ci`、`npm run build:vinext`、`npm run deploy:vinext` を実行する。初回の本番デプロイは [run 35850801707](https://github.com/git10a/hinode/actions/runs/35850801707) で成功した。
+- GitHub Actions の `CLOUDFLARE_API_TOKEN` は `Tomtom211997@gmail.com's Account` の `Workers Scripts:Edit` に限定したトークン。対象アカウント内の他 Worker も編集できる権限なので、漏えい時は失効・再発行する。
+- microCMS、Strava、GA4、Resend、問い合わせメール設定は Worker の秘密値に登録済み。Resend は `hinode-run.com` の Sending access に限定した新キー「HINODE Cloudflare Contact Form」を使う。既存の Vercel 用 Resend キーは残している。GA4 サービスアカウントの新しい鍵も登録済み。鍵のローカル原本は Downloads にあり、所有者のみ読み取り可能。
+- `wrangler.jsonc` にドメインは記載せず、Cloudflare ダッシュボード側で Route と Redirect Rule を管理する。
 
-## 作業の順序
+## 切り替え時の確認
 
-1. 完了: Resend の API キー、送信元・送信先アドレス、GA4 のプロパティ ID とサービスアカウント認証情報をプレビュー Worker に登録した。
-2. プレビューで主要ページ、ブログ個別記事、Strava の次回予定、問い合わせの実送信、microCMS の更新通知とキャッシュ更新を確認する。問い合わせの実送信は完了。画像表示とレイアウトも本番と比較する。
-3. Cloudflare DNS の既存 15 件を再確認し、Worker 用の Web レコードと `www` の転送を準備する。
-4. Vercel のドメイン管理画面で NS を Cloudflare の割り当て先へ変更し、ゾーンが `active` になったことを確認する。Workers の Custom Domain に `hinode-run.com` を登録し、`www` の転送も設定する。
-5. 複数の公開 DNS リゾルバーで権威 NS と Web/メールレコードを確認し、HTTPS、全主要ページ、API、Webhook、問い合わせ実送信を本番ドメインで確認する。
-6. GitHub から Workers への自動デプロイを設定して更新経路を固定する。その後、Vercel の旧ホスティングプロジェクトを停止する。ドメイン登録も Vercel から移す場合は、Cloudflare Registrar への移管を別途行う。
+- 移行前、公開サイトマップの 54 ルートについて Vercel と Worker プレビューの HTTP 200、タイトル、主見出しが一致。Strava イベント表示と GA4 人気記事表示も一致。
+- Cloudflare edge を直接指定した本番 HTTPS で `/`、`/blog`、`/schedule`、`/contact`、`/sitemap.xml`、`/robots.txt` は 200。`www` はパスとクエリを維持する 308。HTTPS 証明書も有効。
+- 本番ホストの問い合わせ API は実送信で `200 {"ok":true}`、異なる Origin は 403。プレビューの実送信は Resend 側で `Delivered` を確認済み。microCMS Webhook の正しい署名と不正署名、Strava スケジュールもプレビューで確認済み。
+- Cloudflare の権威 DNS と 1.1.1.1 / 8.8.8.8 で Cloudflare NS と apex / www の Cloudflare IP を確認。`send` MX と `corp` CNAME も確認。
+
+## 残る運用整理
+
+1. DNS キャッシュが Cloudflare へ切り替わったら、Vercel プロジェクトの apex / www 接続を解除する。ローカル macOS の resolver は切り替え直後も旧 Vercel IP を返していたため、キャッシュ保持中の接続解除は避ける。
+2. Cloudflare の Custom Domain は既存 A レコードと衝突して登録できなかった。現在の Worker Route と予約アドレスで本番は動作する。将来 Custom Domain に変更する場合は、A レコード削除と新ドメイン作成の間に DNS 不在の時間を作らない手順を準備する。
+3. `*.hinode-run.com` の未使用レコードと `_domainconnect` の Vercel CNAME は後で用途を確認して整理する。ドメイン登録を Vercel に残す間は `_domainconnect` を安易に削除しない。
 
 ## ローカル確認
 
@@ -38,4 +39,4 @@ npm run build:vinext
 npm run lint
 ```
 
-ローカル Workers 実行では、Wrangler が参照する `dist/server/.dev.vars` に開発用の環境変数を置く。これは Git に含めず、確認後に削除する。`dist/server` はビルド生成物。
+開発用環境変数は Git に含めない。`dist/server` はビルド生成物。
