@@ -1,8 +1,9 @@
 name: Deploy HINODE to Cloudflare Workers
 
+# Manual only: production deploys run from a Mac with the HINODE account's wrangler login
+# (see docs/cloudflare-migration.md). Re-add the push trigger once CLOUDFLARE_API_TOKEN holds a
+# working token for the HINODE account.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 concurrency:

@@ -2,7 +2,9 @@
 
 ## アカウント移動（2026-09-26）
 
-RUNDE と同じ Cloudflare アカウントが Workers 無料枠（1日10万リクエスト・アカウント共通）を分け合っていたため、HINODE を `hinode.run@gmail.com` のアカウント（`cd288c7e5f37d2adce330bd0aab52f6f`）へ移した。Worker 名・DNS レコード・Route・www→apex の 308 転送は同じ構成で再現し、Vercel（レジストラ）のネームサーバーを `bayan.ns.cloudflare.com` / `sky.ns.cloudflare.com` に変更した。以下の 09-23 の記述のうち、旧アカウントとネームサーバー（marek/may）に関する部分は移動前のもの。
+RUNDE と同じ Cloudflare アカウントが Workers 無料枠（1日10万リクエスト・アカウント共通）を分け合っていたため、HINODE を `hinode.run@gmail.com` のアカウント（`cd288c7e5f37d2adce330bd0aab52f6f`）へ移した。Worker 名・DNS レコード・Route・www→apex の 308 転送は同じ構成で再現し、Vercel（レジストラ）のネームサーバーを `bayan.ns.cloudflare.com` / `sky.ns.cloudflare.com` に変更した。本番デプロイは当面、Mac から HINODE アカウントの wrangler ログインで `~/.wrangler-hinode/deploy-hinode.sh`（origin/main をきれいに取り出してビルド・デプロイ）で行う。GitHub Actions は手動実行のみにした（push では動かない）。
+
+以下の 09-23 の記述のうち、旧アカウントとネームサーバー（marek/may）に関する部分は移動前のもの。
 
 ## 本番構成（2026-09-23）
 
