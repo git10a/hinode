@@ -291,7 +291,7 @@ export default async function EventPage() {
                         ))}
                     </div>
                     <p className={styles.scheduleQuickViewNote}>
-                        ※日曜はRuntrip BASEのオープンに合わせ、7:15スタートです。
+                        ※サマータイム終了後は、平日6:30・日曜7:30スタートです（日本時間）。
                     </p>
                 </div>
 
@@ -374,7 +374,7 @@ export default async function EventPage() {
                     <h2>初めて参加する方へ</h2>
                     <p>
                         HINODEは、予約不要・参加無料・1人参加歓迎の朝ランコミュニティです。
-                        初めての方は、日曜7:15の代々木公園ランが参加しやすいです。
+                        初めての方は、日曜7:30の代々木公園ランが参加しやすいです。
                         当日の流れ、服装、荷物、写真方針、Stravaの使い方などは、初参加ガイドにまとめています。
                     </p>
                     <Link href={FIRST_RUN_GUIDE_URL} className={styles.firstRunCalloutLink}>
