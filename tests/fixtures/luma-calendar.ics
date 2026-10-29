@@ -1,0 +1,55 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Luma//HINODE//EN
+X-WR-CALNAME:HINODE
+X-WR-CALDESC:Luma Calendar
+REFRESH-INTERVAL;VALUE=DURATION:PT12H
+X-PUBLISHED-TTL:PT12H
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+DTSTART:20261031T223000Z
+DTEND:20261031T233000Z
+DTSTAMP:20261029T070852Z
+ORGANIZER;CN="HINODE":MAILTO:calendar-invite@lu.ma
+UID:evt-EJdoX2ODb0gpUEV@events.lu.ma
+SUMMARY:HINODE 代々木公園ラン
+DESCRIPTION:Get up-to-date information at: https://luma.com/fk239beu\n\nAd
+ dress:\nYoyogi Park Clock Tower\nShibuya, Japan\n\nHosted by HINODE
+LOCATION:Yoyogi Park Clock Tower, 2-1 Yoyogikamizonochō, Shibuya, Tokyo 1
+ 51-0052, Japan
+GEO:35.6690816;139.7007898
+SEQUENCE:215420932
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261103T213000Z
+DTEND:20261103T223000Z
+DTSTAMP:20261029T070852Z
+ORGANIZER;CN="HINODE":MAILTO:calendar-invite@lu.ma
+UID:evt-IghsrVnU3Xz7mAK@events.lu.ma
+SUMMARY:HINODE 皇居ラン
+DESCRIPTION:Get up-to-date information at: https://luma.com/p7s2oh0y\n\nAd
+ dress:\nKikyō-mon Gate\nChiyoda City, Japan\n\nHosted by HINODE
+LOCATION:Kikyō-mon Gate, 1-1 Chiyoda, Chiyoda City, Tokyo 100-8111, Japan
+GEO:35.684012200000005;139.758499
+SEQUENCE:215420932
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261104T213000Z
+DTEND:20261104T223000Z
+DTSTAMP:20261029T070852Z
+ORGANIZER;CN="HINODE":MAILTO:calendar-invite@lu.ma
+UID:evt-fR6DZHSkrIteX0Y@events.lu.ma
+SUMMARY:HINODE 目黒川ラン
+DESCRIPTION:Get up-to-date information at: https://luma.com/vm2bt1er\n\nAd
+ dress:\nStarbucks Coffee - Naka-Meguro Tsutaya Books\nMeguro City, Japan\n
+ \nHosted by HINODE
+LOCATION:Starbucks Coffee - Naka-Meguro Tsutaya Books, 1-chōme-22-10 Kami
+ meguro, Meguro City, Tokyo 153-0051, Japan
+GEO:35.644621;139.69930050000002
+SEQUENCE:215420932
+STATUS:TENTATIVE
+END:VEVENT
+END:VCALENDAR

@@ -1,14 +1,16 @@
 import Link from '@/components/SiteLink';
 import styles from './schedule.module.css';
 import PostBottomStrip from '../../components/PostBottomStrip';
+import RunEventCards from '../../components/RunEventCards';
+import { getUpcomingLumaEvents, LUMA_CALENDAR_URL } from '../../lib/luma';
 import { getRegularRun } from '../../lib/regularRuns';
 
 export const metadata = {
     title: 'HINODEのグループラン日程｜皇居・目黒川・代々木公園',
-    description: 'HINODEの日の出ラン開催日程ページです。皇居・目黒川・代々木公園で毎週開催。土曜日は不定期の企画ランも開催。曜日、時間、集合場所、距離、Stravaイベントへの導線をまとめています。',
+    description: 'HINODEの朝ラン開催日程。皇居・目黒川・代々木公園などの予定を確認できます。参加無料・登録なしでも参加OK。参加予定の登録はStrava・Lumaのどちらでも。',
 };
 
-export const revalidate = 900;
+export const revalidate = 300;
 
 const STRAVA_CLUB_ID = '1772485';
 const STRAVA_CLUB_URL = `https://www.strava.com/clubs/${STRAVA_CLUB_ID}`;
@@ -163,13 +165,14 @@ const faqItems = [
         answer: '参加無料・予約不要です。開催日程と集合場所を確認して、そのまま集合場所へ来てください。',
     },
     {
-        question: 'Stravaをやっていなくても参加できますか？',
-        answer: '参加できます。Stravaは参加表明や記録に使えますが、必須ではありません。',
+        question: 'StravaやLumaへの登録は必要ですか？',
+        answer: '登録なしでも参加できます。参加予定を登録する場合は、Strava・Lumaのどちらでも大丈夫です。登録すると、雨天中止などのお知らせを受け取りやすくなります。',
     },
 ];
 
 export default async function EventPage() {
     const eventsJsonLd = createEventsJsonLd();
+    const upcomingEvents = await getUpcomingLumaEvents();
 
     return (
         <div className={styles.page}>
@@ -189,33 +192,44 @@ export default async function EventPage() {
                 </h1>
                 <p className={styles.lead}>
                     HINODEは、朝の時間にゆっくり走るランニングコミュニティです。<br />
-                    予約不要・参加費無料・1人参加OK。開催予定の確認・申し込みはLumaからどうぞ。
+                    参加無料・1人参加OK。登録なしで、そのまま参加できます。
                 </p>
 
                 <section id="event-calendar" className={styles.lumaSection} aria-labelledby="event-calendar-title">
                     <div className={styles.lumaHeader}>
                         <div>
-                            <p className={styles.lumaLabel}>EVENT CALENDAR</p>
-                            <h2 id="event-calendar-title">イベントカレンダー</h2>
+                            <p className={styles.lumaLabel}>NEXT MORNING RUNS</p>
+                            <h2 id="event-calendar-title">次の朝ラン</h2>
                         </div>
                         <a
-                            href="https://luma.com/hinode"
+                            href={LUMA_CALENDAR_URL}
                             target="_blank"
                             rel="noopener noreferrer"
                             className={styles.lumaFollowLink}
                         >
-                            Lumaでカレンダーをフォロー
+                            Lumaですべて見る <span aria-hidden="true">↗</span>
                         </a>
                     </div>
-                    <iframe
-                        className={styles.lumaEmbed}
-                        src="https://luma.com/embed/calendar/cal-JWxU0jyUqr7q0ZS/events?lt=light"
-                        title="HINODEのイベントカレンダー"
-                        width="100%"
-                        height="480"
-                        loading="lazy"
-                        allowFullScreen
-                    />
+                    {upcomingEvents?.length > 0 ? (
+                        <RunEventCards events={upcomingEvents} />
+                    ) : (
+                        <p className={styles.eventEmpty}>
+                            {upcomingEvents === null
+                                ? '開催予定を読み込めませんでした。最新の予定はLuma・Stravaでご確認ください。'
+                                : '次の開催予定は準備中です。Luma・Stravaでもご確認いただけます。'}
+                        </p>
+                    )}
+                    <div className={styles.registrationNote}>
+                        <p>登録なしで、そのまま参加できます。</p>
+                        <p>
+                            参加予定を登録するなら、Strava・Lumaのどちらでも。<br />
+                            雨天中止などのお知らせを受け取りやすくなります。
+                        </p>
+                        <div className={styles.registrationLinks}>
+                            <a href={STRAVA_CLUB_URL} target="_blank" rel="noopener noreferrer">Stravaで参加予定を登録 <span aria-hidden="true">↗</span></a>
+                            <a href={LUMA_CALENDAR_URL} target="_blank" rel="noopener noreferrer">Lumaで参加予定を登録 <span aria-hidden="true">↗</span></a>
+                        </div>
+                    </div>
                 </section>
 
                 <div className={styles.firstRunCallout}>
@@ -223,7 +237,7 @@ export default async function EventPage() {
                     <p>
                         HINODEは、予約不要・参加無料・1人参加歓迎の朝ランコミュニティです。
                         初めての方は、日曜7:30の代々木公園ランが参加しやすいです。
-                        当日の流れ、服装、荷物、写真方針、Stravaの使い方などは、初参加ガイドにまとめています。
+                        当日の流れ、服装、荷物、写真方針などは、初参加ガイドにまとめています。
                     </p>
                     <Link href={FIRST_RUN_GUIDE_URL} className={styles.firstRunCalloutLink}>
                         初参加ガイドを見る →
