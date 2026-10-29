@@ -1771,6 +1771,80 @@
 .faqSection { margin-top: 64px; padding: 40px 0; border-top: 1px solid var(--hn-line); }
 .faqGrid { gap: 25px; }
 .faqItem { background: transparent; border: 0; border-top: 1px solid var(--hn-line); padding: 22px 0; }
+.lumaSection {
+    width: 100%;
+    max-width: none;
+    margin-top: 60px;
+}
+
+.lumaHeader {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 16px;
+}
+
+.lumaLabel {
+    margin: 0 0 0.18rem;
+    color: var(--hn-sun);
+    font-family: var(--font-en);
+    font-size: 0.68rem;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 0.14em;
+}
+
+.lumaSection h2 {
+    margin: 0;
+    color: var(--hn-ink);
+    font-size: 29px;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+}
+
+.lumaLead {
+    margin: 0 0 1.1rem;
+    color: var(--hn-muted);
+    font-size: 0.9rem;
+    line-height: 1.85;
+    max-width: none;
+}
+
+.lumaFollowLink {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    min-height: 2rem;
+    padding: 0.34rem 0.78rem;
+    border: 1px solid var(--hn-line);
+    border-radius: 0;
+    background: transparent;
+    color: var(--hn-sun);
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.lumaFollowLink:hover {
+    color: var(--hn-ink);
+    border-color: var(--hn-ink);
+}
+
+.lumaEmbed {
+    display: block;
+    width: 100%;
+    height: 560px;
+    border: 1px solid var(--hn-line);
+    border-radius: 8px;
+    background: #fff;
+}
+
 @media(max-width:640px) {
  .page { padding-left: 20px; padding-right: 20px; }
  .scheduleQuickCards { grid-template-columns: 1fr; gap: 0; }
@@ -1787,4 +1861,8 @@
  .calendarEvent { padding: 4px 2px; }
  .calendarEvent span { font-size: 9px; }
  .calendarEvent small { font-size: 8px; }
+ .lumaSection { margin-top: 38px; }
+ .lumaHeader { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+ .lumaSection h2 { font-size: 23px; }
+ .lumaEmbed { height: 520px; }
 }

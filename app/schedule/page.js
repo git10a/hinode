@@ -370,6 +370,35 @@ export default async function EventPage() {
                     </p>
                 </section>
 
+                <section id="event-calendar" className={styles.lumaSection} aria-labelledby="event-calendar-title">
+                    <div className={styles.lumaHeader}>
+                        <div>
+                            <p className={styles.lumaLabel}>EVENT CALENDAR</p>
+                            <h2 id="event-calendar-title">イベントカレンダー</h2>
+                        </div>
+                        <a
+                            href="https://luma.com/hinode"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={styles.lumaFollowLink}
+                        >
+                            Lumaでカレンダーをフォロー
+                        </a>
+                    </div>
+                    <p className={styles.lumaLead}>
+                        開催予定のランは、Lumaのカレンダーで確認・申し込みができます。
+                    </p>
+                    <iframe
+                        className={styles.lumaEmbed}
+                        src="https://luma.com/embed/calendar/cal-JWxU0jyUqr7q0ZS/events?lt=light"
+                        title="HINODEのイベントカレンダー"
+                        width="100%"
+                        height="560"
+                        loading="lazy"
+                        allowFullScreen
+                    />
+                </section>
+
                 <div className={styles.firstRunCallout}>
                     <h2>初めて参加する方へ</h2>
                     <p>
