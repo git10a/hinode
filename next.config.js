@@ -85,7 +85,7 @@ const nextConfig = {
             },
             {
                 source: '/event-runs',
-                destination: '/schedule#monthly-calendar',
+                destination: '/schedule#event-calendar',
                 permanent: true,
             },
         ];
