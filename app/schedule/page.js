@@ -168,8 +168,6 @@ const faqItems = [
     },
 ];
 
-const RUNS = [KOKYO_RUN, MEGURO_RUN, YOYOGI_RUN];
-
 export default async function EventPage() {
     const eventsJsonLd = createEventsJsonLd();
 
@@ -191,44 +189,8 @@ export default async function EventPage() {
                 </h1>
                 <p className={styles.lead}>
                     HINODEは、朝の時間にゆっくり走るランニングコミュニティです。<br />
-                    予約不要・参加費無料・1人参加OK。
+                    予約不要・参加費無料・1人参加OK。開催予定の確認・申し込みはLumaからどうぞ。
                 </p>
-                <div className={styles.scheduleQuickView}>
-                    <div className={styles.scheduleQuickViewHead}>
-                        <div className={styles.scheduleQuickViewTitleRow}>
-                            <p className={styles.scheduleQuickViewLabel}>定例ラン早見表</p>
-                            <a
-                                href={STRAVA_CLUB_URL}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={styles.scheduleQuickViewStrava}
-                            >
-                                詳細はStravaで
-                            </a>
-                        </div>
-                        <p className={styles.scheduleQuickViewLead}>
-                            曜日・スタート時間・集合場所をまとめました。各回とも開始5分前を目安にお集まりください。
-                        </p>
-                    </div>
-                    <div className={styles.scheduleQuickCards}>
-                        {RUNS.map((run) => (
-                            <Link key={run.id} href={run.detailHref} className={styles.scheduleQuickCard}>
-                                <div className={styles.scheduleQuickCardPrimary}>
-                                    <span className={styles.scheduleQuickDay}>{run.dayShort.replace('曜', '')}</span>
-                                    <span className={styles.scheduleQuickTime}>{run.timeRaw}</span>
-                                </div>
-                                <div className={styles.scheduleQuickCardBody}>
-                                    <strong>{run.place}</strong>
-                                    <span>{run.meetingShort} 集合</span>
-                                </div>
-                                <span className={styles.scheduleQuickDistance}>{run.distance}</span>
-                            </Link>
-                        ))}
-                    </div>
-                    <p className={styles.scheduleQuickViewNote}>
-                        ※サマータイム終了後は、平日6:30・日曜7:30スタートです（日本時間）。
-                    </p>
-                </div>
 
                 <section id="event-calendar" className={styles.lumaSection} aria-labelledby="event-calendar-title">
                     <div className={styles.lumaHeader}>
@@ -245,15 +207,12 @@ export default async function EventPage() {
                             Lumaでカレンダーをフォロー
                         </a>
                     </div>
-                    <p className={styles.lumaLead}>
-                        開催予定のランは、Lumaのカレンダーで確認・申し込みができます。
-                    </p>
                     <iframe
                         className={styles.lumaEmbed}
                         src="https://luma.com/embed/calendar/cal-JWxU0jyUqr7q0ZS/events?lt=light"
                         title="HINODEのイベントカレンダー"
                         width="100%"
-                        height="560"
+                        height="480"
                         loading="lazy"
                         allowFullScreen
                     />

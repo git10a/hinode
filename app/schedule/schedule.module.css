@@ -1500,7 +1500,7 @@
 .lumaSection {
     width: 100%;
     max-width: none;
-    margin-top: 60px;
+    margin-top: 36px;
 }
 
 .lumaHeader {
@@ -1530,14 +1530,6 @@
     letter-spacing: 0.03em;
 }
 
-.lumaLead {
-    margin: 0 0 1.1rem;
-    color: var(--hn-muted);
-    font-size: 0.9rem;
-    line-height: 1.85;
-    max-width: none;
-}
-
 .lumaFollowLink {
     display: inline-flex;
     align-items: center;
@@ -1565,7 +1557,8 @@
 .lumaEmbed {
     display: block;
     width: 100%;
-    height: 560px;
+    height: 480px;
+    margin-top: 1rem;
     border: 1px solid var(--hn-line);
     border-radius: 8px;
     background: #fff;
@@ -1581,8 +1574,8 @@
  .scheduleQuickCardBody strong { font-size: 16px; margin: 0; }
  .scheduleQuickDistance { font-size: 11px; }
  .scheduleQuickView { margin-top: 30px; padding: 24px 0; }
- .lumaSection { margin-top: 38px; }
+ .lumaSection { margin-top: 28px; }
  .lumaHeader { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
  .lumaSection h2 { font-size: 23px; }
- .lumaEmbed { height: 520px; }
+ .lumaEmbed { height: 450px; }
 }
