@@ -1,7 +1,6 @@
 import Link from '@/components/SiteLink';
 import styles from './schedule.module.css';
 import PostBottomStrip from '../../components/PostBottomStrip';
-import { getUpcomingGroupEvents } from '../../lib/strava';
 import { getRegularRun } from '../../lib/regularRuns';
 
 export const metadata = {
@@ -17,64 +16,12 @@ const EVENT_DURATION_MINUTES = 60;
 const SITE_URL = 'https://hinode-run.com';
 const EVENT_PERFORMER = { "@type": "PerformingGroup", "name": "HINODE" };
 const FIRST_RUN_GUIDE_URL = '/first-run';
-const DAY_LABEL_JP = ['日', '月', '火', '水', '木', '金', '土'];
 const KOKYO_RUN = getRegularRun('kokyo');
 const MEGURO_RUN = getRegularRun('meguro');
 const YOYOGI_RUN = getRegularRun('yoyogi');
 
-function stravaEventUrl(eventId) {
-    return `https://www.strava.com/clubs/${STRAVA_CLUB_ID}/group_events/${eventId}`;
-}
-
 function getJstWallClockDate(date) {
     return new Date(date.toLocaleString('en-US', { timeZone: 'Asia/Tokyo' }));
-}
-
-function getMonthCalendar(specialEvents, regularEventsByDay, now = new Date()) {
-    const jstNow = getJstWallClockDate(now);
-    const year = jstNow.getFullYear();
-    const monthIndex = jstNow.getMonth();
-    const daysInMonth = new Date(Date.UTC(year, monthIndex + 1, 0)).getUTCDate();
-    const firstDayOfWeek = new Date(Date.UTC(year, monthIndex, 1)).getUTCDay();
-    const specialEventsByDay = new Map();
-
-    for (const event of specialEvents) {
-        const eventDate = getJstWallClockDate(new Date(event.startAt));
-        if (eventDate.getFullYear() !== year || eventDate.getMonth() !== monthIndex) continue;
-        const day = eventDate.getDate();
-        const existing = specialEventsByDay.get(day) || [];
-        existing.push({
-            ...event,
-            time: `${pad2(eventDate.getHours())}:${pad2(eventDate.getMinutes())}`,
-        });
-        specialEventsByDay.set(day, existing);
-    }
-
-    const cells = Array.from({ length: firstDayOfWeek }, () => null);
-    for (let day = 1; day <= daysInMonth; day += 1) {
-        const dayOfWeek = new Date(Date.UTC(year, monthIndex, day)).getUTCDay();
-        cells.push({
-            day,
-            isToday: day === jstNow.getDate(),
-            regularRuns: RUNS
-                .filter((run) => run.dayOfWeek === dayOfWeek)
-                .map((run) => {
-                    const stravaEvent = regularEventsByDay.get(run.dayOfWeek);
-                    return {
-                        ...run,
-                        stravaHref: stravaEvent ? stravaEventUrl(stravaEvent.eventId) : STRAVA_CLUB_URL,
-                    };
-                }),
-            specialEvents: specialEventsByDay.get(day) || [],
-        });
-    }
-    while (cells.length % 7 !== 0) cells.push(null);
-
-    return {
-        year,
-        month: monthIndex + 1,
-        cells,
-    };
 }
 
 function pad2(value) {
@@ -221,22 +168,8 @@ const faqItems = [
     },
 ];
 
-const RUNS = [KOKYO_RUN, MEGURO_RUN, YOYOGI_RUN];
-
 export default async function EventPage() {
     const eventsJsonLd = createEventsJsonLd();
-    const upcomingEvents = await getUpcomingGroupEvents();
-    const regularDayIndexes = new Set(RUNS.map((run) => run.dayOfWeek));
-    const regularEventsByDay = new Map();
-    for (const event of upcomingEvents) {
-        if (regularDayIndexes.has(event.dayOfWeek) && !regularEventsByDay.has(event.dayOfWeek)) {
-            regularEventsByDay.set(event.dayOfWeek, event);
-        }
-    }
-    const specialEvents = upcomingEvents
-        .filter((event) => !regularDayIndexes.has(event.dayOfWeek))
-        .slice(0, 12);
-    const monthCalendar = getMonthCalendar(specialEvents, regularEventsByDay);
 
     return (
         <div className={styles.page}>
@@ -256,118 +189,33 @@ export default async function EventPage() {
                 </h1>
                 <p className={styles.lead}>
                     HINODEは、朝の時間にゆっくり走るランニングコミュニティです。<br />
-                    予約不要・参加費無料・1人参加OK。
+                    予約不要・参加費無料・1人参加OK。開催予定の確認・申し込みはLumaからどうぞ。
                 </p>
-                <div className={styles.scheduleQuickView}>
-                    <div className={styles.scheduleQuickViewHead}>
-                        <div className={styles.scheduleQuickViewTitleRow}>
-                            <p className={styles.scheduleQuickViewLabel}>定例ラン早見表</p>
-                            <a
-                                href={STRAVA_CLUB_URL}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={styles.scheduleQuickViewStrava}
-                            >
-                                詳細はStravaで
-                            </a>
-                        </div>
-                        <p className={styles.scheduleQuickViewLead}>
-                            曜日・スタート時間・集合場所をまとめました。各回とも開始5分前を目安にお集まりください。
-                        </p>
-                    </div>
-                    <div className={styles.scheduleQuickCards}>
-                        {RUNS.map((run) => (
-                            <Link key={run.id} href={run.detailHref} className={styles.scheduleQuickCard}>
-                                <div className={styles.scheduleQuickCardPrimary}>
-                                    <span className={styles.scheduleQuickDay}>{run.dayShort.replace('曜', '')}</span>
-                                    <span className={styles.scheduleQuickTime}>{run.timeRaw}</span>
-                                </div>
-                                <div className={styles.scheduleQuickCardBody}>
-                                    <strong>{run.place}</strong>
-                                    <span>{run.meetingShort} 集合</span>
-                                </div>
-                                <span className={styles.scheduleQuickDistance}>{run.distance}</span>
-                            </Link>
-                        ))}
-                    </div>
-                    <p className={styles.scheduleQuickViewNote}>
-                        ※サマータイム終了後は、平日6:30・日曜7:30スタートです（日本時間）。
-                    </p>
-                </div>
 
-                <section id="monthly-calendar" className={styles.monthlyCalendar} aria-labelledby="monthly-calendar-title">
-                    <div className={styles.monthlyCalendarHeader}>
+                <section id="event-calendar" className={styles.lumaSection} aria-labelledby="event-calendar-title">
+                    <div className={styles.lumaHeader}>
                         <div>
-                            <p className={styles.monthlyCalendarLabel}>MONTHLY SCHEDULE</p>
-                            <h2 id="monthly-calendar-title">今月の日程</h2>
+                            <p className={styles.lumaLabel}>EVENT CALENDAR</p>
+                            <h2 id="event-calendar-title">イベントカレンダー</h2>
                         </div>
-                        <p className={styles.monthlyCalendarMonth}>
-                            <span>{monthCalendar.year}年</span>
-                            <strong>{monthCalendar.month}月</strong>
-                        </p>
+                        <a
+                            href="https://luma.com/hinode"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={styles.lumaFollowLink}
+                        >
+                            Lumaでカレンダーをフォロー
+                        </a>
                     </div>
-                    <p className={styles.monthlyCalendarLead}>
-                        水・木・日の定例ランに加えて、Stravaで公開中の土曜などの企画ランも表示しています。
-                    </p>
-                    <div className={styles.calendarFrame}>
-                        <div className={styles.calendarWeekdays} aria-hidden="true">
-                            {DAY_LABEL_JP.map((label) => (
-                                <span key={label}>{label}</span>
-                            ))}
-                        </div>
-                        <div className={styles.calendarGrid}>
-                            {monthCalendar.cells.map((cell, index) => (
-                                cell ? (
-                                    <div
-                                        key={cell.day}
-                                        className={`${styles.calendarCell} ${cell.isToday ? styles.calendarCellToday : ''}`}
-                                    >
-                                        <span className={styles.calendarDate}>{cell.day}</span>
-                                        <div className={styles.calendarEvents}>
-                                            {cell.regularRuns.map((run) => (
-                                                <a
-                                                    key={run.id}
-                                                    href={run.stravaHref}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className={styles.calendarEvent}
-                                                    aria-label={`${monthCalendar.month}月${cell.day}日 ${run.place} ${run.timeRaw}`}
-                                                >
-                                                    <span>{run.place.replace('公園', '').replace('川', '')}</span>
-                                                    <small>{run.timeRaw}</small>
-                                                </a>
-                                            ))}
-                                            {cell.specialEvents.map((event) => (
-                                                <a
-                                                    key={`${event.eventId}-${event.startAt}`}
-                                                    href={stravaEventUrl(event.eventId)}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className={`${styles.calendarEvent} ${styles.calendarEventSpecial}`}
-                                                    aria-label={`${monthCalendar.month}月${cell.day}日 企画ラン ${event.title} ${event.time}`}
-                                                    title={event.title}
-                                                >
-                                                    <span>企画ラン</span>
-                                                    <small>{event.time}</small>
-                                                </a>
-                                            ))}
-                                        </div>
-                                    </div>
-                                ) : (
-                                    <div key={`empty-${index}`} className={`${styles.calendarCell} ${styles.calendarCellEmpty}`} aria-hidden="true" />
-                                )
-                            ))}
-                        </div>
-                    </div>
-                    <div className={styles.calendarLegend}>
-                        {RUNS.map((run) => (
-                            <span key={run.id}><i aria-hidden="true" />{run.place}（{run.dayShort}）</span>
-                        ))}
-                        <span className={styles.calendarLegendSpecial}><i aria-hidden="true" />企画ラン</span>
-                    </div>
-                    <p className={styles.calendarNote}>
-                        雨天中止や企画の詳細は <a href={STRAVA_CLUB_URL} target="_blank" rel="noopener noreferrer">Strava</a> または <a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer">Instagram</a> でお知らせします。
-                    </p>
+                    <iframe
+                        className={styles.lumaEmbed}
+                        src="https://luma.com/embed/calendar/cal-JWxU0jyUqr7q0ZS/events?lt=light"
+                        title="HINODEのイベントカレンダー"
+                        width="100%"
+                        height="480"
+                        loading="lazy"
+                        allowFullScreen
+                    />
                 </section>
 
                 <div className={styles.firstRunCallout}>
