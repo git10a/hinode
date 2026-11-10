@@ -2,11 +2,12 @@
 
 import Image from 'next/image';
 import Link from '@/components/SiteLink';
-import useFadeInOnScroll from '../lib/useFadeInOnScroll';
-import PostBottomStrip from './PostBottomStrip';
-import { PHOTOGRAPHY_POLICY } from '../lib/communityPolicy';
-import { COMMUNITY_STATS } from '../lib/stats';
-import styles from '../app/about/about.module.css';
+import PostBottomStrip from '@/components/PostBottomStrip';
+import { ABOUT_FAQ } from '@/lib/aboutFaq';
+import { INSTAGRAM_URL, RUNNERS_SALON_URL, STRAVA_APP_LINK, STRAVA_CLUB_URL } from '@/lib/site';
+import { COMMUNITY_STATS } from '@/lib/stats';
+import useFadeInOnScroll from '@/lib/useFadeInOnScroll';
+import styles from '@/app/about/about.module.css';
 
 const SECTIONS = [
     {
@@ -33,8 +34,6 @@ const SECTIONS = [
     },
 ];
 
-const STRAVA_CLUB_URL = 'https://www.strava.com/clubs/1772485';
-
 const FIRST_JOIN_STEPS = [
     {
         title: '日程を見る',
@@ -54,40 +53,15 @@ const FIRST_JOIN_STEPS = [
     },
 ];
 
-const FAQ = [
-    {
-        q: '集合場所で誰もいなかったら？',
-        a: (
-            <>中止の告知がないかぎり、必ず誰かがいます。背中に「HINODE」と書かれた黒いTシャツを着た運営メンバーにお声がけください。雨の日など開催できない場合は <a href="https://strava.app.link/pQ0uMuWWj2b" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a> / <a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a> で前もって告知します。不安なことがあればいつでもご連絡ください。</>
-        ),
-    },
-    {
-        q: 'どんな人が参加していますか？',
-        a: `25歳から35歳くらいの参加者が中心ですが、${COMMUNITY_STATS.ageRange}まで幅広い方が参加しています。`,
-    },
-    {
-        q: '開始時間はいつですか？',
-        a: '水曜の皇居ランと木曜の目黒川ランは6:30、日曜の代々木公園ランは7:30スタートです。時間通りにスタートしますので、開始5分前を目安に集合してください。',
-    },
-    {
-        q: '日の出の時間はもっと早くありませんか？',
-        a: 'はい、夏場は5時ごろに日の出を迎えます。日の出の瞬間だけでなく、朝の光の中を無理なく続けて走ることを大切にし、電車で来る方も参加しやすい時間にしています。日曜は近くのRuntrip BASEが7:00オープンのため、7:30集合です。',
-    },
-    {
-        q: '何を持っていけばいいですか？',
-        a: '走れる服装とシューズだけで大丈夫です。荷物がある場合は、駅のロッカーに預けてから来る方もいます。',
-    },
-    {
-        q: 'Stravaへの参加表明は必要ですか？',
-        a: (
-            <>必須ではありませんが、<a href="https://strava.app.link/pQ0uMuWWj2b" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a> で「参加」を押してもらえると他の人も参加しやすくなります。</>
-        ),
-    },
-    {
-        q: '写真に写らなくても大丈夫ですか？',
-        a: `${PHOTOGRAPHY_POLICY.standard}${PHOTOGRAPHY_POLICY.reason}`,
-    },
-];
+// リンクを含む回答（文字列と { text, href } の配列）をそのまま描画する
+function FaqAnswer({ answer }) {
+    if (typeof answer === 'string') return answer;
+    return answer.map((part, index) => (
+        typeof part === 'string'
+            ? part
+            : <a key={index} href={part.href} className={styles.link} target="_blank" rel="noopener noreferrer">{part.text}</a>
+    ));
+}
 
 export default function AboutContent() {
     useFadeInOnScroll({
@@ -108,7 +82,7 @@ export default function AboutContent() {
                 </p>
                 <p className={styles.mediaMention}>
                     <a
-                        href="https://www.bs-tvtokyo.co.jp/runners_salon/"
+                        href={RUNNERS_SALON_URL}
                         target="_blank"
                         rel="noopener noreferrer"
                     >
@@ -204,13 +178,13 @@ export default function AboutContent() {
                     </div>
                     <div className={styles.sectionBody}>
                         <dl className={styles.faqList}>
-                            {FAQ.map((item, i) => (
-                                <div key={i} className={styles.faqItem}>
+                            {ABOUT_FAQ.map((item) => (
+                                <div key={item.question} className={styles.faqItem}>
                                     <dt className={styles.faqQuestion}>
                                         <span className={styles.faqQMark} aria-hidden="true">Q.</span>
-                                        {item.q}
+                                        {item.question}
                                     </dt>
-                                    <dd className={styles.faqAnswer}>{item.a}</dd>
+                                    <dd className={styles.faqAnswer}><FaqAnswer answer={item.answer} /></dd>
                                 </div>
                             ))}
                         </dl>
@@ -235,8 +209,8 @@ export default function AboutContent() {
                                 <span className={styles.infoLabel}>最新情報</span>
                                 <p>開催可否や当日の案内は Instagram と Strava で告知しています。</p>
                                 <div className={styles.infoLinks}>
-                                    <a href="https://www.instagram.com/hinode_run/" className={styles.infoLink} target="_blank" rel="noopener noreferrer">Instagram</a>
-                                    <a href="https://strava.app.link/pQ0uMuWWj2b" className={styles.infoLink} target="_blank" rel="noopener noreferrer">Strava</a>
+                                    <a href={INSTAGRAM_URL} className={styles.infoLink} target="_blank" rel="noopener noreferrer">Instagram</a>
+                                    <a href={STRAVA_APP_LINK} className={styles.infoLink} target="_blank" rel="noopener noreferrer">Strava</a>
                                 </div>
                             </div>
                         </div>

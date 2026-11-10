@@ -1,3 +1,4 @@
+import { COMMUNITY_PROMISES } from '@/lib/communityPolicy';
 import StartForm from './StartForm';
 import styles from './start.module.css';
 
@@ -16,7 +17,7 @@ export default function StartPage() {
                     朝に誰かと走れる場所を、自分の街にも。参加してみたい方も、開催する側に興味がある方も、まずは最低限の情報だけお送りください。
                 </p>
                 <div className={styles.principles} aria-label="HINODEの共通方針">
-                    <span>参加無料</span><span>予約不要</span><span>競争しない</span><span>撮影しない</span>
+                    {COMMUNITY_PROMISES.map((promise) => <span key={promise}>{promise}</span>)}
                 </div>
                 <section className={styles.explanation}>
                     <h2>最初から大きく始める必要はありません</h2>

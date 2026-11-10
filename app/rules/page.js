@@ -1,8 +1,7 @@
 import Link from '@/components/SiteLink';
+import { PHOTOGRAPHY_POLICY, COMMUNITY_PRINCIPLES } from '@/lib/communityPolicy';
+import { CONTACT_EMAIL, DEFAULT_OG_IMAGE, SITE_NAME, absoluteUrl } from '@/lib/site';
 import styles from './rules.module.css';
-import { PHOTOGRAPHY_POLICY, COMMUNITY_PRINCIPLES } from '../../lib/communityPolicy';
-
-const CONTACT_EMAIL = 'hinode.run@gmail.com';
 
 export const metadata = {
     title: '参加ルール｜HINODE',
@@ -10,17 +9,17 @@ export const metadata = {
     openGraph: {
         title: '参加ルール｜HINODE',
         description: '安心して朝ランに参加するために、HINODEで大切にしていることと禁止事項をまとめています。',
-        url: 'https://hinode-run.com/rules',
-        siteName: 'HINODE',
+        url: absoluteUrl('/rules'),
+        siteName: SITE_NAME,
         locale: 'ja_JP',
         type: 'article',
-        images: ['/assets/ogp-home.jpg'],
+        images: [DEFAULT_OG_IMAGE],
     },
     twitter: {
         card: 'summary_large_image',
         title: '参加ルール｜HINODE',
         description: 'HINODEで安心して朝ランに参加するためのルールです。',
-        images: ['/assets/ogp-home.jpg'],
+        images: [DEFAULT_OG_IMAGE],
     },
 };
 

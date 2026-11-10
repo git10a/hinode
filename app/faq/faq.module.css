@@ -194,21 +194,14 @@
 .hero > :global(.container) { width: min(1180px, 100%); padding: 0 32px; }
 .eyebrow { color: var(--hn-sun); font-size: 11px; letter-spacing: .16em; }
 .title { font-size: clamp(32px, 4vw, 52px); font-weight: 400; line-height: 1.6; }
-.title::after, .sectionTitle::after, .groupTitle::after { display: none; }
+.title::after, .groupTitle::after { display: none; }
 .introText { margin: 20px 0 0; }
 .section { background: transparent; padding: 48px 0 64px; }
-.sectionAlt { background: var(--hn-surface); }
-.sectionTitle, .groupTitle { font-weight: 400; font-size: 28px; }
+.groupTitle { font-weight: 400; font-size: 28px; }
 .faqQuestion::before { background: none; color: var(--hn-sun); }
 .narrowContainer { max-width: 900px; }
-.contentContainer { max-width: 1180px; }
-.courseCard { background: transparent; border: 0; border-top: 1px solid var(--hn-line); border-bottom: 1px solid var(--hn-line); padding: 28px 0; }
-.courseCard:hover { transform: none; background: var(--hn-surface); }
-.courseCardTitle { font-weight: 500; }
-.statsCard { background: transparent; border: 0; }
-.hinodeBox { background: var(--hn-surface); box-shadow: none; border: 0; }
 .ctaSection { background: var(--hn-ink); color: var(--hn-paper); margin: 0 24px 24px; padding: 60px 24px; text-align: left; }
 .ctaText { color: var(--hn-paper); font-weight: 400; }
 .ctaSection .primaryButton { background: var(--hn-paper); color: var(--hn-ink); }
 .ctaSection .secondaryButton { color: var(--hn-paper); border-color: #aab5a5; }
-@media(max-width:640px) { .hero { padding: 125px 0 40px; } .hero > :global(.container) { padding: 0 24px; } .title { font-size: 30px; } .narrowContainer, .contentContainer { padding: 0 24px; } .sectionTitle, .groupTitle { font-size: 24px; } .ctaSection { margin: 0 12px 12px; padding: 38px 24px; } }
+@media(max-width:640px) { .hero { padding: 125px 0 40px; } .hero > :global(.container) { padding: 0 24px; } .title { font-size: 30px; } .narrowContainer { padding: 0 24px; } .groupTitle { font-size: 24px; } .ctaSection { margin: 0 12px 12px; padding: 38px 24px; } }

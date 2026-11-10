@@ -1,9 +1,10 @@
 import Link from '@/components/SiteLink';
 import Image from 'next/image';
-import { getAllBlogPosts } from '../../lib/microcms';
-import { getPopularBlogPostIds } from '../../lib/googleAnalytics';
-import { formatPostDate, getPostDisplayDate, sortBlogPosts } from '../../lib/blogPosts';
-import { BLOG_TOPICS } from '../../lib/blogTopics';
+import { formatPostDate, getPostDisplayDate, sortBlogPosts } from '@/lib/blogPosts';
+import { BLOG_TOPICS } from '@/lib/blogTopics';
+import { getPopularBlogPostIds } from '@/lib/googleAnalytics';
+import { getAllBlogPosts } from '@/lib/microcms';
+import PostGrid from './PostGrid';
 import styles from './blog.module.css';
 
 export const revalidate = 900;
@@ -43,14 +44,15 @@ function getFeaturedPost(posts, popularPostIds = []) {
     return posts[0] || null;
 }
 
-export default async function BlogPage({ searchParams = {} }) {
-    const [rawPosts, popularPostIds] = await Promise.all([
+export default async function BlogPage({ searchParams }) {
+    const [rawPosts, popularPostIds, query] = await Promise.all([
         getAllBlogPosts(),
         getPopularBlogPostIds(),
+        searchParams,
     ]);
     const posts = sortBlogPosts(rawPosts);
     const featured = getFeaturedPost(posts, popularPostIds);
-    const rawSearchQuery = typeof searchParams.q === 'string' ? searchParams.q.trim() : '';
+    const rawSearchQuery = typeof query?.q === 'string' ? query.q.trim() : '';
     const searchQuery = normalizeText(rawSearchQuery);
     const filteredPosts = posts.filter((post) => !searchQuery || getPostSearchText(post).includes(searchQuery));
 
@@ -149,32 +151,7 @@ export default async function BlogPage({ searchParams = {} }) {
                 ) : filteredPosts.length === 0 ? (
                     <p className={styles.empty}>条件に合う記事が見つかりませんでした。</p>
                 ) : (
-                    <div className={styles.grid}>
-                        {filteredPosts.map((post) => (
-                            <Link href={`/blog/${post.id}`} key={post.id} className={styles.card}>
-                                {post.thumbnail && (
-                                    <div className={styles.thumbnailWrapper}>
-                                        <Image
-                                            src={post.thumbnail.url}
-                                            alt={post.title}
-                                            fill
-                                            sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 360px"
-                                            className={styles.thumbnail}
-                                        />
-                                    </div>
-                                )}
-                                <div className={styles.content}>
-                                    <time className={styles.date} dateTime={getPostDisplayDate(post)}>
-                                        {formatPostDate(getPostDisplayDate(post))}
-                                    </time>
-                                    <h2 className={styles.title}>{post.title}</h2>
-                                    {post.description && (
-                                        <p className={styles.excerpt}>{post.description}</p>
-                                    )}
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
+                    <PostGrid posts={filteredPosts} />
                 )}
             </section>
         </div>

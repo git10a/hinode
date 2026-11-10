@@ -1,8 +1,8 @@
-import HomeContent from '../components/HomeContent';
-import { getAllBlogPosts } from '../lib/microcms';
-import { sortBlogPosts } from '../lib/blogPosts';
-import { getUpcomingGroupEvents } from '../lib/strava';
-import { getRunCount } from '../lib/runCount';
+import HomeContent from '@/components/HomeContent';
+import { sortBlogPosts } from '@/lib/blogPosts';
+import { getAllBlogPosts } from '@/lib/microcms';
+import { getRunCount } from '@/lib/runCount';
+import { getUpcomingGroupEvents } from '@/lib/strava';
 
 export const revalidate = 900;
 

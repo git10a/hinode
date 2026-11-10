@@ -1,15 +1,16 @@
 import Image from 'next/image';
 import Link from '@/components/SiteLink';
 import { notFound } from 'next/navigation';
-import { CITIES, getCity, getCityRuns } from '../../../lib/cities';
+import { CITIES, getCity, getCityRuns } from '@/lib/cities';
+import { INSTAGRAM_URL, STRAVA_CLUB_VANITY_URL } from '@/lib/site';
 import styles from '../cities.module.css';
 
 export function generateStaticParams() {
     return CITIES.map((city) => ({ city: city.slug }));
 }
 
-export function generateMetadata({ params }) {
-    const city = getCity(params.city);
+export async function generateMetadata({ params }) {
+    const city = getCity((await params).city);
     if (!city) return {};
     return {
         title: `HINODE ${city.label}｜${city.name}の朝ランコミュニティ`,
@@ -17,8 +18,8 @@ export function generateMetadata({ params }) {
     };
 }
 
-export default function CityPage({ params }) {
-    const city = getCity(params.city);
+export default async function CityPage({ params }) {
+    const city = getCity((await params).city);
     if (!city) notFound();
     const runs = getCityRuns(city.slug);
 
@@ -55,8 +56,8 @@ export default function CityPage({ params }) {
                         <h2>次の開催について</h2>
                         <p>開催日時・集合場所は、決まり次第HINODEのInstagramとStravaで案内します。</p>
                         <div className={styles.inlineLinks}>
-                            <a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
-                            <a href="https://www.strava.com/clubs/hinode" target="_blank" rel="noopener noreferrer">Strava ↗</a>
+                            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+                            <a href={STRAVA_CLUB_VANITY_URL} target="_blank" rel="noopener noreferrer">Strava ↗</a>
                         </div>
                     </section>
                 )}

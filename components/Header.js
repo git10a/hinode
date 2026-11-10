@@ -3,9 +3,8 @@
 import { useState, useEffect } from 'react';
 import Link from '@/components/SiteLink';
 import Image from 'next/image';
-
 import { usePathname } from 'next/navigation';
-import SOCIAL_LINKS from '../lib/socialLinks';
+import { SOCIAL_LINKS } from '@/lib/site';
 
 const PRIMARY_NAV_LINKS = [
     { href: '/about/', label: 'HINODEとは' },
@@ -25,11 +24,40 @@ function normalizePath(path) {
     return normalized || '/';
 }
 
+function isActiveLink(link, currentPath) {
+    if (link.external) return false;
+    const targetPath = normalizePath(link.href);
+    return currentPath === targetPath || (targetPath !== '/' && currentPath.startsWith(`${targetPath}/`));
+}
+
+// デスクトップのナビとモバイルメニューで共通のリンク一覧
+function NavItems({ currentPath, onNavigate }) {
+    return MENU_LINKS.map((link) => {
+        const className = [
+            isActiveLink(link, currentPath) ? 'active' : '',
+            link.external ? 'external' : '',
+        ].filter(Boolean).join(' ');
+
+        return (
+            <li key={link.href} className={link.priority === 'low' ? 'low-priority' : ''}>
+                {link.external ? (
+                    <a href={link.href} target="_blank" rel="noopener noreferrer" onClick={onNavigate} className={className}>
+                        {link.label}
+                    </a>
+                ) : (
+                    <Link href={link.href} onClick={onNavigate} className={className}>{link.label}</Link>
+                )}
+            </li>
+        );
+    });
+}
+
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const pathname = usePathname();
     const isHome = pathname === '/';
+    const currentPath = normalizePath(pathname || '/');
 
     useEffect(() => {
         let ticking = false;
@@ -46,25 +74,17 @@ export default function Header() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // メニューを開いている間は背面のスクロールを止める
+    const setMenuOpen = (open) => {
+        setIsMenuOpen(open);
+        document.body.style.overflow = open ? 'hidden' : '';
+    };
+
     useEffect(() => {
         return () => {
             document.body.style.overflow = '';
         };
     }, []);
-
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-        if (!isMenuOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
-    };
-
-    const closeMenu = () => {
-        setIsMenuOpen(false);
-        document.body.style.overflow = '';
-    };
 
     // Header Style Logic
     // Home: Fixed (Sticky), Glass effect
@@ -72,18 +92,6 @@ export default function Header() {
     const headerClass = isHome
         ? (isScrolled ? 'scrolled' : '')
         : 'blog-header';
-
-    const currentPath = normalizePath(pathname || '/');
-    const isActiveLink = (link) => {
-        if (link.external) return false;
-        const targetPath = normalizePath(link.href);
-        return currentPath === targetPath || (targetPath !== '/' && currentPath.startsWith(`${targetPath}/`));
-    };
-    const linkClassName = (link) => [
-        isActiveLink(link) ? 'active' : '',
-        link.external ? 'external' : '',
-    ].filter(Boolean).join(' ');
-    const itemClassName = (link) => link.priority === 'low' ? 'low-priority' : '';
 
     return (
         <header className={headerClass}>
@@ -100,17 +108,7 @@ export default function Header() {
                         />
                     </Link>
                     <ul className="nav-links">
-                        {MENU_LINKS.map(link => (
-                            <li key={link.href} className={itemClassName(link)}>
-                                {link.external ? (
-                                    <a href={link.href} target="_blank" rel="noopener noreferrer" className={linkClassName(link)}>
-                                        {link.label}
-                                    </a>
-                                ) : (
-                                    <Link href={link.href} className={linkClassName(link)}>{link.label}</Link>
-                                )}
-                            </li>
-                        ))}
+                        <NavItems currentPath={currentPath} />
                     </ul>
 
                     <button
@@ -118,7 +116,7 @@ export default function Header() {
                         aria-label={isMenuOpen ? 'メニューを閉じる' : 'メニューを開く'}
                         aria-expanded={isMenuOpen}
                         aria-controls="site-mobile-menu"
-                        onClick={toggleMenu}
+                        onClick={() => setMenuOpen(!isMenuOpen)}
                     >
                         <span className="bar"></span>
                         <span className="bar"></span>
@@ -127,19 +125,7 @@ export default function Header() {
 
                     <div id="site-mobile-menu" className={`mobile-menu ${isMenuOpen ? 'active' : ''}`}>
                         <ul className="mobile-nav-links">
-                            {MENU_LINKS.map(link => (
-                                <li key={link.href} className={itemClassName(link)}>
-                                    {link.external ? (
-                                        <a href={link.href} target="_blank" rel="noopener noreferrer" onClick={closeMenu} className={linkClassName(link)}>
-                                            {link.label}
-                                        </a>
-                                    ) : (
-                                        <Link href={link.href} onClick={closeMenu} className={linkClassName(link)}>
-                                            {link.label}
-                                        </Link>
-                                    )}
-                                </li>
-                            ))}
+                            <NavItems currentPath={currentPath} onNavigate={() => setMenuOpen(false)} />
                         </ul>
                     </div>
                 </nav>

@@ -121,39 +121,6 @@
     letter-spacing: 0.04em;
 }
 
-.hook {
-    padding: 1.2rem 0;
-    border-bottom: 1px solid var(--hn-line);
-}
-
-.hook:last-child {
-    border-bottom: 0;
-}
-
-.hookTitle {
-    font-family: var(--font-jp);
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 0.4rem;
-    color: var(--hn-ink);
-}
-
-.hookBody {
-    font-size: 0.94rem;
-    line-height: 1.85;
-    color: var(--hn-muted);
-}
-
-.quote {
-    margin: 1.5rem 0;
-    padding: 1rem 1.5rem;
-    background: var(--hn-surface);
-    border-left: 3px solid var(--hn-ink);
-    font-size: 0.98rem;
-    line-height: 1.9;
-    color: var(--hn-ink);
-}
-
 .faqItem {
     margin-bottom: 1.8rem;
 }

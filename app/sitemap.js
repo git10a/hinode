@@ -1,10 +1,9 @@
-import { getAllBlogPosts } from '../lib/microcms';
-import COURSE_GUIDES from '../lib/courseGuides';
-import { BLOG_TOPICS } from '../lib/blogTopics';
-import { CITIES } from '../lib/cities';
-import { REGULAR_RUNS } from '../lib/regularRuns';
-
-const SITE_URL = 'https://hinode-run.com';
+import { BLOG_TOPICS } from '@/lib/blogTopics';
+import { CITIES } from '@/lib/cities';
+import COURSE_GUIDES from '@/lib/courseGuides';
+import { getAllBlogPosts } from '@/lib/microcms';
+import { REGULAR_RUNS } from '@/lib/regularRuns';
+import { SITE_URL } from '@/lib/site';
 
 // ブログ更新はwebhook（/api/revalidate）でも再生成されるが、
 // 念のため定期再検証もかけておく

@@ -1,7 +1,7 @@
 import ContactForm from './ContactForm';
+import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from '@/lib/site';
 import styles from './contact.module.css';
 
-const SITE_URL = 'https://hinode-run.com';
 
 export const metadata = {
     title: 'お問い合わせ｜HINODE',
@@ -13,22 +13,23 @@ export const metadata = {
         title: 'お問い合わせ｜HINODE',
         description: '企画ランや走ってほしいコースの提案、参加に関する質問、お仕事・取材のご相談はこちらから。',
         url: `${SITE_URL}/contact`,
-        siteName: 'HINODE',
+        siteName: SITE_NAME,
         locale: 'ja_JP',
         type: 'website',
-        images: ['/assets/ogp-home.jpg'],
+        images: [DEFAULT_OG_IMAGE],
     },
     twitter: {
         card: 'summary_large_image',
         title: 'お問い合わせ｜HINODE',
         description: '企画ランや走ってほしいコースの提案、参加に関する質問、お仕事・取材のご相談はこちらから。',
-        images: ['/assets/ogp-home.jpg'],
+        images: [DEFAULT_OG_IMAGE],
     },
 };
 
-export default function ContactPage({ searchParams }) {
-    const initialInquiryType = searchParams?.type === 'work' ? 'work' : 'community';
-    const initialCategory = typeof searchParams?.category === 'string' ? searchParams.category : '';
+export default async function ContactPage({ searchParams }) {
+    const { type, category } = (await searchParams) ?? {};
+    const initialInquiryType = type === 'work' ? 'work' : 'community';
+    const initialCategory = typeof category === 'string' ? category : '';
 
     return (
         <section className={styles.page}>

@@ -1,9 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import useFadeInOnScroll from '../lib/useFadeInOnScroll';
-import styles from '../app/hinode-spot/hinode-spot.module.css';
-import RUNNING_COURSES from '../lib/runningCourses';
+import RUNNING_COURSES from '@/lib/runningCourses';
+import { INSTAGRAM_URL, STRAVA_APP_LINK } from '@/lib/site';
+import useFadeInOnScroll from '@/lib/useFadeInOnScroll';
+import styles from '@/app/hinode-spot/hinode-spot.module.css';
 
 export default function RunningCourseContent() {
     useFadeInOnScroll({
@@ -87,8 +88,8 @@ export default function RunningCourseContent() {
                         <p className={styles.ctaText}>
                             一緒に日の出で走りませんか？<br />
                             スケジュールは<a href="/schedule" className={styles.link}>こちら</a>、
-                            詳しい情報は<a href="https://strava.app.link/pQ0uMuWWj2b" className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a>や
-                            <a href="https://www.instagram.com/hinode_run/" className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a>をご覧ください。
+                            詳しい情報は<a href={STRAVA_APP_LINK} className={styles.link} target="_blank" rel="noopener noreferrer">Strava</a>や
+                            <a href={INSTAGRAM_URL} className={styles.link} target="_blank" rel="noopener noreferrer">Instagram</a>をご覧ください。
                         </p>
                     </div>
                 </div>

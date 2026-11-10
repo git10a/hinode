@@ -1,29 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import { CONTACT_CATEGORIES } from '@/lib/contactOptions';
+import { CONTACT_EMAIL } from '@/lib/site';
+import useContactSubmit from '@/lib/useContactSubmit';
 import styles from './contact.module.css';
-
-const INITIAL_STATUS = { type: 'idle', message: '' };
-
-const CATEGORIES = {
-    community: [
-        '企画ランのアイデア',
-        '走ってほしいコース',
-        '参加について',
-        'その他',
-    ],
-    work: [
-        'HINODE拠点導入',
-        '地域ラン企画',
-        'ランニングイベント',
-        '大会・ランニングイベントのWeb制作',
-        '仕事依頼',
-        '取材・掲載',
-        '講演・イベント出演',
-        '協業・スポンサー相談',
-        'その他',
-    ],
-};
 
 export default function ContactForm({
     initialInquiryType = 'community',
@@ -31,44 +12,19 @@ export default function ContactForm({
 }) {
     const [inquiryType, setInquiryType] = useState(initialInquiryType);
     const [category, setCategory] = useState(
-        CATEGORIES[initialInquiryType]?.includes(initialCategory) ? initialCategory : ''
+        CONTACT_CATEGORIES[initialInquiryType]?.includes(initialCategory) ? initialCategory : ''
     );
-    const [status, setStatus] = useState(INITIAL_STATUS);
+    const { handleSubmit, isSubmitting, errorMessage } = useContactSubmit({
+        thanksPath: '/contact/thanks',
+        errorMessage: `送信できませんでした。時間をおいて再度お試しいただくか、${CONTACT_EMAIL} まで直接ご連絡ください。`,
+    });
     const isWork = inquiryType === 'work';
-    const isSubmitting = status.type === 'submitting';
 
-    async function handleSubmit(event) {
-        event.preventDefault();
-
-        if (isSubmitting) return;
-
-        setStatus({ type: 'submitting', message: '' });
-
-        const form = event.currentTarget;
-        const formData = new FormData(form);
-        const payload = Object.fromEntries(formData.entries());
-
-        try {
-            const response = await fetch('/api/contact', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(payload),
-            });
-
-            if (!response.ok) {
-                throw new Error('Contact request failed.');
-            }
-
-            window.location.assign('/contact/thanks');
-        } catch {
-            setStatus({
-                type: 'error',
-                message: '送信できませんでした。時間をおいて再度お試しいただくか、hinode.run@gmail.com まで直接ご連絡ください。',
-            });
-        }
-    }
+    // 種類を切り替えたら、選択肢が変わるのでカテゴリは選び直してもらう
+    const handleInquiryTypeChange = (event) => {
+        setInquiryType(event.target.value);
+        setCategory('');
+    };
 
     return (
         <form className={styles.form} onSubmit={handleSubmit}>
@@ -86,10 +42,7 @@ export default function ContactForm({
                             name="inquiryType"
                             value="community"
                             checked={!isWork}
-                            onChange={(event) => {
-                                setInquiryType(event.target.value);
-                                setCategory('');
-                            }}
+                            onChange={handleInquiryTypeChange}
                         />
                         <span>企画ラン・コース・参加について</span>
                     </label>
@@ -99,10 +52,7 @@ export default function ContactForm({
                             name="inquiryType"
                             value="work"
                             checked={isWork}
-                            onChange={(event) => {
-                                setInquiryType(event.target.value);
-                                setCategory('');
-                            }}
+                            onChange={handleInquiryTypeChange}
                         />
                         <span>お仕事・取材について</span>
                     </label>
@@ -118,8 +68,8 @@ export default function ContactForm({
                     required
                 >
                     <option value="" disabled>選択してください</option>
-                    {CATEGORIES[inquiryType].map((category) => (
-                        <option key={category} value={category}>{category}</option>
+                    {CONTACT_CATEGORIES[inquiryType].map((option) => (
+                        <option key={option} value={option}>{option}</option>
                     ))}
                 </select>
             </label>
@@ -169,9 +119,9 @@ export default function ContactForm({
                     : '内容はすべて拝見します。すべての提案の実現や返信をお約束するものではありません。'}
             </p>
 
-            {status.type === 'error' && (
+            {errorMessage && (
                 <p className={styles.formError} role="alert">
-                    {status.message}
+                    {errorMessage}
                 </p>
             )}
 

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import styles from '../app/schedule/schedule.module.css';
+import styles from '@/app/schedule/schedule.module.css';
 
 const DATE_FORMAT = new Intl.DateTimeFormat('ja-JP', {
     timeZone: 'Asia/Tokyo', month: 'numeric', day: '2-digit', weekday: 'long',

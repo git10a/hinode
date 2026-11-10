@@ -1,11 +1,16 @@
 import Image from 'next/image';
 import Link from '@/components/SiteLink';
-import ParticipantPreview from '../../components/ParticipantPreview';
-import PostBottomStrip from '../../components/PostBottomStrip';
-import ShareScheduleButton from '../../components/ShareScheduleButton';
-import { getUpcomingGroupEvents } from '../../lib/strava';
-import { FIRST_CHOICE_RUN } from '../../lib/regularRuns';
-import { PHOTOGRAPHY_POLICY } from '../../lib/communityPolicy';
+import JsonLd from '@/components/JsonLd';
+import LocationPinIcon from '@/components/LocationPinIcon';
+import ParticipantPreview from '@/components/ParticipantPreview';
+import PostBottomStrip from '@/components/PostBottomStrip';
+import ShareScheduleButton from '@/components/ShareScheduleButton';
+import { PHOTOGRAPHY_POLICY } from '@/lib/communityPolicy';
+import { formatMonthDayJst } from '@/lib/jstDate';
+import { FIRST_CHOICE_RUN, WEEKDAY_TIME_LABEL, findUpcomingEventForRun, getNextRunStart } from '@/lib/regularRuns';
+import { STRAVA_CLUB_URL, stravaEventUrl } from '@/lib/site';
+import { getUpcomingGroupEvents } from '@/lib/strava';
+import { createFaqJsonLd } from '@/lib/structuredData';
 import styles from './first-run.module.css';
 
 export const metadata = {
@@ -13,13 +18,7 @@ export const metadata = {
     description: 'HINODEの初参加ガイドです。おすすめの回、当日の流れ、集合場所での合流、初心者やひとり参加の不安、ペース、服装、荷物、写真方針、Strava、雨天時の確認方法をまとめています。',
 };
 
-const STRAVA_CLUB_URL = 'https://www.strava.com/clubs/1772485';
-const STRAVA_CLUB_ID = '1772485';
-
 export const revalidate = 900;
-
-const DAY_LABEL_JP = ['日', '月', '火', '水', '木', '金', '土'];
-const EVENT_DURATION_MINUTES = 60;
 
 const QUICK_FACTS = [
     '予約不要',
@@ -31,51 +30,6 @@ const QUICK_FACTS = [
     '歩いてOK',
     '服装自由',
 ];
-
-function formatEventDate(iso) {
-    if (!iso) return null;
-    const utc = new Date(iso);
-    const jst = new Date(utc.getTime() + 9 * 60 * 60 * 1000);
-    const m = jst.getUTCMonth() + 1;
-    const d = jst.getUTCDate();
-    const w = DAY_LABEL_JP[jst.getUTCDay()];
-    return `${m}/${d}(${w})`;
-}
-
-function formatWallClockDate(date) {
-    const m = date.getMonth() + 1;
-    const d = date.getDate();
-    const w = DAY_LABEL_JP[date.getDay()];
-    return `${m}/${d}(${w})`;
-}
-
-function getJstWallClockDate(date) {
-    return new Date(date.toLocaleString('en-US', { timeZone: 'Asia/Tokyo' }));
-}
-
-function getNextRegularEvent(item, now = new Date()) {
-    const jstNow = getJstWallClockDate(now);
-    const [hours, minutes] = item.timeRaw.split(':').map(Number);
-    const currentMinutes = jstNow.getHours() * 60 + jstNow.getMinutes();
-    const eventMinutes = hours * 60 + minutes;
-
-    let daysUntil = item.dayOfWeek - jstNow.getDay();
-    if (daysUntil < 0) {
-        daysUntil += 7;
-    } else if (daysUntil === 0 && currentMinutes >= eventMinutes + EVENT_DURATION_MINUTES) {
-        daysUntil = 7;
-    }
-
-    const start = new Date(jstNow);
-    start.setDate(start.getDate() + daysUntil);
-    start.setHours(hours, minutes, 0, 0);
-
-    return formatWallClockDate(start);
-}
-
-function stravaEventUrl(eventId) {
-    return `https://www.strava.com/clubs/${STRAVA_CLUB_ID}/group_events/${eventId}`;
-}
 
 const FLOW_STEPS = [
     {
@@ -122,7 +76,7 @@ const COMMUNITY_SNAPSHOTS = [
 const GUIDE_CARDS = [
     {
         title: 'どの回がおすすめ？',
-        body: 'まずは日曜7:30の代々木公園ランがおすすめです。距離は約2〜4kmで、平日6:30の回より時間にも余裕があります。',
+        body: `まずは${FIRST_CHOICE_RUN.dayTimeLabel}の${FIRST_CHOICE_RUN.name}がおすすめです。距離は${FIRST_CHOICE_RUN.distance}で、平日${WEEKDAY_TIME_LABEL}の回より時間にも余裕があります。`,
     },
     {
         title: '速そうで怖い',
@@ -195,36 +149,25 @@ const GUIDE_CARDS = [
     },
 ];
 
-const FAQ_JSON_LD = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: GUIDE_CARDS.map((item) => ({
-        '@type': 'Question',
-        name: item.title,
-        acceptedAnswer: {
-            '@type': 'Answer',
-            text: item.schemaText || item.body,
-        },
-    })),
-};
+// body がJSXの項目は、構造化データ用のプレーンテキストを schemaText に持つ
+const FAQ_JSON_LD = createFaqJsonLd(
+    GUIDE_CARDS.map((item) => ({ question: item.title, answer: item.schemaText || item.body }))
+);
 
 export default async function FirstRunPage() {
     const upcomingEvents = await getUpcomingGroupEvents();
-    const firstChoiceEvent = upcomingEvents.find((event) => event.dayOfWeek === FIRST_CHOICE_RUN.dayOfWeek);
-    const firstChoiceDate = firstChoiceEvent ? formatEventDate(firstChoiceEvent.startAt) : getNextRegularEvent(FIRST_CHOICE_RUN);
+    const firstChoiceEvent = findUpcomingEventForRun(upcomingEvents, FIRST_CHOICE_RUN);
+    const firstChoiceDate = formatMonthDayJst(firstChoiceEvent?.startAt || getNextRunStart(FIRST_CHOICE_RUN));
     const firstChoiceStravaHref = firstChoiceEvent ? stravaEventUrl(firstChoiceEvent.eventId) : null;
 
     return (
         <div className={styles.page}>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSON_LD) }}
-            />
+            <JsonLd data={FAQ_JSON_LD} />
 
             <div className={styles.pageInner}>
                 <section className={styles.hero}>
                     <div className={styles.heroCopy}>
-                    <p className="editorial-eyebrow">YOUR FIRST MORNING</p>
+                        <p className="editorial-eyebrow">YOUR FIRST MORNING</p>
                         <h1 className={styles.title}>
                             初めてHINODEに参加する方へ
                         </h1>
@@ -290,9 +233,9 @@ export default async function FirstRunPage() {
             <section className={`${styles.sectionBand} ${styles.sectionBandChoice}`} aria-labelledby="quick-title">
                 <div className={styles.sectionInner}>
                     <div className={styles.sectionHead}>
-                        <h2 id="quick-title" className={styles.sectionTitle}>最初は日曜7:30の代々木公園ランがおすすめです</h2>
+                        <h2 id="quick-title" className={styles.sectionTitle}>最初は{FIRST_CHOICE_RUN.dayTimeLabel}の{FIRST_CHOICE_RUN.name}がおすすめです</h2>
                         <p className={styles.sectionLead}>
-                            平日6:30の回より時間に余裕があり、距離も約2〜4km。初めての方が入りやすい回です。
+                            平日{WEEKDAY_TIME_LABEL}の回より時間に余裕があり、距離も{FIRST_CHOICE_RUN.distance}。初めての方が入りやすい回です。
                         </p>
                     </div>
                     <article className={styles.firstChoiceCard}>
@@ -313,10 +256,7 @@ export default async function FirstRunPage() {
                             </p>
                             <h3 className={styles.firstChoicePlace}>{FIRST_CHOICE_RUN.place}</h3>
                             <p className={styles.firstChoiceLocation}>
-                                <svg viewBox="0 0 24 24" className={styles.firstChoiceLocationIcon} aria-hidden="true">
-                                    <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" />
-                                    <circle cx="12" cy="9" r="2.5" />
-                                </svg>
+                                <LocationPinIcon className={styles.firstChoiceLocationIcon} />
                                 {FIRST_CHOICE_RUN.meetingShort}
                             </p>
                             <ParticipantPreview

@@ -1,7 +1,7 @@
 import Link from '@/components/SiteLink';
 import Image from 'next/image';
-import { formatPostDate, getPostDisplayDate } from '../lib/blogPosts';
-import styles from '../app/blog/[slug]/post.module.css';
+import { formatPostDate, getPostDisplayDate } from '@/lib/blogPosts';
+import styles from '@/app/blog/[slug]/post.module.css';
 
 export default function RelatedPosts({ posts = [] }) {
     if (posts.length === 0) return null;

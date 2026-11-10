@@ -1,4 +1,4 @@
-import styles from '../app/blog/[slug]/post.module.css';
+import styles from '@/app/blog/[slug]/post.module.css';
 
 // 見出しが少ない記事には目次を出さない（薄い記事の不自然さを防ぐ）。
 const MIN_HEADINGS = 3;

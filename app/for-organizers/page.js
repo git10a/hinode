@@ -1,7 +1,7 @@
 import Link from '@/components/SiteLink';
+import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from '@/lib/site';
 import styles from './for-organizers.module.css';
 
-const SITE_URL = 'https://hinode-run.com';
 const CONTACT_HREF = {
     pathname: '/contact',
     query: {
@@ -20,16 +20,16 @@ export const metadata = {
         title: '地域・企業との取り組み｜HINODE',
         description: 'HINODEの拠点導入、地域ラン企画、ランニングイベント、Web制作についてご相談いただけます。',
         url: `${SITE_URL}/for-organizers`,
-        siteName: 'HINODE',
+        siteName: SITE_NAME,
         locale: 'ja_JP',
         type: 'website',
-        images: ['/assets/ogp-home.jpg'],
+        images: [DEFAULT_OG_IMAGE],
     },
     twitter: {
         card: 'summary_large_image',
         title: '地域・企業との取り組み｜HINODE',
         description: 'HINODEの拠点導入、地域ラン企画、ランニングイベント、Web制作についてご相談いただけます。',
-        images: ['/assets/ogp-home.jpg'],
+        images: [DEFAULT_OG_IMAGE],
     },
 };
 

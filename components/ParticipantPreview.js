@@ -1,15 +1,30 @@
-import styles from './ParticipantPreview.module.css';
+import defaultStyles from './ParticipantPreview.module.css';
 
-export default function ParticipantPreview({ count, participants = [], className = '' }) {
+const DEFAULT_CLASSES = {
+    root: defaultStyles.participants,
+    avatars: defaultStyles.participantAvatars,
+    avatar: defaultStyles.participantAvatar,
+    overflow: defaultStyles.participantOverflow,
+    text: defaultStyles.participantText,
+};
+
+// Stravaイベントの参加予定者（アバター数件＋人数）。
+// classes を渡すと、置き場所に合わせて見た目のクラスを丸ごと差し替えられる。
+export default function ParticipantPreview({
+    count,
+    participants = [],
+    className = '',
+    classes = DEFAULT_CLASSES,
+}) {
     if (!count) return null;
 
     const overflowCount = Math.max(0, count - participants.length);
-    const classNames = [styles.participants, className].filter(Boolean).join(' ');
+    const rootClassName = [classes.root, className].filter(Boolean).join(' ');
 
     return (
-        <div className={classNames} aria-label={`${count}人が参加予定`}>
+        <div className={rootClassName} aria-label={`${count}人が参加予定`}>
             {participants.length > 0 && (
-                <span className={styles.participantAvatars} aria-hidden="true">
+                <span className={classes.avatars} aria-hidden="true">
                     {participants.map((participant) => (
                         <img
                             key={participant.id}
@@ -17,15 +32,15 @@ export default function ParticipantPreview({ count, participants = [], className
                             alt=""
                             loading="lazy"
                             decoding="async"
-                            className={styles.participantAvatar}
+                            className={classes.avatar}
                         />
                     ))}
                     {overflowCount > 0 && (
-                        <span className={styles.participantOverflow}>+{overflowCount}</span>
+                        <span className={classes.overflow}>+{overflowCount}</span>
                     )}
                 </span>
             )}
-            <span className={styles.participantText}>{count}人が参加予定</span>
+            <span className={classes.text}>{count}人が参加予定</span>
         </div>
     );
 }

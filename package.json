@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint app components lib next.config.js vite.config.ts",
+    "test": "node --test tests/*.test.mjs",
     "dev:vinext": "vinext dev --port 3001",
     "build:vinext": "vinext build",
     "start:vinext": "wrangler dev --config dist/server/wrangler.json",

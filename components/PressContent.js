@@ -1,9 +1,19 @@
 'use client';
 
 import Link from '@/components/SiteLink';
-import useFadeInOnScroll from '../lib/useFadeInOnScroll';
-import { MEMBER_COUNT, COMMUNITY_STATS } from '../lib/stats';
-import styles from '../app/press/press.module.css';
+import { DAY_LABELS_JP } from '@/lib/jstDate';
+import { REGULAR_RUNS } from '@/lib/regularRuns';
+import { RUNNERS_SALON_URL } from '@/lib/site';
+import { MEMBER_COUNT, COMMUNITY_STATS } from '@/lib/stats';
+import useFadeInOnScroll from '@/lib/useFadeInOnScroll';
+import styles from '@/app/press/press.module.css';
+
+// プレス向けの表で使う集合地点の表記
+const MEETING_POINTS = {
+    kokyo: '桔梗門前派出所',
+    meguro: '中目黒駅 スターバックス蔦屋書店前',
+    yoyogi: '原宿時計塔',
+};
 
 const FAQ = [
     {
@@ -110,9 +120,15 @@ export default function PressContent({ memberCount = null, runCount = null }) {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td>水</td><td>6:30〜</td><td>皇居</td><td>桔梗門前派出所</td><td>約5km</td></tr>
-                            <tr><td>木</td><td>6:30〜</td><td>目黒川</td><td>中目黒駅 スターバックス蔦屋書店前</td><td>約4km</td></tr>
-                            <tr><td>日</td><td>7:30〜</td><td>代々木公園</td><td>原宿時計塔</td><td>約2〜4km</td></tr>
+                            {REGULAR_RUNS.map((run) => (
+                                <tr key={run.id}>
+                                    <td>{DAY_LABELS_JP[run.dayOfWeek]}</td>
+                                    <td>{run.timeLabel}〜</td>
+                                    <td>{run.place}</td>
+                                    <td>{MEETING_POINTS[run.id]}</td>
+                                    <td>{run.distance}</td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                     <p className={styles.body}>
@@ -254,7 +270,7 @@ export default function PressContent({ memberCount = null, runCount = null }) {
                     <p className={styles.body}>
                         2026年8月2日、BSテレ東「<a
                             className={styles.link}
-                            href="https://www.bs-tvtokyo.co.jp/runners_salon/"
+                            href={RUNNERS_SALON_URL}
                             target="_blank"
                             rel="noopener noreferrer"
                         >ランナーズサロン</a>」第2回で、気軽に参加できる早朝ランニングコミュニティとして紹介されました。

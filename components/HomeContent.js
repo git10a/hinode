@@ -1,97 +1,48 @@
 import Link from '@/components/SiteLink';
 import Image from 'next/image';
-import { formatPostDate, getPostDisplayDate } from '../lib/blogPosts';
-import { REGULAR_RUNS } from '../lib/regularRuns';
-import { COMMUNITY_PROMISES, COMMUNITY_SINCE } from '../lib/communityPolicy';
-import ParticipantPreview from './ParticipantPreview';
+import LocationPinIcon from '@/components/LocationPinIcon';
+import ParticipantPreview from '@/components/ParticipantPreview';
+import { formatPostDate, getPostDisplayDate } from '@/lib/blogPosts';
+import { COMMUNITY_PROMISES, COMMUNITY_SINCE } from '@/lib/communityPolicy';
+import { formatMonthDayJst, formatTimeJst } from '@/lib/jstDate';
+import { REGULAR_RUNS, findUpcomingEventForRun, getNextRunStart } from '@/lib/regularRuns';
+import { INSTAGRAM_URL, RUNNERS_SALON_URL, STRAVA_CLUB_VANITY_URL, stravaEventUrl } from '@/lib/site';
 import styles from './HomeContent.module.css';
 
-const STRAVA_CLUB_ID = '1772485';
 const FIRST_RUN_GUIDE_URL = '/first-run';
+const MAX_ADHOC_EVENTS = 2;
 
-const WEEKLY_ITEMS = REGULAR_RUNS.map((run) => ({
-    id: run.id,
-    day: run.dayShort,
-    dayIndex: run.dayOfWeek,
-    time: run.timeRaw,
-    place: run.place,
-    location: run.meetingShort,
-    image: run.image,
-    anchor: run.scheduleHref,
-    recommendedForFirstRun: run.isFirstChoice,
-}));
-
-const DAY_LABEL_JP = ['日', '月', '火', '水', '木', '金', '土'];
-const EVENT_DURATION_MINUTES = 60;
-
-function formatEventDate(iso) {
-    if (!iso) return null;
-    const utc = new Date(iso);
-    const jst = new Date(utc.getTime() + 9 * 60 * 60 * 1000);
-    const m = jst.getUTCMonth() + 1;
-    const d = jst.getUTCDate();
-    const w = DAY_LABEL_JP[jst.getUTCDay()];
-    return `${m}/${d}(${w})`;
-}
-
-function formatEventTime(iso) {
-    if (!iso) return null;
-    return new Intl.DateTimeFormat('ja-JP', {
-        timeZone: 'Asia/Tokyo',
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: false,
-    }).format(new Date(iso));
-}
-
-function formatWallClockDate(date) {
-    const m = date.getMonth() + 1;
-    const d = date.getDate();
-    const w = DAY_LABEL_JP[date.getDay()];
-    return `${m}/${d}(${w})`;
-}
-
-function getJstWallClockDate(date) {
-    return new Date(date.toLocaleString('en-US', { timeZone: 'Asia/Tokyo' }));
-}
-
-function getJstTimestamp(date) {
-    return Date.UTC(
-        date.getFullYear(),
-        date.getMonth(),
-        date.getDate(),
-        date.getHours() - 9,
-        date.getMinutes(),
-        date.getSeconds(),
-        date.getMilliseconds()
-    );
-}
-
-function getNextRegularEvent(item, now = new Date()) {
-    const jstNow = getJstWallClockDate(now);
-    const [hours, minutes] = item.time.split(':').map(Number);
-    const currentMinutes = jstNow.getHours() * 60 + jstNow.getMinutes();
-    const eventMinutes = hours * 60 + minutes;
-
-    let daysUntil = item.dayIndex - jstNow.getDay();
-    if (daysUntil < 0) {
-        daysUntil += 7;
-    } else if (daysUntil === 0 && currentMinutes >= eventMinutes + EVENT_DURATION_MINUTES) {
-        daysUntil = 7;
-    }
-
-    const start = new Date(jstNow);
-    start.setDate(start.getDate() + daysUntil);
-    start.setHours(hours, minutes, 0, 0);
+// 定例ラン1件ぶんのカード。Stravaに次回イベントがあればその日時と参加者を、
+// 無ければ曜日・時刻から計算した次回の日付を表示する。
+function buildRegularCard(run, upcomingEvents) {
+    const event = findUpcomingEventForRun(upcomingEvents, run);
+    const start = event ? new Date(event.startAt) : getNextRunStart(run);
 
     return {
-        nextDate: formatWallClockDate(start),
-        nextTimestamp: getJstTimestamp(start),
+        type: 'regular',
+        run,
+        nextDate: formatMonthDayJst(start),
+        nextTimestamp: start.getTime(),
+        stravaHref: event ? stravaEventUrl(event.eventId) : null,
+        participantCount: event?.participantCount,
+        participants: event?.participants || [],
     };
 }
 
-function stravaEventUrl(eventId) {
-    return `https://www.strava.com/clubs/${STRAVA_CLUB_ID}/group_events/${eventId}`;
+// 定例の曜日以外に立っているStravaイベント（土曜の企画ランなど）のカード
+function buildAdhocCard(event) {
+    return {
+        type: 'event',
+        event,
+        nextDate: formatMonthDayJst(event.startAt),
+        time: formatTimeJst(event.startAt),
+        nextTimestamp: new Date(event.startAt).getTime(),
+        stravaHref: stravaEventUrl(event.eventId),
+    };
+}
+
+function byNextTimestamp(a, b) {
+    return a.nextTimestamp - b.nextTimestamp;
 }
 
 const VALUES = [
@@ -148,39 +99,125 @@ const STEPS = [
     },
 ];
 
+function WeeklyCardActions({ stravaHref }) {
+    return (
+        <div className={styles.weeklyCardActions}>
+            <div className={styles.weeklySecondaryActions}>
+                {stravaHref && (
+                    <a
+                        href={stravaHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.weeklyStravaButton}
+                    >
+                        Stravaで詳細を見る
+                    </a>
+                )}
+                <Link href={FIRST_RUN_GUIDE_URL} className={styles.weeklyGuideButton}>
+                    初参加ガイドを見る
+                </Link>
+            </div>
+        </div>
+    );
+}
+
+function WeeklyLocation({ children }) {
+    return (
+        <p className={styles.weeklyLocation}>
+            <LocationPinIcon className={styles.weeklyLocationIcon} />
+            {children}
+        </p>
+    );
+}
+
+function AdhocEventCard({ card }) {
+    const { event } = card;
+
+    return (
+        <article className={styles.weeklyCard}>
+            <a
+                href={card.stravaHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.weeklyCardMain}
+            >
+                <div className={styles.weeklyEventBody}>
+                    <div className={styles.weeklyDay}>
+                        <span className={styles.weeklyDate}>{card.nextDate}</span>
+                        <span className={styles.weeklyTime}>{card.time}</span>
+                    </div>
+                    <h3 className={styles.weeklyEventTitle}>{event.title}</h3>
+                    {event.address && <WeeklyLocation>{event.address}</WeeklyLocation>}
+                    <ParticipantPreview
+                        count={event.participantCount}
+                        participants={event.participants}
+                        className={styles.weeklyParticipants}
+                    />
+                </div>
+            </a>
+            <WeeklyCardActions stravaHref={card.stravaHref} />
+        </article>
+    );
+}
+
+function RegularRunCard({ card, isNext }) {
+    const { run } = card;
+
+    return (
+        <article className={styles.weeklyCard}>
+            <Link href={run.scheduleHref} className={styles.weeklyCardMain}>
+                <div className={styles.weeklyMedia}>
+                    <div className={styles.weeklyThumb}>
+                        <Image
+                            src={run.image}
+                            alt={run.place}
+                            fill
+                            sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 33vw"
+                        />
+                    </div>
+                    {(isNext || run.isFirstChoice) && (
+                        <div className={styles.weeklyBadges}>
+                            {isNext && (
+                                <span className={styles.weeklyNextBadge}>次の開催</span>
+                            )}
+                            {run.isFirstChoice && (
+                                <span className={styles.weeklyRecommendBadge}>初参加におすすめ</span>
+                            )}
+                        </div>
+                    )}
+                </div>
+                <div>
+                    <div className={styles.weeklyDay}>
+                        {card.nextDate && (
+                            <span className={styles.weeklyDate}>{card.nextDate}</span>
+                        )}
+                        <span className={styles.weeklyTime}>{run.timeRaw}</span>
+                        <span className={styles.weeklyDivider}>｜</span>
+                        <span className={styles.weeklyPlace}>{run.place}</span>
+                    </div>
+                    <WeeklyLocation>{run.meetingShort}</WeeklyLocation>
+                    <ParticipantPreview
+                        count={card.participantCount}
+                        participants={card.participants}
+                        className={styles.weeklyParticipants}
+                    />
+                </div>
+            </Link>
+            <WeeklyCardActions stravaHref={card.stravaHref} />
+        </article>
+    );
+}
+
 export default async function HomeContent({ latestPosts = [], upcomingEvents = [], runCount = null }) {
-    const regularDays = new Set(WEEKLY_ITEMS.map((i) => i.dayIndex));
-    const regularCards = WEEKLY_ITEMS.map((item) => {
-        const next = upcomingEvents.find((e) => e.dayOfWeek === item.dayIndex);
-        const fallback = getNextRegularEvent(item);
-        return {
-            ...item,
-            type: 'regular',
-            nextDate: next ? formatEventDate(next.startAt) : fallback.nextDate,
-            nextTimestamp: next ? new Date(next.startAt).getTime() : fallback.nextTimestamp,
-            detailsHref: item.anchor,
-            stravaHref: next ? stravaEventUrl(next.eventId) : null,
-            participantCount: next?.participantCount,
-            participants: next?.participants || [],
-        };
-    }).sort((a, b) => a.nextTimestamp - b.nextTimestamp);
-    const adhocEvents = upcomingEvents
-        .filter((e) => !regularDays.has(e.dayOfWeek))
-        .slice(0, 2)
-        .map((event) => ({
-            ...event,
-            type: 'event',
-            nextDate: formatEventDate(event.startAt),
-            time: formatEventTime(event.startAt),
-            nextTimestamp: new Date(event.startAt).getTime(),
-            stravaHref: stravaEventUrl(event.eventId),
-        }));
-    const scheduleCards = [...regularCards, ...adhocEvents]
-        .sort((a, b) => a.nextTimestamp - b.nextTimestamp)
-        .map((item, index) => ({
-            ...item,
-            isNext: index === 0,
-        }));
+    const regularDays = new Set(REGULAR_RUNS.map((run) => run.dayOfWeek));
+    const regularCards = REGULAR_RUNS
+        .map((run) => buildRegularCard(run, upcomingEvents))
+        .sort(byNextTimestamp);
+    const adhocCards = upcomingEvents
+        .filter((event) => !regularDays.has(event.dayOfWeek))
+        .slice(0, MAX_ADHOC_EVENTS)
+        .map(buildAdhocCard);
+    const scheduleCards = [...regularCards, ...adhocCards].sort(byNextTimestamp);
     const nextRun = regularCards[0];
 
     return (
@@ -204,10 +241,10 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                 <div className={styles.heroBottom}>
                     <aside className={styles.nextRun} aria-labelledby="next-run-title">
                         <p id="next-run-title" className={styles.nextLabel}><span className={styles.sunDot} /> NEXT RUN<span>次の定例ラン</span></p>
-                        <div className={styles.nextDate}><span>{nextRun.nextDate}</span><span>{nextRun.time}</span></div>
-                        <div className={styles.nextPlace}><strong>{nextRun.place}</strong><span>{nextRun.location}</span></div>
+                        <div className={styles.nextDate}><span>{nextRun.nextDate}</span><span>{nextRun.run.timeRaw}</span></div>
+                        <div className={styles.nextPlace}><strong>{nextRun.run.place}</strong><span>{nextRun.run.meetingShort}</span></div>
                         <ParticipantPreview count={nextRun.participantCount} participants={nextRun.participants} />
-                        <Link href={nextRun.detailsHref} className={styles.nextLink}>参加方法を見る <span aria-hidden="true">↗</span></Link>
+                        <Link href={nextRun.run.scheduleHref} className={styles.nextLink}>参加方法を見る <span aria-hidden="true">↗</span></Link>
                     </aside>
                     <div className={styles.promiseStrip}>
                         <div>{COMMUNITY_PROMISES.map((promise) => <span key={promise}>{promise}</span>)}</div>
@@ -219,137 +256,28 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
             {/* Weekly schedule */}
             <section id="schedule" className={styles.weekly}>
                 <div>
-                <div className={styles.sectionHeader}>
-                    <div><p className={styles.eyebrow}>01 / RUN WITH US</p><h2 className={styles.sectionTitle}>今週、どこで走ろう。</h2></div>
-                    <Link href="/schedule" className={styles.sectionMore}>
-                        すべての開催日程を見る →
-                    </Link>
-                </div>
-                <div className={styles.weeklyGrid}>
-                    {scheduleCards.map((item) => {
-                        if (item.type === 'event') {
-                            return (
-                                <article
-                                    key={`event-${item.eventId}-${item.startAt}`}
-                                    className={styles.weeklyCard}
-                                >
-                                    <a
-                                        href={item.stravaHref}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className={styles.weeklyCardMain}
-                                    >
-                                        <div className={styles.weeklyEventBody}>
-                                            <div className={styles.weeklyDay}>
-                                                <span className={styles.weeklyDate}>{item.nextDate}</span>
-                                                <span className={styles.weeklyTime}>{item.time}</span>
-                                            </div>
-                                            <h3 className={styles.weeklyEventTitle}>{item.title}</h3>
-                                            {item.address && (
-                                                <p className={styles.weeklyLocation}>
-                                                    <svg viewBox="0 0 24 24" className={styles.weeklyLocationIcon} aria-hidden="true">
-                                                        <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" />
-                                                        <circle cx="12" cy="9" r="2.5" />
-                                                    </svg>
-                                                    {item.address}
-                                                </p>
-                                            )}
-                                            <ParticipantPreview
-                                                count={item.participantCount}
-                                                participants={item.participants}
-                                                className={styles.weeklyParticipants}
-                                            />
-                                        </div>
-                                    </a>
-                                    <div className={styles.weeklyCardActions}>
-                                        <div className={styles.weeklySecondaryActions}>
-                                            <a
-                                                href={item.stravaHref}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className={styles.weeklyStravaButton}
-                                            >
-                                                Stravaで詳細を見る
-                                            </a>
-                                            <Link href={FIRST_RUN_GUIDE_URL} className={styles.weeklyGuideButton}>
-                                                初参加ガイドを見る
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </article>
-                            );
-                        }
-
-                        return (
-                            <article
-                                key={`regular-${item.id}`}
-                                className={styles.weeklyCard}
-                            >
-                                <Link href={item.detailsHref} className={styles.weeklyCardMain}>
-                                    <div className={styles.weeklyMedia}>
-                                        <div className={styles.weeklyThumb}>
-                                            <Image
-                                                src={item.image}
-                                                alt={item.place}
-                                                fill
-                                                sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 33vw"
-                                            />
-                                        </div>
-                                        {(item.isNext || item.recommendedForFirstRun) && (
-                                            <div className={styles.weeklyBadges}>
-                                                {item.isNext && (
-                                                    <span className={styles.weeklyNextBadge}>次の開催</span>
-                                                )}
-                                                {item.recommendedForFirstRun && (
-                                                    <span className={styles.weeklyRecommendBadge}>初参加におすすめ</span>
-                                                )}
-                                            </div>
-                                        )}
-                                    </div>
-                                    <div>
-                                        <div className={styles.weeklyDay}>
-                                            {item.nextDate && (
-                                                <span className={styles.weeklyDate}>{item.nextDate}</span>
-                                            )}
-                                            <span className={styles.weeklyTime}>{item.time}</span>
-                                            <span className={styles.weeklyDivider}>｜</span>
-                                            <span className={styles.weeklyPlace}>{item.place}</span>
-                                        </div>
-                                        <p className={styles.weeklyLocation}>
-                                            <svg viewBox="0 0 24 24" className={styles.weeklyLocationIcon} aria-hidden="true">
-                                                <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" />
-                                                <circle cx="12" cy="9" r="2.5" />
-                                            </svg>
-                                            {item.location}
-                                        </p>
-                                        <ParticipantPreview
-                                            count={item.participantCount}
-                                            participants={item.participants}
-                                            className={styles.weeklyParticipants}
-                                        />
-                                    </div>
-                                </Link>
-                                <div className={styles.weeklyCardActions}>
-                                    <div className={styles.weeklySecondaryActions}>
-                                        {item.stravaHref && (
-                                            <a
-                                                href={item.stravaHref}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className={styles.weeklyStravaButton}
-                                            >
-                                                Stravaで詳細を見る
-                                            </a>
-                                        )}
-                                        <Link href={FIRST_RUN_GUIDE_URL} className={styles.weeklyGuideButton}>
-                                            初参加ガイドを見る
-                                        </Link>
-                                    </div>
-                                </div>
-                            </article>
-                        );
-                    })}
-                </div>
+                    <div className={styles.sectionHeader}>
+                        <div><p className={styles.eyebrow}>01 / RUN WITH US</p><h2 className={styles.sectionTitle}>今週、どこで走ろう。</h2></div>
+                        <Link href="/schedule" className={styles.sectionMore}>
+                            すべての開催日程を見る →
+                        </Link>
+                    </div>
+                    <div className={styles.weeklyGrid}>
+                        {scheduleCards.map((card, index) => (
+                            card.type === 'event' ? (
+                                <AdhocEventCard
+                                    key={`event-${card.event.eventId}-${card.event.startAt}`}
+                                    card={card}
+                                />
+                            ) : (
+                                <RegularRunCard
+                                    key={`regular-${card.run.id}`}
+                                    card={card}
+                                    isNext={index === 0}
+                                />
+                            )
+                        ))}
+                    </div>
                     <div className={styles.startCityCta}>
                         <div>
                             <p className={styles.startCityLabel}>START IN YOUR CITY</p>
@@ -363,7 +291,7 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
 
             <div className={styles.communityNote}>
                 <span>{runCount !== null ? `これまでに ${runCount} 回、朝をともに。` : '雨天を除き、毎週開催しています。'}</span>
-                <a href="https://www.bs-tvtokyo.co.jp/runners_salon/" target="_blank" rel="noopener noreferrer">BSテレ東「ランナーズサロン」で紹介されました ↗</a>
+                <a href={RUNNERS_SALON_URL} target="_blank" rel="noopener noreferrer">BSテレ東「ランナーズサロン」で紹介されました ↗</a>
             </div>
 
             {/* Values */}
@@ -496,7 +424,7 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                             開催日程を見る →
                         </Link>
                         <a
-                            href="https://www.instagram.com/hinode_run/"
+                            href={INSTAGRAM_URL}
                             target="_blank"
                             rel="noopener noreferrer"
                             className={`${styles.closingBtn} ${styles.closingBtnSecondary}`}
@@ -504,7 +432,7 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                             Instagram
                         </a>
                         <a
-                            href="https://www.strava.com/clubs/hinode"
+                            href={STRAVA_CLUB_VANITY_URL}
                             target="_blank"
                             rel="noopener noreferrer"
                             className={`${styles.closingBtn} ${styles.closingBtnSecondary}`}

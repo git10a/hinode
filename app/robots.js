@@ -1,6 +1,8 @@
+import { absoluteUrl } from '@/lib/site';
+
 export default function robots() {
     return {
         rules: [{ userAgent: '*', allow: '/' }],
-        sitemap: 'https://hinode-run.com/sitemap.xml',
+        sitemap: absoluteUrl('/sitemap.xml'),
     };
 }

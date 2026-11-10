@@ -1,32 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { START_INVOLVEMENTS } from '@/lib/contactOptions';
+import { CONTACT_EMAIL } from '@/lib/site';
+import useContactSubmit from '@/lib/useContactSubmit';
 import styles from './start.module.css';
 
-const INITIAL_STATUS = { type: 'idle', message: '' };
-
 export default function StartForm() {
-    const [status, setStatus] = useState(INITIAL_STATUS);
-    const isSubmitting = status.type === 'submitting';
-
-    async function handleSubmit(event) {
-        event.preventDefault();
-        if (isSubmitting) return;
-        setStatus({ type: 'submitting', message: '' });
-        const payload = Object.fromEntries(new FormData(event.currentTarget).entries());
-
-        try {
-            const response = await fetch('/api/contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ ...payload, inquiryType: 'start' }),
-            });
-            if (!response.ok) throw new Error('Start request failed.');
-            window.location.assign('/start/thanks');
-        } catch {
-            setStatus({ type: 'error', message: '送信できませんでした。時間をおいて再度お試しいただくか、hinode.run@gmail.com までご連絡ください。' });
-        }
-    }
+    const { handleSubmit, isSubmitting, errorMessage } = useContactSubmit({
+        thanksPath: '/start/thanks',
+        errorMessage: `送信できませんでした。時間をおいて再度お試しいただくか、${CONTACT_EMAIL} までご連絡ください。`,
+        extraPayload: { inquiryType: 'start' },
+    });
 
     return (
         <form className={styles.form} onSubmit={handleSubmit}>
@@ -50,15 +34,18 @@ export default function StartForm() {
             </label>
             <fieldset className={styles.fieldset}>
                 <legend>希望する関わり方</legend>
-                <label><input type="radio" name="involvement" value="参加したい" required /> 参加したい</label>
-                <label><input type="radio" name="involvement" value="ホストしたい" required /> ホストしたい</label>
+                {START_INVOLVEMENTS.map((involvement) => (
+                    <label key={involvement}>
+                        <input type="radio" name="involvement" value={involvement} required /> {involvement}
+                    </label>
+                ))}
             </fieldset>
             <label className={styles.field}>
                 <span>連絡先メールアドレス</span>
                 <input type="email" name="email" autoComplete="email" maxLength="254" required />
             </label>
             <p className={styles.note}>候補者が集まったエリアから、開催方法や最初の一歩をご相談します。送信だけでホストをお願いすることはありません。</p>
-            {status.type === 'error' && <p className={styles.error} role="alert">{status.message}</p>}
+            {errorMessage && <p className={styles.error} role="alert">{errorMessage}</p>}
             <button type="submit" className={styles.submit} disabled={isSubmitting}>{isSubmitting ? '送信中…' : '送信する'}</button>
         </form>
     );

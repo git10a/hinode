@@ -1,7 +1,7 @@
 'use client';
 
-import useFadeInOnScroll from '../lib/useFadeInOnScroll';
-import styles from '../app/manifesto/manifesto.module.css';
+import useFadeInOnScroll from '@/lib/useFadeInOnScroll';
+import styles from '@/app/manifesto/manifesto.module.css';
 
 export default function ManifestoContent() {
     useFadeInOnScroll({

@@ -1,7 +1,8 @@
 import Link from '@/components/SiteLink';
-import styles from '../app/blog/[slug]/post.module.css';
+import { STRAVA_CLUB_URL } from '@/lib/site';
+import styles from '@/app/blog/[slug]/post.module.css';
 
-const STRAVA_CLUB_URL = 'https://www.strava.com/clubs/1772485';
+// ページ末尾の参加導線。runContext を渡すと、その定例ラン向けの文言とリンクになる。
 
 export default function PostBottomStrip({ compact = false, runContext = null }) {
     return (

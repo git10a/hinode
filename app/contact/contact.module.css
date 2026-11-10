@@ -324,7 +324,6 @@
     .title { font-size: 30px; line-height: 1.6; }
 }
 
-
 /* Shared editorial direction: page-specific composition. */
 
 .container { max-width: 880px; }
@@ -333,11 +332,9 @@
 .form { border: 0; border-top: 1px solid var(--hn-line); padding: 36px 0; background: transparent; gap: 28px; }
 .field input, .field select, .field textarea { background: #fbfaf7; border-color: #a9b1a2; padding: 14px; font-size: 16px; }
 .field span { font-weight: 500; }
-.explanation, .examples { border: 0; background: var(--hn-surface); padding: 28px; }
-.principles span { border: 0; padding: 0 16px 0 0; font-weight: 400; }
-.principles span::before { content: '✓'; color: var(--hn-sun); margin-right: 7px; }
+.examples { border: 0; background: var(--hn-surface); padding: 28px; }
 .typeOption { background: transparent; border-color: var(--hn-line); }
 .typeOptionActive { background: var(--hn-ink); border-color: var(--hn-ink); color: #fff; }
 .typeOptionActive:hover { background: var(--hn-ink); color: #fff; }
-.submit, .submitButton { min-height: 54px; padding-left: 36px; padding-right: 36px; font-weight: 500; }
-@media(max-width:640px) { .page { padding-top: 125px; } .container { padding-left: 24px; padding-right: 24px; width: 100%; } .form { padding: 28px 0; } .explanation, .examples { padding: 22px; } }
+.submitButton { min-height: 54px; padding-left: 36px; padding-right: 36px; font-weight: 500; }
+@media(max-width:640px) { .page { padding-top: 125px; } .container { padding-left: 24px; padding-right: 24px; width: 100%; } .form { padding: 28px 0; } .examples { padding: 22px; } }

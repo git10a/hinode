@@ -1,15 +1,18 @@
 import Image from 'next/image';
 import Link from '@/components/SiteLink';
 import { notFound } from 'next/navigation';
-import { getBlogPostById, getAllBlogPosts } from '../../../lib/microcms';
-import { getUpcomingGroupEvents } from '../../../lib/strava';
-import { formatPostDate, getPostDisplayDate, sortBlogPosts, buildBlogContent } from '../../../lib/blogPosts';
-import { getRelatedBlogPosts } from '../../../lib/blogTopics';
-import { getBlogRunContext, getUpcomingEventForRunContext } from '../../../lib/blogRunContext';
-import PostSidebar from '../../../components/PostSidebar';
-import RelatedPosts from '../../../components/RelatedPosts';
-import PostBottomStrip from '../../../components/PostBottomStrip';
-import TableOfContents from '../../../components/TableOfContents';
+import JsonLd from '@/components/JsonLd';
+import PostBottomStrip from '@/components/PostBottomStrip';
+import PostSidebar from '@/components/PostSidebar';
+import RelatedPosts from '@/components/RelatedPosts';
+import TableOfContents from '@/components/TableOfContents';
+import { formatPostDate, getPostDisplayDate, sortBlogPosts, buildBlogContent } from '@/lib/blogPosts';
+import { getBlogRunContext, getUpcomingEventForRunContext } from '@/lib/blogRunContext';
+import { getRelatedBlogPosts } from '@/lib/blogTopics';
+import { getBlogPostById, getAllBlogPosts } from '@/lib/microcms';
+import { DEFAULT_OG_IMAGE, ORGANIZATION_ID, SITE_NAME, STRAVA_CLUB_URL, absoluteUrl } from '@/lib/site';
+import { getUpcomingGroupEvents } from '@/lib/strava';
+import { createBreadcrumbJsonLd } from '@/lib/structuredData';
 import styles from './post.module.css';
 
 export const revalidate = 900;
@@ -19,8 +22,13 @@ export async function generateStaticParams() {
     return posts.map((post) => ({ slug: post.id }));
 }
 
+function getPostDescription(post) {
+    return post.description || `${post.title}の記事です。`;
+}
+
 export async function generateMetadata({ params }) {
-    const post = await getBlogPostById(params.slug);
+    const { slug } = await params;
+    const post = await getBlogPostById(slug);
 
     if (!post) {
         return { robots: { index: false, follow: false } };
@@ -29,41 +37,43 @@ export async function generateMetadata({ params }) {
         return { title: post.title, robots: { index: false, follow: false } };
     }
 
-    const url = `https://hinode-run.com/blog/${params.slug}`;
+    const url = absoluteUrl(`/blog/${slug}`);
+    const description = getPostDescription(post);
     const ogpImages = post.thumbnail
         ? [{
             url: post.thumbnail.url,
             width: post.thumbnail.width,
             height: post.thumbnail.height,
         }]
-        : ['/assets/ogp-home.jpg'];
+        : [DEFAULT_OG_IMAGE];
 
     return {
         title: `${post.title} | HINODE BLOG`,
-        description: post.description || `${post.title}の記事です。`,
+        description,
         alternates: {
             canonical: url,
         },
         openGraph: {
             title: post.title,
-            description: post.description || `${post.title}の記事です。`,
+            description,
             url,
-            siteName: 'HINODE',
+            siteName: SITE_NAME,
             type: 'article',
             images: ogpImages,
         },
         twitter: {
             card: 'summary_large_image',
             title: post.title,
-            description: post.description || `${post.title}の記事です。`,
-            images: post.thumbnail ? [post.thumbnail.url] : ['/assets/ogp-home.jpg'],
+            description,
+            images: post.thumbnail ? [post.thumbnail.url] : [DEFAULT_OG_IMAGE],
         },
     };
 }
 
 export default async function BlogPost({ params }) {
+    const { slug } = await params;
     const [post, allPosts, upcomingEvents] = await Promise.all([
-        getBlogPostById(params.slug),
+        getBlogPostById(slug),
         getAllBlogPosts(),
         getUpcomingGroupEvents(),
     ]);
@@ -80,7 +90,8 @@ export default async function BlogPost({ params }) {
     const createdDate = post.publishedAt || post.createdAt || '';
     const editedDate = getPostDisplayDate(post) || createdDate;
 
-    const articleUrl = `https://hinode-run.com/blog/${post.id}`;
+    const articlePath = `/blog/${post.id}`;
+    const articleUrl = absoluteUrl(articlePath);
     const jsonLd = [
         {
             '@context': 'https://schema.org',
@@ -89,29 +100,22 @@ export default async function BlogPost({ params }) {
             url: articleUrl,
             mainEntityOfPage: { '@type': 'WebPage', '@id': articleUrl },
             headline: post.title,
-            description: post.description || `${post.title}の記事です。`,
-            image: post.thumbnail ? [post.thumbnail.url] : ['https://hinode-run.com/assets/ogp-home.jpg'],
+            description: getPostDescription(post),
+            image: post.thumbnail ? [post.thumbnail.url] : [absoluteUrl(DEFAULT_OG_IMAGE)],
             datePublished: post.publishedAt,
             dateModified: getPostDisplayDate(post),
-            author: { '@id': 'https://hinode-run.com/#organization' },
-            publisher: { '@id': 'https://hinode-run.com/#organization' },
+            author: { '@id': ORGANIZATION_ID },
+            publisher: { '@id': ORGANIZATION_ID },
         },
-        {
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-                { '@type': 'ListItem', position: 1, name: 'ホーム', item: 'https://hinode-run.com' },
-                { '@type': 'ListItem', position: 2, name: 'BLOG', item: 'https://hinode-run.com/blog' },
-                { '@type': 'ListItem', position: 3, name: post.title, item: articleUrl },
-            ],
-        },
+        createBreadcrumbJsonLd([
+            { name: 'BLOG', path: '/blog' },
+            { name: post.title, path: articlePath },
+        ]),
     ];
 
     return (
         <div className={styles.page}>
-            {jsonLd.map((entry, index) => (
-                <script key={index} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(entry) }} />
-            ))}
+            <JsonLd data={jsonLd} />
 
             <div className={styles.layout}>
                 <article className={styles.article}>
@@ -198,7 +202,7 @@ export default async function BlogPost({ params }) {
                                 </Link>
                             ) : (
                                 <a
-                                    href="https://www.strava.com/clubs/1772485"
+                                    href={STRAVA_CLUB_URL}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className={styles.inlineCtaBtnTertiary}

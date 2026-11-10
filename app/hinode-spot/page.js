@@ -1,4 +1,6 @@
-import RunningCourseContent from '../../components/RunningCourseContent';
+import JsonLd from '@/components/JsonLd';
+import RunningCourseContent from '@/components/RunningCourseContent';
+import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL, absoluteUrl } from '@/lib/site';
 
 export const metadata = {
     title: '日の出スポット | HINODE',
@@ -10,11 +12,11 @@ export const metadata = {
     openGraph: {
         title: '日の出スポット | HINODE',
         description: '日の出が美しく見えるスポットを紹介。東京の朝を感じる場所へ。',
-        url: 'https://hinode-run.com/hinode-spot',
-        siteName: 'HINODE',
+        url: absoluteUrl('/hinode-spot'),
+        siteName: SITE_NAME,
         locale: 'ja_JP',
         type: 'website',
-        images: ['/assets/ogp-home.jpg'],
+        images: [DEFAULT_OG_IMAGE],
     },
     twitter: {
         card: 'summary_large_image',
@@ -23,26 +25,23 @@ export const metadata = {
     },
 };
 
-export default function HinodeSpot() {
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "日の出スポット",
-        "description": "日の出が美しく見えるスポットを紹介",
-        "url": "https://hinode-run.com/hinode-spot",
-        "isPartOf": {
-            "@type": "WebSite",
-            "name": "HINODE",
-            "url": "https://hinode-run.com"
-        }
-    };
+const PAGE_JSON_LD = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: '日の出スポット',
+    description: '日の出が美しく見えるスポットを紹介',
+    url: absoluteUrl('/hinode-spot'),
+    isPartOf: {
+        '@type': 'WebSite',
+        name: SITE_NAME,
+        url: SITE_URL,
+    },
+};
 
+export default function HinodeSpot() {
     return (
         <section>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            />
+            <JsonLd data={PAGE_JSON_LD} />
             <RunningCourseContent />
         </section>
     );

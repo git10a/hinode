@@ -1,27 +1,38 @@
 import Image from 'next/image';
 import Link from '@/components/SiteLink';
 import { notFound } from 'next/navigation';
-import { REGULAR_RUNS, getRegularRun } from '../../../lib/regularRuns';
-import { PHOTOGRAPHY_POLICY } from '../../../lib/communityPolicy';
+import { PHOTOGRAPHY_POLICY } from '@/lib/communityPolicy';
+import { REGULAR_RUNS, getRegularRun } from '@/lib/regularRuns';
 import styles from './location.module.css';
 
 export function generateStaticParams() {
     return REGULAR_RUNS.map((run) => ({ slug: run.id }));
 }
 
-export function generateMetadata({ params }) {
-    const run = getRegularRun(params.slug);
+export async function generateMetadata({ params }) {
+    const run = getRegularRun((await params).slug);
     if (!run) return {};
-    return { title: `${run.name}｜HINODE`, description: `${run.day}${run.timeRaw}、${run.meetingPlace}集合。${run.distance}を会話できるペースで走ります。` };
+    return {
+        title: `${run.name}｜HINODE`,
+        description: `${run.day}${run.timeRaw}、${run.meetingPlace}集合。${run.distance}を会話できるペースで走ります。`,
+    };
 }
 
-export default function LocationPage({ params }) {
-    const run = getRegularRun(params.slug);
+export default async function LocationPage({ params }) {
+    const run = getRegularRun((await params).slug);
     if (!run) notFound();
+
     const facts = [
-        ['曜日', run.day], ['時間', run.time], ['距離', run.distance], ['集合場所', run.meetingPlace],
-        ['ペース', run.pace], ['ホスト', run.host], ['撮影', run.photography], ['初参加方法', run.firstJoin],
+        ['曜日', run.day],
+        ['時間', run.time],
+        ['距離', run.distance],
+        ['集合場所', run.meetingPlace],
+        ['ペース', run.pace],
+        ['ホスト', run.host],
+        ['撮影', run.photography],
+        ['初参加方法', run.firstJoin],
     ];
+
     return (
         <div className={styles.page}>
             <div className={styles.container}>

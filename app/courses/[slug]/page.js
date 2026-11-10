@@ -1,77 +1,58 @@
 import Image from 'next/image';
 import Link from '@/components/SiteLink';
 import { notFound } from 'next/navigation';
-import COURSE_GUIDES, { getCourseGuide, getRelatedCourses } from '../../../lib/courseGuides';
+import JsonLd from '@/components/JsonLd';
+import COURSE_GUIDES, { getCourseGuide, getRelatedCourses } from '@/lib/courseGuides';
+import { DEFAULT_OG_IMAGE, SITE_NAME, absoluteUrl } from '@/lib/site';
+import { createBreadcrumbJsonLd, createFaqJsonLd } from '@/lib/structuredData';
 import styles from '../courses.module.css';
-
-const SITE_URL = 'https://hinode-run.com';
 
 export function generateStaticParams() {
     return COURSE_GUIDES.map((course) => ({ slug: course.slug }));
 }
 
-export function generateMetadata({ params }) {
-    const course = getCourseGuide(params.slug);
+export async function generateMetadata({ params }) {
+    const course = getCourseGuide((await params).slug);
     if (!course) return {};
 
+    const url = absoluteUrl(`/courses/${course.slug}`);
     return {
         title: `${course.seoTitle} | HINODE`,
         description: course.seoDescription,
         alternates: {
-            canonical: `${SITE_URL}/courses/${course.slug}`,
+            canonical: url,
         },
         openGraph: {
             title: course.seoTitle,
             description: course.seoDescription,
-            url: `${SITE_URL}/courses/${course.slug}`,
-            siteName: 'HINODE',
+            url,
+            siteName: SITE_NAME,
             locale: 'ja_JP',
             type: 'article',
-            images: [course.image || '/assets/ogp-home.jpg'],
+            images: [course.image || DEFAULT_OG_IMAGE],
         },
     };
 }
 
 function createJsonLd(course) {
-    const breadcrumb = {
-        '@context': 'https://schema.org',
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'ホーム', item: SITE_URL },
-            { '@type': 'ListItem', position: 2, name: '朝ランコースガイド', item: `${SITE_URL}/courses` },
-            { '@type': 'ListItem', position: 3, name: course.name, item: `${SITE_URL}/courses/${course.slug}` },
-        ],
-    };
-
-    const faq = {
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        mainEntity: course.faq.map((item) => ({
-            '@type': 'Question',
-            name: item.q,
-            acceptedAnswer: { '@type': 'Answer', text: item.a },
-        })),
-    };
-
-    return [breadcrumb, faq];
+    return [
+        createBreadcrumbJsonLd([
+            { name: '朝ランコースガイド', path: '/courses' },
+            { name: course.name, path: `/courses/${course.slug}` },
+        ]),
+        createFaqJsonLd(course.faq.map((item) => ({ question: item.q, answer: item.a }))),
+    ];
 }
 
-export default function CourseDetailPage({ params }) {
-    const course = getCourseGuide(params.slug);
+export default async function CourseDetailPage({ params }) {
+    const course = getCourseGuide((await params).slug);
     if (!course) notFound();
 
     const related = getRelatedCourses(course);
-    const jsonLd = createJsonLd(course);
 
     return (
         <section>
-            {jsonLd.map((entry, index) => (
-                <script
-                    key={index}
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{ __html: JSON.stringify(entry) }}
-                />
-            ))}
+            <JsonLd data={createJsonLd(course)} />
 
             <section className={styles.hero}>
                 <div className="container">

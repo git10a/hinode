@@ -1,7 +1,13 @@
 import Link from '@/components/SiteLink';
+import JsonLd from '@/components/JsonLd';
+import { FIRST_CHOICE_RUN, getRegularRun } from '@/lib/regularRuns';
+import { DEFAULT_OG_IMAGE, INSTAGRAM_URL, SITE_NAME, SITE_URL } from '@/lib/site';
+import { createFaqJsonLd } from '@/lib/structuredData';
 import styles from './faq.module.css';
 
-const SITE_URL = 'https://hinode-run.com';
+const KOKYO_RUN = getRegularRun('kokyo');
+const MEGURO_RUN = getRegularRun('meguro');
+const YOYOGI_RUN = getRegularRun('yoyogi');
 
 export const metadata = {
     title: 'よくある質問｜HINODE 東京の朝ランコミュニティ',
@@ -15,10 +21,10 @@ export const metadata = {
         description:
             '予約は必要？1人でも大丈夫？初心者でも走れる？HINODEの朝ランに参加する前の疑問にまとめて答えます。',
         url: `${SITE_URL}/faq`,
-        siteName: 'HINODE',
+        siteName: SITE_NAME,
         locale: 'ja_JP',
         type: 'website',
-        images: ['/assets/ogp-home.jpg'],
+        images: [DEFAULT_OG_IMAGE],
     },
 };
 
@@ -45,7 +51,7 @@ const FAQ_GROUPS = [
             },
             {
                 q: '初参加におすすめの回はありますか？',
-                a: '日曜7:30の代々木公園ラン（原宿時計塔前集合）がいちばん参加しやすいです。時間帯が朝早すぎず、参加人数も多い回です。',
+                a: `${FIRST_CHOICE_RUN.dayTimeLabel}の${FIRST_CHOICE_RUN.name}（${FIRST_CHOICE_RUN.meetingPlace}集合）がいちばん参加しやすいです。時間帯が朝早すぎず、参加人数も多い回です。`,
             },
             {
                 q: '集合場所でどうやってメンバーを見つければいいですか？',
@@ -58,7 +64,7 @@ const FAQ_GROUPS = [
         items: [
             {
                 q: 'いつ、どこで開催していますか？',
-                a: '毎週水曜6:30に皇居（桔梗門前派出所集合）、木曜6:30に目黒川（中目黒駅 蔦屋書店併設スターバックス前集合）、日曜7:30に代々木公園（原宿時計塔前集合）で開催しています。最新の日程は開催日程ページで確認できます。',
+                a: `毎週${KOKYO_RUN.dayTimeLabel}に皇居（桔梗門前派出所集合）、${MEGURO_RUN.dayTimeLabel}に目黒川（中目黒駅 蔦屋書店併設スターバックス前集合）、${YOYOGI_RUN.dayTimeLabel}に代々木公園（原宿時計塔前集合）で開催しています。最新の日程は開催日程ページで確認できます。`,
             },
             {
                 q: '雨の日は開催されますか？',
@@ -101,28 +107,14 @@ const FAQ_GROUPS = [
     },
 ];
 
-function buildFaqJsonLd() {
-    const allItems = FAQ_GROUPS.flatMap((group) => group.items);
-    return {
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        mainEntity: allItems.map((item) => ({
-            '@type': 'Question',
-            name: item.q,
-            acceptedAnswer: { '@type': 'Answer', text: item.a },
-        })),
-    };
-}
+const FAQ_JSON_LD = createFaqJsonLd(
+    FAQ_GROUPS.flatMap((group) => group.items).map((item) => ({ question: item.q, answer: item.a }))
+);
 
 export default function FaqPage() {
-    const jsonLd = buildFaqJsonLd();
-
     return (
         <section>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            />
+            <JsonLd data={FAQ_JSON_LD} />
 
             <section className={styles.hero}>
                 <div className="container">
@@ -130,7 +122,7 @@ export default function FaqPage() {
                     <h1 className={styles.title}>よくある質問</h1>
                     <p className={styles.introText}>
                         初めての朝ラン参加の前に、よく聞かれる質問をまとめました。
-                        ここにない疑問は、<a href="https://www.instagram.com/hinode_run/" target="_blank" rel="noopener noreferrer">InstagramのDM</a>に遠慮なくご連絡ください。
+                        ここにない疑問は、<a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">InstagramのDM</a>に遠慮なくご連絡ください。
                     </p>
                 </div>
             </section>

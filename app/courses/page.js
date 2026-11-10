@@ -1,8 +1,8 @@
 import Link from '@/components/SiteLink';
-import COURSE_GUIDES from '../../lib/courseGuides';
+import JsonLd from '@/components/JsonLd';
+import COURSE_GUIDES from '@/lib/courseGuides';
+import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from '@/lib/site';
 import styles from './courses.module.css';
-
-const SITE_URL = 'https://hinode-run.com';
 
 export const metadata = {
     title: '東京の朝ランコースガイド｜皇居・代々木公園・目黒川など10コース | HINODE',
@@ -16,10 +16,10 @@ export const metadata = {
         description:
             '皇居・代々木公園・目黒川など、東京の朝ランにおすすめのコースを距離・設備・日の出ポイントつきで解説。',
         url: `${SITE_URL}/courses`,
-        siteName: 'HINODE',
+        siteName: SITE_NAME,
         locale: 'ja_JP',
         type: 'website',
-        images: ['/assets/ogp-home.jpg'],
+        images: [DEFAULT_OG_IMAGE],
     },
 };
 
@@ -42,10 +42,7 @@ export default function CoursesPage() {
 
     return (
         <section>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            />
+            <JsonLd data={jsonLd} />
 
             <section className={styles.hero}>
                 <div className="container">

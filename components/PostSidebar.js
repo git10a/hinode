@@ -1,82 +1,28 @@
 import Link from '@/components/SiteLink';
-import SCHEDULE_ITEMS from '../lib/scheduleItems';
-import styles from '../app/blog/[slug]/post.module.css';
+import LocationPinIcon from '@/components/LocationPinIcon';
+import ParticipantPreview from '@/components/ParticipantPreview';
+import { getEventMeetingPlace } from '@/lib/blogRunContext';
+import { formatMonthDayJst, formatTimeJst } from '@/lib/jstDate';
+import { STRAVA_CLUB_URL, stravaEventUrl } from '@/lib/site';
+import styles from '@/app/blog/[slug]/post.module.css';
 
-const STRAVA_CLUB_URL = 'https://www.strava.com/clubs/1772485';
-const FIRST_RUN_GUIDE_URL = '/first-run';
-const DAY_LABEL_JP = ['日', '月', '火', '水', '木', '金', '土'];
-const SCHEDULE_LOCATION_BY_KEY = new Map(
-    SCHEDULE_ITEMS.map((item) => [`${item.dayOfWeek}-${item.time}`, item.location])
-);
-const FIXED_LOCATION_BY_TITLE = [
-    { pattern: /代々木/, location: '原宿時計塔前' },
-    { pattern: /目黒|中目黒/, location: '中目黒駅 蔦屋併設スタバ前' },
-    { pattern: /皇居/, location: '桔梗門派出所前' },
-];
+const PARTICIPANT_CLASSES = {
+    root: styles.sidebarParticipants,
+    avatars: styles.sidebarParticipantAvatars,
+    avatar: styles.sidebarParticipantAvatar,
+    overflow: styles.sidebarParticipantOverflow,
+    text: styles.sidebarParticipantText,
+};
 
-function formatNext(iso) {
-    const utc = new Date(iso);
-    const jst = new Date(utc.getTime() + 9 * 60 * 60 * 1000);
-    const m = jst.getUTCMonth() + 1;
-    const d = jst.getUTCDate();
-    const w = DAY_LABEL_JP[jst.getUTCDay()];
-    const hh = String(jst.getUTCHours()).padStart(2, '0');
-    const mm = String(jst.getUTCMinutes()).padStart(2, '0');
-    return { date: `${m}/${d}(${w})`, time: `${hh}:${mm}` };
-}
-
-function getEventLocation(event, formattedTime) {
-    const title = event?.title || '';
-    const fixedByTitle = FIXED_LOCATION_BY_TITLE.find(({ pattern }) => pattern.test(title));
-    if (fixedByTitle) return fixedByTitle.location;
-
-    const fixedBySchedule = SCHEDULE_LOCATION_BY_KEY.get(`${event?.dayOfWeek}-${formattedTime}`);
-    if (fixedBySchedule) return fixedBySchedule;
-
-    const address = event?.address?.trim();
-    if (address) return address;
-    return '';
-}
-
-function stravaEventUrl(eventId) {
-    return `${STRAVA_CLUB_URL}/group_events/${eventId}`;
-}
-
-function SidebarParticipants({ count, participants = [] }) {
-    if (!count) return null;
-    const overflowCount = Math.max(0, count - participants.length);
-
-    return (
-        <div className={styles.sidebarParticipants} aria-label={`${count}人が参加予定`}>
-            {participants.length > 0 && (
-                <span className={styles.sidebarParticipantAvatars} aria-hidden="true">
-                    {participants.map((participant) => (
-                        <img
-                            key={participant.id}
-                            src={participant.image}
-                            alt=""
-                            loading="lazy"
-                            decoding="async"
-                            className={styles.sidebarParticipantAvatar}
-                        />
-                    ))}
-                    {overflowCount > 0 && (
-                        <span className={styles.sidebarParticipantOverflow}>+{overflowCount}</span>
-                    )}
-                </span>
-            )}
-            <span className={styles.sidebarParticipantText}>{count}人が参加予定</span>
-        </div>
-    );
-}
-
+// runContext（記事が特定の定例ランの話題）があればその回を、無ければ直近のイベントを案内する
 export default function PostSidebar({ nextEvent, runContext = null, contextEvent = null }) {
     const scheduleEvent = contextEvent || (!runContext ? nextEvent : null);
     const stravaEvent = contextEvent || nextEvent;
-    const next = scheduleEvent ? formatNext(scheduleEvent.startAt) : null;
-    const nextLocation = runContext?.meetingPlace || (next ? getEventLocation(scheduleEvent, next.time) : '');
+    const nextLocation = runContext?.meetingPlace || (scheduleEvent ? getEventMeetingPlace(scheduleEvent) : '');
     const nextEventHref = stravaEvent?.eventId ? stravaEventUrl(stravaEvent.eventId) : null;
-    const scheduleText = next ? `${next.date} ${next.time}` : runContext?.regularLabel;
+    const scheduleText = scheduleEvent
+        ? `${formatMonthDayJst(scheduleEvent.startAt)} ${formatTimeJst(scheduleEvent.startAt)}`
+        : runContext?.regularLabel;
     const sidebarTitle = runContext
         ? `次回の${runContext.shortName}日程`
         : '次のHINODEグループラン';
@@ -111,10 +57,7 @@ export default function PostSidebar({ nextEvent, runContext = null, contextEvent
                         </span>
                         {nextLocation && (
                             <span className={styles.sidebarLocation}>
-                                <svg viewBox="0 0 24 24" className={styles.sidebarLocationIcon} aria-hidden="true">
-                                    <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" />
-                                    <circle cx="12" cy="9" r="2.5" />
-                                </svg>
+                                <LocationPinIcon className={styles.sidebarLocationIcon} />
                                 <span className={styles.sidebarLocationText}>{nextLocation}</span>
                             </span>
                         )}
@@ -128,9 +71,10 @@ export default function PostSidebar({ nextEvent, runContext = null, contextEvent
                     </p>
                 )}
 
-                <SidebarParticipants
+                <ParticipantPreview
                     count={stravaEvent?.participantCount}
                     participants={stravaEvent?.participants}
+                    classes={PARTICIPANT_CLASSES}
                 />
 
                 {nextEventHref && (
@@ -148,7 +92,7 @@ export default function PostSidebar({ nextEvent, runContext = null, contextEvent
 
                 {!runContext && (
                     <div className={styles.sidebarActions}>
-                        <Link href={FIRST_RUN_GUIDE_URL} className={styles.sidebarBtnSecondary}>
+                        <Link href="/first-run" className={styles.sidebarBtnSecondary}>
                             <svg viewBox="0 0 24 24" className={styles.sidebarBtnIcon} aria-hidden="true">
                                 <path d="M6 20V5" />
                                 <path d="M6 6.5c2.8-1.7 5.1 1.2 8 0 1.1-.5 2-.9 3.5-.5v7.2c-1.5-.4-2.4 0-3.5.5-2.9 1.2-5.2-1.7-8 0" />

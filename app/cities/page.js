@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from '@/components/SiteLink';
-import { CITIES, getCityRuns } from '../../lib/cities';
+import { CITIES, getCityRuns } from '@/lib/cities';
 import styles from './cities.module.css';
 
 export const metadata = {
