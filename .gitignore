@@ -34,3 +34,4 @@ out/
 .wrangler/
 dist/
 .dev.vars*
+.env*
