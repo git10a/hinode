@@ -54,7 +54,6 @@ export default async function Footer() {
                 </div>
                 <div className="footer-services">
                     <span>HINODEがつくっているもの</span>
-                    <a href="https://shoes-match.com/" target="_blank" rel="noopener noreferrer">シューズマッチ ↗</a>
                     <a href="https://dokorun.com/" target="_blank" rel="noopener noreferrer">どこラン ↗</a>
                 </div>
                 <div className="footer-sub-links">
