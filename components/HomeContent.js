@@ -68,12 +68,6 @@ const VALUES = [
 
 const RUNNING_SERVICES = [
     {
-        name: 'シューズマッチ',
-        description: '質問に答えて、自分に合うランニングシューズを探せるサービス。',
-        href: 'https://shoes-match.com/',
-        label: 'シューズ選び',
-    },
-    {
         name: 'どこラン',
         description: '旅先でも、出張先でも、知らない土地で走れるコースが地図つきで見つかるサービス。',
         href: 'https://dokorun.com/',

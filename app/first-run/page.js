@@ -134,14 +134,7 @@ const GUIDE_CARDS = [
     },
     {
         title: 'シューズはどう選べばいい？',
-        body: (
-            <>
-                最初は手持ちの走れるスニーカーで大丈夫です。これから選ぶなら、90秒の質問に答えるだけで自分に合うシューズがわかる
-                <a href="https://www.shoes-match.com/" target="_blank" rel="noopener noreferrer" className={styles.inlineLink}>ランニングシューズ診断「シューズマッチ」</a>
-                も参考にしてください。
-            </>
-        ),
-        schemaText: '最初は手持ちの走れるスニーカーで大丈夫です。これから選ぶなら、90秒の質問に答えるだけで自分に合うシューズがわかるランニングシューズ診断「シューズマッチ」も参考にしてください。詳しくはこちら: https://www.shoes-match.com/',
+        body: '最初は手持ちの走れるスニーカーで大丈夫です。',
     },
     {
         title: '雨の日はどうなる？',
