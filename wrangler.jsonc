@@ -16,5 +16,20 @@
   },
   "cache": {
     "enabled": true
-  }
+  },
+  // 記事CMS（docs/cms.md）。記事は D1、画像は R2 に置く
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "hinode-cms",
+      "database_id": "d7f3e17d-fdca-44ea-b702-467df9d8abdd",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "MEDIA",
+      "bucket_name": "hinode-media"
+    }
+  ]
 }
