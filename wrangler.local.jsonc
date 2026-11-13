@@ -1,0 +1,25 @@
+{
+  // ローカル開発専用（npm run dev:cms）。本番用の wrangler.jsonc に、CMS 用の D1 と R2 を足したもの。
+  // database_id はローカルでは使われないのでダミー。本番の切り替え手順は docs/cms.md を参照。
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "hinode-migration-preview",
+  "compatibility_date": "2026-09-23",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "vinext/server/fetch-handler",
+  "assets": {
+    "directory": "dist/client",
+    "not_found_handling": "none",
+    "binding": "ASSETS"
+  },
+  "version_metadata": { "binding": "CF_VERSION_METADATA" },
+  "cache": { "enabled": true },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "hinode-cms",
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "r2_buckets": [{ "binding": "MEDIA", "bucket_name": "hinode-media" }]
+}

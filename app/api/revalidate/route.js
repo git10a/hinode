@@ -1,6 +1,6 @@
 import crypto from 'crypto';
-import { revalidatePath } from 'next/cache';
 import { NextResponse } from 'next/server';
+import { revalidateBlog } from '@/lib/blogRevalidate';
 
 export const runtime = 'nodejs';
 
@@ -52,13 +52,7 @@ export async function POST(request) {
     }
 
     const contentId = getContentId(payload);
-    const paths = ['/', '/blog', '/sitemap.xml'];
-    if (contentId) paths.push(`/blog/${contentId}`);
-
-    for (const path of paths) {
-        revalidatePath(path);
-    }
-    revalidatePath('/blog/[slug]', 'page');
+    const paths = revalidateBlog(contentId);
 
     return NextResponse.json({
         ok: true,

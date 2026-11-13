@@ -9,7 +9,7 @@ import TableOfContents from '@/components/TableOfContents';
 import { formatPostDate, getPostDisplayDate, sortBlogPosts, buildBlogContent } from '@/lib/blogPosts';
 import { getBlogRunContext, getUpcomingEventForRunContext } from '@/lib/blogRunContext';
 import { getRelatedBlogPosts } from '@/lib/blogTopics';
-import { getBlogPostById, getAllBlogPosts } from '@/lib/microcms';
+import { getBlogPostById, getAllBlogPosts } from '@/lib/blogSource';
 import { DEFAULT_OG_IMAGE, ORGANIZATION_ID, SITE_NAME, STRAVA_CLUB_URL, absoluteUrl } from '@/lib/site';
 import { getUpcomingGroupEvents } from '@/lib/strava';
 import { createBreadcrumbJsonLd } from '@/lib/structuredData';
@@ -21,6 +21,9 @@ export async function generateStaticParams() {
     const posts = await getAllBlogPosts();
     return posts.map((post) => ({ slug: post.id }));
 }
+
+// CMS の画像は /media/... のサイト内パスなので、構造化データでは絶対URLにする
+const toAbsoluteUrl = (url) => (url.startsWith('/') ? absoluteUrl(url) : url);
 
 function getPostDescription(post) {
     return post.description || `${post.title}の記事です。`;
@@ -39,23 +42,28 @@ export async function generateMetadata({ params }) {
 
     const url = absoluteUrl(`/blog/${slug}`);
     const description = getPostDescription(post);
-    const ogpImages = post.thumbnail
+    // CMS の記事は、検索結果用のタイトルとSNS用のタイトル・説明・画像を個別に指定できる。
+    // 指定が無ければ記事のタイトル・説明・サムネイルを使う（microCMS の記事は常にこちら）
+    const socialTitle = post.ogTitle || post.title;
+    const socialDescription = post.ogDescription || description;
+    const socialImage = post.ogImage || post.thumbnail;
+    const ogpImages = socialImage
         ? [{
-            url: post.thumbnail.url,
-            width: post.thumbnail.width,
-            height: post.thumbnail.height,
+            url: socialImage.url,
+            width: socialImage.width,
+            height: socialImage.height,
         }]
         : [DEFAULT_OG_IMAGE];
 
     return {
-        title: `${post.title} | HINODE BLOG`,
+        title: `${post.seoTitle || post.title} | HINODE BLOG`,
         description,
         alternates: {
             canonical: url,
         },
         openGraph: {
-            title: post.title,
-            description,
+            title: socialTitle,
+            description: socialDescription,
             url,
             siteName: SITE_NAME,
             type: 'article',
@@ -63,9 +71,9 @@ export async function generateMetadata({ params }) {
         },
         twitter: {
             card: 'summary_large_image',
-            title: post.title,
-            description,
-            images: post.thumbnail ? [post.thumbnail.url] : [DEFAULT_OG_IMAGE],
+            title: socialTitle,
+            description: socialDescription,
+            images: socialImage ? [socialImage.url] : [DEFAULT_OG_IMAGE],
         },
     };
 }
@@ -101,7 +109,7 @@ export default async function BlogPost({ params }) {
             mainEntityOfPage: { '@type': 'WebPage', '@id': articleUrl },
             headline: post.title,
             description: getPostDescription(post),
-            image: post.thumbnail ? [post.thumbnail.url] : [absoluteUrl(DEFAULT_OG_IMAGE)],
+            image: post.thumbnail ? [toAbsoluteUrl(post.thumbnail.url)] : [absoluteUrl(DEFAULT_OG_IMAGE)],
             datePublished: post.publishedAt,
             dateModified: getPostDisplayDate(post),
             author: { '@id': ORGANIZATION_ID },

@@ -1,6 +1,6 @@
 import HomeContent from '@/components/HomeContent';
 import { sortBlogPosts } from '@/lib/blogPosts';
-import { getAllBlogPosts } from '@/lib/microcms';
+import { getAllBlogPosts } from '@/lib/blogSource';
 import { getRunCount } from '@/lib/runCount';
 import { getUpcomingGroupEvents } from '@/lib/strava';
 
