@@ -76,6 +76,13 @@ test('検査: タイトル・説明文・本文が無いと公開できない', 
     ]);
 });
 
+test('検査: 記入待ちの印が残っている記事は公開できない', () => {
+    const issues = checkArticle({ ...goodArticle, body: `${goodArticle.body}\n【要記入：真冬の集合場所の様子】` });
+    assert.deepEqual(issues.map((issue) => `${issue.level}:${issue.code}`), ['error:placeholder']);
+    assert.ok(hasBlockingIssue(issues));
+    assert.ok(codes({ ...goodArticle, description: `${goodArticle.description}【要確認】` }).includes('placeholder'));
+});
+
 test('検査: 説明文の長さ・サムネイル・見出し・画像の抜けを注意として出す', () => {
     assert.deepEqual(codes({ ...goodArticle, description: '短い説明' }), ['description-short']);
     assert.deepEqual(codes({ ...goodArticle, description: 'あ'.repeat(200) }), ['description-long']);

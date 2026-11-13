@@ -17,7 +17,8 @@
     "start:vinext": "wrangler dev --config dist/server/wrangler.json",
     "deploy:vinext": "vinext-cloudflare deploy --config dist/server/wrangler.json",
     "gsc": "node scripts/search-console.mjs",
-    "suggest": "node scripts/keyword-suggest.mjs"
+    "suggest": "node scripts/keyword-suggest.mjs",
+    "report": "node scripts/article-report.mjs"
   },
   "dependencies": {
     "@vinext/cloudflare": "^1.0.0-beta.9",
