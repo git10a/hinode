@@ -1,4 +1,3 @@
-import { revalidateBlog } from '@/lib/blogRevalidate';
 import { deleteArticle, getArticle } from '@/lib/cms/articles';
 import { checkArticle } from '@/lib/cms/checks';
 import { fail, json, requireAdminRequest, requireDatabase } from '@/lib/cms/http';
@@ -26,6 +25,5 @@ export async function DELETE(request, { params }) {
     if (denied) return denied;
 
     await deleteArticle(db, article.id);
-    if (article.status === 'published') revalidateBlog(article.id);
-    return json({ ok: true });
+    return json({ ok: true, needsRevalidate: article.status === 'published' });
 }
