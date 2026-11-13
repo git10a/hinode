@@ -5,7 +5,7 @@ import styles from './cities.module.css';
 
 export const metadata = {
     title: '開催都市｜HINODE',
-    description: 'HINODEが活動する東京・京都の朝ランコミュニティと開催拠点を紹介します。',
+    description: 'HINODEの開催都市と拠点を紹介します。現在は東京の皇居・目黒川・代々木公園で毎週開催しています。',
 };
 
 export default function CitiesPage() {
@@ -15,7 +15,7 @@ export default function CitiesPage() {
                 <p className={styles.eyebrow}>CITIES</p>
                 <h1 className={styles.title}>朝に走る場所を、各地へ。</h1>
                 <p className={styles.lead}>
-                    HINODEは東京から始まり、京都へ広がっています。都市が増えても、参加無料・予約不要・競争しない・撮影しない方針は変わりません。
+                    HINODEは東京で毎週開催しています。都市が増えても、参加無料・予約不要・競争しない・撮影しない方針は変わりません。
                 </p>
 
                 <div className={styles.cityGrid}>

@@ -59,7 +59,6 @@ export default async function Footer() {
                 <div className="footer-sub-links">
                     <Link href="/courses">朝ランコースガイド</Link>
                     <Link href="/cities/tokyo">HINODE TOKYO</Link>
-                    <Link href="/cities/kyoto">HINODE KYOTO</Link>
                 </div>
                 <div className="social-links">
                     {SOCIAL_LINKS.map(link => (
