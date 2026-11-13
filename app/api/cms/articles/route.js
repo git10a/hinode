@@ -1,4 +1,3 @@
-import { revalidateBlog } from '@/lib/blogRevalidate';
 import { listArticlesForAdmin, saveArticle } from '@/lib/cms/articles';
 import { fail, json, readJson, requireAdminRequest, requireDatabase } from '@/lib/cms/http';
 
@@ -27,8 +26,9 @@ export async function POST(request) {
     const result = await saveArticle(db, input, { allowPublish: true, allowImport: true });
     if (result.error) return fail(422, result.error, { issues: result.issues });
 
-    // 公開中の記事に関わる保存のときだけ、公開ページを作り直す
-    if (result.article.status === 'published' || result.wasPublished) revalidateBlog(result.article.id);
+    // 公開ページに影響する保存かどうか。影響するときは、呼び出し側が続けて /api/cms/revalidate を呼ぶ
+    // （キャッシュ消去の失敗で、保存そのものが失敗扱いにならないよう、リクエストを分けている）
+    const needsRevalidate = result.article.status === 'published' || result.wasPublished === true;
 
-    return json({ ok: true, article: result.article, issues: result.issues });
+    return json({ ok: true, article: result.article, issues: result.issues, needsRevalidate });
 }

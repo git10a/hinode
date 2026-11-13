@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 // microCMS の公開記事を、URL（id）・日付・本文をそのままに CMS へ取り込む。
+// 全件をまず下書きとして入れ、最後にまとめて公開する。途中で失敗しても公開はされず、
+// サイトは microCMS を読み続ける（もう一度実行すれば続きから入る）。
 //   npm run cms:import                 まだ CMS に無い記事だけ取り込む
 //   npm run cms:import -- --force      すでにある記事も取り込み直す（画像は新しく上げ直される）
 //   npm run cms:import -- --dry-run    何を取り込むかだけ表示する
@@ -97,7 +99,8 @@ async function importPost(post) {
             thumbnail,
             body,
             bodyFormat: 'html',
-            status: post.publishedAt ? 'published' : 'draft',
+            // ここでは公開しない。全件が入ってから /api/cms/import でまとめて公開する
+            status: 'draft',
             publishedAt: post.publishedAt,
             revisedAt: post.revisedAt,
             createdAt: post.createdAt,
@@ -133,7 +136,21 @@ try {
             : issues.length ? `（注意 ${issues.length}件: ${issues.map((issue) => issue.code).join(', ')}）` : '';
         console.log(`  取り込み: ${post.id}  画像${images}枚  ${post.title} ${notes}`);
     }
-    console.log(`完了: ${imported}件を取り込みました。`);
+    console.log(`${imported}件を下書きとして取り込みました。まとめて公開します。`);
+
+    const publish = posts.filter((post) => post.publishedAt).map((post) => post.id);
+    const { response, result } = await cms('/api/cms/import', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ publish }),
+    });
+    if (!response.ok) throw new Error(`公開に切り替えられませんでした: ${result.error || response.status}`);
+
+    console.log(`完了: ${result.published}件を公開しました。記事の読み込み元が CMS に切り替わりました。`);
+
+    // 公開ページの作り直しは別のリクエスト。失敗しても記事は公開済みで、定期的な作り直しで反映される
+    const revalidate = await cms('/api/cms/revalidate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+    if (!revalidate.response.ok) console.log('キャッシュをすぐに消去できなかったため、表示への反映に最大15分かかります。');
 } catch (error) {
     console.error(error.message);
     process.exit(1);

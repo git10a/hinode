@@ -84,6 +84,20 @@ function ImageField({ label, hint, image, onChange, onError }) {
     );
 }
 
+// 公開ページを作り直す。保存とは別のリクエストで、失敗しても保存は済んでいる（反映が遅れるだけ）
+async function requestRevalidate(id) {
+    try {
+        const response = await fetch('/api/cms/revalidate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id }),
+        });
+        return response.ok;
+    } catch {
+        return false;
+    }
+}
+
 export default function ArticleEditor({ article = null }) {
     const isNew = !article;
     const router = useRouter();
@@ -188,12 +202,24 @@ export default function ArticleEditor({ article = null }) {
             setDirty(false);
             if (isNew && !saved) {
                 // 新規作成のあとは、その記事の編集ページへ移る
+                if (result.needsRevalidate) await requestRevalidate(result.article.id);
                 router.push(`/admin/articles/${result.article.id}`);
                 return;
             }
             setSaved(result.article);
             setValues({ ...EMPTY_ARTICLE, ...result.article });
-            setNotice({ type: 'ok', text: status === 'published' ? '公開しました。数分以内にサイトへ反映されます。' : '下書きとして保存しました。' });
+            const reflected = result.needsRevalidate ? await requestRevalidate(result.article.id) : true;
+            let text = '下書きとして保存しました。';
+            if (status === 'published') {
+                text = reflected
+                    ? '公開しました。サイトに反映されています。'
+                    : '公開しました。キャッシュの消去が混み合っているため、サイトへの反映に最大15分かかります。';
+            } else if (result.needsRevalidate) {
+                text = reflected
+                    ? '非公開に戻しました。'
+                    : '非公開に戻しました。サイトから消えるまで最大15分かかります。';
+            }
+            setNotice({ type: 'ok', text });
         } catch {
             setNotice({ type: 'error', text: '通信に失敗しました。もう一度お試しください。' });
         }
@@ -204,6 +230,8 @@ export default function ArticleEditor({ article = null }) {
         if (!window.confirm(`「${saved.title}」を削除します。元に戻せません。よろしいですか？`)) return;
         const response = await fetch(`/api/cms/articles/${saved.id}`, { method: 'DELETE' });
         if (response.ok) {
+            const result = await response.json().catch(() => ({}));
+            if (result.needsRevalidate) await requestRevalidate(saved.id);
             setDirty(false);
             router.push('/admin');
             router.refresh();
