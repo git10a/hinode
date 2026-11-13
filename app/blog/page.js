@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { formatPostDate, getPostDisplayDate, sortBlogPosts } from '@/lib/blogPosts';
 import { BLOG_TOPICS } from '@/lib/blogTopics';
 import { getPopularBlogPostIds } from '@/lib/googleAnalytics';
-import { getAllBlogPosts } from '@/lib/microcms';
+import { getAllBlogPosts } from '@/lib/blogSource';
 import PostGrid from './PostGrid';
 import styles from './blog.module.css';
 

@@ -1,7 +1,7 @@
 import { BLOG_TOPICS } from '@/lib/blogTopics';
 import { CITIES } from '@/lib/cities';
 import COURSE_GUIDES from '@/lib/courseGuides';
-import { getAllBlogPosts } from '@/lib/microcms';
+import { getAllBlogPosts } from '@/lib/blogSource';
 import { REGULAR_RUNS } from '@/lib/regularRuns';
 import { SITE_URL } from '@/lib/site';
 

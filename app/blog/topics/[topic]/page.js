@@ -4,7 +4,7 @@ import JsonLd from '@/components/JsonLd';
 import PostGrid from '@/app/blog/PostGrid';
 import { sortBlogPosts } from '@/lib/blogPosts';
 import { BLOG_TOPICS, getBlogTopic, getPostsForTopic } from '@/lib/blogTopics';
-import { getAllBlogPosts } from '@/lib/microcms';
+import { getAllBlogPosts } from '@/lib/blogSource';
 import { DEFAULT_OG_IMAGE, SITE_NAME, absoluteUrl } from '@/lib/site';
 import { createBreadcrumbJsonLd } from '@/lib/structuredData';
 import blogStyles from '../../blog.module.css';
