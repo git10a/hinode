@@ -42,7 +42,7 @@ const TIMELINE = [
     },
     {
         date: '2026年',
-        text: 'HINODE KYOTO（京都）が始動。Runtrip BASE（代々木）と提携し、参加者向けのタオル特典を開始。'
+        text: 'HINODE KYOTO（京都）が始動（現在は休止中）。Runtrip BASE（代々木）と提携し、参加者向けのタオル特典を開始。'
     }
 ];
 
@@ -104,7 +104,6 @@ export default function PressContent({ memberCount = null, runCount = null }) {
                             <tr><th>参加費</th><td>無料</td></tr>
                             <tr><th>参加方法</th><td>予約不要。集合時間の5分前に集合場所へ来るだけ</td></tr>
                             <tr><th>目印</th><td>背中に「HINODE」と書かれた黒いTシャツ</td></tr>
-                            <tr><th>姉妹コミュニティ</th><td>HINODE KYOTO（京都）</td></tr>
                         </tbody>
                     </table>
 

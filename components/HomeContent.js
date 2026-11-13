@@ -294,7 +294,7 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                     <div><p className={styles.eyebrow}>02 / OUR PHILOSOPHY</p><h2 className={styles.sectionTitle}>いい朝を、続けよう。</h2></div><Link href="/about" className={styles.sectionMore}>HINODEとは ↗</Link>
                 </div>
                 <p className={styles.valuesLead}>
-                    HINODEは、速さや人数を競うためではなく、朝に走る習慣を続けるためのコミュニティです。東京と京都で、それぞれの街に合った形で活動しています。
+                    HINODEは、速さや人数を競うためではなく、朝に走る習慣を続けるためのコミュニティです。東京の皇居・目黒川・代々木公園で、毎週開催しています。
                 </p>
                 <div className={styles.valuesGrid}>
                     {VALUES.map((v, index) => (

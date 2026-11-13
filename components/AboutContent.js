@@ -78,7 +78,7 @@ export default function AboutContent() {
                     競争しない朝をつづける
                 </h1>
                 <p className={styles.lead}>
-                    HINODEは、日の出前後の朝に集まり、会話できるペースで走るコミュニティです。東京と京都で活動し、参加無料・予約不要。速さや経験を問わず、1人でも来やすい場を目指しています。
+                    HINODEは、日の出前後の朝に集まり、会話できるペースで走るコミュニティです。東京で活動し、参加無料・予約不要。速さや経験を問わず、1人でも来やすい場を目指しています。
                 </p>
                 <p className={styles.mediaMention}>
                     <a

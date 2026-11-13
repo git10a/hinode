@@ -51,6 +51,14 @@ export default async function CityPage({ params }) {
                             ))}
                         </div>
                     </section>
+                ) : city.paused ? (
+                    <section className={styles.pendingPanel}>
+                        <h2>現在は休止中です</h2>
+                        <p>{city.name}での開催は現在行っていません。東京では皇居・目黒川・代々木公園で毎週開催しています。</p>
+                        <div className={styles.inlineLinks}>
+                            <Link href="/cities/tokyo">東京の開催情報を見る →</Link>
+                        </div>
+                    </section>
                 ) : (
                     <section className={styles.pendingPanel}>
                         <h2>次の開催について</h2>
