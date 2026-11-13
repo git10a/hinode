@@ -3,7 +3,8 @@
 作成日: 2026-11-13
 
 ブログ記事を自前で管理するための仕組み。どこラン（`git10a/dokorun` の `feat/article-cms`）の記事CMSを移植した。
-microCMS の置き換えが目的だが、**本番の切り替えはまだしていない**。下の「本番への切り替え手順」を済ませるまで、サイトはこれまでどおり microCMS から記事を読む。
+**2026-11-13 に本番を切り替えた。** 記事は D1（`hinode-cms`）、画像は R2（`hinode-media`）から配信している。管理画面は https://hinode-run.com/admin 。
+microCMS のコードとデータは、戻せるように残してある（「本番への切り替え手順」の 9 と、その下の戻し方を参照）。
 
 ## できること
 
@@ -71,6 +72,7 @@ npm run dev:cms
 ```
 
 - `http://localhost:3002/admin` を開く。`wrangler.local.jsonc`（D1 と R2 つきの設定）で動き、データは `.wrangler/state` に保存される
+- 本番の秘密値は Worker に登録済み。切り替え時に生成した値の控えは、手元の `.env.cms-production`（Git には入らない）にある
 - `.env.local` に `ADMIN_PASSWORD`、`ADMIN_SESSION_SECRET`（32文字以上）、`CMS_API_TOKEN`（32文字以上）、`CMS_BASE_URL=http://localhost:3002` が要る（`.env.example` 参照）
 - `npm run cms:import` で microCMS の公開記事をローカルの CMS に取り込める
 - `npm run dev`（next dev）と `npm run dev:vinext` には D1 が無いので、記事は microCMS から読まれ、`/admin` は「データベースが設定されていません」と出る
@@ -105,7 +107,15 @@ npm run dev:cms
 
 ## 本番への切り替え手順
 
-上から順に実行する。HINODE の Cloudflare アカウント（`docs/cloudflare-migration.md`）で行うこと。
+2026-11-13 に 1〜8 を実施済み。残っているのは 9（microCMS を外す後片付け）だけ。作り直すときの控えとして手順を残す。
+
+実施時の記録:
+
+- 最初の取り込みは、記事を1件ずつ公開する作りだったため、5件目の保存が失敗した時点で本番のブログが5件だけになった。すぐに `articles` を空にして microCMS に戻した（影響はおよそ1〜2分）。失敗の原因は Cloudflare のキャッシュ消去の回数制限で、いまは「全件を下書きで入れて最後に一括公開」「公開ページの作り直しは保存と別のリクエスト」に直してある（#11）
+- 失敗した1回目に上げた画像（5記事ぶん）が、どの記事からも参照されないまま R2 に残っている。害はない
+- 切り替え後、`/blog`・記事2本・`/sitemap.xml` を切り替え前と比べ、title・説明文・H1・見出し・本文・構造化データ・サイトマップが同じであることを確認した。変わったのは画像のURLと、サムネイルの寸法（長辺1600pxに縮小）だけ
+
+以下は、HINODE の Cloudflare アカウント（`docs/cloudflare-migration.md`）で上から順に実行する。
 以下の `wrangler` は、デプロイスクリプトと同じ `XDG_CONFIG_HOME=~/.wrangler-hinode` と `CLOUDFLARE_ACCOUNT_ID` を指定して実行する。
 
 1. **D1 を作る**
@@ -174,4 +184,4 @@ npx wrangler d1 execute DB --remote --command "DELETE FROM articles"
 | R2 操作 | 書き100万回/月、読み1,000万回/月 | 画像の表示1回で読み1回（キャッシュに乗れば減る） |
 | Worker リクエスト | 10万回/日（アカウント共通） | 画像は Worker 経由で返すので、表示1回ごとに1リクエスト増える |
 
-画像を Worker 経由で返しているのは、DNS の変更を不要にするため。本番では vinext の CDN アダプターがブラウザ向けのキャッシュ指定を「毎回確認」に書き換えるので、ブラウザは表示のたびに確認のリクエストを送る（中身が同じなら 304 で本体は送らない）。Cloudflare のエッジ側でどこまでキャッシュされるかは、本番で未確認。リクエスト数が気になるようになったら、R2 に独自ドメインを割り当てて直接配信に変える。
+画像を Worker 経由で返しているのは、DNS の変更を不要にするため。本番では vinext の CDN アダプターがブラウザ向けのキャッシュ指定を「毎回確認」に書き換えるので、ブラウザは表示のたびに確認のリクエストを送る。ただし Cloudflare のエッジにはキャッシュされる（本番で、同じ画像の2回目の取得が `cf-cache-status: HIT` になることを確認）。リクエスト数が気になるようになったら、R2 に独自ドメインを割り当てて直接配信に変える。
