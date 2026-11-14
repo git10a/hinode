@@ -9,8 +9,8 @@ import { INSTAGRAM_URL, SITE_NAME, SITE_URL, STRAVA_CLUB_URL, absoluteUrl } from
 import styles from './schedule.module.css';
 
 export const metadata = {
-    title: 'HINODEのグループラン日程｜皇居・目黒川・代々木公園',
-    description: 'HINODEの朝ラン開催日程。皇居・目黒川・代々木公園などの予定を確認できます。参加無料・登録なしでも参加OK。参加予定の登録はStrava・Lumaのどちらでも。',
+    title: 'HINODEのグループラン日程｜皇居・目黒川・代々木公園・駒沢公園',
+    description: 'HINODEの朝ラン開催日程。皇居・目黒川・代々木公園・駒沢公園などの予定を確認できます。参加無料・登録なしでも参加OK。参加予定の登録はStrava・Lumaのどちらでも。',
 };
 
 export const revalidate = 300;
@@ -40,6 +40,13 @@ const EVENT_SCHEMA_DETAILS = {
         summary: '代々木公園で開催する日の出ラン。約2〜4km、左回りで1、2周。',
         locality: '東京都渋谷区',
     },
+    komazawa: {
+        name: '駒沢公園の日の出ラン｜HINODE',
+        // コースマップはまだ無い
+        mapImage: null,
+        summary: '駒沢オリンピック公園で開催する日の出ラン。約4km、ジョギングコースを2周。',
+        locality: '東京都世田谷区',
+    },
 };
 
 // 次回開催日を startDate に持つ Event。日付は再検証のたびに次の回へ進む。
@@ -55,7 +62,7 @@ function createEventJsonLd(run, now) {
         '@type': 'Event',
         name: details.name,
         url,
-        image: [absoluteUrl(details.mapImage), absoluteUrl(run.image)],
+        image: [details.mapImage, run.image].filter(Boolean).map(absoluteUrl),
         description: `${run.dayShort}${run.timeRaw}から${details.summary}参加無料・予約不要。`,
         startDate: formatIsoJst(start),
         endDate: formatIsoJst(end),
@@ -85,6 +92,9 @@ function createEventJsonLd(run, now) {
         },
     };
 }
+
+// Lumaにイベントを立てていない定例ラン。「次の朝ラン」の一覧に出ないので、文章で案内する
+const RUNS_OFF_LUMA = REGULAR_RUNS.filter((run) => run.onLuma === false);
 
 const FAQ_ITEMS = [
     {
@@ -117,7 +127,7 @@ export default async function EventPage() {
                     <p className="editorial-eyebrow">SCHEDULE</p>
                 <h1 className={styles.title}>
                     HINODEのグループラン日程<br />
-                    <span className={styles.titleSub}>皇居・目黒川・代々木公園</span>
+                    <span className={styles.titleSub}>皇居・目黒川・代々木公園・駒沢公園</span>
                 </h1>
                 <p className={styles.lead}>
                     HINODEは、朝の時間にゆっくり走るランニングコミュニティです。<br />
@@ -148,6 +158,14 @@ export default async function EventPage() {
                                 : '次の開催予定は準備中です。Luma・Stravaでもご確認いただけます。'}
                         </p>
                     )}
+                    {RUNS_OFF_LUMA.map((run) => (
+                        <p key={run.id} className={styles.offLumaNote}>
+                            <strong>{run.name}</strong>
+                            {run.day}{run.timeLabel}、{run.meetingPlace}集合{run.startsOnLabel ? `（${run.startsOnLabel}から）` : ''}。
+                            Lumaには載せていませんが、予約不要でそのまま参加できます。
+                            <Link href={run.detailHref}>拠点情報を見る →</Link>
+                        </p>
+                    ))}
                     <div className={styles.registrationNote}>
                         <p>登録なしで、そのまま参加できます。</p>
                         <p>

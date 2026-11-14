@@ -25,7 +25,8 @@ export default async function LocationPage({ params }) {
     const facts = [
         ['曜日', run.day],
         ['時間', run.time],
-        ['距離', run.distance],
+        ...(run.startsOnLabel ? [['開始', `${run.startsOnLabel}から`]] : []),
+        ['距離', run.distanceNote ? `${run.distance}。${run.distanceNote}。` : run.distance],
         ['集合場所', run.meetingPlace],
         ['ペース', run.pace],
         ['ホスト', run.host],

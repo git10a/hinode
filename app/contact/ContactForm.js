@@ -44,7 +44,7 @@ export default function ContactForm({
                             checked={!isWork}
                             onChange={handleInquiryTypeChange}
                         />
-                        <span>企画ラン・コース・参加について</span>
+                        <span>コース・参加について</span>
                     </label>
                     <label className={`${styles.typeOption} ${isWork ? styles.typeOptionActive : ''}`}>
                         <input
@@ -107,7 +107,7 @@ export default function ContactForm({
                     rows="8"
                     placeholder={isWork
                         ? '企画内容、掲載媒体、希望する取材形式などをご記入ください。'
-                        : '走ってみたい場所や企画のアイデア、ご質問などを自由にご記入ください。'}
+                        : '走ってみたい場所、ご質問などを自由にご記入ください。'}
                     maxLength="2500"
                     required
                 />

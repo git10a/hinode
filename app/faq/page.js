@@ -8,6 +8,7 @@ import styles from './faq.module.css';
 const KOKYO_RUN = getRegularRun('kokyo');
 const MEGURO_RUN = getRegularRun('meguro');
 const YOYOGI_RUN = getRegularRun('yoyogi');
+const KOMAZAWA_RUN = getRegularRun('komazawa');
 
 export const metadata = {
     title: 'よくある質問｜HINODE 東京の朝ランコミュニティ',
@@ -64,7 +65,7 @@ const FAQ_GROUPS = [
         items: [
             {
                 q: 'いつ、どこで開催していますか？',
-                a: `毎週${KOKYO_RUN.dayTimeLabel}に皇居（桔梗門前派出所集合）、${MEGURO_RUN.dayTimeLabel}に目黒川（中目黒駅 蔦屋書店併設スターバックス前集合）、${YOYOGI_RUN.dayTimeLabel}に代々木公園（原宿時計塔前集合）で開催しています。最新の日程は開催日程ページで確認できます。`,
+                a: `毎週${KOKYO_RUN.dayTimeLabel}に皇居（桔梗門前派出所集合）、${MEGURO_RUN.dayTimeLabel}に目黒川（中目黒駅 蔦屋書店併設スターバックス前集合）、${YOYOGI_RUN.dayTimeLabel}に代々木公園（原宿時計塔前集合）と駒沢公園（${KOMAZAWA_RUN.meetingShort}集合、${KOMAZAWA_RUN.startsOnLabel}から）で開催しています。最新の日程は開催日程ページで確認できます。`,
             },
             {
                 q: '雨の日は開催されますか？',

@@ -15,7 +15,7 @@ const SECTIONS = [
         title: 'HINODEはどんなコミュニティか',
         body: (
             <>
-                <p className={styles.text}>皇居・目黒川・代々木公園などでのグループランを基本に、土曜日は不定期の企画ランも開催しています。上野公園や駒沢公園へ行ったり、おいしいパン屋を目指したり、山手線一周ランをしたりする日もあります。ペースも距離も自由で、苦しくなったら歩いても問題ありません。速さではなく、走り続ける規律そのものを大事にしています。</p>
+                <p className={styles.text}>皇居・目黒川・代々木公園・駒沢公園でのグループランが活動の中心です。ペースも距離も自由で、苦しくなったら歩いても問題ありません。速さではなく、走り続ける規律そのものを大事にしています。</p>
                 <p className={styles.text}>競技経験や走力を問わず、朝ランを続けたい人が参加できるコミュニティです。{COMMUNITY_STATS.ageRange}まで、幅広い方が参加しています。</p>
             </>
         ),
@@ -37,7 +37,7 @@ const SECTIONS = [
 const FIRST_JOIN_STEPS = [
     {
         title: '日程を見る',
-        text: '皇居・目黒川・代々木公園の開催日と集合場所を確認します。',
+        text: '皇居・目黒川・代々木公園・駒沢公園の開催日と集合場所を確認します。',
     },
     {
         title: '集合場所へ行く',
@@ -200,7 +200,7 @@ export default function AboutContent() {
                         <div className={styles.infoPanel}>
                             <div className={styles.infoItem}>
                                 <span className={styles.infoLabel}>開催場所</span>
-                                <p>皇居・目黒川・代々木公園で週3回（水・木・日曜）開催。土曜日は不定期で企画ランもあります。</p>
+                                <p>皇居・目黒川・代々木公園・駒沢公園で週3日（水・木・日曜）開催。</p>
                                 <Link href="/schedule" className={styles.infoLink}>
                                     開催日程と参加方法を見る <span aria-hidden="true">→</span>
                                 </Link>
