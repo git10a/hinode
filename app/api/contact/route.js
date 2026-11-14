@@ -8,7 +8,7 @@ const RESEND_API_URL = 'https://api.resend.com/emails';
 
 // 問い合わせ種別ごとの表示名。ここに無い inquiryType は受け付けない。
 const INQUIRY_TYPE_LABELS = {
-    community: '企画・参加',
+    community: 'コース・参加',
     work: 'お仕事・取材',
     start: '新しい街',
 };

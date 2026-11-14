@@ -5,7 +5,7 @@ import styles from './cities.module.css';
 
 export const metadata = {
     title: '開催都市｜HINODE',
-    description: 'HINODEの開催都市と拠点を紹介します。現在は東京の皇居・目黒川・代々木公園で毎週開催しています。',
+    description: 'HINODEの開催都市と拠点を紹介します。現在は東京の皇居・目黒川・代々木公園・駒沢公園で毎週開催しています。',
 };
 
 export default function CitiesPage() {
