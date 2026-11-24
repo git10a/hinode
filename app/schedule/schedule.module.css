@@ -517,6 +517,66 @@
     white-space: nowrap;
 }
 
+.concurrentNote {
+    margin: 0 0 30px;
+    padding: 18px 0;
+    border-top: 1px solid var(--hn-line, rgba(0, 0, 0, 0.12));
+    border-bottom: 1px solid var(--hn-line, rgba(0, 0, 0, 0.12));
+    color: var(--hn-muted);
+    font-size: 13px;
+    line-height: 1.9;
+    letter-spacing: 0.025em;
+}
+
+.concurrentNote p {
+    max-width: none;
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+.concurrentNote strong {
+    display: block;
+    color: var(--hn-ink);
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.concurrentNote ul {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px 24px;
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.concurrentNote li {
+    display: flex;
+    flex-direction: column;
+}
+
+.concurrentNote a {
+    color: var(--hn-ink);
+    font-size: 14px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.concurrentNote a.concurrentStrava {
+    margin-top: 2px;
+    color: var(--hn-sun);
+    font-size: 12px;
+    text-decoration-color: #d8b9a6;
+}
+
+@media (max-width: 640px) {
+    .concurrentNote ul {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+}
+
 .offLumaNote {
     max-width: none;
     margin: 26px 0 0;
@@ -527,6 +587,11 @@
     font-size: 13px;
     line-height: 1.9;
     letter-spacing: 0.025em;
+}
+
+.offLumaNote + .offLumaNote {
+    margin-top: 0;
+    border-top: 0;
 }
 
 .offLumaNote strong {

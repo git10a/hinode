@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from '@/components/SiteLink';
 import { notFound } from 'next/navigation';
 import { CITIES, getCity, getCityRuns } from '@/lib/cities';
+import { RUN_PLACES_BY_REGION_LABEL } from '@/lib/regularRuns';
 import { INSTAGRAM_URL, STRAVA_CLUB_VANITY_URL } from '@/lib/site';
 import styles from '../cities.module.css';
 
@@ -54,7 +55,7 @@ export default async function CityPage({ params }) {
                 ) : city.paused ? (
                     <section className={styles.pendingPanel}>
                         <h2>現在は休止中です</h2>
-                        <p>{city.name}での開催は現在行っていません。東京では皇居・目黒川・代々木公園・駒沢公園で毎週開催しています。</p>
+                        <p>{city.name}での開催は現在行っていません。{RUN_PLACES_BY_REGION_LABEL}で毎週開催しています。</p>
                         <div className={styles.inlineLinks}>
                             <Link href="/cities/tokyo">東京の開催情報を見る →</Link>
                         </div>

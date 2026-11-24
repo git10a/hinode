@@ -5,7 +5,13 @@ import ParticipantPreview from '@/components/ParticipantPreview';
 import { formatPostDate, getPostDisplayDate } from '@/lib/blogPosts';
 import { COMMUNITY_PROMISES, COMMUNITY_SINCE } from '@/lib/communityPolicy';
 import { formatMonthDayJst, formatTimeJst } from '@/lib/jstDate';
-import { REGULAR_RUNS, findUpcomingEventForRun, getNextRunStart } from '@/lib/regularRuns';
+import {
+    REGULAR_RUNS,
+    RUN_PLACES_BY_REGION_LABEL,
+    findUpcomingEventForRun,
+    getConcurrentRuns,
+    getNextRunStart,
+} from '@/lib/regularRuns';
 import { INSTAGRAM_URL, RUNNERS_SALON_URL, STRAVA_CLUB_VANITY_URL, stravaEventUrl } from '@/lib/site';
 import styles from './HomeContent.module.css';
 
@@ -21,6 +27,8 @@ function buildRegularCard(run, upcomingEvents) {
     return {
         type: 'regular',
         run,
+        // 同じ時刻に開催している、ほかの拠点の名前
+        concurrentPlaces: getConcurrentRuns(run).map((other) => other.place),
         nextDate: formatMonthDayJst(start),
         nextTimestamp: start.getTime(),
         stravaHref: event ? stravaEventUrl(event.eventId) : null,
@@ -190,6 +198,9 @@ function RegularRunCard({ card, isNext }) {
                         <span className={styles.weeklyPlace}>{run.place}</span>
                     </div>
                     <WeeklyLocation>{run.meetingShort}</WeeklyLocation>
+                    {card.concurrentPlaces.length > 0 && (
+                        <p className={styles.weeklyConcurrent}>{card.concurrentPlaces.join('・')}でも同時開催</p>
+                    )}
                     <ParticipantPreview
                         count={card.participantCount}
                         participants={card.participants}
@@ -236,7 +247,11 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                     <aside className={styles.nextRun} aria-labelledby="next-run-title">
                         <p id="next-run-title" className={styles.nextLabel}><span className={styles.sunDot} /> NEXT RUN<span>次の定例ラン</span></p>
                         <div className={styles.nextDate}><span>{nextRun.nextDate}</span><span>{nextRun.run.timeRaw}</span></div>
-                        <div className={styles.nextPlace}><strong>{nextRun.run.place}</strong><span>{nextRun.run.meetingShort}</span></div>
+                        <div className={styles.nextPlace}>
+                            <strong>{nextRun.run.place}</strong>
+                            <span>{nextRun.run.meetingShort}</span>
+                            {nextRun.concurrentPlaces.length > 0 && <span>{nextRun.concurrentPlaces.join('・')}でも同時開催</span>}
+                        </div>
                         <ParticipantPreview count={nextRun.participantCount} participants={nextRun.participants} />
                         <Link href={nextRun.run.scheduleHref} className={styles.nextLink}>参加方法を見る <span aria-hidden="true">↗</span></Link>
                     </aside>
@@ -294,7 +309,7 @@ export default async function HomeContent({ latestPosts = [], upcomingEvents = [
                     <div><p className={styles.eyebrow}>02 / OUR PHILOSOPHY</p><h2 className={styles.sectionTitle}>いい朝を、続けよう。</h2></div><Link href="/about" className={styles.sectionMore}>HINODEとは ↗</Link>
                 </div>
                 <p className={styles.valuesLead}>
-                    HINODEは、速さや人数を競うためではなく、朝に走る習慣を続けるためのコミュニティです。東京の皇居・目黒川・代々木公園・駒沢公園で、毎週開催しています。
+                    HINODEは、速さや人数を競うためではなく、朝に走る習慣を続けるためのコミュニティです。{RUN_PLACES_BY_REGION_LABEL}で、毎週開催しています。
                 </p>
                 <div className={styles.valuesGrid}>
                     {VALUES.map((v, index) => (

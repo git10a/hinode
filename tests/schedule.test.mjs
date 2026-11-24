@@ -4,13 +4,18 @@ import { readFileSync } from 'node:fs';
 import { normalizeBlogPost, normalizeBlogPostForSeason } from '../lib/blogContentUpdates.js';
 import { DAY_LABELS_JP } from '../lib/jstDate.js';
 import {
+    CONCURRENT_RUN_GROUPS,
     FIRST_CHOICE_RUN,
     REGULAR_RUNS,
+    RUN_PLACES_BY_REGION_LABEL,
+    RUN_PLACES_LABEL,
     SCHEDULE_SEASON,
     describeStartTimes,
     findUpcomingEventForRun,
+    getConcurrentRuns,
     getRegularRun,
     getNextRunStart,
+    getRunByEventTitle,
     getRunForEvent,
 } from '../lib/regularRuns.js';
 
@@ -40,13 +45,13 @@ test('public/llms.txt: 定期開催の時刻が定例ランと一致する', () 
 
 test('開始時刻が同じ回をまとめて説明する', () => {
     const expected = {
-        standard: '水曜の皇居ランと木曜の目黒川ランは6:30、日曜の代々木公園ランと駒沢公園ランは7:30',
-        summer: '水曜の皇居ランと木曜の目黒川ランは6:00、日曜の代々木公園ランと駒沢公園ランは7:15',
+        standard: '水曜の皇居ランと木曜の目黒川ランは6:30、日曜の代々木公園ラン・駒沢公園ラン・おおたかの森ランは7:30',
+        summer: '水曜の皇居ランと木曜の目黒川ランは6:00、日曜の代々木公園ラン・駒沢公園ラン・おおたかの森ランは7:15',
     };
     assert.equal(describeStartTimes(), expected[SCHEDULE_SEASON]);
 });
 
-test('日曜の2拠点は、イベント名の場所で見分ける', () => {
+test('日曜の拠点は、イベント名の場所で見分ける', () => {
     const yoyogi = getRegularRun('yoyogi');
     const komazawa = getRegularRun('komazawa');
     const events = [
@@ -57,6 +62,30 @@ test('日曜の2拠点は、イベント名の場所で見分ける', () => {
     assert.equal(findUpcomingEventForRun(events, yoyogi).eventId, '1');
     assert.equal(findUpcomingEventForRun(events, komazawa).eventId, '2');
     assert.equal(findUpcomingEventForRun(events, getRegularRun('kokyo')).eventId, '3');
+});
+
+test('かっこ書きでほかの拠点に触れているイベント名でも、先頭の場所で見分ける', () => {
+    // Stravaに実際に立っているイベント名（2026年11月時点）
+    const events = [
+        { eventId: 'o', title: 'おおたかの森で日の出ラン（代々木・駒沢同時開催）', dayOfWeek: 0 },
+        { eventId: 'k', title: '駒沢公園で日の出ラン（代々木・おおたかの森も同時開催）', dayOfWeek: 0 },
+        { eventId: 'y', title: '代々木公園で日の出ラン（駒沢も同時開催）', dayOfWeek: 0 },
+    ];
+    assert.equal(findUpcomingEventForRun(events, getRegularRun('yoyogi')).eventId, 'y');
+    assert.equal(findUpcomingEventForRun(events, getRegularRun('komazawa')).eventId, 'k');
+    assert.equal(findUpcomingEventForRun(events, getRegularRun('otakanomori')).eventId, 'o');
+    // 半角かっこでも同じ
+    assert.equal(getRunByEventTitle('おおたかの森で日の出ラン (代々木・駒沢同時開催)').id, 'otakanomori');
+    assert.equal(getRunByEventTitle('朝活イベント'), null);
+});
+
+test('日曜は3拠点の同時開催として扱う', () => {
+    const sunday = ['yoyogi', 'komazawa', 'otakanomori'];
+    assert.deepEqual(CONCURRENT_RUN_GROUPS.map((runs) => runs.map((run) => run.id)), [sunday]);
+    assert.deepEqual(getConcurrentRuns(getRegularRun('komazawa')).map((run) => run.id), ['yoyogi', 'otakanomori']);
+    assert.deepEqual(getConcurrentRuns(getRegularRun('kokyo')), []);
+    assert.equal(RUN_PLACES_LABEL, '皇居・目黒川・代々木公園・駒沢公園・流山おおたかの森');
+    assert.equal(RUN_PLACES_BY_REGION_LABEL, '東京の皇居・目黒川・代々木公園・駒沢公園と、千葉の流山おおたかの森');
 });
 
 test('場所が読み取れない日曜のイベントは代々木公園の回として扱い、駒沢には割り当てない', () => {
