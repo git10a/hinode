@@ -2,7 +2,7 @@
 
 import Link from '@/components/SiteLink';
 import { DAY_LABELS_JP } from '@/lib/jstDate';
-import { REGULAR_RUNS } from '@/lib/regularRuns';
+import { REGULAR_RUNS, RUN_PLACES_LABEL } from '@/lib/regularRuns';
 import { RUNNERS_SALON_URL } from '@/lib/site';
 import { MEMBER_COUNT, COMMUNITY_STATS } from '@/lib/stats';
 import useFadeInOnScroll from '@/lib/useFadeInOnScroll';
@@ -13,7 +13,8 @@ const MEETING_POINTS = {
     kokyo: '桔梗門前派出所',
     meguro: '中目黒駅 スターバックス蔦屋書店前',
     yoyogi: '原宿時計塔',
-    komazawa: 'トレーニングルーム前',
+    komazawa: 'チリリン広場 自販機前',
+    otakanomori: '流山おおたかの森駅 ミスタードーナツ前',
 };
 
 const FAQ = [
@@ -82,7 +83,7 @@ export default function PressContent({ memberCount = null, runCount = null }) {
                 </p>
 
                 <div className={`${styles.lead} ${styles.fadeIn}`}>
-                    HINODEは、日の出前に集まり日の出とともに走る、東京の朝ランコミュニティ。週3日、皇居・目黒川・代々木公園・駒沢公園で予約不要・参加無料で開催しています。背中に「HINODE」と書かれた黒いTシャツが目印です。速さや経験を問わず、「人と競争するのではなく、自分との約束を守り続ける」ことを中心に据えたランニングコミュニティです。
+                    HINODEは、日の出前に集まり日の出とともに走る、東京の朝ランコミュニティ。週3日、{RUN_PLACES_LABEL}で予約不要・参加無料で開催しています。背中に「HINODE」と書かれた黒いTシャツが目印です。速さや経験を問わず、「人と競争するのではなく、自分との約束を守り続ける」ことを中心に据えたランニングコミュニティです。
                 </div>
 
                 {/* 取材サマリー */}

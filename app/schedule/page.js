@@ -4,13 +4,22 @@ import PostBottomStrip from '@/components/PostBottomStrip';
 import RunEventCards from '@/components/RunEventCards';
 import { formatIsoJst } from '@/lib/jstDate';
 import { getUpcomingLumaEvents, LUMA_CALENDAR_URL } from '@/lib/luma';
-import { FIRST_CHOICE_RUN, REGULAR_RUNS, RUN_DURATION_MINUTES, getNextRunStart } from '@/lib/regularRuns';
-import { INSTAGRAM_URL, SITE_NAME, SITE_URL, STRAVA_CLUB_URL, absoluteUrl } from '@/lib/site';
+import {
+    CONCURRENT_RUN_GROUPS,
+    FIRST_CHOICE_RUN,
+    REGULAR_RUNS,
+    RUN_DURATION_MINUTES,
+    RUN_PLACES_LABEL,
+    findUpcomingEventForRun,
+    getNextRunStart,
+} from '@/lib/regularRuns';
+import { INSTAGRAM_URL, SITE_NAME, SITE_URL, STRAVA_CLUB_URL, absoluteUrl, stravaEventUrl } from '@/lib/site';
+import { getUpcomingGroupEvents } from '@/lib/strava';
 import styles from './schedule.module.css';
 
 export const metadata = {
-    title: 'HINODEのグループラン日程｜皇居・目黒川・代々木公園・駒沢公園',
-    description: 'HINODEの朝ラン開催日程。皇居・目黒川・代々木公園・駒沢公園などの予定を確認できます。参加無料・登録なしでも参加OK。参加予定の登録はStrava・Lumaのどちらでも。',
+    title: `HINODEのグループラン日程｜${RUN_PLACES_LABEL}`,
+    description: `HINODEの朝ラン開催日程。${RUN_PLACES_LABEL}の予定を確認できます。参加無料・登録なしでも参加OK。参加予定を登録するなら、全拠点の予定が載っているStravaがおすすめです。`,
 };
 
 export const revalidate = 300;
@@ -46,6 +55,13 @@ const EVENT_SCHEMA_DETAILS = {
         mapImage: null,
         summary: '駒沢オリンピック公園で開催する日の出ラン。約4km、ジョギングコースを2周。',
         locality: '東京都世田谷区',
+    },
+    otakanomori: {
+        name: '流山おおたかの森の日の出ラン｜HINODE',
+        // コースマップはまだ無い
+        mapImage: null,
+        summary: '流山おおたかの森駅の周辺で開催する日の出ラン。約3〜5km。',
+        locality: '千葉県流山市',
     },
 };
 
@@ -95,6 +111,8 @@ function createEventJsonLd(run, now) {
 
 // Lumaにイベントを立てていない定例ラン。「次の朝ラン」の一覧に出ないので、文章で案内する
 const RUNS_OFF_LUMA = REGULAR_RUNS.filter((run) => run.onLuma === false);
+// Lumaでも参加予定を登録できる拠点。例: 皇居・目黒川・代々木公園
+const LUMA_PLACES_LABEL = REGULAR_RUNS.filter((run) => run.onLuma !== false).map((run) => run.place).join('・');
 
 const FAQ_ITEMS = [
     {
@@ -111,13 +129,18 @@ const FAQ_ITEMS = [
     },
     {
         question: 'StravaやLumaへの登録は必要ですか？',
-        answer: '登録なしでも参加できます。参加予定を登録する場合は、Strava・Lumaのどちらでも大丈夫です。登録すると、雨天中止などのお知らせを受け取りやすくなります。',
+        answer: `登録なしでも参加できます。参加予定を登録するなら、Stravaをおすすめしています。すべての拠点の予定が載っていて、雨天中止などのお知らせも受け取りやすくなります。${LUMA_PLACES_LABEL}の回は、Lumaでも登録できます。`,
     },
 ];
 
 export default async function EventPage() {
     const now = new Date();
-    const upcomingEvents = await getUpcomingLumaEvents();
+    const [upcomingEvents, stravaEvents] = await Promise.all([getUpcomingLumaEvents(), getUpcomingGroupEvents()]);
+    // その拠点の次回のStravaイベント。取得できないときはクラブのページへ案内する
+    const stravaHrefFor = (run) => {
+        const event = findUpcomingEventForRun(stravaEvents, run);
+        return event ? stravaEventUrl(event.eventId) : STRAVA_CLUB_URL;
+    };
 
     return (
         <div className={styles.page}>
@@ -127,7 +150,7 @@ export default async function EventPage() {
                     <p className="editorial-eyebrow">SCHEDULE</p>
                 <h1 className={styles.title}>
                     HINODEのグループラン日程<br />
-                    <span className={styles.titleSub}>皇居・目黒川・代々木公園・駒沢公園</span>
+                    <span className={styles.titleSub}>{RUN_PLACES_LABEL}</span>
                 </h1>
                 <p className={styles.lead}>
                     HINODEは、朝の時間にゆっくり走るランニングコミュニティです。<br />
@@ -149,6 +172,26 @@ export default async function EventPage() {
                             Lumaですべて見る <span aria-hidden="true">↗</span>
                         </a>
                     </div>
+                    {CONCURRENT_RUN_GROUPS.map((runs) => (
+                        <div key={runs[0].id} className={styles.concurrentNote}>
+                            <p>
+                                <strong>{runs[0].dayShort}は{runs.length}拠点で同時開催</strong>
+                                {runs[0].day}{runs[0].timeLabel}に、{runs.map((run) => run.place).join('・')}の{runs.length}拠点で同時に走っています。
+                                行きやすい場所を選んで、そのまま集合場所へ来てください。
+                            </p>
+                            <ul>
+                                {runs.map((run) => (
+                                    <li key={run.id}>
+                                        <Link href={run.detailHref}>{run.place}</Link>
+                                        <span>{run.meetingPlace}集合・{run.distance}</span>
+                                        <a href={stravaHrefFor(run)} target="_blank" rel="noopener noreferrer" className={styles.concurrentStrava}>
+                                            Stravaで参加予定を登録 <span aria-hidden="true">↗</span>
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
                     {upcomingEvents?.length > 0 ? (
                         <RunEventCards events={upcomingEvents} />
                     ) : (
@@ -162,18 +205,20 @@ export default async function EventPage() {
                         <p key={run.id} className={styles.offLumaNote}>
                             <strong>{run.name}</strong>
                             {run.day}{run.timeLabel}、{run.meetingPlace}集合{run.startsOnLabel ? `（${run.startsOnLabel}から）` : ''}。
-                            Lumaには載せていませんが、予約不要でそのまま参加できます。
+                            Lumaには載せていないので、参加予定の登録はStravaからお願いします。予約不要なので、登録なしでも参加できます。
+                            <a href={stravaHrefFor(run)} target="_blank" rel="noopener noreferrer">Stravaで参加予定を登録 ↗</a>
                             <Link href={run.detailHref}>拠点情報を見る →</Link>
                         </p>
                     ))}
                     <div className={styles.registrationNote}>
                         <p>登録なしで、そのまま参加できます。</p>
                         <p>
-                            参加予定を登録するなら、Strava・Lumaのどちらでも。<br />
-                            雨天中止などのお知らせを受け取りやすくなります。
+                            参加予定を登録するなら、Stravaがおすすめです。<br />
+                            すべての拠点の予定が載っていて、雨天中止などのお知らせも受け取りやすくなります。<br />
+                            {LUMA_PLACES_LABEL}の回は、Lumaでも登録できます。
                         </p>
                         <div className={styles.registrationLinks}>
-                            <a href={STRAVA_CLUB_URL} target="_blank" rel="noopener noreferrer">Stravaで参加予定を登録 <span aria-hidden="true">↗</span></a>
+                            <a href={STRAVA_CLUB_URL} target="_blank" rel="noopener noreferrer">Stravaで参加予定を登録（おすすめ） <span aria-hidden="true">↗</span></a>
                             <a href={LUMA_CALENDAR_URL} target="_blank" rel="noopener noreferrer">Lumaで参加予定を登録 <span aria-hidden="true">↗</span></a>
                         </div>
                     </div>

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from '@/components/SiteLink';
 import PostBottomStrip from '@/components/PostBottomStrip';
 import { ABOUT_FAQ } from '@/lib/aboutFaq';
+import { RUN_PLACES_LABEL } from '@/lib/regularRuns';
 import { INSTAGRAM_URL, RUNNERS_SALON_URL, STRAVA_APP_LINK, STRAVA_CLUB_URL } from '@/lib/site';
 import { COMMUNITY_STATS } from '@/lib/stats';
 import useFadeInOnScroll from '@/lib/useFadeInOnScroll';
@@ -15,7 +16,7 @@ const SECTIONS = [
         title: 'HINODEはどんなコミュニティか',
         body: (
             <>
-                <p className={styles.text}>皇居・目黒川・代々木公園・駒沢公園でのグループランが活動の中心です。ペースも距離も自由で、苦しくなったら歩いても問題ありません。速さではなく、走り続ける規律そのものを大事にしています。</p>
+                <p className={styles.text}>{RUN_PLACES_LABEL}でのグループランが活動の中心です。ペースも距離も自由で、苦しくなったら歩いても問題ありません。速さではなく、走り続ける規律そのものを大事にしています。</p>
                 <p className={styles.text}>競技経験や走力を問わず、朝ランを続けたい人が参加できるコミュニティです。{COMMUNITY_STATS.ageRange}まで、幅広い方が参加しています。</p>
             </>
         ),
@@ -37,7 +38,7 @@ const SECTIONS = [
 const FIRST_JOIN_STEPS = [
     {
         title: '日程を見る',
-        text: '皇居・目黒川・代々木公園・駒沢公園の開催日と集合場所を確認します。',
+        text: `${RUN_PLACES_LABEL}の開催日と集合場所を確認します。`,
     },
     {
         title: '集合場所へ行く',
@@ -200,7 +201,7 @@ export default function AboutContent() {
                         <div className={styles.infoPanel}>
                             <div className={styles.infoItem}>
                                 <span className={styles.infoLabel}>開催場所</span>
-                                <p>皇居・目黒川・代々木公園・駒沢公園で週3日（水・木・日曜）開催。</p>
+                                <p>{RUN_PLACES_LABEL}で週3日（水・木・日曜）開催。日曜は3拠点で同時に走っています。</p>
                                 <Link href="/schedule" className={styles.infoLink}>
                                     開催日程と参加方法を見る <span aria-hidden="true">→</span>
                                 </Link>

@@ -65,6 +65,7 @@
 .weeklyPlace { flex-basis: 100%; font-size: 18px; margin-top: 6px; }
 .page .weeklyLocation { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); margin-top: 6px; }
 .weeklyLocationIcon { width: 13px; height: 13px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.5; }
+.page .weeklyConcurrent { font-size: 11px; color: var(--muted); margin-top: 4px; padding-left: 19px; }
 .weeklyParticipants { margin-top: 12px; }
 .weeklyCardActions { margin-top: auto; padding-top: 18px; }
 .weeklySecondaryActions { display: flex; flex-wrap: wrap; gap: 8px 20px; }
